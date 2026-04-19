@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import data from "../../../experience.json";
-import { LiquidButton } from "./liquid-glass-button";
+
 
 interface Project {
   id: number;
