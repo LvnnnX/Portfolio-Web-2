@@ -1,57 +1,70 @@
 # Pande Dani | Personal Portfolio 🚀
 
-A high-fidelity, interactive personal portfolio website designed with a modern "Liquid Glass" aesthetic. This project showcases advanced frontend techniques, including custom WebGL shaders, physics-based UI components, and a comprehensive glassmorphism design system.
+A high-fidelity personal portfolio website for a **Data Scientist & AI Specialist**. Built with React 19, Vite, and Tailwind CSS v4 — featuring a premium "Liquid Glass" aesthetic, interactive WebGL backgrounds, and physics-driven UI components.
 
-## ✨ Key Features
+## ✨ Features
 
-- **Liquid Glass Design System**: Custom SVG filters and backdrop-blur effects that provide a premium, physical distortion feel to all cards and containers.
+- **Liquid Glass Design System** — High-fidelity glassmorphism using custom SVG physical distortion filters and backdrop-blur effects.
 - **Dual-Mode Interactive Backgrounds**:
   - **Light Mode**: Features a custom **WebGL Shader** background with animated RGB rays and glowing lines.
   - **Dark Mode**: Features an elegant, physics-inspired **Falling Pattern** animation.
-- **Interactive Lanyard Nametag**: A physics-based nametag simulation in the "About Me" section. Built with **Framer Motion**, it responds to drag gestures with realistic spring physics.
-- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop devices.
-- **Dynamic Content Management**: Work experiences and featured projects are structured in JSON files (`experience.json`, `projects.json`) for seamless updates.
-- **Smooth Navigation**: One-page scrolling with active section detection and glassmorphism navbar.
+- **Interactive Lanyard Nametag** — A physics-based nametag simulation in the "About Me" section that responds to drag gestures with realistic spring physics.
+- **Project & Experience Read More** — Expandable details for featured projects and career history with vertical scrollable tech tags and photo galleries.
+- **Responsive & Accessible** — Optimized for all devices with high-contrast accessibility across both theme modes.
+- **Dynamic Content Management** — Work experiences and featured projects are structured in JSON files (`experience.json`, `projects.json`) for seamless updates.
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 - **Core**: [React 19](https://reactjs.org/) + [Vite](https://vitejs.dev/)
-- **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Class-based dark mode)
+- **Logic**: [TypeScript](https://www.typescriptlang.org/)
+- **Styles**: [Tailwind CSS v4](https://tailwindcss.com/) (Class-based dark mode)
 - **Animations & Physics**: [Framer Motion](https://www.framer.com/motion/)
 - **3D/WebGL**: [Three.js](https://threejs.org/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Utilities**: `clsx`, `tailwind-merge`, `class-variance-authority`
+
+## 📁 Project Structure
+
+```
+.
+├── src/
+│   ├── components/
+│   │   └── ui/
+│   │       ├── AboutMe.tsx      # Nametag + Profile Section
+│   │       ├── Experience.tsx   # Career Timeline + Photo Gallery
+│   │       ├── Projects.tsx     # Featured Project Grid
+│   │       ├── Nametag.tsx      # Lanyard Physics Simulation
+│   │       ├── web-gl-shader.tsx# Light Mode Animated Background
+│   │       └── falling-pattern.tsx # Dark Mode Animated Background
+│   ├── App.tsx                  # Main entry point & Theme Layer
+│   ├── demo.tsx                 # Section layout manager
+│   └── index.css                # Global styles & Tailwind v4 config
+├── public/
+│   └── images/
+│       ├── hero_img.jpg         # Profile photo
+│       └── work/                # Experience photo assets
+├── experience.json              # Career history data
+└── package.json                 # Dependencies & scripts
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js (Latest LTS recommended)
+- Node.js 18+ installed
 - npm or yarn
 
-### Installation
+### Quick Start
+```bash
+# 1. Clone the repository
+git clone https://github.com/LvnnnX/Portfolio-Web-2.git
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/LvnnnX/Portfolio-Web-2.git
-   cd Portfolio-Web-2
-   ```
+# 2. Install dependencies
+npm install
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+# 3. Start the development server
+npm run dev
+```
 
-3. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the site.
 
 ## 📍 Location
 
