@@ -2,14 +2,14 @@ import { useRef, useEffect, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 // ── Layout constants ────────────────────────────────────────────────
-const CARD_W       = 154;
-const CARD_H       = 278;
-const CONTAINER_W  = 210;
-const CONTAINER_H  = 440;
-const ANCHOR_X     = CONTAINER_W / 2;       // fixed rope anchor (SVG coords)
-const ANCHOR_Y     = 4;                       // visually centered in upper bar
-const REST_CARD_X  = (CONTAINER_W - CARD_W) / 2;  // card left at rest
-const REST_CARD_Y  = ANCHOR_Y + 72;               // card top at rest
+const CARD_W = 154;
+const CARD_H = 278;
+const CONTAINER_W = 210;
+const CONTAINER_H = 440;
+const ANCHOR_X = CONTAINER_W / 2;       // fixed rope anchor (SVG coords)
+const ANCHOR_Y = 4;                       // visually centered in upper bar
+const REST_CARD_X = (CONTAINER_W - CARD_W) / 2;  // card left at rest
+const REST_CARD_Y = ANCHOR_Y + 72;               // card top at rest
 
 export default function Nametag() {
   // ── Framer Motion spring physics ───────────────────────────────────
@@ -25,7 +25,7 @@ export default function Nametag() {
   const rotate = useTransform(springX, [-120, 0, 120], [-14, 0, 14]);
 
   // ── Lanyard SVG ────────────────────────────────────────────────────
-  const ropeRef  = useRef<SVGPathElement>(null);
+  const ropeRef = useRef<SVGPathElement>(null);
   const chainRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
@@ -55,23 +55,23 @@ export default function Nametag() {
   }, [springX, springY]);
 
   // ── Drag handling ──────────────────────────────────────────────────
-  const dragging      = useRef(false);
-  const startMouse    = useRef({ x: 0, y: 0 });
-  const startCard     = useRef({ x: 0, y: 0 });
+  const dragging = useRef(false);
+  const startMouse = useRef({ x: 0, y: 0 });
+  const startCard = useRef({ x: 0, y: 0 });
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
-    dragging.current     = true;
-    startMouse.current   = { x: e.clientX, y: e.clientY };
-    startCard.current    = { x: rawX.get(),   y: rawY.get() };
+    dragging.current = true;
+    startMouse.current = { x: e.clientX, y: e.clientY };
+    startCard.current = { x: rawX.get(), y: rawY.get() };
     e.preventDefault();
   }, [rawX, rawY]);
 
   // Touch support
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     const t = e.touches[0];
-    dragging.current   = true;
+    dragging.current = true;
     startMouse.current = { x: t.clientX, y: t.clientY };
-    startCard.current  = { x: rawX.get(), y: rawY.get() };
+    startCard.current = { x: rawX.get(), y: rawY.get() };
   }, [rawX, rawY]);
 
   useEffect(() => {
@@ -93,14 +93,14 @@ export default function Nametag() {
     };
 
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup",   onUp);
+    window.addEventListener("mouseup", onUp);
     window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchend",  onUp);
+    window.addEventListener("touchend", onUp);
     return () => {
       window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup",   onUp);
+      window.removeEventListener("mouseup", onUp);
       window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend",  onUp);
+      window.removeEventListener("touchend", onUp);
     };
   }, [rawX, rawY]);
 
@@ -155,16 +155,16 @@ export default function Nametag() {
       <motion.div
         className="absolute cursor-grab active:cursor-grabbing"
         style={{
-          left:         REST_CARD_X,
-          top:          REST_CARD_Y,
-          width:        CARD_W,
-          height:       CARD_H,
-          x:            springX,
-          y:            springY,
+          left: REST_CARD_X,
+          top: REST_CARD_Y,
+          width: CARD_W,
+          height: CARD_H,
+          x: springX,
+          y: springY,
           rotate,
-          zIndex:       2,
+          zIndex: 2,
           borderRadius: 24,
-          touchAction:  "none",
+          touchAction: "none",
         }}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
@@ -193,7 +193,7 @@ export default function Nametag() {
             style={{ background: "rgba(41,151,255,0.15)", border: "1px solid rgba(41,151,255,0.25)" }}
           >
             <span className="text-[9px] font-bold tracking-[0.18em] uppercase text-primary">
-              Portfolio 2025
+              Portfolio
             </span>
           </div>
 
@@ -230,7 +230,7 @@ export default function Nametag() {
             >
               {/* Fake barcode lines */}
               <div className="flex gap-[2px] items-end h-4">
-                {[3,5,2,6,4,3,5,2,4,6,3,5,2,4,5].map((h, i) => (
+                {[3, 5, 2, 6, 4, 3, 5, 2, 4, 6, 3, 5, 2, 4, 5].map((h, i) => (
                   <div
                     key={i}
                     className="bg-foreground/30"
