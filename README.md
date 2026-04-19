@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Pande Dani | Personal Portfolio 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-fidelity, interactive personal portfolio website designed with a modern "Liquid Glass" aesthetic. This project showcases advanced frontend techniques, including custom WebGL shaders, physics-based UI components, and a comprehensive glassmorphism design system.
 
-Currently, two official plugins are available:
+## ✨ Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Liquid Glass Design System**: Custom SVG filters and backdrop-blur effects that provide a premium, physical distortion feel to all cards and containers.
+- **Dual-Mode Interactive Backgrounds**:
+  - **Light Mode**: Features a custom **WebGL Shader** background with animated RGB rays and glowing lines.
+  - **Dark Mode**: Features an elegant, physics-inspired **Falling Pattern** animation.
+- **Interactive Lanyard Nametag**: A physics-based nametag simulation in the "About Me" section. Built with **Framer Motion**, it responds to drag gestures with realistic spring physics.
+- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop devices.
+- **Dynamic Content Management**: Work experiences and featured projects are structured in JSON files (`experience.json`, `projects.json`) for seamless updates.
+- **Smooth Navigation**: One-page scrolling with active section detection and glassmorphism navbar.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core**: [React 19](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Type Safety**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Class-based dark mode)
+- **Animations & Physics**: [Framer Motion](https://www.framer.com/motion/)
+- **3D/WebGL**: [Three.js](https://threejs.org/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Utilities**: `clsx`, `tailwind-merge`, `class-variance-authority`
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (Latest LTS recommended)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/LvnnnX/Portfolio-Web-2.git
+   cd Portfolio-Web-2
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## 📍 Location
+
+Pande Dani is based in **Karangasem, Bali**.
+
+---
+Developed as a showcase of modern web technologies and design principles.
