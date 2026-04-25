@@ -9,8 +9,8 @@ A high-fidelity personal portfolio website for a **Data Scientist & AI Specialis
   - **Light Mode**: Features a custom **WebGL Shader** background with animated RGB rays and glowing lines.
   - **Dark Mode**: Features an elegant, physics-inspired **Falling Pattern** animation.
 - **Interactive Lanyard Nametag** — A physics-based nametag simulation in the "About Me" section that responds to drag gestures with realistic spring physics.
-- **Project & Experience Read More** — Expandable details for featured projects and career history with vertical scrollable tech tags and photo galleries.
-- **Responsive & Accessible** — Optimized for all devices with high-contrast accessibility across both theme modes.
+- **Horizontal Scroll Sliders** — "Experience", "Projects", and "Tools" sections feature smooth, touch-optimized horizontal sliders with dynamic gradient fade masks.
+- **Mobile-Optimized & Performant** — Aggressive performance optimizations including lazy-loaded heavy components (`React.lazy`), CSS-composited Framer animations, capped WebGL pixel ratios for mobile GPU relief, and zero `backdrop-filter` lag on small screens.
 - **Dynamic Content Management** — Work experiences and featured projects are structured in JSON files (`experience.json`, `projects.json`) for seamless updates.
 
 ## 🛠 Tech Stack
