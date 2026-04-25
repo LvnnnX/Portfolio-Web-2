@@ -52,13 +52,13 @@ export default function Experience() {
               onClick={() => scroll("left")}
               className="p-1.5 md:p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
             >
-              <ChevronLeft size={16} md:size={20} />
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
             </button>
             <button 
               onClick={() => scroll("right")}
               className="p-1.5 md:p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
             >
-              <ChevronRight size={16} md:size={20} />
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </div>
         </div>
