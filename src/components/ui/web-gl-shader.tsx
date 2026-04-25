@@ -16,6 +16,7 @@ export function WebGLShader() {
     mesh: THREE.Mesh | null
     uniforms: any
     animationId: number | null
+    isVisible: boolean
   }>({
     scene: null,
     camera: null,
@@ -23,6 +24,7 @@ export function WebGLShader() {
     mesh: null,
     uniforms: null,
     animationId: null,
+    isVisible: true,
   })
 
   // Watch for dark class changes on <html>
@@ -83,7 +85,8 @@ export function WebGLShader() {
 
     refs.scene = new THREE.Scene()
     refs.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-    refs.renderer.setPixelRatio(window.devicePixelRatio)
+    // HARD LIMIT pixel ratio to 1.5 for performance on mobile/retina
+    refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
     refs.renderer.setClearColor(new THREE.Color(0xffffff), 1)
 
     refs.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, -1)
@@ -130,19 +133,44 @@ export function WebGLShader() {
     handleResize()
 
     const animate = () => {
+      refs.animationId = requestAnimationFrame(animate)
+      
+      // PAUSE heavy rendering when off-screen or tab inactive
+      if (!refs.isVisible || document.hidden) return
+
       if (refs.uniforms) refs.uniforms.time.value += 0.01
       if (refs.renderer && refs.scene && refs.camera) {
         refs.renderer.render(refs.scene, refs.camera)
       }
-      refs.animationId = requestAnimationFrame(animate)
     }
 
     animate()
+    
+    const handleVisibility = () => {
+      if (document.hidden && refs.animationId) {
+         refs.isVisible = false;
+      } else {
+         refs.isVisible = true;
+      }
+    }
+
+    document.addEventListener("visibilitychange", handleVisibility)
     window.addEventListener("resize", handleResize)
+
+    // Setup intersection observer to pause when scrolled out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        refs.isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
 
     return () => {
       if (refs.animationId) cancelAnimationFrame(refs.animationId)
       window.removeEventListener("resize", handleResize)
+      document.removeEventListener("visibilitychange", handleVisibility)
+      observer.disconnect()
       if (refs.mesh) {
         refs.scene?.remove(refs.mesh)
         refs.mesh.geometry.dispose()
