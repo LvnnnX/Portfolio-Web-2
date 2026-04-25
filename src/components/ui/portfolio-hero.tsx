@@ -117,19 +117,19 @@ export default function PortfolioHero() {
   return (
     <div className="min-h-screen bg-white dark:bg-background text-black dark:text-foreground transition-colors duration-500 overflow-hidden">
       {/* Liquid Glass Navbar */}
-      <div className="fixed top-6 left-0 right-0 z-[100] flex justify-center px-6">
+      <div className="fixed top-3 md:top-6 left-0 right-0 z-[100] flex justify-center px-2 md:px-6">
         <motion.header
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="relative flex items-center p-1.5 liquid-glass border-border/10 shadow-apple"
+          className="relative flex items-center p-1 md:p-1.5 liquid-glass border-border/10 shadow-apple"
           style={{ maxWidth: "fit-content" }}
         >
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-0.5 md:gap-1">
             {menuItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`relative px-4 py-2 text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 ${activeTab === item.label ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                className={`relative px-2 py-1.5 md:px-4 md:py-2 text-[9px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${activeTab === item.label ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                 onMouseEnter={() => setHoveredTab(item.label)}
                 onMouseLeave={() => setHoveredTab(null)}
@@ -155,12 +155,12 @@ export default function PortfolioHero() {
             ))}
 
             {/* Vertical Divider */}
-            <div className="w-px h-4 bg-border/20 mx-2" />
+            <div className="w-px h-3 md:h-4 bg-border/20 mx-1 md:mx-2" />
 
             {/* Theme Toggle inside Pill */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors relative"
+              className="p-1.5 md:p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors relative"
               aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait">
@@ -172,7 +172,7 @@ export default function PortfolioHero() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Moon size={18} />
+                    <Moon className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -182,7 +182,7 @@ export default function PortfolioHero() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Sun size={18} />
+                    <Sun className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]" />
                   </motion.div>
                 )}
               </AnimatePresence>

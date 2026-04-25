@@ -32,44 +32,44 @@ const CONTACT_DATA = {
 
 export default function Contact() {
   return (
-    <div id="contact" className="pt-16 pb-20 px-6">
+    <div id="contact" className="pt-10 pb-12 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-[40px] font-bold tracking-[-0.02em] mb-4 text-foreground">Get in Touch</h2>
-          <p className="text-[18px] text-muted-foreground max-w-xl mx-auto font-medium">
-            Interested in AI solutions, machine learning consulting, or research collaboration? Let's connect.
+        <div className="text-center mb-10">
+          <h2 className="text-[28px] md:text-[40px] font-bold tracking-[-0.02em] mb-3 text-foreground">Get in Touch</h2>
+          <p className="text-[14px] md:text-[18px] text-muted-foreground max-w-xl mx-auto font-medium">
+            Interested in AI solutions or research collaboration? Let's connect.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-10">
           {[
             {
               name: "GitHub",
-              icon: <Github size={32} />,
+              icon: <Github size={24} />,
               href: CONTACT_DATA.github,
               color: "hover:text-primary"
             },
             {
               name: "LinkedIn",
-              icon: <Linkedin size={32} />,
+              icon: <Linkedin size={24} />,
               href: CONTACT_DATA.linkedin,
               color: "hover:text-[#0A66C2]"
             },
             {
               name: "Instagram",
-              icon: <Instagram size={32} />,
+              icon: <Instagram size={24} />,
               href: "https://www.instagram.com/pande.dani13",
               color: "hover:text-[#E4405F]"
             },
             {
               name: "WhatsApp",
-              icon: <MessageCircle size={32} />,
+              icon: <MessageCircle size={24} />,
               href: "https://wa.me/6285156148613",
               color: "hover:text-[#25D366]"
             },
             {
               name: "Email",
-              icon: <Mail size={32} />,
+              icon: <Mail size={24} />,
               href: `mailto:${CONTACT_DATA.email}`,
               color: "hover:text-primary"
             },
@@ -79,7 +79,7 @@ export default function Contact() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`liquid-glass p-8 transition-all duration-300 hover:scale-110 hover:shadow-2xl text-foreground ${social.color} group`}
+              className={`liquid-glass p-5 md:p-8 transition-all duration-300 hover:scale-110 hover:shadow-2xl text-foreground ${social.color} group`}
               aria-label={social.name}
             >
               <div className="transform transition-transform group-hover:rotate-12">

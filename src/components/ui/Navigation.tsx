@@ -24,9 +24,9 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-fit">
-      <div className={`liquid-glass px-2 md:px-4 py-1.5 md:py-2 flex items-center gap-2 md:gap-6 transition-all duration-500 ${scrolled ? 'scale-100' : 'scale-105'}`}>
-        <div className="text-lg md:text-xl font-bold px-2 text-primary hidden xs:block">
+    <nav className="fixed top-3 left-1/2 -translate-x-1/2 z-[100] w-[98%] max-w-fit">
+      <div className={`liquid-glass px-1.5 md:px-4 py-1 md:py-2 flex items-center gap-0.5 md:gap-6 transition-all duration-500 ${scrolled ? 'scale-100' : 'scale-105'}`}>
+        <div className="text-lg md:text-xl font-bold px-2 text-primary hidden md:block">
           <a href="#home">DG</a>
         </div>
 
@@ -43,23 +43,23 @@ export default function Navigation() {
           ))}
         </div>
 
-        {/* Mobile Toggle Icons/Labels */}
-        <div className="flex md:hidden items-center gap-1">
-          {NAV_ITEMS.slice(0, 3).map((item) => (
+        {/* Mobile View - All Items Compact Row */}
+        <div className="flex md:hidden items-center gap-0.5">
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="px-2 py-1.5 rounded-lg text-[10px] font-black tracking-tighter hover:text-primary transition-all"
+              className="px-1.5 py-1.5 rounded-lg text-[8.5px] font-black tracking-tighter hover:text-primary transition-all whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
           <button
-            className="p-1.5 rounded-lg hover:bg-primary/10 text-primary transition-colors ml-1"
+            className="p-1 rounded-lg hover:bg-primary/10 text-primary transition-colors ml-0.5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+            {isMenuOpen ? <X size={14} /> : <Menu size={14} />}
           </button>
         </div>
 
@@ -69,7 +69,7 @@ export default function Navigation() {
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute top-full left-0 right-0 mt-3 liquid-glass p-3 md:hidden flex flex-col gap-1"
+              className="absolute top-full left-0 right-0 mt-2 liquid-glass p-3 md:hidden flex flex-col gap-1"
             >
               {NAV_ITEMS.map((item) => (
                 <a
