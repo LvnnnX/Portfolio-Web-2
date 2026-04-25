@@ -255,6 +255,26 @@
         "Problem Solving",
         "Curriculum Design"
       ]
+    },
+    {
+      "id": 7,
+      "emoji": "🛒",
+      "title": "POS Calculator & Waiting List MVP",
+      "role": "Frontend Developer",
+      "period": "2026",
+      "category": "Web Application",
+      "description": [
+        "A lightweight, non-blocking MVP for a calculator popup anchored within a two-column layout, alongside a waiting list system for completed orders.",
+        "Engineered with strict acceptance criteria to ensure the popup adapts dynamically without shifting the main layout or collapsing grid columns.",
+        "Utilized React, Zustand for state management, and Tailwind CSS for rapid responsive styling, with data models prepared for future backend integration."
+      ],
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Zustand",
+        "Tailwind CSS",
+        "Vite"
+      ]
     }
   ]
 }
