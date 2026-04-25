@@ -16,7 +16,18 @@ interface ExperienceData {
 export default function Experience() {
   const [selectedExp, setSelectedExp] = useState<ExperienceData | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const experiences = data.experiences as ExperienceData[];
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 400;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const scrollGallery = (direction: "left" | "right") => {
     if (galleryRef.current) {
@@ -30,13 +41,36 @@ export default function Experience() {
 
   return (
     <div id="experience" className="py-16 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-12 text-foreground text-center">Work Experience</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-12 px-4">
+          <div>
+            <h2 className="text-[40px] font-semibold tracking-[-0.02em] text-foreground">Work Experience</h2>
+            <p className="text-muted-foreground mt-2 font-medium">My professional journey and career highlights.</p>
+          </div>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => scroll("left")}
+              className="p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
+            >
+              <ChevronLeft />
+            </button>
+            <button 
+              onClick={() => scroll("right")}
+              className="p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
+            >
+              <ChevronRight />
+            </button>
+          </div>
+        </div>
+
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-8 pt-6 pb-8 px-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        >
           {experiences.map((exp) => (
             <div 
               key={exp.id} 
-              className="flex flex-col liquid-glass p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group"
+              className="min-w-[300px] md:min-w-[400px] flex flex-col liquid-glass p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group snap-start"
               onClick={() => setSelectedExp(exp)}
             >
               <div className="mb-6">
@@ -55,12 +89,10 @@ export default function Experience() {
                 {exp.period}
               </p>
               
-              {/* Description - truncated in view */}
               <p className="text-[15px] leading-[1.6] text-muted-foreground mb-8 flex-grow line-clamp-4 whitespace-pre-wrap">
                 {exp.description}
               </p>
               
-              {/* Skills - Limited in card view */}
               <div className="flex flex-wrap gap-2 mt-auto">
                 {exp.skills.slice(0, 3).map((skill: string) => (
                   <span key={skill} className="bg-muted text-foreground/70 px-2.5 py-1 rounded-[5px] text-[11px] font-semibold border border-border/30">
@@ -69,7 +101,6 @@ export default function Experience() {
                 ))}
               </div>
 
-              {/* Added Read More button */}
               <div className="mt-8 text-primary font-bold text-[14px] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                 Read More <ExternalLink size={14} />
               </div>

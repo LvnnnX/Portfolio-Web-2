@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { X, ExternalLink } from "lucide-react";
+import { useState, useRef } from "react";
+import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import data from "../../../experience.json";
-
 
 interface Project {
   id: number;
@@ -16,18 +15,51 @@ interface Project {
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const projects = data.projects as Project[];
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 400;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div id="projects" className="py-16 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-12 text-foreground text-center">Featured Projects</h2>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-end justify-between mb-12 px-4">
+          <div>
+            <h2 className="text-[40px] font-semibold tracking-[-0.02em] text-foreground">Featured Projects</h2>
+            <p className="text-muted-foreground mt-2 font-medium">Selected works in AI, Web, and Automation.</p>
+          </div>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => scroll("left")}
+              className="p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
+            >
+              <ChevronLeft />
+            </button>
+            <button 
+              onClick={() => scroll("right")}
+              className="p-3 rounded-full liquid-glass hover:bg-primary/10 transition-colors"
+            >
+              <ChevronRight />
+            </button>
+          </div>
+        </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-8 pt-6 pb-8 px-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        >
           {projects.map((project) => (
             <div 
               key={project.id} 
-              className="flex flex-col liquid-glass p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group"
+              className="min-w-[300px] md:min-w-[400px] flex flex-col liquid-glass p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer group snap-start"
               onClick={() => setSelectedProject(project)}
             >
               <div className="text-[40px] mb-6 transform transition-transform group-hover:scale-110 duration-300">

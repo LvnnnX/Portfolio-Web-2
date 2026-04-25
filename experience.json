@@ -140,7 +140,7 @@
       "emoji": "🎓",
       "title": "Smandapura Exam App",
       "role": "Full Stack Developer",
-      "period": "2024",
+      "period": "2026",
       "category": "Web Application",
       "description": [
         "Platform ujian online modern dengan sistem Zero-Trust Security (ANTI-HACK). Menampilkan fitur JIT Question Fetching, enkripsi AES-256 pada LocalStorage, dan Survival Mode dengan sistem 3-Nyawa.",
@@ -157,6 +157,27 @@
     },
     {
       "id": 2,
+      "emoji": "🤖",
+      "title": "MCP Chatbot — Inventory Assistant",
+      "role": "Lead AI Developer",
+      "period": "2026",
+      "category": "AI & Automation",
+      "description": [
+        "Chatbot AI percakapan yang memungkinkan pengguna menjelajahi inventaris dan melakukan pemesanan menggunakan bahasa alami (Natural Language).",
+        "Menggunakan arsitektur Model Context Protocol (MCP) dengan dua server independen: satu untuk pembacaan database SQLite dan satu untuk penulisan pesanan ke sistem file.",
+        "Ditenagai oleh Google Gemini untuk orkestrasi AI yang sadar konteks, mendukung percakapan multi-turn, dan integrasi backend Node.js + Express dengan frontend Expo Web."
+      ],
+      "techStack": [
+        "Node.js",
+        "Express",
+        "Google Gemini",
+        "MCP SDK",
+        "SQLite",
+        "Expo"
+      ]
+    },
+    {
+      "id": 3,
       "emoji": "🦼",
       "title": "Voice-Controlled Electric Wheelchair",
       "role": "Team Leader – Machine Learning",
@@ -176,7 +197,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "emoji": "🍎",
       "title": "Fruit Ninja Automation Bot",
       "role": "ML Engineer – Solo Developer",
@@ -196,7 +217,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "emoji": "📄",
       "title": "Document Automation Web System",
       "role": "Full Stack Developer – Intern",
@@ -216,7 +237,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "emoji": "🎓",
       "title": "National Informatics Olympiad Coaching",
       "role": "Educator & Coach",

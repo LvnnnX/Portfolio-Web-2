@@ -1,13 +1,14 @@
 const SKILLS = [
-  { name: "Python", level: 95 },
-  { name: "Machine Learning / Deep Learning", level: 90 },
-  { name: "C++", level: 85 },
-  { name: "JavaScript / TypeScript", level: 80 },
-  { name: "Computer Vision (YOLOv8, OpenCV)", level: 80 },
-  { name: "Speech Recognition & Audio Processing", level: 80 },
-  { name: "LLM Protocols (MCP, RAG)", level: 75 },
-  { name: "Data Engineering (SQL, ETL, Azure)", level: 75 },
-  { name: "Web Frameworks (Flask, Next.js, Vite)", level: 70 },
+  { name: "Python & AI Ecosystem", level: 95 },
+  { name: "Next.js & React Development", level: 90 },
+  { name: "ML / Deep Learning (TensorFlow)", level: 90 },
+  { name: "Data Engineering (SQL, Azure)", level: 85 },
+  { name: "C++ & Competitive Programming", level: 85 },
+  { name: "Data Visualization (Seaborn, Plotly)", level: 85 },
+  { name: "Computer Vision (YOLOv8)", level: 80 },
+  { name: "Speech Recognition & Audio", level: 80 },
+  { name: "Advanced AI (MCP, RAG, Gemini)", level: 80 },
+  { name: "Version Control (GitHub / DevOps)", level: 90 },
 ];
 
 const ACHIEVEMENTS = [
@@ -52,12 +53,14 @@ const ACHIEVEMENTS = [
 export default function Skills() {
   return (
     <div id="skills" className="py-16 px-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-16 text-foreground">Skills & Achievements</h2>
         
         <div className="mb-24">
-          <h3 className="text-[24px] font-semibold tracking-tight mb-8 text-foreground">Technical Skills</h3>
-          <div className="space-y-8 max-w-2xl p-10 liquid-glass">
+          <h3 className="text-[24px] font-semibold tracking-tight mb-10 text-foreground flex items-center gap-4">
+            Technical Skills <span className="h-[2px] flex-grow bg-foreground/5" />
+          </h3>
+          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 liquid-glass p-10 md:p-16">
             {SKILLS.map((skill) => (
               <div key={skill.name}>
                 <div className="flex justify-between mb-3">
