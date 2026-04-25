@@ -60,14 +60,14 @@ export default function Skills() {
           <h3 className="text-[24px] font-semibold tracking-tight mb-10 text-foreground flex items-center gap-4">
             Technical Skills <span className="h-[2px] flex-grow bg-foreground/5" />
           </h3>
-          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 liquid-glass p-10 md:p-16">
+          <div className="grid grid-cols-2 gap-x-4 md:gap-x-16 gap-y-6 md:gap-y-10 liquid-glass p-5 md:p-16">
             {SKILLS.map((skill) => (
               <div key={skill.name}>
-                <div className="flex justify-between mb-3">
-                  <span className="font-bold text-[16px] tracking-tight">{skill.name}</span>
-                  <span className="text-primary text-[15px] font-bold">{skill.level}%</span>
+                <div className="flex justify-between mb-1.5 md:mb-3">
+                  <span className="font-bold text-[11px] md:text-[16px] tracking-tight">{skill.name}</span>
+                  <span className="text-primary text-[10px] md:text-[15px] font-bold">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-border/20 rounded-full h-[8px] relative overflow-hidden backdrop-blur-sm">
+                <div className="w-full bg-border/20 rounded-full h-[4px] md:h-[8px] relative overflow-hidden backdrop-blur-sm">
                   <div
                     className="bg-primary h-full rounded-full absolute top-0 left-0 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(0,113,227,0.5)]"
                     style={{ width: `${skill.level}%` }}
@@ -79,13 +79,13 @@ export default function Skills() {
         </div>
 
         <div>
-          <h3 className="text-[24px] font-semibold tracking-tight mb-8 text-foreground">Achievements & Certifications</h3>
-          <div className="grid gap-6 md:grid-cols-2">
+          <h3 className="text-[20px] md:text-[24px] font-semibold tracking-tight mb-6 md:mb-8 text-foreground">Achievements & Certifications</h3>
+          <div className="grid grid-cols-2 gap-3 md:gap-6">
             {ACHIEVEMENTS.map((cert) => (
-              <div key={cert.id} className="liquid-glass p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
-                <h4 className="font-bold text-[18px] tracking-tight mb-2 text-foreground">{cert.name}</h4>
-                <p className="text-[15px] font-semibold text-muted-foreground flex items-center">
-                  {cert.issuer} <span className="mx-2 w-1.5 h-1.5 rounded-full bg-primary/40 inline-block" /> {cert.year}
+              <div key={cert.id} className="liquid-glass p-3 md:p-8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl flex flex-col justify-center">
+                <h4 className="font-bold text-[11px] md:text-[18px] tracking-tight mb-1 md:mb-2 text-foreground leading-tight">{cert.name}</h4>
+                <p className="text-[9px] md:text-[15px] font-semibold text-muted-foreground flex items-center flex-wrap">
+                  {cert.issuer} <span className="mx-1 md:mx-2 w-1 md:h-1.5 h-1 md:w-1.5 rounded-full bg-primary/40 inline-block" /> {cert.year}
                 </p>
               </div>
             ))}

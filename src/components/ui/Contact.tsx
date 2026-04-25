@@ -8,6 +8,12 @@ const Instagram = ({ size }: { size: number }) => (
   </svg>
 );
 
+const Github = ({ size }: { size: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+  </svg>
+);
+
 const Linkedin = ({ size }: { size: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -21,6 +27,7 @@ const CONTACT_DATA = {
   phone: "+62 851 5614 8613",
   address: "Karangasem, Bali",
   linkedin: "https://www.linkedin.com/in/kokopandan",
+  github: "https://github.com/LvnnnX",
 };
 
 export default function Contact() {
@@ -34,8 +41,20 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-10">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10">
           {[
+            {
+              name: "GitHub",
+              icon: <Github size={32} />,
+              href: CONTACT_DATA.github,
+              color: "hover:text-primary"
+            },
+            {
+              name: "LinkedIn",
+              icon: <Linkedin size={32} />,
+              href: CONTACT_DATA.linkedin,
+              color: "hover:text-[#0A66C2]"
+            },
             {
               name: "Instagram",
               icon: <Instagram size={32} />,
@@ -47,12 +66,6 @@ export default function Contact() {
               icon: <MessageCircle size={32} />,
               href: "https://wa.me/6285156148613",
               color: "hover:text-[#25D366]"
-            },
-            {
-              name: "LinkedIn",
-              icon: <Linkedin size={32} />,
-              href: CONTACT_DATA.linkedin,
-              color: "hover:text-[#0A66C2]"
             },
             {
               name: "Email",

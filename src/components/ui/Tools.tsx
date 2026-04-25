@@ -131,7 +131,7 @@ export default function Tools() {
 
         <div 
           ref={scrollRef}
-          className="flex overflow-x-auto gap-8 pb-8 px-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+          className="flex overflow-x-auto gap-3 md:gap-8 pb-5 md:pb-8 px-2 md:px-4 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
         >
           {CATEGORIES.map((cat, idx) => (
             <motion.div
@@ -139,23 +139,23 @@ export default function Tools() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="min-w-[320px] md:min-w-[450px] snap-start"
+              className="min-w-[220px] md:min-w-[450px] snap-start"
             >
-              <div className="liquid-glass p-8 h-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-8 text-primary flex items-center gap-3">
-                  <span className="w-8 h-[2px] bg-primary/30" /> {cat.title}
+              <div className="liquid-glass p-4 md:p-8 h-full flex flex-col">
+                <h3 className="text-lg md:text-2xl font-bold mb-4 md:mb-8 text-primary flex items-center gap-2 md:gap-3">
+                  <span className="w-6 md:w-8 h-[2px] bg-primary/30" /> {cat.title}
                 </h3>
                 
-                <div className="grid grid-cols-3 gap-4 max-h-[240px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                <div className="grid grid-cols-3 gap-2 md:gap-4 max-h-[180px] md:max-h-[240px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
                   {cat.items.map((item) => (
                     <div 
                       key={item.name}
-                      className="flex flex-col items-center p-4 rounded-2xl bg-foreground/[0.03] border border-foreground/[0.05] hover:bg-foreground/[0.06] transition-colors h-[100px] justify-center"
+                      className="flex flex-col items-center p-2 md:p-4 rounded-xl md:rounded-2xl bg-foreground/[0.03] border border-foreground/[0.05] hover:bg-foreground/[0.06] transition-colors h-[70px] md:h-[100px] justify-center"
                     >
-                      <div className="text-2xl mb-2">
+                      <div className="text-lg md:text-2xl mb-1 md:mb-2">
                         {item.icon}
                       </div>
-                      <span className="text-[11px] font-bold text-center leading-tight">
+                      <span className="text-[9px] md:text-[11px] font-bold text-center leading-tight">
                         {item.name}
                       </span>
                     </div>
