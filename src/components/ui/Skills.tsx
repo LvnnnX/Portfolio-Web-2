@@ -4,6 +4,7 @@ const SKILLS = [
   { name: "C++", level: 85 },
   { name: "JavaScript / TypeScript", level: 80 },
   { name: "Computer Vision (YOLOv8, OpenCV)", level: 80 },
+  { name: "Speech Recognition & Audio Processing", level: 80 },
   { name: "LLM Protocols (MCP, RAG)", level: 75 },
   { name: "Data Engineering (SQL, ETL, Azure)", level: 75 },
   { name: "Web Frameworks (Flask, Next.js, Vite)", level: 70 },
@@ -50,7 +51,7 @@ const ACHIEVEMENTS = [
 
 export default function Skills() {
   return (
-    <div id="skills" className="min-h-screen py-32 px-6">
+    <div id="skills" className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-16 text-foreground">Skills & Achievements</h2>
         

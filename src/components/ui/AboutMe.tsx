@@ -8,7 +8,7 @@ const ABOUT_DATA = {
 
 export default function AboutMe() {
   return (
-    <div id="about" className="min-h-screen py-32 px-6 relative z-40">
+    <div id="about" className="py-16 px-6 relative z-40">
       <div className="max-w-5xl mx-auto">
         <div className="liquid-glass p-10 md:p-16 !overflow-visible">
           {/* Inner flex: text left, nametag right */}

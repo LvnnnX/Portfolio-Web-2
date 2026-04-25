@@ -19,7 +19,7 @@ export default function Projects() {
   const projects = data.projects as Project[];
 
   return (
-    <div id="projects" className="min-h-screen py-32 px-6 relative">
+    <div id="projects" className="py-16 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-12 text-foreground text-center">Featured Projects</h2>
         
@@ -71,7 +71,7 @@ export default function Projects() {
       {/* Modern Liquid Glass Modal */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 backdrop-blur-3xl bg-black/40 animate-in fade-in duration-300 overflow-y-auto"
+          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 backdrop-blur-xl bg-black/40 animate-in fade-in duration-300 overflow-y-auto"
           onClick={() => setSelectedProject(null)}
         >
           <div 

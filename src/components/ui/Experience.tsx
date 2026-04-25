@@ -29,7 +29,7 @@ export default function Experience() {
   };
 
   return (
-    <div id="experience" className="min-h-screen py-32 px-6 relative">
+    <div id="experience" className="py-16 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-[40px] font-semibold tracking-[-0.02em] mb-12 text-foreground text-center">Work Experience</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -81,7 +81,7 @@ export default function Experience() {
       {/* Modern Liquid Glass Modal (Experience) */}
       {selectedExp && (
         <div 
-          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 backdrop-blur-3xl bg-black/40 animate-in fade-in duration-300 overflow-y-auto"
+          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 backdrop-blur-xl bg-black/40 animate-in fade-in duration-300 overflow-y-auto"
           onClick={() => setSelectedExp(null)}
         >
           <div 

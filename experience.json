@@ -7,8 +7,18 @@
       "period": "Jan 2022 – Aug 2025",
       "description": "Engaged 34+ students annually in extracurricular programming. Led three students to the National Informatics Olympiad each year, meeting the maximum school quota. Designed a dynamic curriculum aligned with individual student needs and official competition benchmarks.",
       "category": "Education",
-      "skills": ["C++", "Olympiad Prep", "Curriculum Design", "Mentoring"],
-      "photos": ["/images/work_1/1.png", "/images/work_1/2.png", "/images/work_1/3.png", "/images/work_1/4.png"]
+      "skills": [
+        "C++",
+        "Olympiad Prep",
+        "Curriculum Design",
+        "Mentoring"
+      ],
+      "photos": [
+        "/images/work_1/1.png",
+        "/images/work_1/2.png",
+        "/images/work_1/3.png",
+        "/images/work_1/4.png"
+      ]
     },
     {
       "id": 2,
@@ -17,8 +27,14 @@
       "period": "Jan 2022 – Jan 2023",
       "description": "Supervised all 15 operations of BEM FMIPA Udayana. Acted as intermediary between the Dean's Office and Student Executive Board. Ensured timely execution of all scheduled faculty-level activities.",
       "category": "Leadership",
-      "skills": ["Supervision", "Student Governance", "Communication"],
-      "photos": ["/images/work_2/1.png"]
+      "skills": [
+        "Supervision",
+        "Student Governance",
+        "Communication"
+      ],
+      "photos": [
+        "/images/work_2/1.png"
+      ]
     },
     {
       "id": 3,
@@ -27,8 +43,17 @@
       "period": "Jan 2023 – Jan 2024",
       "description": "Delivered insights on technological advancements for organization members. Managed the organization's Discord server and contributed to technical knowledge-sharing initiatives.",
       "category": "Leadership",
-      "skills": ["Tech Leadership", "Community Management", "Knowledge Sharing"],
-      "photos": ["/images/work_3/1.png", "/images/work_3/2.png", "/images/work_3/3.png", "/images/work_3/4.png"]
+      "skills": [
+        "Tech Leadership",
+        "Community Management",
+        "Knowledge Sharing"
+      ],
+      "photos": [
+        "/images/work_3/1.png",
+        "/images/work_3/2.png",
+        "/images/work_3/3.png",
+        "/images/work_3/4.png"
+      ]
     },
     {
       "id": 4,
@@ -37,8 +62,17 @@
       "period": "Jul 2023 – Aug 2023",
       "description": "Increased work efficiency by designing and building a web application that automates 9 daily administrative documents. Conducted user requirement analysis to integrate data from multiple sources into a streamlined platform. Ensured seamless adoption through intuitive UI/UX and hands-on training.",
       "category": "Internship",
-      "skills": ["Web Development", "Automation", "UI/UX", "User Training"],
-      "photos": ["/images/work_4/1.png", "/images/work_4/2.png", "/images/work_4/3.png"]
+      "skills": [
+        "Web Development",
+        "Automation",
+        "UI/UX",
+        "User Training"
+      ],
+      "photos": [
+        "/images/work_4/1.png",
+        "/images/work_4/2.png",
+        "/images/work_4/3.png"
+      ]
     },
     {
       "id": 5,
@@ -47,8 +81,15 @@
       "period": "Aug 2023 – Jan 2024",
       "description": "Completed 900+ hours of intensive training in AI, Machine Learning, and data processing. Built classification and regression models using real-world datasets. Program led by Google, GoTo, and Traveloka.",
       "category": "Certification",
-      "skills": ["Python", "TensorFlow", "Machine Learning", "Deep Learning"],
-      "photos": ["/images/work_5/1.png"]
+      "skills": [
+        "Python",
+        "TensorFlow",
+        "Machine Learning",
+        "Deep Learning"
+      ],
+      "photos": [
+        "/images/work_5/1.png"
+      ]
     },
     {
       "id": 6,
@@ -57,8 +98,21 @@
       "period": "Jan 2024 – Jun 2024",
       "description": "Completed intensive Data Engineering training using Microsoft tools. Earned 6 professional competency certificates covering Azure, SQL, and ETL pipelines.",
       "category": "Certification",
-      "skills": ["Azure", "SQL", "ETL", "Data Engineering", "Microsoft"],
-      "photos": ["/images/work_6/1.png", "/images/work_6/2.png", "/images/work_6/3.png", "/images/work_6/4.png", "/images/work_6/5.png", "/images/work_6/6.png"]
+      "skills": [
+        "Azure",
+        "SQL",
+        "ETL",
+        "Data Engineering",
+        "Microsoft"
+      ],
+      "photos": [
+        "/images/work_6/1.png",
+        "/images/work_6/2.png",
+        "/images/work_6/3.png",
+        "/images/work_6/4.png",
+        "/images/work_6/5.png",
+        "/images/work_6/6.png"
+      ]
     },
     {
       "id": 7,
@@ -67,13 +121,42 @@
       "period": "Mar 2025 – Aug 2025",
       "description": "Designed and developed a Fruit Ninja automation bot using YOLOv8 and Bettercam. Systematically tested 13 different models and tuned hyperparameters to achieve optimal balance between detection accuracy and computational efficiency.",
       "category": "Project",
-      "skills": ["YOLOv8", "PyTorch", "Computer Vision", "Object Detection"],
-      "photos": ["/images/work_7/1.png", "/images/work_7/2.png", "/images/work_7/3.png"]
+      "skills": [
+        "YOLOv8",
+        "PyTorch",
+        "Computer Vision",
+        "Object Detection"
+      ],
+      "photos": [
+        "/images/work_7/1.png",
+        "/images/work_7/2.png",
+        "/images/work_7/3.png"
+      ]
     }
   ],
   "projects": [
     {
       "id": 1,
+      "emoji": "🎓",
+      "title": "Smandapura Exam App",
+      "role": "Full Stack Developer",
+      "period": "2024",
+      "category": "Web Application",
+      "description": [
+        "Platform ujian online modern dengan sistem Zero-Trust Security (ANTI-HACK). Menampilkan fitur JIT Question Fetching, enkripsi AES-256 pada LocalStorage, dan Survival Mode dengan sistem 3-Nyawa.",
+        "Dibangun untuk keandalan tinggi dan manajemen data real-time menggunakan Supabase RPC. Timer dihitung secara server-side untuk mencegah manipulasi waktu oleh peserta.",
+        "Dilengkapi dashboard admin untuk manajemen soal (Rich Text & LaTeX), monitoring progres peserta secara real-time, dan analitik hasil ujian otomatis."
+      ],
+      "techStack": [
+        "Next.js 15",
+        "Supabase",
+        "Tailwind CSS 4",
+        "CryptoJS",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "id": 2,
       "emoji": "🦼",
       "title": "Voice-Controlled Electric Wheelchair",
       "role": "Team Leader – Machine Learning",
@@ -84,10 +167,16 @@
         "Successfully qualified for and received funding from the Ministry of Education, Culture, Research, and Technology (Kemdikbudristek). This achievement demonstrated the project's real-world impact and technical viability.",
         "Managed cross-functional collaboration between hardware and software sub-teams, implementing speech recognition models integrated with Arduino-based motor control systems."
       ],
-      "techStack": ["Python", "Machine Learning", "Speech Recognition", "IoT", "Arduino"]
+      "techStack": [
+        "Python",
+        "Machine Learning",
+        "Speech Recognition",
+        "IoT",
+        "Arduino"
+      ]
     },
     {
-      "id": 2,
+      "id": 3,
       "emoji": "🍎",
       "title": "Fruit Ninja Automation Bot",
       "role": "ML Engineer – Solo Developer",
@@ -98,10 +187,16 @@
         "Achieved optimal balance between detection accuracy and computational efficiency by systematically testing 13 different models and tuning hyperparameters to resolve performance bottlenecks (FPS drops).",
         "Integrated YOLOv8 with Bettercam for efficient frame capture, overcoming technical challenges to ensure accurate and responsive detection coordinates. Applied iterative testing to optimize algorithms and processing pipelines."
       ],
-      "techStack": ["Python", "YOLOv8", "OpenCV", "Bettercam", "Computer Vision"]
+      "techStack": [
+        "Python",
+        "YOLOv8",
+        "OpenCV",
+        "Bettercam",
+        "Computer Vision"
+      ]
     },
     {
-      "id": 3,
+      "id": 4,
       "emoji": "📄",
       "title": "Document Automation Web System",
       "role": "Full Stack Developer – Intern",
@@ -112,10 +207,16 @@
         "Conducted user requirement analysis to integrate key data points from multiple sources into a single, streamlined platform with an intuitive UI/UX.",
         "Provided direct training to staff to ensure seamless adoption. The platform remains in active daily use at the institution."
       ],
-      "techStack": ["HTML", "CSS", "JavaScript", "Flask", "Python"]
+      "techStack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Flask",
+        "Python"
+      ]
     },
     {
-      "id": 4,
+      "id": 5,
       "emoji": "🎓",
       "title": "National Informatics Olympiad Coaching",
       "role": "Educator & Coach",
@@ -126,7 +227,13 @@
         "Led three students to the National Informatics Olympiad each year, consistently meeting the maximum school quota. Designed a flexible, competition-aligned curriculum covering foundations through advanced competitive tactics.",
         "Individually mentored students to achieve mastery over a full spectrum of skills, fostering critical thinking and problem-solving abilities essential for national-level competition."
       ],
-      "techStack": ["C++", "Algorithms", "Data Structures", "Problem Solving", "Curriculum Design"]
+      "techStack": [
+        "C++",
+        "Algorithms",
+        "Data Structures",
+        "Problem Solving",
+        "Curriculum Design"
+      ]
     }
   ]
 }

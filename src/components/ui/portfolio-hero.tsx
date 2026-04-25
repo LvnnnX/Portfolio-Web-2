@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { ChevronDown, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LiquidButton } from "./liquid-glass-button";
 
 interface BlurTextProps {
   text: string;
@@ -12,14 +11,14 @@ interface BlurTextProps {
   style?: React.CSSProperties;
 }
 
-const BlurText: React.FC<BlurTextProps> = ({
+const BlurText = React.memo(({
   text,
   delay = 50,
   animateBy = "words",
   direction = "top",
   className = "",
   style,
-}) => {
+}: BlurTextProps) => {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
 
@@ -60,7 +59,9 @@ const BlurText: React.FC<BlurTextProps> = ({
       ))}
     </p>
   );
-};
+});
+
+BlurText.displayName = "BlurText";
 
 export default function PortfolioHero() {
   const [isDark, setIsDark] = useState(true);
@@ -245,15 +246,7 @@ export default function PortfolioHero() {
             className="text-[17px] sm:text-[19px] md:text-[21px] font-medium tracking-tight text-neutral-600 dark:text-muted-foreground text-center"
           />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-            <LiquidButton size="lg" className="scale-110">
-              Get In Touch
-            </LiquidButton>
-          </motion.div>
+
         </div>
 
         <button
