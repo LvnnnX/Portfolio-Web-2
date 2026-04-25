@@ -20,7 +20,15 @@ const BlurText = React.memo(({
   style,
 }: BlurTextProps) => {
   const [inView, setInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,7 +55,7 @@ const BlurText = React.memo(({
           key={i}
           style={{
             display: "inline-block",
-            filter: inView ? "blur(0px)" : "blur(10px)",
+            filter: inView ? "blur(0px)" : (isMobile ? "none" : "blur(10px)"),
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : `translateY(${direction === "top" ? "-20px" : "20px"})`,
             transition: `all 0.5s ease-out ${i * delay}ms`,
