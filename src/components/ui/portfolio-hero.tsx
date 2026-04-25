@@ -106,12 +106,12 @@ export default function PortfolioHero() {
   }, []);
 
   const menuItems = [
-    { label: "HOME", href: "#home" },
-    { label: "ABOUT", href: "#about" },
-    { label: "EXPERIENCE", href: "#experience" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "SKILLS", href: "#skills" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Exp", href: "#experience" },
+    { label: "Work", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Mail", href: "#contact" },
   ];
 
   return (
@@ -124,12 +124,12 @@ export default function PortfolioHero() {
           className="relative flex items-center p-1 md:p-1.5 liquid-glass border-border/10 shadow-apple"
           style={{ maxWidth: "fit-content" }}
         >
-          <nav className="flex items-center gap-0.5 md:gap-1">
+          <nav className="flex items-center gap-0 md:gap-1">
             {menuItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`relative px-2 py-1.5 md:px-4 md:py-2 text-[9px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${activeTab === item.label ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                className={`relative px-1.5 py-1.5 md:px-4 md:py-2 text-[8px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${activeTab === item.label.toUpperCase() ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                 onMouseEnter={() => setHoveredTab(item.label)}
                 onMouseLeave={() => setHoveredTab(null)}
