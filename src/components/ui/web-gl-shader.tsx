@@ -39,9 +39,9 @@ export function WebGLShader() {
     return () => observer.disconnect();
   }, []);
 
-  // WebGL setup — only runs when NOT dark
+  // WebGL setup — runs once; theme color updates via uniform without re-init
   useEffect(() => {
-    if (isDark || !canvasRef.current) return
+    if (!canvasRef.current) return
 
     const canvas = canvasRef.current
     const refs = sceneRef.current
@@ -60,12 +60,13 @@ export function WebGLShader() {
       uniform float xScale;
       uniform float yScale;
       uniform float distortion;
+      uniform vec3 uBgColor;
 
       void main() {
         vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
-        
+
         float d = length(p) * distortion;
-        
+
         float rx = p.x * (1.0 + d);
         float gx = p.x;
         float bx = p.x * (1.0 - d);
@@ -73,12 +74,12 @@ export function WebGLShader() {
         float r = 0.05 / abs(p.y + sin((rx + time) * xScale) * yScale);
         float g = 0.05 / abs(p.y + sin((gx + time) * xScale) * yScale);
         float b = 0.05 / abs(p.y + sin((bx + time) * xScale) * yScale);
-        
+
         vec3 line_color = vec3(r, g, b);
         float strength = max(r, max(g, b));
-        
-        // Blend white background with bright original colors
-        vec3 final_color = mix(vec3(1.0), line_color, clamp(strength, 0.0, 1.0));
+
+        // Blend background (light or dark) with bright original line colors
+        vec3 final_color = mix(uBgColor, line_color, clamp(strength, 0.0, 1.0));
         gl_FragColor = vec4(final_color, 1.0);
       }
     `
@@ -87,7 +88,7 @@ export function WebGLShader() {
     refs.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
     // HARD LIMIT pixel ratio to 1.5 for performance on mobile/retina
     refs.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
-    refs.renderer.setClearColor(new THREE.Color(0xffffff), 1)
+    refs.renderer.setClearColor(new THREE.Color(isDark ? 0x0a0a0a : 0xffffff), 1)
 
     refs.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, -1)
 
@@ -97,6 +98,7 @@ export function WebGLShader() {
       xScale: { value: 1.0 },
       yScale: { value: 0.5 },
       distortion: { value: 0.05 },
+      uBgColor: { value: isDark ? [0.04, 0.04, 0.04] : [1.0, 1.0, 1.0] },
     }
 
     const position = [
@@ -187,9 +189,6 @@ export function WebGLShader() {
       refs.animationId = null
     }
   }, [isDark])
-
-  // Don't render canvas in dark mode
-  if (isDark) return null
 
   return (
     <canvas
