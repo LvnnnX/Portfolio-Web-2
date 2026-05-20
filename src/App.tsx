@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import "./index.css";
 import { GlassFilter } from "./components/ui/liquid-glass-button";
-import { FallingPattern } from "./components/ui/falling-pattern";
 import { WebGLShader } from "./components/ui/web-gl-shader";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
@@ -13,13 +12,9 @@ function App() {
   return (
     <div className="relative min-h-screen dark:bg-background">
       {/* Background Layer (skipped on /blog so the editorial paper surface
-          isn't muddled by the falling-pattern / WebGL shader). */}
+          isn't muddled by the WebGL shader). */}
       {!isBlog && (
         <div className="fixed inset-0 pointer-events-none z-0">
-          <FallingPattern
-            className="h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent,var(--background))] hidden dark:block"
-            duration={120}
-          />
           <WebGLShader />
         </div>
       )}
