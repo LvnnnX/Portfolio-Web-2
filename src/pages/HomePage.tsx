@@ -6,6 +6,7 @@ const Experience = React.lazy(() => import("../components/ui/Experience"));
 const Projects = React.lazy(() => import("../components/ui/Projects"));
 const Skills = React.lazy(() => import("../components/ui/Skills"));
 const Tools = React.lazy(() => import("../components/ui/Tools"));
+const Playground = React.lazy(() => import("../components/sections/Playground"));
 const Contact = React.lazy(() => import("../components/ui/Contact"));
 
 const SectionFallback = () => (
@@ -37,6 +38,7 @@ export default function HomePage() {
         <div id="skills">
           <Skills />
         </div>
+        <Playground />
         <div id="contact">
           <Contact />
         </div>
