@@ -3,6 +3,8 @@ import "./index.css";
 import { GlassFilter } from "./components/ui/liquid-glass-button";
 import { FallingPattern } from "./components/ui/falling-pattern";
 import { WebGLShader } from "./components/ui/web-gl-shader";
+import Navigation from "./components/layout/Navigation";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -16,10 +18,14 @@ function App() {
         <WebGLShader />
       </div>
 
+      <Navigation />
+
       {/* Routed Content Layer */}
       <div className="relative z-10">
         <Outlet />
       </div>
+
+      <Footer />
 
       <GlassFilter />
     </div>

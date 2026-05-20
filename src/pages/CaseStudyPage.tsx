@@ -1,16 +1,50 @@
+import type { ComponentType } from "react";
+import { useParams } from "react-router-dom";
+import CaseStudyLayout, {
+  type CaseStudyFrontmatter,
+} from "../components/layout/CaseStudyLayout";
+import NotFoundPage from "./NotFoundPage";
+
+interface MdxModule {
+  default: ComponentType;
+  frontmatter?: Partial<CaseStudyFrontmatter>;
+}
+
+const modules = import.meta.glob<MdxModule>(
+  "../content/case-studies/*.mdx",
+  { eager: true },
+);
+
+const studies = new Map<string, MdxModule>();
+for (const [path, mod] of Object.entries(modules)) {
+  const slug = mod.frontmatter?.slug ?? path.split("/").pop()?.replace(/\.mdx$/, "");
+  if (slug) studies.set(slug, mod);
+}
+
 export default function CaseStudyPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const mod = slug ? studies.get(slug) : undefined;
+
+  if (!mod) return <NotFoundPage />;
+
+  const MDX = mod.default;
+  const fm = mod.frontmatter ?? {};
+
+  const frontmatter: CaseStudyFrontmatter = {
+    slug: fm.slug ?? slug!,
+    title: fm.title ?? slug!,
+    summary: fm.summary ?? "",
+    cover: fm.cover,
+    repo: fm.repo,
+    live: fm.live,
+    period: fm.period,
+    metrics: fm.metrics,
+    tags: fm.tags,
+  };
+
   return (
-    <main className="min-h-screen pt-24 px-6 max-w-4xl mx-auto">
-      <p className="text-sm font-semibold tracking-[0.12em] uppercase mb-4 text-[color:var(--color-accent,#B8422E)]">
-        Case study
-      </p>
-      <h1 className="text-4xl font-bold tracking-tight mb-4">
-        Case study coming soon
-      </h1>
-      <p className="text-base text-muted-foreground">
-        Tier-1 case studies are authored as MDX in <code>src/content/case-studies/</code>.
-        This route is scaffolded in Phase 0 and wired up in Phase 2.
-      </p>
-    </main>
+    <CaseStudyLayout frontmatter={frontmatter}>
+      <MDX />
+    </CaseStudyLayout>
   );
 }

@@ -1,15 +1,92 @@
+import type { ComponentType } from "react";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import readingTime from "reading-time";
+import NotFoundPage from "./NotFoundPage";
+
+interface PostFrontmatter {
+  slug?: string;
+  title?: string;
+  date?: string;
+  excerpt?: string;
+  tags?: string[];
+}
+
+interface PostModule {
+  default: ComponentType;
+  frontmatter?: PostFrontmatter;
+}
+
+const modules = import.meta.glob<PostModule>(
+  "../content/posts/*.mdx",
+  { eager: true },
+);
+
+const rawTexts = import.meta.glob<string>(
+  "../content/posts/*.mdx",
+  { eager: true, query: "?raw", import: "default" },
+);
+
+const posts = new Map<string, { mod: PostModule; raw: string }>();
+for (const [path, mod] of Object.entries(modules)) {
+  const slug =
+    mod.frontmatter?.slug ?? path.split("/").pop()?.replace(/\.mdx$/, "");
+  if (slug) posts.set(slug, { mod, raw: rawTexts[path] ?? "" });
+}
+
 export default function WritingPostPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const entry = slug ? posts.get(slug) : undefined;
+
+  if (!entry) return <NotFoundPage />;
+
+  const { mod, raw } = entry;
+  const MDX = mod.default;
+  const fm = mod.frontmatter ?? {};
+  const stats = raw ? readingTime(raw) : null;
+
   return (
-    <main className="min-h-screen pt-24 px-6 max-w-3xl mx-auto">
-      <p className="text-sm font-semibold tracking-[0.12em] uppercase mb-4 text-[color:var(--color-accent,#B8422E)]">
-        Post
-      </p>
-      <h1 className="text-4xl font-bold tracking-tight mb-4">
-        Post coming soon
-      </h1>
-      <p className="text-base text-muted-foreground">
-        Individual post rendering is wired up in Phase 2.
-      </p>
-    </main>
+    <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
+      <div className="max-w-2xl mx-auto">
+        <Link
+          to="/writing"
+          className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors mb-8"
+        >
+          <ArrowLeft size={14} /> All posts
+        </Link>
+
+        <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-3">
+          {fm.date ?? "—"}
+          {stats ? ` · ${stats.text}` : ""}
+        </p>
+
+        <h1 className="text-[30px] md:text-[42px] font-bold tracking-[-0.025em] leading-[1.15] text-foreground mb-4">
+          {fm.title ?? slug}
+        </h1>
+
+        {fm.excerpt && (
+          <p className="text-[15px] md:text-[17px] leading-[1.6] text-muted-foreground mb-8">
+            {fm.excerpt}
+          </p>
+        )}
+
+        {fm.tags && fm.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-10">
+            {fm.tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-muted text-foreground/80 px-3 py-1 rounded-full text-[11px] md:text-[12px] font-semibold border border-border/30"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="prose prose-invert max-w-none case-study-prose">
+          <MDX />
+        </div>
+      </div>
+    </article>
   );
 }
