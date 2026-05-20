@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-20T21:29:05.555Z",
+  "fetchedAt": "2026-05-20T22:13:25.977Z",
   "repos": [
     {
       "name": "Portfolio-Web-2",
@@ -11,7 +11,43 @@
       "forks": 0,
       "language": "TypeScript",
       "topics": [],
-      "pushedAt": "2026-05-20T21:28:18Z"
+      "pushedAt": "2026-05-20T22:03:40Z"
+    },
+    {
+      "name": "exam-app",
+      "fullName": "LvnnnX/exam-app",
+      "description": null,
+      "url": "https://github.com/LvnnnX/exam-app",
+      "homepage": "https://osn-smandapura.my.id",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "topics": [],
+      "pushedAt": "2026-05-20T03:20:06Z"
+    },
+    {
+      "name": "FruitNinjaAUTO",
+      "fullName": "LvnnnX/FruitNinjaAUTO",
+      "description": null,
+      "url": "https://github.com/LvnnnX/FruitNinjaAUTO",
+      "homepage": null,
+      "stars": 0,
+      "forks": 0,
+      "language": "Jupyter Notebook",
+      "topics": [],
+      "pushedAt": "2025-07-16T17:03:51Z"
+    },
+    {
+      "name": "POS-Restaurant",
+      "fullName": "LvnnnX/POS-Restaurant",
+      "description": null,
+      "url": "https://github.com/LvnnnX/POS-Restaurant",
+      "homepage": "https://pos-restaurant-liart.vercel.app",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "topics": [],
+      "pushedAt": "2026-04-04T12:39:29Z"
     }
   ]
 }
