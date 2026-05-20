@@ -1,375 +1,283 @@
 ---
 version: alpha
-name: Portfolio v3 — Pande Dani
-description: Apple-grade glassmorphism for an ML / Computer Vision portfolio. Deep ink type, Bali-clay accent, liquid-glass surfaces.
+name: Heritage Editorial
+description: Architectural minimalism meets journalistic gravitas — a serif-driven editorial system for the daniwismagatha.my.id blog.
 colors:
-  primary: "#0071E3"
-  primary-dark: "#2997FF"
-  ink: "#1D1D1F"
-  ink-soft: "#86868B"
+  primary: "#1D1D1F"
+  secondary: "#4A4A4F"
+  tertiary: "#B8422E"
+  neutral: "#FAFAFA"
   surface: "#FFFFFF"
-  surface-muted: "#F5F5F7"
-  surface-dark: "#0A0A0A"
-  surface-dark-muted: "#1D1D1F"
-  border: "#D2D2D7"
-  border-dark: "#424245"
-  accent: "#B8422E"
-  accent-soft: "#E8A89D"
-  success: "#34C759"
-  warn: "#FF9F0A"
-  danger: "#FF3B30"
+  faint: "#86868B"
+  rule: "#D2D2D7"
+  border: "#E5E5E7"
+  accent-soft: "#F4D9D2"
 typography:
   display:
-    fontFamily: "SF Pro Display, Inter, -apple-system, sans-serif"
-    fontSize: "4.5rem"
-    fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.03em"
-  h1:
-    fontFamily: "SF Pro Display, Inter, -apple-system, sans-serif"
-    fontSize: "3rem"
+    fontFamily: Source Serif 4
+    fontSize: 37px
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-0.025em"
-  h2:
-    fontFamily: "SF Pro Display, Inter, -apple-system, sans-serif"
-    fontSize: "2.25rem"
+  headline:
+    fontFamily: Source Serif 4
+    fontSize: 21px
     fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.02em"
-  h3:
-    fontFamily: "SF Pro Display, Inter, -apple-system, sans-serif"
-    fontSize: "1.5rem"
-    fontWeight: 600
-    lineHeight: 1.25
+    lineHeight: 1.2
     letterSpacing: "-0.015em"
-  body-lg:
-    fontFamily: "SF Pro Text, Inter, -apple-system, sans-serif"
-    fontSize: "1.125rem"
+  deck:
+    fontFamily: Source Serif 4
+    fontSize: 17px
+    fontWeight: 400
+    lineHeight: 1.45
+    letterSpacing: "-0.005em"
+    fontStyle: italic
+  body-md:
+    fontFamily: Source Serif 4
+    fontSize: 15px
+    fontWeight: 400
+    lineHeight: 1.65
+    letterSpacing: "-0.005em"
+  body-sm:
+    fontFamily: Source Serif 4
+    fontSize: 14px
     fontWeight: 400
     lineHeight: 1.6
-    letterSpacing: "-0.01em"
-  body-md:
-    fontFamily: "SF Pro Text, Inter, -apple-system, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.55
-    letterSpacing: "-0.01em"
-  body-sm:
-    fontFamily: "SF Pro Text, Inter, -apple-system, sans-serif"
-    fontSize: "0.875rem"
+    letterSpacing: "-0.005em"
+  blockquote:
+    fontFamily: Source Serif 4
+    fontSize: 15px
     fontWeight: 400
     lineHeight: 1.5
-    letterSpacing: 0
+    fontStyle: italic
   eyebrow:
-    fontFamily: "SF Pro Text, Inter, -apple-system, sans-serif"
-    fontSize: "0.75rem"
-    fontWeight: 600
+    fontFamily: SF Pro Text
+    fontSize: 11px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: "0.20em"
+  byline:
+    fontFamily: SF Pro Text
+    fontSize: 11px
+    fontWeight: 400
     lineHeight: 1.4
-    letterSpacing: "0.12em"
-  mono:
-    fontFamily: "JetBrains Mono, SF Mono, Menlo, monospace"
-    fontSize: "0.875rem"
+    letterSpacing: "0.05em"
+  masthead-brand:
+    fontFamily: SF Pro Text
+    fontSize: 11px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: "0.22em"
+  masthead-meta:
+    fontFamily: SF Pro Text
+    fontSize: 10px
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.10em"
+  footnote:
+    fontFamily: SF Pro Text
+    fontSize: 11px
     fontWeight: 400
     lineHeight: 1.55
+    fontStyle: italic
+  table-header:
+    fontFamily: SF Pro Text
+    fontSize: 11px
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: "0.05em"
+  pagefoot:
+    fontFamily: SF Pro Text
+    fontSize: 9px
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "0.10em"
+rounded:
+  none: 0px
+  xs: 2px
+  sm: 4px
+  md: 8px
+  lg: 16px
 spacing:
-  "2xs": 4px
-  xs: 8px
-  sm: 12px
+  xs: 4px
+  sm: 8px
   md: 16px
   lg: 24px
   xl: 32px
-  "2xl": 48px
-  "3xl": 64px
-  "4xl": 96px
-  section: 128px
-rounded:
-  xs: 6px
-  sm: 10px
-  md: 14px
-  lg: 20px
-  xl: 28px
-  pill: 9999px
-elevation:
-  flat: "0 0 0 0 rgba(0,0,0,0)"
-  glass-sm: "0 2px 6px rgba(0,0,0,0.08), 0 0 12px rgba(0,0,0,0.10)"
-  glass-md: "0 8px 32px rgba(0,0,0,0.10), inset 1px 1px 1px -0.5px rgba(255,255,255,0.6)"
-  glass-lg: "0 16px 48px rgba(0,0,0,0.18), inset 1px 1px 2px -0.5px rgba(255,255,255,0.7)"
-  focus-ring: "0 0 0 3px rgba(0,113,227,0.45)"
+  xxl: 48px
+  page-margin-y: 18mm
+  page-margin-x: 22mm
+  content-max: 680px
 components:
-  surface-glass:
+  masthead:
     backgroundColor: "{colors.surface}"
-    rounded: "{rounded.lg}"
-    padding: 24px
-  surface-glass-dark:
-    backgroundColor: "{colors.surface-dark}"
-    rounded: "{rounded.lg}"
-    padding: 24px
-  card-experience:
-    backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.lg}"
-    padding: 24px
-  card-project:
-    backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.xl}"
-    padding: 28px
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "#FFFFFF"
-    rounded: "{rounded.pill}"
-    padding: 14px
-  button-primary-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "#FFFFFF"
-  button-secondary:
-    backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: 14px
-  button-secondary-hover:
-    backgroundColor: "{colors.border}"
-    textColor: "{colors.ink}"
-  chip-skill:
-    backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: 8px
-  badge-eyebrow:
-    backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.accent}"
-    rounded: "{rounded.sm}"
-    padding: 6px
-  metric-stat:
+    textColor: "{colors.primary}"
+    typography: "{typography.masthead-brand}"
+    padding: 8pt
+  eyebrow:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: 20px
+    textColor: "{colors.tertiary}"
+    typography: "{typography.eyebrow}"
+  headline-display:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    typography: "{typography.display}"
+  deck:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.deck}"
+  byline:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.byline}"
+    padding: 8pt
+  body:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-md}"
+  blockquote-editorial:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.blockquote}"
+    padding: 12pt
+  drop-cap:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.tertiary}"
+    typography: "{typography.display}"
+  table-row:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-sm}"
+    padding: 6pt
+  table-header:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.table-header}"
+    padding: 6pt
+  footnote-block:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.footnote}"
+    padding: 10pt
+  link-default:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-md}"
+  link-hover:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.tertiary}"
+    typography: "{typography.body-md}"
+  card-listing:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-md}"
+    padding: 16pt
+    rounded: "{rounded.none}"
+  card-listing-hover:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.none}"
 ---
+
 
 ## Overview
 
-Portfolio v3 is **architectural minimalism meets Apple craft, with a Bali signature**. The aesthetic borrows three things from Apple's design language:
+Heritage Editorial is the visual system for the editorial-style blog at `daniwismagatha.my.id/blog`. It exists for one job: make long-form writing in Bahasa Indonesia feel as considered as the prose deserves.
 
-1. **Quiet typography** — large display text, tight letter-spacing, deep ink color, generous whitespace.
-2. **Liquid-glass surfaces** — frosted, refractive panels that feel layered without shouting.
-3. **Disciplined motion** — every animation has a reason; nothing decorative survives a `prefers-reduced-motion: reduce` check.
+The reference is the print column — the kind that European broadsheets and magazines like *The Economist*, *The Atlantic*, and *De Correspondent* have refined for over a century. Long measure, justified text with hyphenation, drop caps, a single accent color used sparingly, and chrome that signals seriousness without shouting.
 
-The signature accent is `#B8422E` — a clay/terracotta that nods to Bali. It is reserved exclusively for category badges and rare "moment of attention" highlights. The workhorse interactive color is Apple's system blue (`#0071E3` light / `#2997FF` dark) because muscle memory matters.
+What it is **not**: a marketing landing page, a product UI, or a documentation theme. It will look austere on a phone, dignified on a tablet, and like a printed essay on desktop. That is intentional. The audience opens these posts to *read*, not to skim, like, share, and leave.
 
-The design must work in both light and dark modes from day one. Dark is treated as a peer mode, not a stylistic afterthought. Every component spec includes both surfaces.
-
-The portfolio is read by recruiters in 60–90 seconds. The visual hierarchy must therefore deliver, in order: who → what → proof. No cleverness is allowed to delay that path.
-
+The system is light-only. Dark mode is rejected because the typographic ratios that make this work — drop cap weight, blockquote border, subtle ink-on-paper — break down under a dark theme. A blog this small does not need both modes; it needs one mode rendered well.
 
 ## Colors
 
-The palette is intentionally narrow. Three families do all the work:
+The palette is intentionally narrow. Every color earns its place.
 
-**Ink family — text and structural lines.**
-- `ink` (#1D1D1F): primary text in light mode. Use for headings and body copy.
-- `ink-soft` (#86868B): muted text, captions, supporting copy. Same value in both modes.
-- `surface` (#FFFFFF) and `surface-muted` (#F5F5F7): light-mode backgrounds.
-- `surface-dark` (#0A0A0A) and `surface-dark-muted` (#1D1D1F): dark-mode backgrounds.
-- `border` / `border-dark`: hairlines. 1px only. Never use for emphasis — that's what type weight is for.
+- **Primary (`#1D1D1F`):** Deep ink for headlines, body text, and emphasized elements. Apple's `--ink` from their San Francisco system — neutral enough to disappear, dark enough to feel printed.
+- **Secondary (`#4A4A4F`):** Soft ink for deck text, blockquotes, byline metadata, and footnotes. Half a step lighter than primary so it recedes without becoming illegible.
+- **Tertiary (`#B8422E`):** Boston Clay — the only true accent in the system. Used for the drop cap, the blockquote left border, the eyebrow label, and link hover state. Its scarcity is what makes it work.
+- **Neutral (`#FAFAFA`):** Muted surface for table headers and listing card hover states. Just below pure white.
+- **Surface (`#FFFFFF`):** The page background. Pure white to maximize contrast with body ink and let the accent breathe.
+- **Faint (`#86868B`):** Tertiary metadata color (page numbers, masthead meta, "1 hour ago" timestamps). Visible but never dominant.
+- **Rule (`#D2D2D7`):** Hairline rules between sections, byline borders, footnote separators.
+- **Border (`#E5E5E7`):** Slightly darker than `rule`, used for table cell bottoms.
+- **Accent-soft (`#F4D9D2`):** Reserved for future tinted callouts. Not used in v1 components.
 
-**Interactive family — actions and links.**
-- `primary` (#0071E3) in light mode, `primary-dark` (#2997FF) in dark mode. This is Apple system blue and it's the only color that says "click me." Reserve it. Don't use it for decoration.
-
-**Accent family — Bali signature.**
-- `accent` (#B8422E): clay/terracotta. Used exclusively for category eyebrows ("EDUCATION", "PROJECT") and the badge background of `badge-eyebrow`. Never as a primary action color.
-- `accent-soft` (#E8A89D): a tinted background for the eyebrow badge so the clay reads on light surfaces without looking heavy.
-
-**Status family — used only for state, never decoration.**
-- `success` / `warn` / `danger` borrow from Apple's HIG. Reserved for form validation, build status, alerts.
-
-### Pairing rules
-- Body copy: `ink` on `surface` or `surface-muted` (light), `surface` on `surface-dark` (dark). Both pass WCAG AA.
-- Primary action: `#FFFFFF` on `primary`. Hover swaps the background to `ink` for a satisfying density shift.
-- Eyebrow badge: `accent` text on `accent-soft` background — passes AA for the small caps treatment.
-
-### Do not
-- Don't introduce gradients except as background ambience (the WebGL shader already covers that).
-- Don't use the accent for body text or large headings. It's a spice, not a base.
-- Don't add a fourth color family. If something needs more emphasis, use type scale and weight, not a new hue.
-
+Contrast: Primary on Surface = 18.8:1 (AAA). Secondary on Surface = 8.4:1 (AAA). Tertiary on Surface = 5.6:1 (AA Large; AAA fails by design — this color is decorative, not body).
 
 ## Typography
 
-Type does most of the heavy lifting. The scale is Apple-derived: large, confident displays, tight tracking, generous line-heights.
+Two families, used with discipline.
 
-**Family.** SF Pro Display for headings, SF Pro Text for body, with `Inter` and the system fallback stack right behind. JetBrains Mono for code blocks and inline code in case studies.
+**Source Serif 4** (Google Fonts, free, OFL) is the body face. It is the closest free equivalent to Charter — the Apple/Adobe serif that anchored the original PDF reference. Its optical-size axis (`opsz: 8..60`) lets the same font handle the 28pt headline and the 8pt footnote without losing character. Hinted well, supports Bahasa Indonesia diacritics, and renders crisply at small sizes.
 
-**Scale (mobile → desktop).**
-- `display` (4.5rem): hero name only. Used once per page. Never inside a card.
-- `h1` (3rem): page titles on case studies and writing posts.
-- `h2` (2.25rem): section headings on the home page (Work, Projects, Skills, Contact).
-- `h3` (1.5rem): card titles inside experience/project cards.
-- `body-lg` (1.125rem): the tagline under the hero, lead paragraphs in case studies.
-- `body-md` (1rem): default body copy.
-- `body-sm` (0.875rem): meta info, dates, captions.
-- `eyebrow` (0.75rem, 600 weight, +0.12em tracking): the all-caps category labels above headings.
-- `mono` (0.875rem): code, latency readouts, identifiers.
+Fallback stack: `"Source Serif 4", Charter, "Iowan Old Style", Georgia, "Times New Roman", serif`.
 
-**Weight.**
-- 700 for display, h1, h2.
-- 600 for h3 and the eyebrow.
-- 400 for body.
+**SF Pro Text** (system, free on Apple devices) handles the chrome — eyebrow labels, masthead, byline metadata, table headers, footnote, page footer. Where SF Pro is unavailable (non-Apple platforms), the stack falls back to `-apple-system, "Inter", system-ui, sans-serif`.
 
-**Tracking.** Negative letter-spacing on every heading (`-0.03em` on display, `-0.02em` on h2). Positive tracking only on the eyebrow (`+0.12em`).
+Type scale follows the print reference at 11pt body — slightly larger than typical web body to match the editorial feel. Line-height stays generous (1.65 for body, 1.45 for deck) to give justified paragraphs room to breathe without rivers.
 
-**Line-height.** Tight on headings (1.05–1.25), generous on body (1.5–1.6).
+Letter-spacing is negative for serifs (`-0.005em` body, `-0.025em` display) and positive for caps-lock chrome (`0.20em` eyebrow, `0.22em` masthead brand) — the latter is the classic typographic correction for all-caps legibility.
 
-### Rules
-- Heading hierarchy is enforced by component, not by author. Don't restyle a `<p>` to look like an `<h2>`.
-- Never center-align body copy. Center is reserved for hero name and section titles.
-- Never use italic for emphasis on headings. Use weight or size.
-- Never set body text smaller than 14px on mobile.
-
+Drop cap: 4.5em font-size, 0.85 line-height, weight 700, color tertiary, floated left with 6pt 8pt 0 0 padding. Implemented via `::first-letter` for screen-reader compatibility (FR-9.5).
 
 ## Layout
 
-The portfolio is structured as a **single primary route** with a small set of secondary routes. The home route is a vertical scroll narrative; secondary routes are full-bleed reading layouts.
+Page chrome is constructed from a sequence of horizontal hairlines that frame each region. The grammar is consistent across listing and post pages:
 
-### Grid
-- 12-column max-width grid, 1200px content width on desktop.
-- 24px gutter on mobile, 32px on tablet, 48px on desktop.
-- Section padding (top + bottom) is `spacing.section` (128px) on desktop, `spacing.3xl` (64px) on mobile.
+1. Masthead (top hairline below)
+2. Eyebrow + Headline + Deck
+3. Byline (top hairline above, bottom hairline below)
+4. Body (variable length)
+5. Footnote (top hairline above)
+6. Page footer (top hairline above)
 
-### Breakpoints
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
-- `xl`: 1280px
-- `2xl`: 1536px
+Content max-width is **680px** on viewports ≥1024px. This is the "long measure" sweet spot — enough characters per line for typographic rhythm (~75 cpl), not so wide that the eye loses track. On smaller viewports the column scales down with viewport-relative padding (`px-6` on mobile, `px-8` on tablet).
 
-Mobile-first: write the smallest viewport first, layer up. No `max-width` queries.
+Page padding mirrors the PDF: 18mm vertical, 22mm horizontal on print and large viewports. On mobile this collapses to 24px vertical, 16px horizontal — print metrics don't translate to phones.
 
-### Section rhythm
-Home page sections, top-to-bottom:
-1. Hero — full viewport height, centered name, tagline, three metrics, two CTAs.
-2. About — short personal paragraph + portrait, two-column on desktop, stacked on mobile.
-3. Experience — timeline of cards, alternating left/right on desktop, stacked on mobile.
-4. Featured Projects — three Tier-1 cards with cover images, links to case studies.
-5. Playground — embedded live ML demo with latency readout.
-6. Skills — clustered chip grid (Languages / ML / Data / Frontend / Tools).
-7. Writing — three latest posts, links to /writing.
-8. Open Source — four pinned GitHub repos.
-9. Contact — email + socials + Download CV CTA.
-
-### Container patterns
-- Cards never bleed to the edge on desktop. Mobile gets a 16px outer margin.
-- Section headings sit left-aligned with their content, not center-aligned. The only centered headings are the hero name.
-- Vertical rhythm between elements inside a card uses `spacing.md` (16px). Between cards: `spacing.lg` (24px).
-
-### Do not
-- Don't stack more than three columns of cards on desktop. Two is usually enough.
-- Don't use carousels for primary content. Carousels hide things; the scroll does the same job better.
-- Don't introduce a sticky sidebar. The nav is sticky enough.
-
-
-## Elevation & Depth
-
-Depth in this design is communicated through **glass refraction and shadow softness**, not through hard drop shadows. The system uses four elevation levels.
-
-### Levels
-- **flat** — section backgrounds, dividers. No shadow. Just a hairline border if needed.
-- **glass-sm** — chips, small badges, mobile cards. Soft 12px blur, no inset light.
-- **glass-md** — primary cards (experience, project, skill clusters). The default. Includes inset light from top-left to fake a refractive edge.
-- **glass-lg** — modals, the playground panel, hero card. Heaviest blur and the deepest outer shadow.
-- **focus-ring** — 3px Apple blue ring at 45% opacity. Used on every focusable element. Never replaced with a custom focus style.
-
-### Glass blur rules
-- Light mode: `backdrop-filter: blur(16px)` with a `rgba(255,255,255,0.7)` background.
-- Dark mode: `backdrop-filter: blur(20px)` with a `rgba(0,0,0,0.4)` background.
-- **Mobile (≤ 768px):** disable `backdrop-filter` entirely. Replace with an opaque background (`rgba(255,255,255,0.95)` light, `rgba(15,15,15,0.95)` dark). This is already in `index.css` and must be preserved.
-
-### Shadow rules
-- Outer shadow always uses warm-neutral black at low opacity. No colored shadows.
-- Inset light (top-left highlight, bottom-right shade) is required on glass-md and glass-lg to fake the refractive edge. Without it, the panels look like flat translucent rectangles.
-
-### Do not
-- Don't stack more than two elevation levels in the same area. A glass-lg modal over a glass-md card is fine; three layers of glass becomes soup.
-- Don't apply backdrop-blur over a video or animated background — it tanks performance and looks muddy.
-
-
-## Shapes
-
-Corner radius defines the brand more than people realize. The system uses six radii.
-
-- `rounded.xs` (6px): tags, code spans, tiny utility chips.
-- `rounded.sm` (10px): inline buttons, eyebrow badges, form inputs.
-- `rounded.md` (14px): metric stat cards, hero metric tiles.
-- `rounded.lg` (20px): primary content cards (experience, project).
-- `rounded.xl` (28px): the hero glass card and the playground panel.
-- `rounded.pill` (9999px): primary and secondary CTA buttons, skill chips, navigation pill.
-
-### Rules
-- Buttons are pills. Period. The existing `liquid-glass-button` is the canonical implementation.
-- Cards step up the radius scale as they get larger and more visually important.
-- Images inside cards inherit the card's radius minus 4px (so a `rounded.lg` card has `rounded.md` images inside it). This creates a subtle nested feel.
-
-### Do not
-- Don't mix sharp (0–4px) and pill radii in the same component. Choose one rhythm and stick with it.
-- Don't use square corners anywhere. The brand is soft.
-
+Vertical rhythm: paragraphs have 9pt bottom margin (≈8px at 1rem). H2 has 18pt top, 8pt bottom. The horizontal divider for "thought break" (`· · ·`) gets 20pt top and 14pt bottom — it's a visual breath.
 
 ## Components
 
-Component definitions in the front matter give the binding values; this section explains *why* and *when* to use each.
+- **`masthead`:** Top header row showing brand wordmark left and edition metadata right, separated by a single hairline. Brand is bold uppercase tracked at 0.22em. Meta is faint and tracked at 0.10em. This component appears once at the top of every post.
 
-### Buttons
-- **`button-primary`** — single, decisive action per view. "Download CV", "View case study", "Send message". Apple blue background, white text, pill shape, hover swaps to ink-black for a satisfying density change.
-- **`button-secondary`** — reserved for the runner-up action next to a primary. Muted surface, ink text, same pill shape. Never use two primaries in the same group.
+- **`eyebrow`:** Small uppercase tag label appearing above the headline. Always tertiary color. Conveys section / category (e.g. "CATATAN", "HUKUM & POLITIK"). Single line, no wrapping.
 
-A button without a clear job becomes a link. Default to underlined text links inside paragraphs.
+- **`headline-display`:** Article title in display serif at 28pt. Letter-spacing is tight (-0.025em) and line-height is short (1.1) — this is the loudest single element on the page.
 
-### Cards
-- **`card-experience`** — timeline entries on the home page. 24px padding, `rounded.lg`, soft glass-md elevation. Eyebrow on top, h3 title, org + period on one muted line, two-sentence body, tag chips at the bottom.
-- **`card-project`** — featured project tiles. 28px padding, `rounded.xl`, glass-md elevation, includes a 16:9 cover image at the top.
+- **`deck`:** The standfirst paragraph below the headline. Italic deck serif at 13pt. Maximum width is 130mm (about 80% of content column) so it breaks before the body width and feels like a subtitle, not a paragraph.
 
-### Chips
-- **`chip-skill`** — pill, soft background, ink text, no border. Used in the skills cluster. Hover lifts elevation to glass-md.
-- **`badge-eyebrow`** — the only place the Bali clay color appears as a background. Small, all-caps, +0.12em tracking. Never larger than 12px.
+- **`byline`:** Author / date / reading time row. Single line, sans-serif chrome face, separated by middle dots. Bordered top and bottom with hairlines.
 
-### Stats
-- **`metric-stat`** — the three hero numbers and the inline metrics inside case studies. Big numeral, small label below in muted text. The numeral uses the `display` type token.
+- **`drop-cap`:** First letter of the lede paragraph. Implemented via CSS `::first-letter` on a paragraph with `.lede` class. The `<Lede>` MDX component is the only public API for this.
 
-### Surfaces
-- **`surface-glass`** / **`surface-glass-dark`** — generic panel container. Used by the playground, modals, and dropdown menus.
+- **`blockquote-editorial`:** Italic block with a 3pt-wide tertiary left border. Padding 6pt vertical, 14pt left. Used for direct quotations from external sources.
 
-### State variants
-Variants are *separate component entries* with related names, not nested. The current set:
-- `button-primary` / `button-primary-hover`
-- `button-secondary` / `button-secondary-hover`
+- **`table-row` / `table-header`:** Table styling. Header background is muted neutral, header text is uppercase chrome at 8pt. Rows have hairline bottom borders. No vertical rules.
 
-Add more variants when needed (`-active`, `-disabled`) using the same naming pattern. Don't nest variants under the base component.
+- **`footnote-block`:** End-of-post references list. Italic chrome face at 8pt, top hairline, 10pt top padding. Inline strong tags allowed for source names.
 
+- **`card-listing`:** Listing-page card. White surface, no rounded corners, hairline bottom rule. Hover state shifts background to muted neutral. Used at `/blog`.
 
 ## Do's and Don'ts
 
-### Do
-- **Do** keep the hero quiet. One name, one tagline, three numbers, two CTAs. That's it.
-- **Do** lead every card with the outcome, then the context. Recruiters skim; they need the verb first.
-- **Do** use the eyebrow badge for category. It's the cheapest way to add structure without clutter.
-- **Do** test every interactive element with the keyboard. Tab, Enter, Space, Esc.
-- **Do** disable decorative motion when `prefers-reduced-motion: reduce`. Render the static end-state.
-- **Do** ship dark mode parity from the first commit. Don't bolt it on later.
-- **Do** use system blue for the one thing on a page you most want clicked.
-- **Do** keep the Bali clay accent rare. It's special because it's rare.
+**Do:**
 
-### Don't
-- **Don't** use color to indicate hierarchy. Use type weight and size.
-- **Don't** layer three glass surfaces. Two max.
-- **Don't** add animations to text. Move surfaces, not letters.
-- **Don't** justify body copy. Left-align in LTR.
-- **Don't** use icon fonts. Use SVG with `aria-label` or `aria-hidden`.
-- **Don't** introduce a new font family. Two families is the cap (display sans + mono).
-- **Don't** use `box-shadow` to indicate state. Use `outline` for focus, opacity for disabled.
-- **Don't** rely on hover for primary affordances. Mobile has no hover.
-- **Don't** use lorem ipsum in production. Real copy or no card.
-- **Don't** add a fourth CTA. If a section needs four CTAs, the section needs to be re-designed.
+- Use the tertiary accent (Boston Clay) sparingly. The drop cap, the blockquote border, the eyebrow, and the link hover. That is the entire list.
+- Justify body text with hyphenation on viewports ≥768px. The editorial feel collapses without it.
+- Render the drop cap via `::first-letter`, not a wrapping span. Screen readers must read the lede normally.
+- Keep paragraph spacing modest (9pt). Justified text already creates visual breaks.
+- Match the reference PDFs visually within ±5% spacing tolerance. They are the truth.
 
-### Validation
-This file should pass `npx -y @google/design.md lint docs/DESIGN.md` with zero errors and only documented WCAG warnings (if any). Run the linter before merging any change to this file.
+**Don't:**
+
+- Add a second accent color. The system is monochromatic plus one.
+- Add dark mode. The design depends on ink-on-paper contrast that breaks under inversion.
+- Use Tailwind Typography (`@tailwindcss/typography`). Its prose styles will conflict with the editorial CSS.
+- Round corners on listing cards. The aesthetic is square hairlines, not soft chips.
+- Animate text. Animate cards on hover, links on focus, but never text bodies.
+- Inflate the type scale. 11pt body is intentional. 12pt makes the page feel like a SaaS marketing site.
+- Substitute Charter, Iowan, or another premium serif if the user has not licensed them. Source Serif 4 is the contracted fallback.

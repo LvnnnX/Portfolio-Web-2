@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import "./index.css";
 import { GlassFilter } from "./components/ui/liquid-glass-button";
 import { FallingPattern } from "./components/ui/falling-pattern";
@@ -7,16 +7,22 @@ import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 
 function App() {
+  const location = useLocation();
+  const isBlog = location.pathname.startsWith("/blog");
+
   return (
     <div className="relative min-h-screen dark:bg-background">
-      {/* Background Layer (shared across all routes) */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <FallingPattern
-          className="h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent,var(--background))] hidden dark:block"
-          duration={120}
-        />
-        <WebGLShader />
-      </div>
+      {/* Background Layer (skipped on /blog so the editorial paper surface
+          isn't muddled by the falling-pattern / WebGL shader). */}
+      {!isBlog && (
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <FallingPattern
+            className="h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent,var(--background))] hidden dark:block"
+            duration={120}
+          />
+          <WebGLShader />
+        </div>
+      )}
 
       <Navigation />
 

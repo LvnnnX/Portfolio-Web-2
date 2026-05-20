@@ -1,242 +1,369 @@
-# Software Requirements Specification
+# Software Requirements Specification (SRS)
 
-**Project:** Portfolio Web v3 — Pande Gede Dani Wismagatha
-**Repo:** [LvnnnX/Portfolio-Web-2](https://github.com/LvnnnX/Portfolio-Web-2)
-**Live:** https://www.daniwismagatha.my.id
-**Document version:** 1.0 (May 2026)
-**Author:** Dani (with Kiro)
-**Status:** Draft for v3 rework
+## Blog Editorial Layout System — daniwismagatha.my.id
+
+**Version:** 1.0 (alpha)
+**Date:** 20 Mei 2026
+**Author:** Pande Gede Dani Wismagatha
+**Audience:** AI coding agent (Claude Code / Codex / OpenCode / Kiro) implementing the blog editorial layout
 
 ---
 
 ## 1. Introduction
 
 ### 1.1 Purpose
-This SRS defines the requirements for reworking the existing portfolio (v2) into v3. The goal is to evolve from a "credentials-listing" portfolio into a **case-study driven, ML-showcase portfolio** that demonstrates technical depth through live demos, measurable outcomes, and recruiter-friendly content architecture.
+
+This document specifies the requirements for the **blog editorial layout system** to be added to the Portfolio Website v3 (`daniwismagatha.my.id`). The system must reproduce the visual quality of the editorial-style PDFs that have been hand-rendered for individual blog posts ("Rupiah Menuju Merdeka 17.845", "Kasus Nadiem dan Dua Cermin"), but as **first-class web pages** with full responsiveness, accessibility, and SEO support.
+
+The output of this spec is a working `/blog` section on the portfolio website with:
+
+- Editorial typography (serif body, drop cap, justified text with hyphenation)
+- Magazine-style page chrome (masthead, eyebrow label, byline, footnote)
+- An accent color system based on a Heritage / Boston Clay palette
+- Markdown/MDX-driven content authoring
+- Listing page + per-post route + reading-time metadata
+- Print stylesheet that mirrors the PDF version
 
 ### 1.2 Scope
-The deliverable is a static-rendered, theme-aware, content-rich web application that:
-- Repositions the brand from generic "Data Scientist & AI Specialist" to a sharper niche.
-- Reframes every experience and project from input-based (training hours, certificates) to outcome-based (metrics, problems solved, business impact).
-- Hosts at least one **live ML demo** (YOLOv8 Fruit Ninja inference) embedded in-page.
-- Adds dedicated **case study pages** for the top 3 projects.
-- Adds a **technical writing / blog** section authored in MDX.
-- Keeps the existing aesthetic (glassmorphism, falling-pattern, WebGL shader) but improves performance, accessibility, and SEO.
+
+**In scope:**
+
+- Adding a `/blog` route group to the existing Portfolio v3 React/Vite app.
+- Creating reusable layout components: `<BlogPost>`, `<Lede>`, `<Masthead>`, `<Byline>`, `<Footnote>`, `<EditorialBlockquote>`, `<EditorialTable>`.
+- Wiring MDX rendering via `@mdx-js/rollup` with custom MDX components.
+- Importing two existing posts (`01-rupiah/source.mdx`, `02-nadiem/source.mdx`) verbatim into the new structure.
+- Defining design tokens (colors, typography, spacing) in a `DESIGN.md` file and exporting them to Tailwind theme.
+- Listing page at `/blog` showing all posts in chronological order with edition numbers.
+- Per-post route at `/blog/[slug]` with full editorial layout.
+- Print stylesheet so `Ctrl+P` produces a PDF visually equivalent to the hand-rendered ones.
+
+**Out of scope:**
+
+- CMS / admin UI (posts authored as MDX files in repo).
+- Comments system.
+- Multi-author support.
+- Search / tag pages (deferred to a future phase).
+- RSS feed (deferred — see FR-10 stretch).
+- Dark mode (the editorial design is light-only by intent — see DESIGN.md rationale).
 
 ### 1.3 Definitions
-- **Case study** — a long-form page covering Problem → Data → Approach → Results → Lessons.
-- **Live demo** — an interactive widget that runs model inference (in-browser ONNX / WASM, or proxied to Hugging Face Spaces).
-- **Hero card** — top-of-fold composition with name, tagline, headline metrics.
-- **Tier-1 project** — a project with a dedicated case-study page (max 3).
-- **Tier-2 project** — a project with only a card on the index (no dedicated page).
-- **Token** — a design value defined in `DESIGN.md` (color, spacing, typography).
+
+| Term | Meaning |
+|---|---|
+| **Editorial layout** | The serif-driven, magazine-inspired layout rendered in the existing PDF blog posts. |
+| **Lede** | The opening paragraph of an article, rendered with a drop cap. |
+| **Eyebrow** | The small uppercase tag-like label that appears above the headline (e.g. "Catatan", "Hukum & Politik"). |
+| **Masthead** | The thin top header containing the brand wordmark and edition metadata. |
+| **Byline** | The line below the deck listing author, date, and reading time. |
+| **Footnote block** | The italicized references list at the end of each post. |
+| **Drop cap** | The large stylized first letter of the lede paragraph. |
+| **Edition** | A monotonically increasing identifier for posts (Edisi 01, Edisi 02, ...). |
+| **MDX** | Markdown with embedded JSX. Used for post source. |
+| **Heritage palette** | The accent palette derived from the existing PDF design (deep ink, Boston Clay). See DESIGN.md. |
 
 ### 1.4 References
-- Existing repo: https://github.com/LvnnnX/Portfolio-Web-2
-- Resume PDF: `Pande Gede Dani Wismagatha-resume.pdf`
-- Companion specs: `DESIGN.md`, `CLAUDE.md` (in `/docs`)
-- WCAG 2.2 AA — accessibility target.
-- Lighthouse v11 — performance target.
+
+- DESIGN.md (this triad) — design tokens.
+- CLAUDE.md (this triad) — implementation guidance.
+- Existing PDF outputs: `01-rupiah/Rupiah-Menuju-Merdeka-17845.pdf`, `02-nadiem/Kasus-Nadiem-Dua-Cermin.pdf`.
+- Existing source: `01-rupiah/source.mdx`, `02-nadiem/source.mdx`.
+- Portfolio v3 stack reference: React 19, Vite, Tailwind v4, Framer Motion, Three.js.
 
 ### 1.5 Document overview
-Section 2 describes the product context. Section 3 lists features. Section 4 covers external interfaces. Section 5 covers non-functional requirements. Section 6 lists the phased roadmap that drives implementation order.
+
+Section 2 describes the product in context. Section 3 lists numbered functional requirements (FR-x). Section 4 covers external interfaces. Section 5 lists non-functional requirements (NFR-x). Section 6 defines the phased roadmap. Section 7 closes with acceptance criteria for "v1 done".
+
 
 ---
 
 ## 2. Overall Description
 
 ### 2.1 Product perspective
-v3 is a continuation of v2 (Vite + React 19 + Tailwind v4 + Framer Motion + Three.js). It keeps the same domain, hosting, and visual identity, but restructures content and adds new routes, components, and integrations.
+
+The blog system is a **module added to an existing portfolio site**, not a greenfield project. It must coexist with the existing routes (home, projects, about, etc.) and reuse the existing visual chrome (nav, footer, theme provider) where it makes sense — but it introduces its own typography island for the editorial reading experience.
+
+The portfolio stack is locked at: React 19, Vite, Tailwind CSS v4, Framer Motion, Three.js. No framework changes are permitted by this spec (see NFR-3, "Forbidden additions" in CLAUDE.md).
 
 ### 2.2 User classes
-- **Primary — recruiter / hiring manager.** Scans for: 1) clear positioning, 2) measurable outcomes, 3) shipped artifacts, 4) easy CV download. Time on site: 60–90 seconds.
-- **Secondary — engineering peer.** Reads case studies in depth, inspects code, may interact with live demo. Time on site: 5–10 minutes.
-- **Tertiary — student / mentee.** Reads blog posts, follows links to learning resources.
+
+| Class | Time on task | Description |
+|---|---|---|
+| **Primary** | 5–15 min | Reader who arrived from a link (LinkedIn, Twitter, search). Reads one full post, may scroll to footnote. |
+| **Secondary** | 30–90 sec | Recruiter / hiring manager scanning the listing page to assess writing quality. Reads headline + deck + first two paragraphs. |
+| **Tertiary** | 1–2 min | Returning reader checking for new posts on `/blog` index. |
 
 ### 2.3 Operating environment
-- **Browsers:** evergreen Chromium, Firefox, Safari (last 2 versions). Mobile Safari & Chrome Android.
-- **Network:** target Lighthouse mobile profile (Slow 4G, 4× CPU throttle).
-- **Hosting:** static hosting (Vercel / Netlify / Cloudflare Pages — keep current host unless migration is justified).
-- **Build tool:** Vite (current).
+
+- Modern evergreen browsers: Chrome ≥120, Safari ≥17, Firefox ≥120, Edge ≥120.
+- Mobile-first viewport: 360×640 minimum, optimized for 375–428 width.
+- Desktop reading width: caps at 680px content column on viewports ≥1024px.
+- Print: A4, 18mm × 22mm margins (matches PDF spec). Background colors must print.
 
 ### 2.4 Constraints
-- **Stack lock:** stay on React 19 + Vite + Tailwind v4 + Framer Motion. No migration to Next.js / Astro in v3 (deferred to v4 if SSR/blog needs justify it).
-- **Single-author:** Dani is the sole maintainer; complexity must stay justified by visible value.
-- **Asset budget:** keep total image weight under 2 MB above the fold; lazy-load below.
-- **Animation budget:** existing falling-pattern + WebGL shader stay, but must respect `prefers-reduced-motion` and disable on mobile (already partially handled in `index.css`).
+
+- **Stack lock:** must use existing Vite + React 19 + Tailwind v4 + Framer Motion. No Next.js, no Astro, no separate static-site generator. (See CLAUDE.md "Forbidden additions" for the full list.)
+- **Asset budget:** total CSS for blog module ≤ 30 KB minified, total JS for blog module ≤ 50 KB gzipped.
+- **Animation budget:** entrance animations ≤ 200ms; respect `prefers-reduced-motion`.
+- **Font budget:** ≤ 2 web fonts total for the blog system (1 serif body + 1 sans for chrome). Fallback stack must include Charter, Iowan Old Style, Georgia.
 
 ### 2.5 Assumptions and dependencies
-- The Fruit Ninja YOLOv8 weights are exportable to ONNX and runnable in-browser via `onnxruntime-web`, OR can be hosted on Hugging Face Spaces and embedded via iframe.
-- The current Vite + Tailwind v4 toolchain remains stable through the rework.
-- The user is comfortable with content authoring in MDX.
+
+- Repo is the existing `Portfolio-Web-2` with Vite + Tailwind v4 already configured.
+- Posts will be authored as `.mdx` files in `src/content/blog/`.
+- The user is comfortable running `pnpm` or `npm` install for new MDX dependencies.
+- The user owns the `daniwismagatha.my.id` domain and has deploy permissions.
+- The user already has the two source MDX files from the existing blog-posts.zip.
 
 ---
 
-## 3. System Features (Functional Requirements)
+## 3. Functional Requirements
 
-### 3.1 Brand & positioning
-- **FR-1.1** Hero tagline must replace "Data Scientist & AI Specialist" with a sharper variant. Default proposal: *"Computer Vision & Applied ML Engineer — Building Vision Systems for Real-World Automation."* Final wording to be approved by Dani before merge.
-- **FR-1.2** Hero must present three headline metrics (e.g. *"3+ yrs ML / 13 YOLOv8 variants benchmarked / GPA 3.98"*). Numbers must reflect outcome, not training input.
-- **FR-1.3** Hero must include a primary CTA "Download CV" linking to `/Pande-Gede-Dani-Wismagatha-CV.pdf`, kept above the fold on desktop and mobile.
-- **FR-1.4** Hero must include a secondary CTA "See live demo" anchoring to `#playground`.
+### FR-1 — Blog index route (`/blog`)
 
-### 3.2 Experience timeline
-- **FR-2.1** Each timeline card must render in **impact-first** format: 1 outcome sentence (top, bold), 1 context sentence (bottom, muted). Categories (EDUCATION/LEADERSHIP/etc.) remain as eyebrow labels.
-- **FR-2.2** Timeline must support priority ordering. Top 5 cards are visible by default; remaining items collapse into a "Show 3 more" accordion.
-- **FR-2.3** Each card must expose a "Details" link. For Tier-1 entries, the link routes to `/case-study/:slug`. For Tier-2, it opens an inline expandable.
-- **FR-2.4** Default order (highest to lowest): Bangkit ML Cohort → Microsoft Data Engineer → Fruit Ninja YOLOv8 → MEWS BBMKG Internship → Olympiad Coach → student governance roles (collapsed).
+- **FR-1.1** The route `/blog` SHALL render a list of all posts in reverse chronological order (newest first).
+- **FR-1.2** Each list item SHALL show: edition number (e.g. "Edisi 02"), eyebrow tags, headline, deck, date, reading time.
+- **FR-1.3** Each list item SHALL link to its post page at `/blog/[slug]`.
+- **FR-1.4** The listing page SHALL use a serif headline font and sans-serif metadata (mirroring the editorial chrome).
+- **FR-1.5** The listing page SHALL be statically pre-rendered at build time (Vite SSG plugin or equivalent).
 
-### 3.3 Featured projects & case studies
-- **FR-3.1** The system must support exactly 3 Tier-1 projects with dedicated `/case-study/:slug` pages. Initial set: `fruit-ninja-yolov8`, `smandapura-exam-app`, `mews-bbmkg-automation`.
-- **FR-3.2** Each case study page must include sections in this order: **Problem → Data → Approach → Results → Lessons learned → Repo / live link**.
-- **FR-3.3** Results section must surface at least one quantified metric (accuracy, FPS, latency, throughput, dollars/hours saved). Placeholder copy is forbidden in production.
-- **FR-3.4** All case studies must be authored as MDX in `src/content/case-studies/*.mdx` and rendered through a single `CaseStudy` layout component.
+### FR-2 — Post page route (`/blog/[slug]`)
 
-### 3.4 Live ML playground
-- **FR-4.1** The site must include a `/playground` section (or anchor) that hosts at least one runnable ML demo.
-- **FR-4.2** Default demo: Fruit Ninja YOLOv8 inference. Implementation choice (in priority order):
-  1. In-browser via `onnxruntime-web` if model size ≤ 25 MB.
-  2. Embedded Hugging Face Space via `<iframe>` if model is larger.
-  3. Static GIF/MP4 fallback if both fail.
-- **FR-4.3** The playground must show inference latency in ms next to results.
-- **FR-4.4** The playground must work without breaking layout when inference fails (graceful fallback to static media).
+- **FR-2.1** Each post SHALL render the full editorial layout: masthead, eyebrow, headline, deck, byline, body, footnote.
+- **FR-2.2** The first paragraph after the headline SHALL render with a drop cap if marked with `<Lede>` in MDX.
+- **FR-2.3** Body text SHALL be justified with hyphenation (`text-align: justify; hyphens: auto;`) on viewports ≥768px; left-aligned on smaller screens.
+- **FR-2.4** Blockquotes SHALL render with a left accent border using the Heritage tertiary color.
+- **FR-2.5** Tables SHALL render with editorial styling (uppercase header labels, single-pixel rules between rows).
+- **FR-2.6** Footnote blocks SHALL render in italic small text below a horizontal rule at the end of the post.
+- **FR-2.7** Each post SHALL be statically pre-rendered at build time.
 
-### 3.5 Skills & stack
-- **FR-5.1** Skills section must group items under named clusters: **Languages**, **ML / DS**, **Data Engineering**, **Frontend**, **Tools**.
-- **FR-5.2** Each item must render as a logo + label chip. Logos are SVG inlined or served from `public/logos/`.
-- **FR-5.3** A proficiency indicator (e.g. dot scale 1–5) is **explicitly excluded** to avoid the recruiter-trust pitfall.
+### FR-3 — MDX content pipeline
 
-### 3.6 Writing / blog
-- **FR-6.1** A `/writing` index page must list posts authored as MDX in `src/content/posts/*.mdx`.
-- **FR-6.2** Each post page must render at `/writing/:slug` with reading-time, publish date, and tags.
-- **FR-6.3** v3 must ship with **at least 2 posts** at launch: a paper review and a tutorial drawn from the Fruit Ninja project.
+- **FR-3.1** The system SHALL accept `.mdx` files in `src/content/blog/` as the authoring source.
+- **FR-3.2** YAML frontmatter SHALL be parsed and used for: `title`, `slug`, `date`, `description`, `tags`, `author`, `edition`, `readTime`.
+- **FR-3.3** The MDX renderer SHALL provide custom components: `<Lede>`, `<EditorialBlockquote>`, `<EditorialTable>`, `<Footnote>`.
+- **FR-3.4** The MDX pipeline SHALL apply `remark-gfm` for GitHub-flavored Markdown (tables, strikethrough).
+- **FR-3.5** No client-side MDX runtime SHALL ship — all MDX is compiled at build time.
 
-### 3.7 GitHub presence
-- **FR-7.1** A "Open source" section must surface 4 pinned repos via the GitHub REST API (`/users/LvnnnX/repos`) at build time, cached as a static JSON.
-- **FR-7.2** Each repo card must show name, description, primary language, stars.
-- **FR-7.3** No live API calls at runtime — fetch happens during `vite build` and result is committed to `src/content/github.json`.
+### FR-4 — Editorial typography
 
-### 3.8 Testimonials (optional, gated by content availability)
-- **FR-8.1** A testimonial carousel may be added once Dani provides ≥ 2 quotes from mentors/supervisors. Until then, the section is omitted from the build.
+- **FR-4.1** Body text SHALL use the serif font defined in DESIGN.md (`typography.body-md.fontFamily`).
+- **FR-4.2** Drop cap SHALL render at 4.5em font-size, 0.85 line-height, accent color, floated left.
+- **FR-4.3** Headlines (h1) SHALL use the serif font at 28pt with -0.025em letter-spacing.
+- **FR-4.4** Subheadings (h2) SHALL use the serif font at 16pt with -0.015em letter-spacing.
+- **FR-4.5** Eyebrow labels SHALL use the sans-serif font in uppercase with 0.20em letter-spacing.
+- **FR-4.6** Body line-height SHALL be 1.65; letter-spacing -0.005em.
 
-### 3.9 SEO & metadata
-- **FR-9.1** Each route must emit unique `<title>` and `<meta name="description">`.
-- **FR-9.2** Each route must emit Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`).
-- **FR-9.3** The site must include `Person` JSON-LD structured data on `/`.
-- **FR-9.4** The site must serve a valid `sitemap.xml` and `robots.txt`.
+### FR-5 — Color & accent system
 
-### 3.10 Theme & accessibility
-- **FR-10.1** The existing light/dark toggle must persist user preference in `localStorage` and respect `prefers-color-scheme` on first visit.
-- **FR-10.2** All text-on-background pairings must meet WCAG 2.2 AA contrast (≥ 4.5:1 for body, ≥ 3:1 for large text).
-- **FR-10.3** All interactive elements must be keyboard-navigable with visible focus states.
-- **FR-10.4** All decorative animations (falling pattern, WebGL shader, draggable card) must disable when `prefers-reduced-motion: reduce` is set.
+- **FR-5.1** Accent color SHALL be the Heritage tertiary defined in DESIGN.md (`#B8422E`, "Boston Clay").
+- **FR-5.2** Accent SHALL appear on: drop cap, blockquote left border, eyebrow text, "active" link state.
+- **FR-5.3** Body ink SHALL be `#1D1D1F`; soft ink `#4A4A4F`; faint ink `#86868B`.
+- **FR-5.4** Surface SHALL be `#FFFFFF`; muted surface `#FAFAFA`.
+- **FR-5.5** All token references SHALL come from DESIGN.md — no inline hex values in component code.
 
-### 3.11 Contact
-- **FR-11.1** Contact section must offer at minimum: email (mailto), LinkedIn, GitHub, X/Twitter, and a "Download CV" button.
-- **FR-11.2** Contact form (if added) must POST to a serverless function or use Formspree/Resend; never expose SMTP credentials client-side.
+### FR-6 — Listing page metadata
+
+- **FR-6.1** Each list card SHALL show edition number left-aligned, date right-aligned in a thin top row.
+- **FR-6.2** Eyebrow tags SHALL show below the metadata row (max 3 tags, comma-separated).
+- **FR-6.3** Headline SHALL be 22–24pt, deck 13pt italic.
+- **FR-6.4** Cards SHALL be separated by 1px horizontal rules in faint ink color.
+- **FR-6.5** Hover state SHALL move the card 2px right with a 200ms ease — respect `prefers-reduced-motion`.
+
+### FR-7 — Print stylesheet
+
+- **FR-7.1** A `@media print` block SHALL hide nav, footer, and any interactive chrome.
+- **FR-7.2** Print SHALL use A4 paper size with 18mm × 22mm margins.
+- **FR-7.3** Print SHALL preserve all editorial styling: drop cap, blockquote borders, eyebrow, byline, footnote.
+- **FR-7.4** Background colors SHALL print (`-webkit-print-color-adjust: exact`).
+- **FR-7.5** A small page footer SHALL show "DANIWISMAGATHA.MY.ID/CATATAN" and page number.
+
+### FR-8 — SEO and metadata
+
+- **FR-8.1** Each post SHALL emit OpenGraph tags: `og:title`, `og:description`, `og:type=article`, `og:url`, `og:image`.
+- **FR-8.2** Each post SHALL emit Twitter Card tags: `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`.
+- **FR-8.3** Each post SHALL emit a JSON-LD `Article` schema block.
+- **FR-8.4** The listing page SHALL emit a `<link rel="canonical">` tag pointing to `/blog`.
+- **FR-8.5** A `sitemap.xml` SHALL include `/blog` and all post slugs.
+
+### FR-9 — Accessibility
+
+- **FR-9.1** All interactive elements SHALL have visible focus rings using the accent color.
+- **FR-9.2** Color contrast SHALL meet WCAG AA (4.5:1 for body, 3:1 for headings).
+- **FR-9.3** Headings SHALL form a logical document outline (one h1 per page).
+- **FR-9.4** All images SHALL have `alt` text or `alt=""` for decorative.
+- **FR-9.5** Drop cap SHALL be implemented via `::first-letter` (not separate `<span>`) so screen readers read the lede normally.
+
+### FR-10 — Stretch (optional, post-v1)
+
+- **FR-10.1** RSS feed at `/blog/rss.xml`.
+- **FR-10.2** Tag pages at `/blog/tag/[tag]`.
+- **FR-10.3** Reading-progress bar.
+- **FR-10.4** "Estimated reading time" computed from word count.
 
 ---
 
 ## 4. External Interface Requirements
 
-### 4.1 User interfaces
-Refer to `DESIGN.md` for the full token spec. Key interface contracts:
-- All cards use `liquid-glass` panel with consistent `rounded-2xl` border radius.
-- All section headings use `h2` with `font-weight: 700`, `letter-spacing: -0.02em`.
-- All buttons use the `liquid-glass-button` component variants defined in `src/components/ui/`.
+### 4.1 User interface
 
-### 4.2 Hardware interfaces
+The blog inherits the existing portfolio nav and footer. The blog content area introduces its own typography island (serif body, accent palette) but does NOT override the existing site theme provider for non-blog routes.
+
+### 4.2 Hardware interface
+
 None.
 
-### 4.3 Software interfaces
-- **GitHub REST API** — read-only, build-time, public endpoints only.
-- **Hugging Face Spaces** (optional) — embedded via iframe; no auth required.
-- **Plausible / Umami / GoatCounter** — privacy-friendly analytics; no cookies.
+### 4.3 Software interface
 
-### 4.4 Communications interfaces
-- HTTPS only.
-- Static file delivery via the existing CDN.
+- Build tool: Vite ≥5
+- Framework: React 19
+- Styling: Tailwind CSS v4 + custom CSS layer for editorial typography
+- MDX: `@mdx-js/rollup` ≥3
+- Frontmatter: `gray-matter` ≥4
+- GFM: `remark-gfm` ≥4
+- Routing: existing portfolio router (likely React Router or similar)
+- SSG: Vite SSG plugin (`vite-ssg` or `vite-plugin-ssr`)
+
+### 4.4 Communication interface
+
+None — fully static.
 
 ---
 
 ## 5. Non-Functional Requirements
 
-### 5.1 Performance
-- **NFR-1** Lighthouse mobile **Performance ≥ 90**, **Best Practices ≥ 95**, **SEO ≥ 95**, **Accessibility ≥ 95**.
-- **NFR-2** Largest Contentful Paint ≤ 2.5 s on Slow 4G.
-- **NFR-3** Total JS bundle ≤ 250 KB gzipped on the landing route. ML inference deps load on-demand for `/playground`.
-- **NFR-4** Hero image must be served as AVIF + WebP fallback, dimensioned for the device via `<picture>`.
+### NFR-1 — Performance
 
-### 5.2 Reliability
-- **NFR-5** Build must be reproducible from a clean clone with `pnpm i && pnpm build` (or `npm`).
-- **NFR-6** No runtime dependency on third-party APIs in the critical path. GitHub data is build-time cached.
+- **NFR-1.1** Lighthouse Performance score on `/blog/[slug]` SHALL be ≥95 on mobile.
+- **NFR-1.2** First Contentful Paint SHALL be <1.2s on a 4G connection.
+- **NFR-1.3** Largest Contentful Paint SHALL be <2.0s on a 4G connection.
+- **NFR-1.4** Cumulative Layout Shift SHALL be <0.05 (no font swap jumps).
 
-### 5.3 Maintainability
-- **NFR-7** All content (case studies, posts, experience entries) must live in `src/content/*` as MDX or JSON, separate from component code.
-- **NFR-8** Components must be functional, typed (TypeScript strict), and free of `any` outside narrowly justified spots.
-- **NFR-9** ESLint + Prettier must pass on every commit; pre-commit hook via `lint-staged` is recommended.
+### NFR-2 — Reliability
 
-### 5.4 Security & privacy
-- **NFR-10** No analytics that drop third-party cookies.
-- **NFR-11** No client-side secrets. All env values used at build time only.
-- **NFR-12** Contact form submissions must be rate-limited at the serverless layer.
+- **NFR-2.1** Posts SHALL render even if a custom MDX component is missing (fallback to default markdown rendering).
+- **NFR-2.2** Build SHALL fail loudly if a post's frontmatter is missing required fields.
 
-### 5.5 Internationalization
-- **NFR-13** Content is English-first. Indonesian translation deferred to v4. Text must remain extractable (no hardcoded strings in deeply nested components — prefer the `src/content/*` pattern).
+### NFR-3 — Maintainability
 
-### 5.6 Browser & device support
-- **NFR-14** Mobile-first layout. All breakpoints covered: 375px, 768px, 1024px, 1440px.
-- **NFR-15** No hover-only interactions — every hover affordance must have a tap-equivalent.
+- **NFR-3.1** All design tokens SHALL be defined exactly once in DESIGN.md and exported to Tailwind theme.
+- **NFR-3.2** All editorial layout components SHALL live under `src/blog/components/`.
+- **NFR-3.3** No editorial styling SHALL leak into non-blog routes.
+- **NFR-3.4** New posts SHALL require zero code changes — only adding a `.mdx` file.
+
+### NFR-4 — Accessibility
+
+- **NFR-4.1** All requirements in FR-9 are also non-functional acceptance criteria.
+- **NFR-4.2** The site SHALL pass `axe-core` automated audit with zero violations on `/blog` and a representative `/blog/[slug]` page.
+
+### NFR-5 — Browser support
+
+- **NFR-5.1** Chrome ≥120, Safari ≥17, Firefox ≥120, Edge ≥120 SHALL be fully supported.
+- **NFR-5.2** Older browsers SHALL receive degraded but readable typography (no drop cap, no hyphens).
+
+### NFR-6 — i18n
+
+- **NFR-6.1** Posts SHALL be authored in Bahasa Indonesia by default.
+- **NFR-6.2** The MDX pipeline SHALL accept `lang` frontmatter to set `<html lang>` per post.
+- **NFR-6.3** Hyphenation SHALL respect the post's `lang` (Indonesian hyphenation differs from English).
+
+### NFR-7 — Security
+
+- **NFR-7.1** MDX content SHALL be sanitized against script injection at build time.
+- **NFR-7.2** External links in posts SHALL receive `rel="noopener noreferrer"`.
+- **NFR-7.3** No user-generated content (comments, etc.) — out of scope per Section 1.2.
 
 ---
 
 ## 6. Phased Roadmap
 
-Implementation must proceed in these phases. Each phase ends with a deployable build.
+### Phase 0 — Foundation (1 day)
 
-### Phase 0 — Foundation (1–2 days)
-- Add `docs/SRS.md`, `docs/CLAUDE.md`, `docs/DESIGN.md` to the repo.
-- Set up `src/content/` directory with MDX support (`@mdx-js/rollup`).
-- Add `react-router-dom` (currently single-page).
-- Establish `pnpm` lockfile and CI workflow (lint + typecheck + build).
+**Goal:** Set up MDX pipeline + design tokens. No visual changes yet.
 
-### Phase 1 — Content rewrite (2–3 days)
-- Rewrite all experience cards in impact-first copy (FR-2.1).
-- Rewrite featured-project cards with quantified outcomes.
-- Add the 3 Tier-1 case-study MDX stubs with placeholder metrics flagged `TODO`.
-- Update hero tagline + headline metrics (FR-1.1, FR-1.2).
+- Add MDX deps to `package.json`: `@mdx-js/rollup`, `gray-matter`, `remark-gfm`.
+- Wire `@mdx-js/rollup` into `vite.config.ts`.
+- Create `src/content/blog/` directory.
+- Author `docs/DESIGN.md` (Heritage palette).
+- Run `npx -y @google/design.md export --format tailwind docs/DESIGN.md > tailwind.theme.json`.
+- Merge generated theme into `tailwind.config.ts` extending existing theme.
+- Add Source Serif 4 (or licensed Charter equivalent) via `<link>` in `index.html` or `@import` in `main.css`.
+- **Deployable:** Yes. Site behaves identically to before; only build pipeline changed.
 
-### Phase 2 — Routing & case studies (2–3 days)
-- Wire `react-router-dom` with `/`, `/case-study/:slug`, `/writing`, `/writing/:slug`.
-- Build the `CaseStudy` layout component.
-- Build the `WritingIndex` and `WritingPost` components.
-- Author 2 launch posts.
+### Phase 1 — Editorial layout components (1 day)
 
-### Phase 3 — ML playground (3–5 days)
-- Export Fruit Ninja YOLOv8 model to ONNX.
-- Try in-browser inference via `onnxruntime-web`. Fall back to HF Spaces iframe if too heavy.
-- Add latency display, error handling, mobile fallback.
+**Goal:** Build the reusable React components that produce the editorial chrome.
 
-### Phase 4 — Polish (2–3 days)
-- GitHub pinned repos build-time fetch (FR-7).
-- SEO metadata, sitemap, JSON-LD (FR-9).
-- Lighthouse audit pass — close every NFR-1 / NFR-2 gap.
-- Reduced-motion + keyboard nav audit.
+- Create `src/blog/components/Masthead.tsx`.
+- Create `src/blog/components/Eyebrow.tsx`.
+- Create `src/blog/components/Byline.tsx`.
+- Create `src/blog/components/EditorialBlockquote.tsx`.
+- Create `src/blog/components/EditorialTable.tsx`.
+- Create `src/blog/components/Lede.tsx` (drop cap wrapper).
+- Create `src/blog/components/Footnote.tsx`.
+- Create `src/blog/components/BlogPost.tsx` (composes all of the above).
+- Create `src/blog/styles/editorial.css` (CSS variables, `::first-letter`, `text-align: justify`, etc.).
+- Add Storybook-style preview route at `/_dev/blog-preview` (gated by `import.meta.env.DEV`).
+- **Deployable:** Yes. Components exist but no public route consumes them yet.
 
-### Phase 5 — Launch & monitor
-- Deploy to production.
-- Add privacy-friendly analytics.
-- Collect feedback for v3.1 backlog.
+### Phase 2 — MDX content pipeline (1 day)
+
+**Goal:** Wire MDX rendering with custom components.
+
+- Create `src/blog/mdx-components.ts` exporting `useMDXComponents`.
+- Create `src/blog/lib/getAllPosts.ts` — globs `src/content/blog/*.mdx`, parses frontmatter, returns sorted list.
+- Create `src/blog/lib/getPostBySlug.ts` — returns post + compiled MDX content.
+- Author `docs/CLAUDE.md` if not already (this triad).
+- Import the existing `01-rupiah/source.mdx` and `02-nadiem/source.mdx` from `blog-posts.zip` into `src/content/blog/`.
+- Validate frontmatter completeness (script in `scripts/validate-frontmatter.ts`).
+- **Deployable:** Posts compile but no route renders them yet.
+
+### Phase 3 — Public routes (1 day)
+
+**Goal:** Wire `/blog` and `/blog/[slug]` routes.
+
+- Add route `/blog` rendering listing page using `getAllPosts()`.
+- Add route `/blog/[slug]` rendering individual post via `getPostBySlug()`.
+- Wire up SSG for both routes (`vite-ssg` or `vite-plugin-ssr`).
+- Add OpenGraph + Twitter Card + JSON-LD schemas (FR-8).
+- Test print preview matches PDF reference (Ctrl+P).
+- **Deployable:** Yes. Blog is live with two posts.
+
+### Phase 4 — Polish & verification (0.5 day)
+
+**Goal:** Hit performance & accessibility targets.
+
+- Run Lighthouse on `/blog` and `/blog/kasus-nadiem-dua-cermin`. Confirm Performance ≥95.
+- Run `axe-core` automated audit. Confirm zero violations.
+- Test on Chrome, Safari (macOS + iOS), Firefox at 360px, 768px, 1280px viewports.
+- Cross-check print preview against PDF reference. Adjust margins / font sizes if drift.
+- Add `<link rel="canonical">` and sitemap entry.
+- Submit sitemap to Google Search Console.
+- **Deployable:** Yes. v1 done.
+
+### Phase 5 — Stretch (optional)
+
+- RSS feed (FR-10.1).
+- Tag pages (FR-10.2).
+- Reading-progress bar (FR-10.3).
+- Auto reading-time (FR-10.4).
 
 ---
 
-## 7. Acceptance criteria (definition of done)
+## 7. Acceptance Criteria
 
-v3 ships when **all** of the following are true:
-- Lighthouse mobile scores meet NFR-1.
-- Three Tier-1 case studies are live with quantified Results sections (no placeholders).
-- The Fruit Ninja playground renders inference results OR a graceful fallback.
-- WCAG AA contrast verified via `npx @google/design.md lint docs/DESIGN.md`.
-- At least 2 writing posts are live.
-- "Download CV" CTA is reachable in ≤ 1 click from any route.
-- The repo builds clean from a fresh clone with no warnings.
+The blog editorial layout system SHALL be considered "v1 done" when ALL of the following are true:
+
+1. Both existing posts (Rupiah, Nadiem) render at `/blog/rupiah-menuju-merdeka` and `/blog/kasus-nadiem-dua-cermin` respectively.
+2. The listing at `/blog` shows both posts in reverse chronological order.
+3. Visual comparison between web rendering and PDF reference: typography (font family, size ratios, letter-spacing), accent color, drop cap, blockquote styling, eyebrow, masthead, byline, footnote — all match within ±5% spacing tolerance.
+4. `npx -y @google/design.md lint docs/DESIGN.md` returns exit 0.
+5. Lighthouse mobile performance score ≥95 on `/blog/kasus-nadiem-dua-cermin`.
+6. `axe-core` audit returns zero violations on both `/blog` and a representative post.
+7. Print preview (`Ctrl+P`) on a post produces a single-window PDF visually equivalent to the existing hand-rendered PDFs.
+8. Adding a third post requires zero code changes — only adding a new `.mdx` file under `src/content/blog/`.
+9. Total CSS for the blog module is ≤30 KB minified (verified via `pnpm build && du -sb dist/`).
+10. The triad (`SRS.md`, `CLAUDE.md`, `DESIGN.md`) is committed under `docs/` in the repo and cross-referenced.
+
+---
+
+*End of SRS.md*
