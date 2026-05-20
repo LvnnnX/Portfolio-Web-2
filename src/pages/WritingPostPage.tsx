@@ -21,8 +21,8 @@ interface PostFrontmatter {
   tags?: string[];
   author?: string;
   edition?: string | number;
-  /** Single-line eyebrow (defaults to first tag uppercased) */
-  eyebrow?: string;
+  /** Single string OR array of labels rendered above the headline. */
+  eyebrow?: string | string[];
 }
 
 interface PostModule {
@@ -53,6 +53,26 @@ const formatDate = (iso: string): string => {
   });
 };
 
+const formatReadTime = (rt: string | undefined): string | undefined => {
+  if (!rt) return undefined;
+  const m = rt.match(/^(\d+)\s*(min|menit)\b/);
+  if (m) return `${m[1]} menit baca`;
+  return rt;
+};
+
+const buildEyebrowLabel = (
+  eyebrow: string | string[] | undefined,
+  tags: string[] | undefined,
+): string => {
+  const source = (() => {
+    if (Array.isArray(eyebrow)) return eyebrow;
+    if (typeof eyebrow === "string" && eyebrow.length > 0) return [eyebrow];
+    if (tags && tags.length > 0) return tags.slice(0, 2);
+    return ["CATATAN"];
+  })();
+  return source.map((t) => t.toUpperCase()).join(" · ");
+};
+
 export default function WritingPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const mod = slug ? posts.get(slug) : undefined;
@@ -62,9 +82,8 @@ export default function WritingPostPage() {
   const MDX = mod.default;
   const fm = mod.frontmatter ?? {};
   const summary = fm.excerpt ?? fm.description ?? "";
-  const readTime = fm.readingTime ?? fm.readTime;
-  const eyebrowLabel =
-    fm.eyebrow ?? (fm.tags && fm.tags[0] ? fm.tags[0].toUpperCase() : "CATATAN");
+  const readTime = formatReadTime(fm.readingTime ?? fm.readTime);
+  const eyebrowLabel = buildEyebrowLabel(fm.eyebrow, fm.tags);
   const niceDate = formatDate(fm.date ?? "");
 
   return (

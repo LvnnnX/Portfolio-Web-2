@@ -133,14 +133,19 @@
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0.05em;
-  color: var(--ink-soft);
-  border-block: 1px solid var(--rule);
-  padding-block: 8pt;
+  color: var(--ink);
+  border-block-start: 1px solid var(--rule);
+  padding-block-start: 8pt;
   margin-block-end: 32px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
   align-items: center;
+}
+
+.editorial-byline__author {
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .editorial-byline__sep {
