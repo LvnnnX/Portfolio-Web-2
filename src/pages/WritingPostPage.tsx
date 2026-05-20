@@ -68,7 +68,7 @@ const buildEyebrowLabel = (
     if (Array.isArray(eyebrow)) return eyebrow;
     if (typeof eyebrow === "string" && eyebrow.length > 0) return [eyebrow];
     if (tags && tags.length > 0) return tags.slice(0, 2);
-    return ["CATATAN"];
+    return ["BLOG"];
   })();
   return source.map((t) => t.toUpperCase()).join(" · ");
 };
@@ -140,7 +140,7 @@ export default function WritingPostPage() {
         </div>
 
         <footer className="editorial-pagefoot">
-          <span>DANIWISMAGATHA.MY.ID/CATATAN</span>
+          <span>DANIWISMAGATHA.MY.ID/BLOG</span>
           <Link
             to="/blog"
             className="editorial-pagefoot__link"

@@ -81,20 +81,20 @@ export default function WritingIndexPage() {
   return (
     <main className="editorial">
       <SEO
-        title="Catatan"
+        title="Blog"
         description="Catatan tentang ekonomi, hukum, teknologi, dan apa pun yang layak ditulis pelan-pelan."
         path="/blog"
       />
       <div className="editorial__content">
         <header className="editorial-masthead">
-          <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / CATATAN</span>
+          <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / BLOG</span>
           <span className="editorial-masthead__meta">{posts.length} edisi</span>
         </header>
 
         <p className="editorial-eyebrow" style={{ marginBlockStart: "32px" }}>
           Katalog
         </p>
-        <h1 className="editorial-headline">Catatan</h1>
+        <h1 className="editorial-headline">Blog</h1>
         <p className="editorial-deck">
           Esai pendek tentang ekonomi, hukum, teknologi, dan hal-hal yang layak dipikir lebih dari satu kali.
         </p>
@@ -126,7 +126,7 @@ export default function WritingIndexPage() {
         )}
 
         <footer className="editorial-pagefoot">
-          <span>DANIWISMAGATHA.MY.ID/CATATAN</span>
+          <span>DANIWISMAGATHA.MY.ID/BLOG</span>
           <span>v1.0</span>
         </footer>
       </div>

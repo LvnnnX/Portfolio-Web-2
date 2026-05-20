@@ -23,7 +23,7 @@ export default function Masthead({ edition, date, meta }: MastheadProps) {
 
   return (
     <header className="editorial-masthead">
-      <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / CATATAN</span>
+      <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / BLOG</span>
       <span className="editorial-masthead__meta">
         {parts.map((part, i) => (
           <span key={i}>
