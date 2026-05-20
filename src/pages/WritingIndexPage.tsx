@@ -7,6 +7,7 @@ interface PostFrontmatter {
   title?: string;
   date?: string;
   excerpt?: string;
+  description?: string;
   tags?: string[];
 }
 
@@ -36,7 +37,7 @@ const posts: PostMeta[] = Object.entries(modules)
       slug: fm.slug ?? fileSlug,
       title: fm.title ?? fileSlug,
       date: fm.date ?? "",
-      excerpt: fm.excerpt ?? "",
+      excerpt: fm.excerpt ?? fm.description ?? "",
       tags: fm.tags ?? [],
     };
   })
@@ -46,19 +47,19 @@ export default function WritingIndexPage() {
   return (
     <main className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
       <SEO
-        title="Writing"
-        description="Notes and tutorials on computer vision, applied ML, and the engineering details behind shipped projects."
+        title="Blog"
+        description="Catatan tentang ekonomi, hukum, teknologi, dan apa pun yang layak ditulis pelan-pelan."
         path="/writing"
       />
       <div className="max-w-3xl mx-auto">
         <p className="text-[10px] md:text-[12px] font-bold tracking-[0.12em] uppercase text-[color:var(--color-accent,#B8422E)] mb-3">
-          Writing
+          Blog
         </p>
         <h1 className="text-[34px] md:text-[48px] font-bold tracking-[-0.025em] leading-[1.1] text-foreground mb-4">
-          Notes &amp; tutorials
+          Notes &amp; essays
         </h1>
         <p className="text-[16px] md:text-[18px] leading-[1.6] text-muted-foreground mb-10 md:mb-14">
-          Short reads on computer vision, applied ML, and the engineering details behind shipped projects.
+          Catatan pelan tentang ekonomi, hukum, teknologi, dan hal-hal yang layak dipikir lebih dari satu kali.
         </p>
 
         {posts.length === 0 ? (

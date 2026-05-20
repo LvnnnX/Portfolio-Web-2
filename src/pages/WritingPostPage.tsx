@@ -9,6 +9,8 @@ interface PostFrontmatter {
   title?: string;
   date?: string;
   excerpt?: string;
+  description?: string;
+  readingTime?: string;
   tags?: string[];
 }
 
@@ -22,42 +24,28 @@ const modules = import.meta.glob<PostModule>(
   { eager: true },
 );
 
-const rawTexts = import.meta.glob<string>(
-  "../content/posts/*.mdx",
-  { eager: true, query: "?raw", import: "default" },
-);
-
-const posts = new Map<string, { mod: PostModule; raw: string }>();
+const posts = new Map<string, PostModule>();
 for (const [path, mod] of Object.entries(modules)) {
   const slug =
     mod.frontmatter?.slug ?? path.split("/").pop()?.replace(/\.mdx$/, "");
-  if (slug) posts.set(slug, { mod, raw: rawTexts[path] ?? "" });
-}
-
-/** Approximate reading time at 220 wpm. Avoids the `reading-time` package which
- *  pulls in `util.inherits` and crashes in the browser. */
-function estimateReadingTime(text: string): string {
-  const words = text.trim().split(/\s+/).filter(Boolean).length;
-  const minutes = Math.max(1, Math.round(words / 220));
-  return `${minutes} min read`;
+  if (slug) posts.set(slug, mod);
 }
 
 export default function WritingPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const entry = slug ? posts.get(slug) : undefined;
+  const mod = slug ? posts.get(slug) : undefined;
 
-  if (!entry) return <NotFoundPage />;
+  if (!mod) return <NotFoundPage />;
 
-  const { mod, raw } = entry;
   const MDX = mod.default;
   const fm = mod.frontmatter ?? {};
-  const stats = raw ? estimateReadingTime(raw) : null;
+  const summary = fm.excerpt ?? fm.description ?? "";
 
   return (
     <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
       <SEO
         title={fm.title ?? slug!}
-        description={fm.excerpt ?? ""}
+        description={summary}
         path={`/writing/${slug}`}
         type="article"
         publishedTime={fm.date}
@@ -72,16 +60,16 @@ export default function WritingPostPage() {
 
         <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-3">
           {fm.date ?? "—"}
-          {stats ? ` · ${stats}` : ""}
+          {fm.readingTime ? ` · ${fm.readingTime}` : ""}
         </p>
 
         <h1 className="text-[30px] md:text-[42px] font-bold tracking-[-0.025em] leading-[1.15] text-foreground mb-4">
           {fm.title ?? slug}
         </h1>
 
-        {fm.excerpt && (
+        {summary && (
           <p className="text-[15px] md:text-[17px] leading-[1.6] text-muted-foreground mb-8">
-            {fm.excerpt}
+            {summary}
           </p>
         )}
 
