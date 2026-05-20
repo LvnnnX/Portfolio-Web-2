@@ -7,7 +7,6 @@ const Experience = React.lazy(() => import("../components/ui/Experience"));
 const Projects = React.lazy(() => import("../components/ui/Projects"));
 const Skills = React.lazy(() => import("../components/ui/Skills"));
 const Tools = React.lazy(() => import("../components/ui/Tools"));
-const Playground = React.lazy(() => import("../components/sections/Playground"));
 const OpenSource = React.lazy(() => import("../components/sections/OpenSource"));
 const Contact = React.lazy(() => import("../components/ui/Contact"));
 
@@ -23,7 +22,7 @@ export default function HomePage() {
       <SEO
         title="Pande Dani — Computer Vision & Applied ML Engineer"
         exact
-        description="Computer Vision & Applied ML Engineer based in Bali. Case studies, live YOLOv8 demo, and writing on applied machine learning."
+        description="Computer Vision & Applied ML Engineer based in Bali. Case studies and writing on applied machine learning."
         path="/"
       />
       <PersonJsonLd />
@@ -48,7 +47,6 @@ export default function HomePage() {
         <div id="skills">
           <Skills />
         </div>
-        <Playground />
         <OpenSource />
         <div id="contact">
           <Contact />

@@ -1,4 +1,10 @@
-import { Helmet } from "react-helmet-async";
+/**
+ * SEO uses React 19's native document metadata hoisting.
+ * <title>, <meta>, and <link> rendered anywhere in the component tree are
+ * automatically promoted to <head> by React 19, so we don't need helmet.
+ *
+ * Reference: https://react.dev/reference/react-dom/components/title
+ */
 
 const SITE_URL = "https://www.daniwismagatha.my.id";
 const SITE_NAME = "Pande Gede Dani Wismagatha";
@@ -32,7 +38,7 @@ export default function SEO({
   const ogImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
   return (
-    <Helmet>
+    <>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
@@ -49,7 +55,7 @@ export default function SEO({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-    </Helmet>
+    </>
   );
 }
 
@@ -74,8 +80,9 @@ export function PersonJsonLd() {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(data)}</script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
   );
 }

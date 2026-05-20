@@ -1,7 +1,6 @@
 import type { ComponentType } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import readingTime from "reading-time";
 import SEO from "../components/seo/SEO";
 import NotFoundPage from "./NotFoundPage";
 
@@ -35,6 +34,14 @@ for (const [path, mod] of Object.entries(modules)) {
   if (slug) posts.set(slug, { mod, raw: rawTexts[path] ?? "" });
 }
 
+/** Approximate reading time at 220 wpm. Avoids the `reading-time` package which
+ *  pulls in `util.inherits` and crashes in the browser. */
+function estimateReadingTime(text: string): string {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.round(words / 220));
+  return `${minutes} min read`;
+}
+
 export default function WritingPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const entry = slug ? posts.get(slug) : undefined;
@@ -44,7 +51,7 @@ export default function WritingPostPage() {
   const { mod, raw } = entry;
   const MDX = mod.default;
   const fm = mod.frontmatter ?? {};
-  const stats = raw ? readingTime(raw) : null;
+  const stats = raw ? estimateReadingTime(raw) : null;
 
   return (
     <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
@@ -65,7 +72,7 @@ export default function WritingPostPage() {
 
         <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-3">
           {fm.date ?? "—"}
-          {stats ? ` · ${stats.text}` : ""}
+          {stats ? ` · ${stats}` : ""}
         </p>
 
         <h1 className="text-[30px] md:text-[42px] font-bold tracking-[-0.025em] leading-[1.15] text-foreground mb-4">
