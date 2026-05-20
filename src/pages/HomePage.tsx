@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-import PortfolioHero from "./components/ui/portfolio-hero";
+import PortfolioHero from "../components/ui/portfolio-hero";
 
-const AboutMe = React.lazy(() => import("./components/ui/AboutMe"));
-const Experience = React.lazy(() => import("./components/ui/Experience"));
-const Projects = React.lazy(() => import("./components/ui/Projects"));
-const Skills = React.lazy(() => import("./components/ui/Skills"));
-const Tools = React.lazy(() => import("./components/ui/Tools"));
-const Contact = React.lazy(() => import("./components/ui/Contact"));
+const AboutMe = React.lazy(() => import("../components/ui/AboutMe"));
+const Experience = React.lazy(() => import("../components/ui/Experience"));
+const Projects = React.lazy(() => import("../components/ui/Projects"));
+const Skills = React.lazy(() => import("../components/ui/Skills"));
+const Tools = React.lazy(() => import("../components/ui/Tools"));
+const Contact = React.lazy(() => import("../components/ui/Contact"));
 
 const SectionFallback = () => (
   <div className="w-full h-[400px] flex items-center justify-center">
@@ -14,13 +14,13 @@ const SectionFallback = () => (
   </div>
 );
 
-export default function Demo() {
+export default function HomePage() {
   return (
     <div>
       <div id="home">
         <PortfolioHero />
       </div>
-      
+
       <Suspense fallback={<SectionFallback />}>
         <div id="about">
           <AboutMe />

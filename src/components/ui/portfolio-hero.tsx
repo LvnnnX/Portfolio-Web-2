@@ -20,11 +20,12 @@ const BlurText = React.memo(({
   style,
 }: BlurTextProps) => {
   const [inView, setInView] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth < 768,
+  );
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -245,16 +246,29 @@ export default function PortfolioHero() {
           />
         </div>
 
-        <div className="mt-16 w-full px-6 flex flex-col items-center gap-8">
+        <div className="mt-16 w-full px-6 flex flex-col items-center gap-6">
           <BlurText
-            text="Data Scientist & AI Specialist • 900+ Hours ML Training"
-            delay={150}
+            text="Computer Vision & Applied ML Engineer — Building Vision Systems for Real-World Automation"
+            delay={120}
             animateBy="words"
             direction="top"
-            className="text-[17px] sm:text-[19px] md:text-[21px] font-medium tracking-tight text-neutral-600 dark:text-muted-foreground text-center"
+            className="text-[15px] sm:text-[17px] md:text-[19px] font-medium tracking-tight text-neutral-600 dark:text-muted-foreground text-center max-w-[720px]"
           />
 
-
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mt-2">
+            <div className="text-center">
+              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">3+ yrs</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">ML practice</p>
+            </div>
+            <div className="text-center">
+              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">13</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">YOLOv8 variants</p>
+            </div>
+            <div className="text-center">
+              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">3.98</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">GPA</p>
+            </div>
+          </div>
         </div>
 
         <button

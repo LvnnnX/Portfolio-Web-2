@@ -14,7 +14,7 @@ export function WebGLShader() {
     camera: THREE.OrthographicCamera | null
     renderer: THREE.WebGLRenderer | null
     mesh: THREE.Mesh | null
-    uniforms: any
+    uniforms: { [uniform: string]: THREE.IUniform } | null
     animationId: number | null
     isVisible: boolean
   }>({
