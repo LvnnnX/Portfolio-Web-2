@@ -1,56 +1,116 @@
 ---
 slug: fruit-ninja-yolov8
-title: Fruit Ninja Automation Bot — YOLOv8 Real-Time Inference
-summary: Real-time computer-vision bot that plays Fruit Ninja autonomously, benchmarked across 13 YOLOv8 variants to balance detection accuracy against sustainable FPS.
+title: YOLOv8 for Real-Time Fruit Ninja — Why Nano Beats Extra-Large
+summary: A comparative study of five YOLOv8 variants on a custom 8,423-frame Fruit Ninja dataset. The largest model has the highest mAP, but the smallest model wins the game — by 76% more points.
 cover: /images/work_7/1.png
-repo: TODO(content) - GitHub URL once public
+repo: https://github.com/LvnnnX/FruitNinjaAUTO
 live: null
 period: Mar 2025 – Aug 2025
 metrics:
   - label: Variants benchmarked
-    value: "13"
-  - label: Final FPS
-    value: "TODO(content)"
-  - label: mAP@0.5
-    value: "TODO(content)"
+    value: "5 (n/s/m/l/x)"
+  - label: Dataset size
+    value: "8,423 frames"
+  - label: Best FPS (n)
+    value: "28.50"
+  - label: Best mAP@0.5–0.95
+    value: "0.90"
+  - label: Best game score (n)
+    value: "539"
+  - label: Worst game score (x)
+    value: "306"
 tags:
   - YOLOv8
   - Computer Vision
   - PyTorch
   - Real-time inference
+  - Undergraduate thesis
 ---
 
 ## Problem
 
-Existing Fruit Ninja bots rely on color thresholding or template matching — brittle against lighting, occlusion, and the bomb-vs-fruit confusion that ends a run instantly. The challenge: prove that a modern object detector can deliver **frame-rate-aware** inference on consumer hardware while staying robust enough to survive Survival Mode.
+Object detectors in academic papers get ranked by mAP. But in interactive systems — games, robotics, AR — accuracy is only half the story. A frame that arrives 50 ms late has zero value, no matter how sharp the bounding box.
+
+Fruit Ninja is a clean test bed for this trade-off. The bot must detect rapidly moving fruit and bombs, plan a swipe, and execute — all before the fruit leaves the screen. Miss the window and you lose. So the question worth asking isn't "which YOLOv8 variant has the highest mAP?" — it's "which variant maximizes points actually scored?"
+
+This case study answers that question with a controlled experiment across all five YOLOv8 sizes.
 
 ## Data
 
-- TODO(content): dataset size, annotation strategy (Roboflow / manual), train/val split
-- TODO(content): class taxonomy (apple, watermelon, pineapple, banana, bomb, …)
-- TODO(content): augmentation pipeline (mosaic, mixup, HSV jitter)
+A custom primary dataset was built end-to-end:
+
+- **Source.** Gameplay sessions recorded from Fruit Ninja running in the LDPlayer Android emulator, screen-captured to video.
+- **Selection.** Frames extracted and hand-curated for object diversity (fruit types, bombs, varied positions and orientations) on a relatively clean background.
+- **Annotation.** Manual bounding boxes drawn in [Label Studio](https://labelstud.io) for every fruit and bomb instance.
+- **Final size.** **8,423 annotated frames.**
+- **Split.** 7,369 train · 702 val · 352 test (87.5 / 8.3 / 4.2). Held out by frame, not by session — a known caveat for future work.
+- **Augmentation.** Random rotations, scaling, brightness, and contrast shifts on the train set only.
+
+The split is intentionally weighted toward training because the visual domain — emulator-clean fruit on a dark background — is much narrower than COCO. The model only needs to learn a handful of objects under predictable lighting.
 
 ## Approach
 
-1. **Frame capture** — `bettercam` for sub-millisecond DXGI capture, bypassing the GDI bottleneck that caps PrintScreen-style approaches at ~30 FPS.
-2. **Detector** — YOLOv8 family. Benchmarked **13 variants** across the n/s/m/l/x scales and image sizes (320, 416, 640) to find the FPS-vs-mAP frontier.
-3. **Post-processing** — class-aware NMS plus a velocity tracker so the bot swipes ahead of the fruit, not at it.
-4. **Action layer** — `pydirectinput` for mouse path interpolation; bezier curves to mimic human swipes.
+The experiment compared five YOLOv8 variants released by Ultralytics, chosen specifically because they share a common architecture and differ only in width and depth:
+
+| Variant | Parameters (M) | FLOPs (G) @ 640px |
+|---|---|---|
+| Nano (n) | 3.2 | 8.7 |
+| Small (s) | 11.2 | 28.6 |
+| Medium (m) | 25.9 | 78.9 |
+| Large (l) | 43.7 | 165.2 |
+| Extra-large (x) | 68.2 | 257.8 |
+
+Each variant inherits the same three architectural innovations from YOLOv8:
+
+1. **C2f module** (cross-stage partial with convolutions and fusion) — concatenates the output of every bottleneck block, not just the last one. Richer gradient flow, smaller vanishing-gradient surface, lighter weight than the C3 block in YOLOv5.
+2. **SPPF** (Spatial Pyramid Pooling — Fast) — replaces parallel max-pools with sequential 5×5 max-pools. Mathematically equivalent to SPP, far cheaper FLOPs.
+3. **Anchor-free decoupled head** — separate convolutions for classification and box regression, no pre-defined anchors. Simpler training, slightly better recall on irregular aspect ratios.
+
+For the real-time test, each trained model was wired into a Python script that:
+
+- Captured frames via [`bettercam`](https://github.com/RootKit-Org/BetterCam) for sub-millisecond DXGI screen grabs (the GDI alternative caps near 30 FPS, which would have made the comparison meaningless).
+- Ran inference on the 640×640 frame.
+- Issued mouse swipes via input automation to slice detected fruit while avoiding bombs.
+
+Two metric families were tracked:
+
+- **Detection quality:** Precision, Recall, mAP@0.5, mAP@0.5–0.95.
+- **Real-time performance:** average FPS during live play, plus the high score actually achieved by the bot — a proxy for how well the latency-accuracy trade-off lands.
 
 ## Results
 
-- **13 model variants** systematically benchmarked across image sizes and scales.
-- TODO(content): chosen variant (likely `yolov8s` @ 416) and the reasoning.
-- TODO(content): final mAP@0.5 and inference latency in ms.
-- TODO(content): average FPS during live play.
+**Detection quality plateaued early.** All five variants landed within a single mAP point of each other, despite the largest having ~21× more parameters than the smallest:
+
+| Model | Precision | Recall | mAP@0.5 | mAP@0.5–0.95 |
+|---|---|---|---|---|
+| Nano (n) | 0.88 | 0.85 | 0.92 | **0.89** |
+| Small (s) | 0.89 | 0.86 | 0.93 | 0.89 |
+| Medium (m) | 0.90 | 0.86 | 0.94 | 0.89 |
+| Large (l) | 0.90 | 0.87 | 0.94 | — |
+| Extra-large (x) | 0.91 | 0.87 | 0.95 | **0.90** |
+
+A 1.3% mAP gain for 21× the parameters. Capacity saturated.
+
+**Real-time performance collapsed predictably.** Compute scaled linearly; FPS fell off a cliff:
+
+| Model | FPS | High score |
+|---|---|---|
+| Nano (n) | **28.50** | **539** |
+| Small (s) | 26.34 | 530 |
+| Medium (m) | 23.18 | 536 |
+| Large (l) | 19.71 | 412 |
+| Extra-large (x) | 17.07 | 306 |
+
+The smallest model — with the lowest mAP@0.5 — scored **76% more points** than the largest model with the highest mAP. At 17.07 FPS the per-frame budget is ~58.6 ms; at 28.50 FPS it is ~35.1 ms. That ~23 ms gap was enough to miss fruit consistently.
 
 ## Lessons learned
 
-- TODO(content): the surprising finding from the benchmark (e.g., that nano was faster but lost too much recall on bombs).
-- TODO(content): what failed: capture-stack quirks, label noise, etc.
-- TODO(content): what would change next time.
+- **mAP is not the right metric for interactive systems.** Past a "good enough" accuracy threshold, every additional parameter just buys latency. For Fruit Ninja the threshold sat near `yolov8n` — the smallest variant Ultralytics ships.
+- **Visual domains differ.** COCO punishes lightweight models because of occlusion, lighting variance, and intra-class diversity. A constrained domain (clean background, distinct classes, predictable motion) flips the calculus — the architecture saturates fast.
+- **Capture stack is non-negotiable.** Switching from PrintScreen-grade capture to `bettercam` was worth more than any model upgrade. If your detector is faster than your input pipeline, you are spending compute on stale frames.
+- **Frame-split leakage is a real caveat.** Splitting by frame inside a session likely inflates val/test mAP because adjacent frames are nearly identical. Future work should split by session.
 
 ## Links
 
-- Repo: TODO(content)
-- Live demo: see [/playground](/playground) for an in-browser ONNX version.
+- Repo: [LvnnnX/FruitNinjaAUTO](https://github.com/LvnnnX/FruitNinjaAUTO)
+- Underlying study: undergraduate thesis at Universitas Udayana — "Analisis Kinerja Convolutional Neural Network dengan YOLO-v8 untuk Mendeteksi Buah dalam Permainan 'Fruit Ninja'" (Pande Gede Dani Wismagatha, advisor I Wayan Santiyasa).

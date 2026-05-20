@@ -1,20 +1,22 @@
 ---
 slug: mews-bbmkg-automation
-title: MEWS — BBMKG Document Automation
-summary: Web platform that automated 9 daily administrative documents at BBMKG Wilayah III Denpasar — sole intern developer, six-week build, still in active staff use.
+title: WOWS — Automating 9 Daily Reports for BBMKG's Early-Warning Division
+summary: Solo internship build at BBMKG Wilayah III Denpasar's MEWS division. A Python + Streamlit web app that replaces the daily handwriting of nine .docx reports with a one-click form, delivered in nine weeks.
 cover: /images/work_4/1.png
 repo: null
 live: null
-period: Jul 2023 – Aug 2023
+period: Jul 2023 – Sep 2023
 metrics:
   - label: Documents automated
-    value: "9"
+    value: "9 daily reports"
   - label: Build duration
-    value: "6 weeks"
-  - label: Status
-    value: "In active use"
+    value: "9 weeks"
+  - label: Team size
+    value: "Solo (intern)"
+  - label: Stack
+    value: "Python · Streamlit"
 tags:
-  - Flask
+  - Streamlit
   - Python
   - Web Automation
   - Internship
@@ -22,34 +24,52 @@ tags:
 
 ## Problem
 
-BBMKG Wilayah III Denpasar produces nine daily administrative documents — each manually filled from data scattered across observation logs, internal spreadsheets, and email reports. The result: hours of duplicated typing per day, with predictable transcription errors. As a six-week intern, I owned end-to-end delivery: requirement analysis, design, build, deploy, train.
+BBMKG Wilayah III Denpasar is one of Indonesia's regional meteorological agencies. Inside it, the **MEWS division** (Meteorology Early Warning System) produces nine mandatory `.docx` reports every shift — weather summaries, equipment logs, observation handovers — each filled in manually from data scattered across observation tools, spreadsheets, and shift notes.
+
+Two problems compounded:
+
+1. **The same fields were being typed by hand, every shift, every day.** Predictable transcription errors, hours of duplicated effort.
+2. **There was no live view of which staff member was on duty.** Schedules were managed by a different division, so the MEWS lead had no quick way to see who was currently in the room.
+
+I joined as a single Universitas Udayana intern in July 2023. The brief: fix both, in the time I had on site.
 
 ## Data
 
-- TODO(content): inventory of the 9 document types (daily weather summary, equipment log, etc.).
-- TODO(content): source systems integrated (CSV exports, spreadsheets, manual entry).
-- TODO(content): user count (operational staff, supervisors).
+Nothing fancy on the data side — that was the point. The MEWS team handed me:
+
+- The nine `.docx` templates that needed to be filled out daily.
+- The fields each report expected (shift, observer, observation values, supervisor notes, miscellaneous).
+- Their existing on-shift roster format, used to decide who would appear on the monitoring board.
+
+The work was understanding the reports and the workflow, not collecting external data.
 
 ## Approach
 
-1. **User research** — sat with operational staff for the first week to map the actual document workflow vs. the documented one. Found 3 "shadow" steps that needed to be folded in.
-2. **Single source of truth** — Flask backend that pulls from the existing data sources and merges into a unified daily payload.
-3. **One-click generation** — the staff selects a date, picks a document type, fills any fields the system can't derive, and exports the rendered output.
-4. **Training & handoff** — two on-site training sessions, plus a written runbook so the platform survives my exit.
+The internship ran from **10 July 2023 to 10 September 2023**, with the final presentation on **11 September 2023** — about nine weeks end-to-end. I structured it in five stages:
+
+1. **Requirements & scoping.** Sat with MEWS staff to walk through the actual document workflow, not the documented one. Confirmed which nine reports were truly mandatory and what fields each expected.
+2. **Tool selection.** Picked **Python + Streamlit** as the stack — Streamlit because it produces a serviceable web UI from a single Python script and matched the team's familiarity with form-style tools, and Python because it has the document libraries (`python-docx`) needed for `.docx` template filling. HTML/CSS layered in only where Streamlit's defaults needed adjustment.
+3. **Data integration.** Took each `.docx` template, identified its variable fields, and wired Streamlit form inputs to those fields. Validated that the generated documents were byte-identical in structure to what the team produced by hand.
+4. **Build.** Implemented the platform in two surfaces:
+    - **Automation page** — staff pick a date, pick one of the nine document types, fill the few fields the system can't derive, and download the rendered `.docx`.
+    - **Monitoring page** — shows which staff member is currently on shift, mapped from the existing roster.
+5. **Test & training.** Live testing on shift with MEWS staff, presentation + handover on 11 September, runbook for the lead.
 
 ## Results
 
-- **9 documents automated** end-to-end.
-- **Six-week build** from kickoff to handoff, including training.
-- Platform **still in active daily use** at the institution 2+ years later — the most durable artifact of any internship I've shipped.
+- **9 documents automated end-to-end.** Every mandatory daily MEWS report can now be generated in seconds instead of typed from scratch.
+- **Built and shipped in nine weeks.** Solo, on-site, including requirements, build, training, and handover.
+- **Operator monitoring layer.** The MEWS lead now has a live view of who is on duty without crossing divisions to ask.
+- **Adopted on-shift.** Staff used the platform during user testing and accepted it before handover. (Long-term usage status post-handover wasn't formally tracked, so I'm marking that as unverified rather than claiming it.)
 
 ## Lessons learned
 
-- TODO(content): what the user-research week surfaced that the original brief missed.
-- TODO(content): the simplest tech choice (Flask + plain HTML + JS) outperformed a more ambitious React proposal.
-- TODO(content): what the longevity is teaching me about handoff documentation.
+- **Walking through the workflow beats reading the spec.** The first week of sitting with MEWS staff surfaced shadow steps that weren't in the original brief — fields filled from a clipboard pinned to the wall, defaults that everyone "knew" but no one wrote down. Skipping that week would have shipped the wrong tool.
+- **Boring stack > clever stack.** Streamlit isn't elegant, but it ships a working form-driven web app in days, not weeks. For a solo nine-week internship that's the right trade.
+- **Handoff is the project, not a postscript.** A two-month intern building anything operational is a failure mode unless the team can run it after the intern leaves. The runbook took as long to write as some of the document modules.
 
 ## Links
 
-- Repo: not public (institutional code).
-- Live: BBMKG internal network only.
+- Repo: not public (institutional code)
+- Live: BBMKG internal network only
+- Source: 2024 internship report at Universitas Udayana — "Meningkatkan Efisiensi Pegawai BBMKG Wilayah III Denpasar Menggunakan Website WOWS" (Pande Gede Dani Wismagatha)

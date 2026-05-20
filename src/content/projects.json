@@ -13,12 +13,15 @@
       "context": "Integrated YOLOv8 with Bettercam for low-latency frame capture and a tuned post-processing pipeline.",
       "techStack": ["Python", "YOLOv8", "OpenCV", "Bettercam", "Computer Vision"],
       "metrics": {
-        "fps": "TODO(content): final FPS",
-        "mAP": "TODO(content): mAP@0.5",
-        "variants_benchmarked": 13
+        "fps_n": "28.50",
+        "fps_x": "17.07",
+        "score_n": 539,
+        "score_x": 306,
+        "variants_benchmarked": 5,
+        "dataset_frames": 8423
       },
       "links": {
-        "repo": "TODO(content): GitHub URL",
+        "repo": "https://github.com/LvnnnX/FruitNinjaAUTO",
         "live": null
       }
     },
@@ -54,10 +57,10 @@
       "category": "Web Automation",
       "impact": "Automated 9 daily administrative documents at BBMKG Wilayah III — platform still in active staff use 2+ years post-handoff.",
       "context": "Sole intern developer; designed UX, integrated multi-source data, and trained staff in 6 weeks.",
-      "techStack": ["Flask", "Python", "HTML", "CSS", "JavaScript"],
+      "techStack": ["Streamlit", "Python", "python-docx", "HTML", "CSS"],
       "metrics": {
         "documents_automated": 9,
-        "training_period_weeks": 6
+        "duration_weeks": 9
       },
       "links": {
         "repo": null,
