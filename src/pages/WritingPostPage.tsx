@@ -80,6 +80,28 @@ export default function WritingPostPage() {
       <article className="editorial__content">
         <Masthead edition={fm.edition} date={niceDate} meta={readTime} />
 
+        <Link
+          to="/blog"
+          className="editorial-back"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            marginBlock: "16px 0",
+            padding: "6px 0",
+            fontFamily: "var(--sans)",
+            fontSize: "11px",
+            fontWeight: 700,
+            letterSpacing: "0.10em",
+            textTransform: "uppercase",
+            color: "var(--ink-soft)",
+            textDecoration: "none",
+            transition: "color 200ms ease",
+          }}
+        >
+          <ArrowLeft size={12} /> Kembali ke katalog
+        </Link>
+
         <Eyebrow>{eyebrowLabel}</Eyebrow>
 
         <h1 className="editorial-headline">{fm.title ?? slug}</h1>
