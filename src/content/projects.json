@@ -34,16 +34,17 @@
       "role": "Full Stack Developer",
       "period": "2026",
       "category": "Web Application",
-      "impact": "Built a zero-trust online exam platform with server-side timers, AES-256 LocalStorage encryption, and a Survival Mode lives system.",
-      "context": "Next.js 15 + Supabase RPC for real-time monitoring; admin dashboard handles rich-text and LaTeX questions.",
-      "techStack": ["Next.js 15", "Supabase", "Tailwind CSS 4", "CryptoJS", "PostgreSQL"],
+      "impact": "Server-authoritative online exam platform for SMA Negeri 2 Amlapura — three modes (self-paced, survival, live multiplayer), AES-256 encrypted client state, and sanitized rich-text questions with KaTeX support.",
+      "context": "Next.js 16 + Supabase (RLS + SECURITY DEFINER RPCs + pg_cron + Realtime). Active at osn-smandapura.my.id.",
+      "techStack": ["Next.js 16", "Supabase", "Tailwind CSS 4", "TipTap", "DOMPurify", "CryptoJS", "PostgreSQL"],
       "metrics": {
-        "students_capacity": "TODO(content)",
-        "uptime": "TODO(content)"
+        "encryption": "AES-256 + HMAC-SHA256",
+        "modes": "Self-paced · Survival · Live quiz",
+        "rich_text": "KaTeX · tables · code · images"
       },
       "links": {
-        "repo": "TODO(content): GitHub URL",
-        "live": "TODO(content): live URL"
+        "repo": "https://github.com/LvnnnX/exam-app",
+        "live": "https://osn-smandapura.my.id"
       }
     },
     {
