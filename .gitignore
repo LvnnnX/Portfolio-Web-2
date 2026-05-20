@@ -32,4 +32,5 @@ dist-ssr
 !tsconfig.json
 !tsconfig.app.json
 !tsconfig.node.json
+!vercel.json
 !src/content/**/*.json
