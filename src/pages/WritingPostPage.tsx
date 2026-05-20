@@ -46,13 +46,13 @@ export default function WritingPostPage() {
       <SEO
         title={fm.title ?? slug!}
         description={summary}
-        path={`/writing/${slug}`}
+        path={`/blog/${slug}`}
         type="article"
         publishedTime={fm.date}
       />
       <div className="max-w-2xl mx-auto">
         <Link
-          to="/writing"
+          to="/blog"
           className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors mb-8"
         >
           <ArrowLeft size={14} /> All posts

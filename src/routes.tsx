@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "case-study/:slug", element: <CaseStudyPage /> },
-      { path: "writing", element: <WritingIndexPage /> },
-      { path: "writing/:slug", element: <WritingPostPage /> },
+      { path: "blog", element: <WritingIndexPage /> },
+      { path: "blog/:slug", element: <WritingPostPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

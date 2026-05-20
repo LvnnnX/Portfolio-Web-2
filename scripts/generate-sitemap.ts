@@ -69,10 +69,9 @@ async function main(): Promise<void> {
 
   const entries: SitemapEntry[] = [
     entry("/", "monthly", 1.0),
-    entry("/writing", "weekly", 0.8),
-    entry("/playground", "monthly", 0.7),
+    entry("/blog", "weekly", 0.8),
     ...caseStudies.map((slug) => entry(`/case-study/${slug}`, "monthly", 0.9)),
-    ...posts.map((slug) => entry(`/writing/${slug}`, "monthly", 0.7)),
+    ...posts.map((slug) => entry(`/blog/${slug}`, "monthly", 0.7)),
   ];
 
   const xml = renderXml(entries);

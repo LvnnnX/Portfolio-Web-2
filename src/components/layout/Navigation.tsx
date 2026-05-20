@@ -10,7 +10,7 @@ interface NavItem {
 
 const ITEMS: NavItem[] = [
   { label: "Home", to: "/" },
-  { label: "Blog", to: "/writing" },
+  { label: "Blog", to: "/blog" },
 ];
 
 export default function Navigation() {

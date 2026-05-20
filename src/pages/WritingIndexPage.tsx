@@ -49,7 +49,7 @@ export default function WritingIndexPage() {
       <SEO
         title="Blog"
         description="Catatan tentang ekonomi, hukum, teknologi, dan apa pun yang layak ditulis pelan-pelan."
-        path="/writing"
+        path="/blog"
       />
       <div className="max-w-3xl mx-auto">
         <p className="text-[10px] md:text-[12px] font-bold tracking-[0.12em] uppercase text-[color:var(--color-accent,#B8422E)] mb-3">
@@ -69,7 +69,7 @@ export default function WritingIndexPage() {
             {posts.map((post) => (
               <li key={post.slug}>
                 <Link
-                  to={`/writing/${post.slug}`}
+                  to={`/blog/${post.slug}`}
                   className="block liquid-glass rounded-[20px] p-5 md:p-7 transition-all hover:-translate-y-1 hover:shadow-2xl"
                 >
                   <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-2">
