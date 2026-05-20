@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import readingTime from "reading-time";
+import SEO from "../components/seo/SEO";
 import NotFoundPage from "./NotFoundPage";
 
 interface PostFrontmatter {
@@ -47,6 +48,13 @@ export default function WritingPostPage() {
 
   return (
     <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
+      <SEO
+        title={fm.title ?? slug!}
+        description={fm.excerpt ?? ""}
+        path={`/writing/${slug}`}
+        type="article"
+        publishedTime={fm.date}
+      />
       <div className="max-w-2xl mx-auto">
         <Link
           to="/writing"

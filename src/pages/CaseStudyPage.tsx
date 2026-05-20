@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CaseStudyLayout, {
   type CaseStudyFrontmatter,
 } from "../components/layout/CaseStudyLayout";
+import SEO from "../components/seo/SEO";
 import NotFoundPage from "./NotFoundPage";
 
 interface MdxModule {
@@ -43,8 +44,17 @@ export default function CaseStudyPage() {
   };
 
   return (
-    <CaseStudyLayout frontmatter={frontmatter}>
-      <MDX />
-    </CaseStudyLayout>
+    <>
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.summary}
+        path={`/case-study/${frontmatter.slug}`}
+        image={frontmatter.cover}
+        type="article"
+      />
+      <CaseStudyLayout frontmatter={frontmatter}>
+        <MDX />
+      </CaseStudyLayout>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import PortfolioHero from "../components/ui/portfolio-hero";
+import SEO, { PersonJsonLd } from "../components/seo/SEO";
 
 const AboutMe = React.lazy(() => import("../components/ui/AboutMe"));
 const Experience = React.lazy(() => import("../components/ui/Experience"));
@@ -7,6 +8,7 @@ const Projects = React.lazy(() => import("../components/ui/Projects"));
 const Skills = React.lazy(() => import("../components/ui/Skills"));
 const Tools = React.lazy(() => import("../components/ui/Tools"));
 const Playground = React.lazy(() => import("../components/sections/Playground"));
+const OpenSource = React.lazy(() => import("../components/sections/OpenSource"));
 const Contact = React.lazy(() => import("../components/ui/Contact"));
 
 const SectionFallback = () => (
@@ -18,6 +20,14 @@ const SectionFallback = () => (
 export default function HomePage() {
   return (
     <div>
+      <SEO
+        title="Pande Dani — Computer Vision & Applied ML Engineer"
+        exact
+        description="Computer Vision & Applied ML Engineer based in Bali. Case studies, live YOLOv8 demo, and writing on applied machine learning."
+        path="/"
+      />
+      <PersonJsonLd />
+
       <div id="home">
         <PortfolioHero />
       </div>
@@ -39,6 +49,7 @@ export default function HomePage() {
           <Skills />
         </div>
         <Playground />
+        <OpenSource />
         <div id="contact">
           <Contact />
         </div>

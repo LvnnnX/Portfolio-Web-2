@@ -1,4 +1,5 @@
 import { Suspense, lazy } from "react";
+import SEO from "../components/seo/SEO";
 
 const Playground = lazy(() => import("../components/sections/Playground"));
 
@@ -11,6 +12,11 @@ const Fallback = () => (
 export default function PlaygroundPage() {
   return (
     <main className="min-h-screen pt-20">
+      <SEO
+        title="Playground"
+        description="In-browser YOLOv8 inference demo. Drop an image, see bounding boxes and latency in milliseconds."
+        path="/playground"
+      />
       <Suspense fallback={<Fallback />}>
         <Playground />
       </Suspense>

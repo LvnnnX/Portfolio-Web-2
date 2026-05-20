@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/seo/SEO";
 
 interface PostFrontmatter {
   slug?: string;
@@ -44,6 +45,11 @@ const posts: PostMeta[] = Object.entries(modules)
 export default function WritingIndexPage() {
   return (
     <main className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
+      <SEO
+        title="Writing"
+        description="Notes and tutorials on computer vision, applied ML, and the engineering details behind shipped projects."
+        path="/writing"
+      />
       <div className="max-w-3xl mx-auto">
         <p className="text-[10px] md:text-[12px] font-bold tracking-[0.12em] uppercase text-[color:var(--color-accent,#B8422E)] mb-3">
           Writing
