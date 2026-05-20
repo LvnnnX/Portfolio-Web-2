@@ -1,0 +1,116 @@
+{
+  "projects": [
+    {
+      "id": "fruit-ninja-yolov8",
+      "tier": 1,
+      "caseStudySlug": "fruit-ninja-yolov8",
+      "emoji": "🍎",
+      "title": "Fruit Ninja Automation Bot",
+      "role": "ML Engineer — Solo Developer",
+      "period": "Mar 2025 – Aug 2025",
+      "category": "Computer Vision",
+      "impact": "Shipped a real-time YOLOv8 bot that plays Fruit Ninja autonomously — 13 model variants benchmarked to land on the FPS / accuracy sweet spot.",
+      "context": "Integrated YOLOv8 with Bettercam for low-latency frame capture and a tuned post-processing pipeline.",
+      "techStack": ["Python", "YOLOv8", "OpenCV", "Bettercam", "Computer Vision"],
+      "metrics": {
+        "fps": "TODO(content): final FPS",
+        "mAP": "TODO(content): mAP@0.5",
+        "variants_benchmarked": 13
+      },
+      "links": {
+        "repo": "TODO(content): GitHub URL",
+        "live": null
+      }
+    },
+    {
+      "id": "smandapura-exam-app",
+      "tier": 1,
+      "caseStudySlug": "smandapura-exam-app",
+      "emoji": "🎓",
+      "title": "Smandapura Exam App",
+      "role": "Full Stack Developer",
+      "period": "2026",
+      "category": "Web Application",
+      "impact": "Built a zero-trust online exam platform with server-side timers, AES-256 LocalStorage encryption, and a Survival Mode lives system.",
+      "context": "Next.js 15 + Supabase RPC for real-time monitoring; admin dashboard handles rich-text and LaTeX questions.",
+      "techStack": ["Next.js 15", "Supabase", "Tailwind CSS 4", "CryptoJS", "PostgreSQL"],
+      "metrics": {
+        "students_capacity": "TODO(content)",
+        "uptime": "TODO(content)"
+      },
+      "links": {
+        "repo": "TODO(content): GitHub URL",
+        "live": "TODO(content): live URL"
+      }
+    },
+    {
+      "id": "mews-bbmkg-automation",
+      "tier": 1,
+      "caseStudySlug": "mews-bbmkg-automation",
+      "emoji": "📄",
+      "title": "MEWS — BBMKG Document Automation",
+      "role": "Full Stack Developer — Intern",
+      "period": "Jul 2023 – Aug 2023",
+      "category": "Web Automation",
+      "impact": "Automated 9 daily administrative documents at BBMKG Wilayah III — platform still in active staff use 2+ years post-handoff.",
+      "context": "Sole intern developer; designed UX, integrated multi-source data, and trained staff in 6 weeks.",
+      "techStack": ["Flask", "Python", "HTML", "CSS", "JavaScript"],
+      "metrics": {
+        "documents_automated": 9,
+        "training_period_weeks": 6
+      },
+      "links": {
+        "repo": null,
+        "live": null
+      }
+    },
+    {
+      "id": "mcp-inventory-chatbot",
+      "tier": 2,
+      "emoji": "🤖",
+      "title": "MCP Chatbot — Inventory Assistant",
+      "role": "Lead AI Developer",
+      "period": "2026",
+      "category": "AI & Automation",
+      "impact": "Conversational inventory & ordering bot powered by Gemini, with two MCP servers handling DB reads and order writes independently.",
+      "context": "Multi-turn dialogue, Node.js + Express backend, Expo Web frontend.",
+      "techStack": ["Node.js", "Express", "Google Gemini", "MCP SDK", "SQLite", "Expo"],
+      "links": {
+        "repo": null,
+        "live": null
+      }
+    },
+    {
+      "id": "voice-controlled-wheelchair",
+      "tier": 2,
+      "emoji": "🦼",
+      "title": "Voice-Controlled Electric Wheelchair",
+      "role": "Team Leader — Machine Learning",
+      "period": "Feb 2023 – Oct 2023",
+      "category": "PKM — Hardware & AI",
+      "impact": "Led a 5-person team to PKM funding from Kemdikbudristek — speech-recognition models integrated with Arduino-driven motor control.",
+      "context": "Full R&D lifecycle from proposal to working prototype.",
+      "techStack": ["Python", "Machine Learning", "Speech Recognition", "IoT", "Arduino"],
+      "links": {
+        "repo": null,
+        "live": null
+      }
+    },
+    {
+      "id": "pos-calculator-mvp",
+      "tier": 2,
+      "emoji": "🛒",
+      "title": "POS Calculator & Waiting List MVP",
+      "role": "Frontend Developer",
+      "period": "2026",
+      "category": "Web Application",
+      "impact": "Lightweight non-blocking calculator popup + waiting-list system with strict no-layout-shift acceptance criteria.",
+      "context": "React + Zustand + Tailwind, prepared for future backend integration.",
+      "techStack": ["React", "TypeScript", "Zustand", "Tailwind CSS", "Vite"],
+      "links": {
+        "repo": null,
+        "live": null
+      }
+    }
+  ]
+}

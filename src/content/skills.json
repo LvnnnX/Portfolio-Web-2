@@ -1,0 +1,100 @@
+{
+  "clusters": [
+    {
+      "id": "languages",
+      "label": "Languages",
+      "items": [
+        { "name": "Python" },
+        { "name": "C++" },
+        { "name": "TypeScript" },
+        { "name": "JavaScript" },
+        { "name": "SQL" }
+      ]
+    },
+    {
+      "id": "ml-ds",
+      "label": "ML / DS",
+      "items": [
+        { "name": "PyTorch" },
+        { "name": "TensorFlow" },
+        { "name": "YOLOv8" },
+        { "name": "OpenCV" },
+        { "name": "scikit-learn" },
+        { "name": "Pandas" },
+        { "name": "NumPy" }
+      ]
+    },
+    {
+      "id": "data-engineering",
+      "label": "Data Engineering",
+      "items": [
+        { "name": "Azure" },
+        { "name": "SQL Server" },
+        { "name": "ETL" },
+        { "name": "Power BI" }
+      ]
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "items": [
+        { "name": "React" },
+        { "name": "Next.js" },
+        { "name": "Tailwind CSS" },
+        { "name": "Vite" },
+        { "name": "Framer Motion" },
+        { "name": "Three.js" }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tools",
+      "items": [
+        { "name": "Git" },
+        { "name": "GitHub" },
+        { "name": "Docker" },
+        { "name": "VS Code" },
+        { "name": "Jupyter" },
+        { "name": "Linux" }
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "bangkit",
+      "name": "Bangkit Academy — Machine Learning Cohort",
+      "issuer": "Google, GoTo & Traveloka",
+      "year": "2023–2024"
+    },
+    {
+      "id": "microsoft-de",
+      "name": "Microsoft Data Engineer Program (6 Certificates)",
+      "issuer": "Microsoft × MariBelajar",
+      "year": "2024"
+    },
+    {
+      "id": "pkm-wheelchair",
+      "name": "PKM Funded — Voice-Controlled Wheelchair",
+      "issuer": "Kemdikbudristek",
+      "year": "2023"
+    },
+    {
+      "id": "educamp-silver",
+      "name": "Silver Medal — Educamp 2.0 National (Informatics)",
+      "issuer": "Educamp National",
+      "year": "2020"
+    },
+    {
+      "id": "olimpia-bronze",
+      "name": "Bronze Medal — OLIMPIA National (Informatics)",
+      "issuer": "OLIMPIA",
+      "year": "2020"
+    },
+    {
+      "id": "district-1st",
+      "name": "1st Place — District Science Competition (Informatics)",
+      "issuer": "National HS Competition",
+      "year": "2020"
+    }
+  ]
+}
