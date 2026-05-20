@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { ChevronDown, Moon, Sun } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface BlurTextProps {
   text: string;
@@ -73,133 +73,8 @@ const BlurText = React.memo(({
 BlurText.displayName = "BlurText";
 
 export default function PortfolioHero() {
-  const [isDark, setIsDark] = useState(true);
-  const [activeTab, setActiveTab] = useState("HOME");
-  const [hoveredTab, setHoveredTab] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => setIsDark(!isDark);
-
-  useEffect(() => {
-    const sectionIds = ["home", "about", "experience", "projects", "skills", "contact"];
-
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
-
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id.toUpperCase());
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(handleIntersection, observerOptions);
-
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Exp", href: "#experience" },
-    { label: "Work", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "Mail", href: "#contact" },
-  ];
-
   return (
     <div className="min-h-screen bg-white dark:bg-background text-black dark:text-foreground transition-colors duration-500 overflow-hidden">
-      {/* Liquid Glass Navbar */}
-      <div className="fixed top-3 md:top-6 left-0 right-0 z-[100] flex justify-center px-2 md:px-6">
-        <motion.header
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="relative flex items-center p-1 md:p-1.5 liquid-glass border-border/10 shadow-apple"
-          style={{ maxWidth: "fit-content" }}
-        >
-          <nav className="flex items-center gap-0 md:gap-1">
-            {menuItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`relative px-1.5 py-1.5 md:px-4 md:py-2 text-[8px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${activeTab === item.label.toUpperCase() ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                onMouseEnter={() => setHoveredTab(item.label)}
-                onMouseLeave={() => setHoveredTab(null)}
-                onClick={() => setActiveTab(item.label)}
-              >
-                {item.label}
-                {/* Liquid sliding background */}
-                {hoveredTab === item.label && (
-                  <motion.div
-                    layoutId="navbar-hover"
-                    className="absolute inset-0 bg-white/10 dark:bg-black/20 rounded-full -z-10"
-                    transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
-                  />
-                )}
-                {activeTab === item.label && (
-                  <motion.div
-                    layoutId="navbar-active"
-                    className="absolute inset-0 bg-primary/10 rounded-full -z-20 border border-primary/20"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </a>
-            ))}
-
-            {/* Vertical Divider */}
-            <div className="w-px h-3 md:h-4 bg-border/20 mx-1 md:mx-2" />
-
-            {/* Theme Toggle inside Pill */}
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 md:p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors relative"
-              aria-label="Toggle theme"
-            >
-              <AnimatePresence mode="wait">
-                {isDark ? (
-                  <motion.div
-                    key="moon"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Moon className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="sun"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Sun className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
-          </nav>
-        </motion.header>
-      </div>
-
       <main className="relative min-h-screen flex flex-col items-center justify-center">
         <div className="relative w-full px-4 text-center mt-20 select-none">
 

@@ -1,0 +1,74 @@
+---
+slug: paper-review-yolov8-architecture
+title: Paper Review — YOLOv8 Architecture and What Changed From v5
+date: 2026-03-28
+excerpt: A pragmatic walkthrough of the YOLOv8 architecture paper — anchor-free detection head, decoupled losses, and the small training-loop changes that quietly do most of the work.
+tags:
+  - YOLOv8
+  - Paper review
+  - Object detection
+---
+
+YOLOv8 doesn't have a single canonical paper the way YOLOv4 or v7 did. What we have is the [Ultralytics technical write-up](https://docs.ultralytics.com/models/yolov8/), the released code, and a stack of inferred design decisions. This post is my notes after reading all of the above and shipping a project on top of it.
+
+The summary up front: **YOLOv8 is YOLOv5 with three meaningful changes plus a lot of polish**. None of the changes are radical. Together they make the model both faster to train and more accurate at the same params.
+
+## 1. Anchor-free detection head
+
+YOLOv5 used anchor boxes — predefined bounding-box priors clustered from the training data. The model predicted offsets from those anchors. It worked, but it added a hyperparameter (the anchor set) that you had to tune per dataset.
+
+YOLOv8 dropped anchors entirely. The detection head now predicts the box center and dimensions directly, the way YOLOX and FCOS do.
+
+**Why this matters in practice:**
+- One fewer thing to tune. No `anchor_t`, no anchor recompute step when changing dataset.
+- Slightly better performance on irregular aspect ratios — the model isn't anchored to the box shapes that *happened* to appear in COCO.
+- A small simplification in the loss function — no anchor-matching IoU step.
+
+The trade-off: anchor-free heads are theoretically slightly less stable on tiny objects. In practice, with the modern losses below, this hasn't shown up in benchmarks I trust.
+
+## 2. Decoupled classification and regression heads
+
+In YOLOv5, one head predicted both class and box. In YOLOv8, they're decoupled — separate convolutions for class probabilities and for box coordinates.
+
+This is a borrowed idea (YOLOX, RetinaNet, lots of others). The reasoning:
+
+> Classification and localization want different feature distributions. A shared head forces a compromise. Decoupling lets each task converge faster.
+
+In ablation studies, decoupling typically buys ~0.5–1.0 mAP at the cost of a slightly bigger head. For real-time models that's a good trade.
+
+## 3. Distribution Focal Loss + CIoU
+
+The loss function is where YOLOv8 quietly does most of its work.
+
+For the **box regression**, YOLOv8 uses Distribution Focal Loss (DFL) — instead of regressing a single value for each box edge, the model regresses a probability distribution over discretised offsets. This sounds fancy but is just a softmax over candidate values that the model integrates back to a single offset.
+
+DFL is more sample-efficient: the gradient is informative even when the prediction is roughly right but not pinned to a single value yet. You converge faster.
+
+For the **classification**, the standard varifocal-style loss with IoU-aware weighting. Hard examples get more gradient.
+
+For the **box overlap**, CIoU (Complete IoU). This penalises both center distance and aspect-ratio mismatch in addition to overlap.
+
+Together: DFL + CIoU + IoU-aware classification = a loss function that gives useful gradient on every component of every prediction.
+
+## What actually shipped, not in the paper
+
+A lot of YOLOv8's real-world advantage comes from things that aren't in any paper:
+
+- **Better default augmentation schedule.** Mosaic is on most of training, then turned off in the last 10 epochs (`close_mosaic`). This is a known trick that v5 didn't bake into defaults.
+- **Mixed precision by default.** No more remembering `--amp`.
+- **A genuinely usable Python API.** `model.train()`, `model.predict()` — boring, but cuts onboarding for a new user from an hour to ten minutes.
+- **Built-in export to ONNX, CoreML, TFLite, OpenVINO.** This is what made my [Fruit Ninja project's playground page](/playground) feasible — same model, multiple deploy targets.
+
+## What I'd want to see studied next
+
+Reading this paper made me curious about three follow-ups:
+
+1. **Anchor-free vs. anchor-based on long-tail datasets.** COCO is well-balanced. What about a real industrial dataset where one class is 100× rarer than another?
+2. **DFL bin count sensitivity.** The default is 16. Does pushing it to 32 buy real accuracy on small objects, or just slow down training?
+3. **Decoupled head + small backbone.** Most decoupled-head work is on big backbones. On `yolov8n`, does decoupling pay for itself or eat the speed budget?
+
+## Bottom line
+
+YOLOv8 is a *practitioner's* paper-equivalent. There's no single big idea here, just a careful audit of every step in YOLOv5 and a swap for the more modern alternative wherever it pays. That's an underrated kind of work.
+
+If you're choosing between v5, v7, and v8 today: pick v8. The defaults are better, the API is cleaner, and the architectural choices age well.
