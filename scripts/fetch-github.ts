@@ -29,9 +29,9 @@ const USERNAME = "LvnnnX";
 // Curated set surfaced on the home page (FR-7.1). Keep to 4.
 const FEATURED_REPOS = [
   "Portfolio-Web-2",
-  "Fruit-Ninja-YOLOv8",
-  "smandapura-exam-app",
-  "MEWS-BBMKG",
+  "exam-app",
+  "FruitNinjaAUTO",
+  "POS-Restaurant",
 ];
 
 interface GitHubRepoApi {
