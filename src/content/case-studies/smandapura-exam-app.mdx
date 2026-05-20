@@ -1,56 +1,93 @@
 ---
 slug: smandapura-exam-app
-title: Smandapura Exam App — Zero-Trust Online Examination
-summary: Online examination platform for SMA Negeri 2 Amlapura with server-side timers, AES-256 encrypted client storage, JIT question fetching, and a Survival Mode lives system.
+title: Smandapura Exam App — Server-Authoritative Online Exams for a High School
+summary: A Next.js 16 + Supabase exam platform for SMA Negeri 2 Amlapura. Server-authoritative scoring, AES-256 encrypted client state, sanitized rich text, plus a live multiplayer quiz mode with a horse-racing leaderboard.
 cover: /images/pr1-tb.png
-repo: TODO(content)
-live: TODO(content)
+repo: https://github.com/LvnnnX/exam-app
+live: https://osn-smandapura.my.id
 period: 2026
 metrics:
-  - label: Documents automated
-    value: "TODO(content)"
-  - label: Concurrent users
-    value: "TODO(content)"
   - label: Encryption
-    value: "AES-256"
+    value: "AES-256 + HMAC"
+  - label: Question types
+    value: "Rich text · KaTeX · tables · images"
+  - label: Modes
+    value: "Self-paced · Survival · Live quiz"
+  - label: Stack
+    value: "Next.js 16 · Supabase"
 tags:
-  - Next.js 15
+  - Next.js 16
   - Supabase
   - Tailwind CSS 4
   - Cryptography
+  - PostgreSQL
 ---
 
 ## Problem
 
-School-based online exams routinely fail under three pressures: students freezing the client clock with devtools, copying questions to other tabs, and crashing under exam-day load. SMA Negeri 2 Amlapura needed something that survived all three without paying for an enterprise LMS.
+School-grade online exam platforms collapse under three pressures, and they always collapse in the same order:
+
+1. **Trust the client.** A student opens DevTools, freezes the timer, scrolls back to a previously locked question, or copies the question text into another tab. If anything authoritative lives in JavaScript, eventually someone breaks it.
+2. **Don't sanitize rich content.** The moment teachers want LaTeX, tables, and images in a question, raw HTML enters the system. Without sanitization the next thing that enters is a `<script>` tag.
+3. **Build for one mode and stop.** Real classrooms run self-paced exams *and* live drills *and* remedials. A platform that ships only a self-paced flow is a platform teachers stop using by week two.
+
+SMA Negeri 2 Amlapura needed something that survived all three from day one — without paying enterprise LMS pricing.
 
 ## Data
 
-- TODO(content): exam catalogue size (number of subjects, total questions).
-- TODO(content): user counts (students, supervisors, admins).
-- TODO(content): question types — multiple choice, rich text, LaTeX-rendered math.
+The data model is intentionally split across three concerns:
+
+- **Question bank.** Three-level taxonomy: MAPEL → BAB → Sub-bab. Every question is a row with sanitized rich-text body, optional image storage, and an answer set never exposed to the browser.
+- **Sessions.** A student starting an exam creates a server-side session with a fixed question order, expiry timestamp, and per-question state. The browser only ever sees one question at a time.
+- **Live quizzes.** A teacher creates a quiz, students join via 6-digit code, and per-player state (mount, jersey, current rank, score) is broadcast over Supabase Realtime channels.
+
+Sensitive fields — `correct_answer`, `short_answer`, the full `question_ids` array — never leave the database. They live behind `SECURITY DEFINER` RPCs that the browser can call but cannot read directly.
 
 ## Approach
 
-1. **Zero-trust client** — every authoritative state lives in Supabase RPC. Client-side timer is purely UI; the actual exam clock ticks server-side.
-2. **JIT question fetch** — questions are requested one-at-a-time, never bulk-loaded, so a leaked LocalStorage dump is incomplete by design.
-3. **AES-256 LocalStorage** — what little is cached client-side (current question, partial answers) is encrypted with a per-session key derived from the auth token.
-4. **Survival Mode** — 3-lives variant for low-stakes practice; built on the same RPC primitives.
-5. **Admin dashboard** — Rich-text + LaTeX question authoring, real-time progress monitoring, automated result analytics.
+### 1. Server-authoritative everything
+
+Anything that affects scoring or progression runs in a `SECURITY DEFINER` RPC: `start_exam_session`, `get_exam_question`, `save_exam_answer`, `submit_exam_session`, `join_player_to_quiz`, `submit_live_quiz_answer_v2`, `finish_player_quiz_rpc`. The pattern is the same across all of them — verify the caller's token, check permissions, mutate state inside the database, return the *minimum* the client needs to render the next view.
+
+The student client is "thin" by design. It cannot manipulate the timer because the timer is a server-side `expires_at` column. It cannot skip back to a locked question because the next-question RPC enforces order. It cannot leak answer keys because the answer key never crosses the wire.
+
+### 2. Encrypted client state for resumability
+
+What the client *does* cache — the current question, partial answers, mode flags — is encrypted in `localStorage` via a per-session AES-256 key plus an HMAC-SHA256 signature (`lib/security.ts`). Refresh mid-exam and the page restores exactly where the student left off. Tamper with the storage and HMAC verification fails, the client drops the cache, and the server is asked again.
+
+Live quiz payloads use a lighter XOR + base64 obfuscation in `lib/crypto.ts`. It's a deterrent against casual inspection, not real security — the server is still authoritative on every score change.
+
+### 3. Sanitized rich text on save *and* on render
+
+Teachers author questions in TipTap with KaTeX, lowlight code blocks, tables, and inline images. Every HTML round-trip — once on save, once on render — passes through DOMPurify with an allowlist that keeps the editorial features and drops everything else. There's no "trusted author" carve-out: even the admin's input is sanitized.
+
+### 4. Multiple exam modes from one core
+
+- **Self-paced** with strict or standard navigation, configurable categories, time limits, and 8 question-count presets (5/10/20/25/30/40/50/100).
+- **Survival** with three lives and per-answer feedback (a halo flash, a ping ring, a `+1` or `−1` chip — the difference between "you got it" and "you didn't" stays visceral).
+- **Live quiz** with 6-digit join codes, 11 animal mounts plus a horse, a real-time leaderboard, and a horse-racing finale with confetti at the finish line.
+
+### 5. Anti-cheat without sandboxing
+
+Wake Lock keeps the device awake during the exam. The Page Visibility API watches for tab switches; repeated tab loss auto-finishes the session. Selection blocking on question text raises the friction on copy-paste. None of these are unbreakable on their own — together they make casual cheating annoying enough to discourage it.
 
 ## Results
 
-- TODO(content): exam sessions delivered, peak concurrency, longest run without incident.
-- TODO(content): incidents prevented (devtools clock manipulation, tab-switch detection counts).
-- TODO(content): teacher time saved on grading.
+- **Three exam modes** shipped from a single core: self-paced, survival, live multiplayer.
+- **Five major admin surfaces** delivered: question CRUD with sanitized TipTap editor, live quiz orchestration, result history with stats and per-question detail, settings tree with orphan-safe topic deletes, and a super-admin signup-approval queue.
+- **Rich content support** for KaTeX, tables, code blocks, and images — across both authoring and rendering — without dropping DOMPurify on either end.
+- **Light + dark theme parity** across every surface, toggled per admin via a header pill.
+- Active deployment at [osn-smandapura.my.id](https://osn-smandapura.my.id).
 
 ## Lessons learned
 
-- TODO(content): which threat model held vs. which broke first.
-- TODO(content): Supabase RPC vs. edge functions trade-off.
-- TODO(content): the UX cost of zero-trust (perceived latency).
+- **Server-authoritative is the only honest answer for high-stakes exams.** Anti-cheat heuristics in the browser are fences. RLS + `SECURITY DEFINER` RPCs are the wall.
+- **Sanitize on render, not just on save.** Old data stored before a sanitizer change is exactly the kind of payload that gets you. Sanitizing twice is cheap; getting bitten once is not.
+- **A single playful surface earns more goodwill than five serious ones.** The horse-racing leaderboard finale was technically the smallest feature in this app and is the one teachers ask about first.
+- **`pg_cron` removes a category of bugs for free.** Auto-starting scheduled live quizzes from inside the database means there's no application server to forget to deploy, no Lambda to time out, no "did the worker run?" Slack message.
 
 ## Links
 
-- Repo: TODO(content)
-- Live: TODO(content)
+- Repo: [LvnnnX/exam-app](https://github.com/LvnnnX/exam-app)
+- Live: [osn-smandapura.my.id](https://osn-smandapura.my.id)
+- Stack: Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS 4 · Supabase (Postgres, RLS, RPC, Realtime, Storage, Auth, pg_cron) · TipTap · DOMPurify · CryptoJS · Playwright
