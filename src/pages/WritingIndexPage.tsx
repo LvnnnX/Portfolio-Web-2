@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/seo/SEO";
+import "../blog/styles/editorial.css";
 
 interface PostFrontmatter {
   slug?: string;
@@ -9,6 +10,7 @@ interface PostFrontmatter {
   excerpt?: string;
   description?: string;
   tags?: string[];
+  edition?: string | number;
 }
 
 interface PostModule {
@@ -25,81 +27,108 @@ interface PostMeta {
   slug: string;
   title: string;
   date: string;
-  excerpt: string;
+  deck: string;
   tags: string[];
+  edition: string;
 }
 
-const posts: PostMeta[] = Object.entries(modules)
+const formatEdition = (raw: string | number | undefined, fallbackIndex: number): string => {
+  if (raw === undefined || raw === null || raw === "") {
+    return `EDISI ${String(fallbackIndex).padStart(2, "0")}`;
+  }
+  const n = typeof raw === "number" ? raw : Number(raw);
+  if (Number.isFinite(n)) return `EDISI ${String(Math.floor(n)).padStart(2, "0")}`;
+  return String(raw);
+};
+
+const formatDate = (iso: string): string => {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
+
+const sorted = Object.entries(modules)
   .map(([path, mod]) => {
     const fileSlug = path.split("/").pop()?.replace(/\.mdx$/, "") ?? "";
     const fm = mod.frontmatter ?? {};
     return {
+      _date: fm.date ?? "",
+      _fmEdition: fm.edition,
       slug: fm.slug ?? fileSlug,
       title: fm.title ?? fileSlug,
       date: fm.date ?? "",
-      excerpt: fm.excerpt ?? fm.description ?? "",
+      deck: fm.excerpt ?? fm.description ?? "",
       tags: fm.tags ?? [],
     };
   })
-  .sort((a, b) => (a.date < b.date ? 1 : -1));
+  .sort((a, b) => (a._date < b._date ? 1 : -1));
+
+const posts: PostMeta[] = sorted.map((p, i) => ({
+  slug: p.slug,
+  title: p.title,
+  date: p.date,
+  deck: p.deck,
+  tags: p.tags,
+  edition: formatEdition(p._fmEdition, sorted.length - i),
+}));
 
 export default function WritingIndexPage() {
   return (
-    <main className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
+    <main className="editorial">
       <SEO
-        title="Blog"
+        title="Catatan"
         description="Catatan tentang ekonomi, hukum, teknologi, dan apa pun yang layak ditulis pelan-pelan."
         path="/blog"
       />
-      <div className="max-w-3xl mx-auto">
-        <p className="text-[10px] md:text-[12px] font-bold tracking-[0.12em] uppercase text-[color:var(--color-accent,#B8422E)] mb-3">
-          Blog
+      <div className="editorial__content">
+        <header className="editorial-masthead">
+          <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / CATATAN</span>
+          <span className="editorial-masthead__meta">{posts.length} edisi</span>
+        </header>
+
+        <p className="editorial-eyebrow" style={{ marginBlockStart: "32px" }}>
+          Katalog
         </p>
-        <h1 className="text-[34px] md:text-[48px] font-bold tracking-[-0.025em] leading-[1.1] text-foreground mb-4">
-          Notes &amp; essays
-        </h1>
-        <p className="text-[16px] md:text-[18px] leading-[1.6] text-muted-foreground mb-10 md:mb-14">
-          Catatan pelan tentang ekonomi, hukum, teknologi, dan hal-hal yang layak dipikir lebih dari satu kali.
+        <h1 className="editorial-headline">Catatan</h1>
+        <p className="editorial-deck">
+          Esai pendek tentang ekonomi, hukum, teknologi, dan hal-hal yang layak dipikir lebih dari satu kali.
         </p>
 
         {posts.length === 0 ? (
-          <p className="text-muted-foreground">No posts yet.</p>
+          <p style={{ fontFamily: 'var(--serif)', color: 'var(--ink-soft)' }}>
+            Belum ada edisi.
+          </p>
         ) : (
-          <ul className="flex flex-col gap-4 md:gap-6">
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {posts.map((post) => (
               <li key={post.slug}>
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="block liquid-glass rounded-[20px] p-5 md:p-7 transition-all hover:-translate-y-1 hover:shadow-2xl"
-                >
-                  <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-2">
-                    {post.date || "—"}
-                  </p>
-                  <h2 className="text-[20px] md:text-[26px] font-bold tracking-tight text-foreground mb-2 leading-tight">
-                    {post.title}
-                  </h2>
-                  {post.excerpt && (
-                    <p className="text-[13px] md:text-[15px] text-muted-foreground leading-[1.55] mb-3">
-                      {post.excerpt}
+                <Link to={`/blog/${post.slug}`} className="editorial-card">
+                  <div className="editorial-card__meta">
+                    <span className="editorial-card__edition">{post.edition}</span>
+                    <span>{formatDate(post.date)}</span>
+                  </div>
+                  {post.tags.length > 0 && (
+                    <p className="editorial-card__eyebrow">
+                      {post.tags.slice(0, 3).join(" · ")}
                     </p>
                   )}
-                  {post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 md:gap-2">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-muted text-foreground/70 px-2 py-0.5 rounded-full text-[10px] md:text-[11px] font-semibold"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <h2 className="editorial-card__headline">{post.title}</h2>
+                  {post.deck && <p className="editorial-card__deck">{post.deck}</p>}
                 </Link>
               </li>
             ))}
           </ul>
         )}
+
+        <footer className="editorial-pagefoot">
+          <span>DANIWISMAGATHA.MY.ID/CATATAN</span>
+          <span>v1.0</span>
+        </footer>
       </div>
     </main>
   );

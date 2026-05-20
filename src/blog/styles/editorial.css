@@ -1,0 +1,444 @@
+/**
+ * Heritage Editorial — typography island for /blog routes.
+ *
+ * This stylesheet is only imported by editorial pages. None of these rules
+ * leak into the rest of the portfolio. Tokens here mirror docs/DESIGN.md.
+ *
+ * NEVER use Tailwind Typography here (per DESIGN.md "Don't").
+ */
+
+.editorial {
+  /* Heritage colors */
+  --ink: #1d1d1f;
+  --ink-soft: #4a4a4f;
+  --ink-faint: #86868b;
+  --tertiary: #b8422e;
+  --surface: #ffffff;
+  --surface-muted: #fafafa;
+  --rule: #d2d2d7;
+  --border: #e5e5e7;
+
+  /* Heritage typography stacks */
+  --serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans: "SF Pro Text", -apple-system, "Inter", system-ui, sans-serif;
+
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--serif);
+
+  /* Long-measure column. Mobile padding follows DESIGN.md (24/16). */
+  padding-block: 24px;
+  padding-inline: 16px;
+}
+
+@media (min-width: 768px) {
+  .editorial {
+    padding-block: 32px;
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .editorial {
+    padding-block: 18mm;
+    padding-inline: 22mm;
+  }
+}
+
+.editorial__content {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* ── Masthead ────────────────────────────────────────────────────────── */
+
+.editorial-masthead {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block-end: 8pt;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+.editorial-masthead__brand {
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.editorial-masthead__meta {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────────────────── */
+
+.editorial-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-block-start: 24px;
+  margin-block-end: 8px;
+}
+
+/* ── Headline ────────────────────────────────────────────────────────── */
+
+.editorial-headline {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-block: 8px 16px;
+}
+
+@media (min-width: 768px) {
+  .editorial-headline {
+    font-size: 37px;
+  }
+}
+
+/* ── Deck (standfirst) ───────────────────────────────────────────────── */
+
+.editorial-deck {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink-soft);
+  max-width: 130mm;
+  margin-block-end: 24px;
+}
+
+/* ── Byline ──────────────────────────────────────────────────────────── */
+
+.editorial-byline {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  border-block: 1px solid var(--rule);
+  padding-block: 8pt;
+  margin-block-end: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: center;
+}
+
+.editorial-byline__sep {
+  color: var(--ink-faint);
+}
+
+/* ── Body ────────────────────────────────────────────────────────────── */
+
+.editorial-body {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.editorial-body p {
+  margin-block-end: 9pt;
+  text-align: left;
+  hyphens: none;
+}
+
+@media (min-width: 768px) {
+  .editorial-body p {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
+.editorial-body h2 {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-block: 18pt 8pt;
+}
+
+.editorial-body h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-block: 14pt 6pt;
+}
+
+.editorial-body strong {
+  font-weight: 700;
+}
+
+.editorial-body em {
+  font-style: italic;
+}
+
+.editorial-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule);
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+
+.editorial-body a:hover {
+  color: var(--tertiary);
+  text-decoration-color: var(--tertiary);
+}
+
+.editorial-body a:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 2px;
+}
+
+.editorial-body hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin-block: 24pt 18pt;
+}
+
+.editorial-body ul,
+.editorial-body ol {
+  padding-inline-start: 1.4em;
+  margin-block-end: 9pt;
+}
+
+.editorial-body li {
+  margin-block-end: 4pt;
+}
+
+/* ── Drop cap (FR-9.5: ::first-letter, no wrapping span) ─────────────── */
+
+.editorial-body .lede::first-letter {
+  font-family: var(--serif);
+  font-size: 4.5em;
+  line-height: 0.85;
+  font-weight: 700;
+  color: var(--tertiary);
+  float: left;
+  padding: 6pt 8pt 0 0;
+}
+
+/* ── Editorial blockquote ────────────────────────────────────────────── */
+
+.editorial-quote {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--tertiary);
+  padding: 6pt 14pt;
+  margin: 16pt 0;
+}
+
+.editorial-quote p {
+  margin-block-end: 0;
+  text-align: left;
+  hyphens: none;
+}
+
+/* ── Editorial table ─────────────────────────────────────────────────── */
+
+.editorial-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 16pt;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.editorial-table thead th {
+  background-color: var(--surface-muted);
+  color: var(--ink-soft);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6pt 8pt;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.editorial-table tbody td {
+  padding: 6pt 8pt;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+/* ── Footnote block ──────────────────────────────────────────────────── */
+
+.editorial-footnote {
+  margin-block-start: 32pt;
+  padding-block-start: 10pt;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.editorial-footnote p {
+  margin-block-end: 6pt;
+  text-align: left;
+  hyphens: none;
+}
+
+.editorial-footnote strong {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ── Page footer (per FR-7.5) ────────────────────────────────────────── */
+
+.editorial-pagefoot {
+  margin-block-start: 24pt;
+  padding-block-start: 10pt;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── Listing card (per FR-6) ─────────────────────────────────────────── */
+
+.editorial-card {
+  display: block;
+  padding: 16pt 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.editorial-card:hover {
+  background-color: var(--surface-muted);
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-card {
+    transition: none;
+  }
+  .editorial-card:hover {
+    transform: none;
+  }
+}
+
+.editorial-card__meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: 6pt;
+}
+
+.editorial-card__edition {
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+.editorial-card__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  margin-block-end: 6pt;
+}
+
+.editorial-card__headline {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-block-end: 4pt;
+}
+
+@media (min-width: 768px) {
+  .editorial-card__headline {
+    font-size: 24px;
+  }
+}
+
+.editorial-card__deck {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ── Print stylesheet (FR-7) ─────────────────────────────────────────── */
+
+@media print {
+  /* Hide everything outside the editorial column */
+  body > #root > *:not(.editorial-print-root) {
+    display: none !important;
+  }
+
+  /* Force-print background colors and accents */
+  .editorial,
+  .editorial * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4;
+    margin: 18mm 22mm;
+  }
+
+  .editorial {
+    padding: 0 !important;
+    background: var(--surface);
+  }
+
+  .editorial-pagefoot {
+    page-break-inside: avoid;
+  }
+
+  .editorial-card {
+    page-break-inside: avoid;
+  }
+}

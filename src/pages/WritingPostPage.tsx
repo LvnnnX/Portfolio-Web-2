@@ -1,8 +1,14 @@
 import type { ComponentType } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { MDXProvider } from "@mdx-js/react";
 import SEO from "../components/seo/SEO";
 import NotFoundPage from "./NotFoundPage";
+import Masthead from "../blog/components/Masthead";
+import Eyebrow from "../blog/components/Eyebrow";
+import Byline from "../blog/components/Byline";
+import { blogMdxComponents } from "../blog/mdx-components";
+import "../blog/styles/editorial.css";
 
 interface PostFrontmatter {
   slug?: string;
@@ -11,7 +17,12 @@ interface PostFrontmatter {
   excerpt?: string;
   description?: string;
   readingTime?: string;
+  readTime?: string;
   tags?: string[];
+  author?: string;
+  edition?: string | number;
+  /** Single-line eyebrow (defaults to first tag uppercased) */
+  eyebrow?: string;
 }
 
 interface PostModule {
@@ -31,6 +42,17 @@ for (const [path, mod] of Object.entries(modules)) {
   if (slug) posts.set(slug, mod);
 }
 
+const formatDate = (iso: string): string => {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
+
 export default function WritingPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const mod = slug ? posts.get(slug) : undefined;
@@ -40,9 +62,13 @@ export default function WritingPostPage() {
   const MDX = mod.default;
   const fm = mod.frontmatter ?? {};
   const summary = fm.excerpt ?? fm.description ?? "";
+  const readTime = fm.readingTime ?? fm.readTime;
+  const eyebrowLabel =
+    fm.eyebrow ?? (fm.tags && fm.tags[0] ? fm.tags[0].toUpperCase() : "CATATAN");
+  const niceDate = formatDate(fm.date ?? "");
 
   return (
-    <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
+    <main className="editorial">
       <SEO
         title={fm.title ?? slug!}
         description={summary}
@@ -50,46 +76,45 @@ export default function WritingPostPage() {
         type="article"
         publishedTime={fm.date}
       />
-      <div className="max-w-2xl mx-auto">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft size={14} /> All posts
-        </Link>
 
-        <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-3">
-          {fm.date ?? "—"}
-          {fm.readingTime ? ` · ${fm.readingTime}` : ""}
-        </p>
+      <article className="editorial__content">
+        <Masthead edition={fm.edition} date={niceDate} meta={readTime} />
 
-        <h1 className="text-[30px] md:text-[42px] font-bold tracking-[-0.025em] leading-[1.15] text-foreground mb-4">
-          {fm.title ?? slug}
-        </h1>
+        <Eyebrow>{eyebrowLabel}</Eyebrow>
 
-        {summary && (
-          <p className="text-[15px] md:text-[17px] leading-[1.6] text-muted-foreground mb-8">
-            {summary}
-          </p>
-        )}
+        <h1 className="editorial-headline">{fm.title ?? slug}</h1>
 
-        {fm.tags && fm.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-10">
-            {fm.tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-muted text-foreground/80 px-3 py-1 rounded-full text-[11px] md:text-[12px] font-semibold border border-border/30"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {summary && <p className="editorial-deck">{summary}</p>}
 
-        <div className="prose prose-invert max-w-none case-study-prose">
-          <MDX />
+        <Byline
+          author={fm.author ?? "Pande Gede Dani Wismagatha"}
+          date={niceDate}
+          readTime={readTime}
+        />
+
+        <div className="editorial-body">
+          <MDXProvider components={blogMdxComponents}>
+            <MDX />
+          </MDXProvider>
         </div>
-      </div>
-    </article>
+
+        <footer className="editorial-pagefoot">
+          <span>DANIWISMAGATHA.MY.ID/CATATAN</span>
+          <Link
+            to="/blog"
+            className="editorial-pagefoot__link"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              color: "var(--ink-faint)",
+              textDecoration: "none",
+            }}
+          >
+            <ArrowLeft size={11} /> KEMBALI KE KATALOG
+          </Link>
+        </footer>
+      </article>
+    </main>
   );
 }
