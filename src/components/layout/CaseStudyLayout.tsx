@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import "../../blog/styles/case-study.css";
+
+const GithubGlyph = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  </svg>
+);
 
 export interface CaseStudyMetric {
   label: string;
@@ -24,101 +31,118 @@ interface CaseStudyLayoutProps {
   children: ReactNode;
 }
 
+const SECTION_NAV: { id: string; label: string }[] = [
+  { id: "problem", label: "Problem" },
+  { id: "data", label: "Data" },
+  { id: "approach", label: "Approach" },
+  { id: "results", label: "Results" },
+  { id: "lessons-learned", label: "Lessons learned" },
+  { id: "links", label: "Links" },
+];
+
 export default function CaseStudyLayout({ frontmatter, children }: CaseStudyLayoutProps) {
-  const { title, summary, cover, repo, live, period, metrics, tags } = frontmatter;
+  const { title, summary, repo, live, period, metrics, tags } = frontmatter;
   const hasRepo = repo && !repo.startsWith("TODO");
   const hasLive = live && !live.startsWith("TODO");
 
+  // First metric is the marquee number; remaining go in the row.
+  const marqueeStat = metrics?.[0];
+  const otherStats = metrics?.slice(1) ?? [];
+
   return (
-    <article className="relative pt-28 md:pt-32 pb-16 md:pb-24 px-4 md:px-6">
-      <div className="max-w-3xl mx-auto">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-[12px] md:text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <ArrowLeft size={14} /> Back to home
+    <main className="cs">
+      <article className="cs-article">
+        <Link to="/" className="cs-back">
+          <ArrowLeft size={12} /> Back to portfolio
         </Link>
 
-        <p className="text-[10px] md:text-[12px] font-bold tracking-[0.12em] uppercase text-[color:var(--color-accent,#B8422E)] mb-3">
-          Case study{period ? ` · ${period}` : ""}
+        <p className="cs-eyebrow">
+          <span>Case study</span>
+          {period && (
+            <span className="cs-eyebrow__period" aria-label="period">
+              · {period}
+            </span>
+          )}
         </p>
 
-        <h1 className="text-[34px] md:text-[48px] font-bold tracking-[-0.025em] leading-[1.1] text-foreground mb-4">
-          {title}
-        </h1>
+        <h1 className="cs-title">{title}</h1>
 
-        <p className="text-[16px] md:text-[18px] leading-[1.6] text-muted-foreground mb-8">
-          {summary}
-        </p>
-
-        {cover && (
-          <div className="mb-10 rounded-[20px] overflow-hidden border border-border/30">
-            <img
-              src={cover}
-              alt={title}
-              className="w-full h-auto object-cover"
-              loading="eager"
-            />
-          </div>
-        )}
+        {summary && <p className="cs-deck">{summary}</p>}
 
         {metrics && metrics.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-10">
-            {metrics.map((m) => (
-              <div key={m.label} className="liquid-glass rounded-[14px] p-4 md:p-5">
-                <p className="text-[10px] md:text-[12px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-1">
-                  {m.label}
-                </p>
-                <p className="text-[20px] md:text-[24px] font-bold tracking-tight text-foreground">
-                  {m.value}
-                </p>
+          <section className="cs-stats" aria-label="Key metrics">
+            {marqueeStat && (
+              <div className="cs-stat">
+                <span className="cs-stat__value cs-stat__value--accent">
+                  {marqueeStat.value}
+                </span>
+                <span className="cs-stat__label">{marqueeStat.label}</span>
+              </div>
+            )}
+            {otherStats.map((m) => (
+              <div className="cs-stat" key={m.label}>
+                <span className="cs-stat__value">{m.value}</span>
+                <span className="cs-stat__label">{m.label}</span>
               </div>
             ))}
-          </div>
+          </section>
         )}
 
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-10">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-muted text-foreground/80 px-3 py-1.5 rounded-full text-[11px] md:text-[12px] font-semibold border border-border/30"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="cs-grid">
+          <nav className="cs-nav" aria-label="In-page navigation">
+            <p className="cs-nav__title">In this case study</p>
+            <ul className="cs-nav__list">
+              {SECTION_NAV.map((s) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className="cs-nav__link">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="prose prose-invert max-w-none case-study-prose">
-          {children}
+          <div className="cs-body">
+            {tags && tags.length > 0 && (
+              <div className="cs-tags">
+                {tags.map((tag) => (
+                  <span className="cs-tag" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {children}
+
+            <div className="cs-rail">
+              {hasLive && (
+                <a
+                  className="cs-rail__btn cs-rail__btn--primary"
+                  href={live!}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Live demo <ArrowUpRight size={14} />
+                </a>
+              )}
+              {hasRepo && (
+                <a
+                  className="cs-rail__btn cs-rail__btn--ghost"
+                  href={repo!}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GithubGlyph /> Source code
+                </a>
+              )}
+              <Link to="/" className="cs-rail__btn cs-rail__btn--ghost">
+                <ArrowLeft size={14} /> Back to portfolio
+              </Link>
+            </div>
+          </div>
         </div>
-
-        {(hasRepo || hasLive) && (
-          <div className="mt-12 pt-8 border-t border-border/30 flex flex-wrap gap-3">
-            {hasRepo && (
-              <a
-                href={repo!}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-muted px-5 py-3 text-[13px] font-bold text-foreground transition-colors hover:bg-muted/80"
-              >
-                Repo <ExternalLink size={14} />
-              </a>
-            )}
-            {hasLive && (
-              <a
-                href={live!}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[13px] font-bold text-white transition-opacity hover:opacity-90"
-              >
-                Live demo <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </article>
+      </article>
+    </main>
   );
 }
