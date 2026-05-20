@@ -1,0 +1,115 @@
+{
+  "experiences": [
+    {
+      "id": "bangkit-ml-cohort",
+      "category": "CERTIFICATION",
+      "title": "Machine Learning Cohort",
+      "org": "Bangkit Academy (Google, GoTo & Traveloka)",
+      "period": "Aug 2023 – Jan 2024",
+      "impact": "Selected into Bangkit's ML cohort led by Google, GoTo, and Traveloka — built classification and regression models on real-world datasets.",
+      "context": "900+ hours of intensive AI / ML training delivered as a Kampus Merdeka program.",
+      "tags": ["Python", "TensorFlow", "Machine Learning", "Deep Learning"],
+      "priority": 10,
+      "photos": ["/images/work_5/1.png"]
+    },
+    {
+      "id": "microsoft-data-engineer",
+      "category": "CERTIFICATION",
+      "title": "Data Engineer Program",
+      "org": "Microsoft × MariBelajar",
+      "period": "Jan 2024 – Jun 2024",
+      "impact": "Earned 6 Microsoft professional Data Engineering certifications covering Azure, SQL, and ETL pipelines.",
+      "context": "Intensive Microsoft-led program in partnership with MariBelajar.",
+      "tags": ["Azure", "SQL", "ETL", "Data Engineering", "Microsoft"],
+      "priority": 20,
+      "photos": [
+        "/images/work_6/1.png",
+        "/images/work_6/2.png",
+        "/images/work_6/3.png",
+        "/images/work_6/4.png",
+        "/images/work_6/5.png",
+        "/images/work_6/6.png"
+      ]
+    },
+    {
+      "id": "fruit-ninja-yolov8",
+      "category": "PROJECT",
+      "title": "Fruit Ninja YOLOv8 Automation Bot",
+      "org": "Personal Project",
+      "period": "Mar 2025 – Aug 2025",
+      "impact": "Shipped a real-time YOLOv8 automation bot — benchmarked 13 model variants to balance detection accuracy against sustainable FPS.",
+      "context": "Solo computer-vision project integrating YOLOv8 with Bettercam for low-latency frame capture.",
+      "tags": ["YOLOv8", "PyTorch", "Computer Vision", "Object Detection"],
+      "priority": 30,
+      "caseStudySlug": "fruit-ninja-yolov8",
+      "photos": [
+        "/images/work_7/1.png",
+        "/images/work_7/2.png",
+        "/images/work_7/3.png"
+      ]
+    },
+    {
+      "id": "mews-bbmkg-internship",
+      "category": "INTERNSHIP",
+      "title": "MEWS Intern — Web Automation Engineer",
+      "org": "BBMKG Wilayah III Denpasar",
+      "period": "Jul 2023 – Aug 2023",
+      "impact": "Built a web platform that automated 9 daily administrative documents at BBMKG — still in active staff use today.",
+      "context": "Sole intern developer: ran user research, shipped UI/UX, integrated multi-source data, and trained staff in six weeks.",
+      "tags": ["Flask", "Python", "Automation", "UI/UX", "User Training"],
+      "priority": 40,
+      "caseStudySlug": "mews-bbmkg-automation",
+      "photos": [
+        "/images/work_4/1.png",
+        "/images/work_4/2.png",
+        "/images/work_4/3.png"
+      ]
+    },
+    {
+      "id": "olympiad-coach",
+      "category": "EDUCATION",
+      "title": "Educator & Informatics Olympiad Coach",
+      "org": "SMA N 2 Amlapura",
+      "period": "Jan 2022 – Aug 2025",
+      "impact": "Coached 34+ students per year and led 3 to the National Informatics Olympiad annually — meeting the maximum school quota every cycle.",
+      "context": "Designed a competition-aligned C++ curriculum from foundations to advanced competitive tactics.",
+      "tags": ["C++", "Olympiad Prep", "Curriculum Design", "Mentoring"],
+      "priority": 50,
+      "photos": [
+        "/images/work_1/1.png",
+        "/images/work_1/2.png",
+        "/images/work_1/3.png",
+        "/images/work_1/4.png"
+      ]
+    },
+    {
+      "id": "dpm-fmipa-supervisor",
+      "category": "LEADERSHIP",
+      "title": "Commission IV Member (Supervisor)",
+      "org": "DPM FMIPA — Universitas Udayana",
+      "period": "Jan 2022 – Jan 2023",
+      "impact": "Supervised 15 BEM operations as Commission IV member, mediating between the Dean's Office and Student Executive Board.",
+      "context": "Faculty-level student governance role; ensured timely execution of all scheduled activities.",
+      "tags": ["Supervision", "Student Governance", "Communication"],
+      "priority": 60,
+      "photos": ["/images/work_2/1.png"]
+    },
+    {
+      "id": "sic-tech-dev",
+      "category": "LEADERSHIP",
+      "title": "Tech & Dev Division",
+      "org": "Student Innovation Centre — Universitas Udayana",
+      "period": "Jan 2023 – Jan 2024",
+      "impact": "Led tech knowledge-sharing for the org — managed Discord and delivered insights on emerging tech to members.",
+      "context": "Cross-disciplinary university innovation community.",
+      "tags": ["Tech Leadership", "Community Management", "Knowledge Sharing"],
+      "priority": 70,
+      "photos": [
+        "/images/work_3/1.png",
+        "/images/work_3/2.png",
+        "/images/work_3/3.png",
+        "/images/work_3/4.png"
+      ]
+    }
+  ]
+}

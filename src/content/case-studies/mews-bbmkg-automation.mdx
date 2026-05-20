@@ -1,0 +1,55 @@
+---
+slug: mews-bbmkg-automation
+title: MEWS — BBMKG Document Automation
+summary: Web platform that automated 9 daily administrative documents at BBMKG Wilayah III Denpasar — sole intern developer, six-week build, still in active staff use.
+cover: /images/work_4/1.png
+repo: null
+live: null
+period: Jul 2023 – Aug 2023
+metrics:
+  - label: Documents automated
+    value: "9"
+  - label: Build duration
+    value: "6 weeks"
+  - label: Status
+    value: "In active use"
+tags:
+  - Flask
+  - Python
+  - Web Automation
+  - Internship
+---
+
+## Problem
+
+BBMKG Wilayah III Denpasar produces nine daily administrative documents — each manually filled from data scattered across observation logs, internal spreadsheets, and email reports. The result: hours of duplicated typing per day, with predictable transcription errors. As a six-week intern, I owned end-to-end delivery: requirement analysis, design, build, deploy, train.
+
+## Data
+
+- TODO(content): inventory of the 9 document types (daily weather summary, equipment log, etc.).
+- TODO(content): source systems integrated (CSV exports, spreadsheets, manual entry).
+- TODO(content): user count (operational staff, supervisors).
+
+## Approach
+
+1. **User research** — sat with operational staff for the first week to map the actual document workflow vs. the documented one. Found 3 "shadow" steps that needed to be folded in.
+2. **Single source of truth** — Flask backend that pulls from the existing data sources and merges into a unified daily payload.
+3. **One-click generation** — the staff selects a date, picks a document type, fills any fields the system can't derive, and exports the rendered output.
+4. **Training & handoff** — two on-site training sessions, plus a written runbook so the platform survives my exit.
+
+## Results
+
+- **9 documents automated** end-to-end.
+- **Six-week build** from kickoff to handoff, including training.
+- Platform **still in active daily use** at the institution 2+ years later — the most durable artifact of any internship I've shipped.
+
+## Lessons learned
+
+- TODO(content): what the user-research week surfaced that the original brief missed.
+- TODO(content): the simplest tech choice (Flask + plain HTML + JS) outperformed a more ambitious React proposal.
+- TODO(content): what the longevity is teaching me about handoff documentation.
+
+## Links
+
+- Repo: not public (institutional code).
+- Live: BBMKG internal network only.

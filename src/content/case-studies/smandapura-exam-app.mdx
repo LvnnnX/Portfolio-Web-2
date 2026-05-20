@@ -1,0 +1,56 @@
+---
+slug: smandapura-exam-app
+title: Smandapura Exam App — Zero-Trust Online Examination
+summary: Online examination platform for SMA Negeri 2 Amlapura with server-side timers, AES-256 encrypted client storage, JIT question fetching, and a Survival Mode lives system.
+cover: /images/pr1-tb.png
+repo: TODO(content)
+live: TODO(content)
+period: 2026
+metrics:
+  - label: Documents automated
+    value: "TODO(content)"
+  - label: Concurrent users
+    value: "TODO(content)"
+  - label: Encryption
+    value: "AES-256"
+tags:
+  - Next.js 15
+  - Supabase
+  - Tailwind CSS 4
+  - Cryptography
+---
+
+## Problem
+
+School-based online exams routinely fail under three pressures: students freezing the client clock with devtools, copying questions to other tabs, and crashing under exam-day load. SMA Negeri 2 Amlapura needed something that survived all three without paying for an enterprise LMS.
+
+## Data
+
+- TODO(content): exam catalogue size (number of subjects, total questions).
+- TODO(content): user counts (students, supervisors, admins).
+- TODO(content): question types — multiple choice, rich text, LaTeX-rendered math.
+
+## Approach
+
+1. **Zero-trust client** — every authoritative state lives in Supabase RPC. Client-side timer is purely UI; the actual exam clock ticks server-side.
+2. **JIT question fetch** — questions are requested one-at-a-time, never bulk-loaded, so a leaked LocalStorage dump is incomplete by design.
+3. **AES-256 LocalStorage** — what little is cached client-side (current question, partial answers) is encrypted with a per-session key derived from the auth token.
+4. **Survival Mode** — 3-lives variant for low-stakes practice; built on the same RPC primitives.
+5. **Admin dashboard** — Rich-text + LaTeX question authoring, real-time progress monitoring, automated result analytics.
+
+## Results
+
+- TODO(content): exam sessions delivered, peak concurrency, longest run without incident.
+- TODO(content): incidents prevented (devtools clock manipulation, tab-switch detection counts).
+- TODO(content): teacher time saved on grading.
+
+## Lessons learned
+
+- TODO(content): which threat model held vs. which broke first.
+- TODO(content): Supabase RPC vs. edge functions trade-off.
+- TODO(content): the UX cost of zero-trust (perceived latency).
+
+## Links
+
+- Repo: TODO(content)
+- Live: TODO(content)

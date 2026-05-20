@@ -1,0 +1,56 @@
+---
+slug: fruit-ninja-yolov8
+title: Fruit Ninja Automation Bot — YOLOv8 Real-Time Inference
+summary: Real-time computer-vision bot that plays Fruit Ninja autonomously, benchmarked across 13 YOLOv8 variants to balance detection accuracy against sustainable FPS.
+cover: /images/work_7/1.png
+repo: TODO(content) - GitHub URL once public
+live: null
+period: Mar 2025 – Aug 2025
+metrics:
+  - label: Variants benchmarked
+    value: "13"
+  - label: Final FPS
+    value: "TODO(content)"
+  - label: mAP@0.5
+    value: "TODO(content)"
+tags:
+  - YOLOv8
+  - Computer Vision
+  - PyTorch
+  - Real-time inference
+---
+
+## Problem
+
+Existing Fruit Ninja bots rely on color thresholding or template matching — brittle against lighting, occlusion, and the bomb-vs-fruit confusion that ends a run instantly. The challenge: prove that a modern object detector can deliver **frame-rate-aware** inference on consumer hardware while staying robust enough to survive Survival Mode.
+
+## Data
+
+- TODO(content): dataset size, annotation strategy (Roboflow / manual), train/val split
+- TODO(content): class taxonomy (apple, watermelon, pineapple, banana, bomb, …)
+- TODO(content): augmentation pipeline (mosaic, mixup, HSV jitter)
+
+## Approach
+
+1. **Frame capture** — `bettercam` for sub-millisecond DXGI capture, bypassing the GDI bottleneck that caps PrintScreen-style approaches at ~30 FPS.
+2. **Detector** — YOLOv8 family. Benchmarked **13 variants** across the n/s/m/l/x scales and image sizes (320, 416, 640) to find the FPS-vs-mAP frontier.
+3. **Post-processing** — class-aware NMS plus a velocity tracker so the bot swipes ahead of the fruit, not at it.
+4. **Action layer** — `pydirectinput` for mouse path interpolation; bezier curves to mimic human swipes.
+
+## Results
+
+- **13 model variants** systematically benchmarked across image sizes and scales.
+- TODO(content): chosen variant (likely `yolov8s` @ 416) and the reasoning.
+- TODO(content): final mAP@0.5 and inference latency in ms.
+- TODO(content): average FPS during live play.
+
+## Lessons learned
+
+- TODO(content): the surprising finding from the benchmark (e.g., that nano was faster but lost too much recall on bombs).
+- TODO(content): what failed: capture-stack quirks, label noise, etc.
+- TODO(content): what would change next time.
+
+## Links
+
+- Repo: TODO(content)
+- Live demo: see [/playground](/playground) for an in-browser ONNX version.
