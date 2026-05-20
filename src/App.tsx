@@ -7,13 +7,15 @@ import Footer from "./components/layout/Footer";
 
 function App() {
   const location = useLocation();
-  const isBlog = location.pathname.startsWith("/blog");
+  const isEditorial =
+    location.pathname.startsWith("/blog") ||
+    location.pathname.startsWith("/case-study");
 
   return (
     <div className="relative min-h-screen dark:bg-background">
-      {/* Background Layer (skipped on /blog so the editorial paper surface
-          isn't muddled by the WebGL shader). */}
-      {!isBlog && (
+      {/* Background Layer (skipped on /blog and /case-study so the editorial
+          paper surface isn't muddled by the WebGL shader). */}
+      {!isEditorial && (
         <div className="fixed inset-0 pointer-events-none z-0">
           <WebGLShader />
         </div>
