@@ -26,4 +26,18 @@ export default defineConfig({
     react({ include: /\.(jsx|tsx|md|mdx)$/ }),
     tailwindcss(),
   ],
+  build: {
+    rolldownOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("three")) return "three";
+            if (id.includes("framer-motion")) return "framer";
+            if (id.includes("@mdx-js")) return "mdx";
+            if (id.includes("react-router")) return "router";
+          }
+        },
+      },
+    },
+  },
 })
