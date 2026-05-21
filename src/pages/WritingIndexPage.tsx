@@ -1,7 +1,7 @@
-import type { ComponentType } from "react";
 import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import SEO from "../components/seo/SEO";
-import "../blog/styles/editorial.css";
+import "../blog/styles/case-study.css";
 
 interface PostFrontmatter {
   slug?: string;
@@ -11,14 +11,10 @@ interface PostFrontmatter {
   description?: string;
   tags?: string[];
   edition?: string | number;
+  readingTime?: string;
 }
 
-interface PostModule {
-  default: ComponentType;
-  frontmatter?: PostFrontmatter;
-}
-
-const modules = import.meta.glob<PostModule>(
+const modules = import.meta.glob<{ frontmatter?: PostFrontmatter }>(
   "../content/posts/*.mdx",
   { eager: true },
 );
@@ -30,6 +26,7 @@ interface PostMeta {
   deck: string;
   tags: string[];
   edition: string;
+  readingTime: string;
 }
 
 const formatEdition = (raw: string | number | undefined, fallbackIndex: number): string => {
@@ -64,6 +61,7 @@ const sorted = Object.entries(modules)
       date: fm.date ?? "",
       deck: fm.excerpt ?? fm.description ?? "",
       tags: fm.tags ?? [],
+      readingTime: fm.readingTime ?? "",
     };
   })
   .sort((a, b) => (a._date < b._date ? 1 : -1));
@@ -74,62 +72,67 @@ const posts: PostMeta[] = sorted.map((p, i) => ({
   date: p.date,
   deck: p.deck,
   tags: p.tags,
+  readingTime: p.readingTime,
   edition: formatEdition(p._fmEdition, sorted.length - i),
 }));
 
 export default function WritingIndexPage() {
   return (
-    <main className="editorial">
+    <main className="cs">
       <SEO
         title="Blog"
         description="Catatan tentang ekonomi, hukum, teknologi, dan apa pun yang layak ditulis pelan-pelan."
         path="/blog"
       />
-      <div className="editorial__content">
-        <header className="editorial-masthead">
-          <span className="editorial-masthead__brand">DANIWISMAGATHA.MY.ID / BLOG</span>
-          <span className="editorial-masthead__meta">{posts.length} edisi</span>
-        </header>
 
-        <p className="editorial-eyebrow" style={{ marginBlockStart: "32px" }}>
-          Katalog
+      <article className="cs-article">
+        <Link to="/" className="cs-back">
+          <ArrowLeft size={12} /> Back to portfolio
+        </Link>
+
+        <p className="cs-eyebrow">
+          <span>Catatan · Esai</span>
         </p>
-        <h1 className="editorial-headline">Blog</h1>
-        <p className="editorial-deck">
-          Esai pendek tentang ekonomi, hukum, teknologi, dan hal-hal yang layak dipikir lebih dari satu kali.
+
+        <h1 className="cs-title">Blog</h1>
+
+        <p className="cs-deck">
+          Esai pendek tentang ekonomi, hukum, teknologi, dan hal-hal yang
+          layak dipikir lebih dari satu kali.
         </p>
 
         {posts.length === 0 ? (
-          <p style={{ fontFamily: 'var(--serif)', color: 'var(--ink-soft)' }}>
-            Belum ada edisi.
-          </p>
+          <p style={{ color: "var(--cs-ink-soft)" }}>Belum ada edisi.</p>
         ) : (
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          <ul className="blog-list">
             {posts.map((post) => (
-              <li key={post.slug}>
-                <Link to={`/blog/${post.slug}`} className="editorial-card">
-                  <div className="editorial-card__meta">
-                    <span className="editorial-card__edition">{post.edition}</span>
-                    <span>{formatDate(post.date)}</span>
+              <li key={post.slug} className="blog-row">
+                <Link to={`/blog/${post.slug}`} className="blog-row__link">
+                  <div className="blog-row__meta">
+                    <span className="blog-row__edition">{post.edition}</span>
+                    <span className="blog-row__date">
+                      {formatDate(post.date)}
+                      {post.readingTime ? ` · ${post.readingTime}` : ""}
+                    </span>
                   </div>
+                  <h2 className="blog-row__title">{post.title}</h2>
+                  {post.deck && <p className="blog-row__deck">{post.deck}</p>}
                   {post.tags.length > 0 && (
-                    <p className="editorial-card__eyebrow">
-                      {post.tags.slice(0, 3).join(" · ")}
-                    </p>
+                    <div className="blog-row__tags">
+                      {post.tags.slice(0, 4).map((t) => (
+                        <span key={t} className="blog-row__tag">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   )}
-                  <h2 className="editorial-card__headline">{post.title}</h2>
-                  {post.deck && <p className="editorial-card__deck">{post.deck}</p>}
                 </Link>
               </li>
             ))}
           </ul>
         )}
-
-        <footer className="editorial-pagefoot">
-          <span>DANIWISMAGATHA.MY.ID/BLOG</span>
-          <span>v1.0</span>
-        </footer>
-      </div>
+      </article>
     </main>
   );
 }
+

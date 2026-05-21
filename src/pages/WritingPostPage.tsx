@@ -1,14 +1,9 @@
 import type { ComponentType } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { MDXProvider } from "@mdx-js/react";
 import SEO from "../components/seo/SEO";
 import NotFoundPage from "./NotFoundPage";
-import Masthead from "../blog/components/Masthead";
-import Eyebrow from "../blog/components/Eyebrow";
-import Byline from "../blog/components/Byline";
-import { blogMdxComponents } from "../blog/mdx-components";
-import "../blog/styles/editorial.css";
+import "../blog/styles/case-study.css";
 
 interface PostFrontmatter {
   slug?: string;
@@ -21,7 +16,6 @@ interface PostFrontmatter {
   tags?: string[];
   author?: string;
   edition?: string | number;
-  /** Single string OR array of labels rendered above the headline. */
   eyebrow?: string | string[];
 }
 
@@ -53,24 +47,14 @@ const formatDate = (iso: string): string => {
   });
 };
 
-const formatReadTime = (rt: string | undefined): string | undefined => {
-  if (!rt) return undefined;
-  const m = rt.match(/^(\d+)\s*(min|menit)\b/);
-  if (m) return `${m[1]} menit baca`;
-  return rt;
-};
-
-const buildEyebrowLabel = (
+const buildEyebrow = (
   eyebrow: string | string[] | undefined,
   tags: string[] | undefined,
 ): string => {
-  const source = (() => {
-    if (Array.isArray(eyebrow)) return eyebrow;
-    if (typeof eyebrow === "string" && eyebrow.length > 0) return [eyebrow];
-    if (tags && tags.length > 0) return tags.slice(0, 2);
-    return ["BLOG"];
-  })();
-  return source.map((t) => t.toUpperCase()).join(" · ");
+  if (Array.isArray(eyebrow)) return eyebrow.map((t) => t.toUpperCase()).join(" · ");
+  if (typeof eyebrow === "string" && eyebrow.length > 0) return eyebrow.toUpperCase();
+  if (tags && tags.length > 0) return tags.slice(0, 2).map((t) => t.toUpperCase()).join(" · ");
+  return "BLOG";
 };
 
 export default function WritingPostPage() {
@@ -82,12 +66,12 @@ export default function WritingPostPage() {
   const MDX = mod.default;
   const fm = mod.frontmatter ?? {};
   const summary = fm.excerpt ?? fm.description ?? "";
-  const readTime = formatReadTime(fm.readingTime ?? fm.readTime);
-  const eyebrowLabel = buildEyebrowLabel(fm.eyebrow, fm.tags);
+  const readTime = fm.readingTime ?? fm.readTime;
+  const eyebrowLabel = buildEyebrow(fm.eyebrow, fm.tags);
   const niceDate = formatDate(fm.date ?? "");
 
   return (
-    <main className="editorial">
+    <main className="cs">
       <SEO
         title={fm.title ?? slug!}
         description={summary}
@@ -96,65 +80,44 @@ export default function WritingPostPage() {
         publishedTime={fm.date}
       />
 
-      <article className="editorial__content">
-        <Masthead edition={fm.edition} date={niceDate} meta={readTime} />
-
-        <Link
-          to="/blog"
-          className="editorial-back"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            marginBlock: "16px 0",
-            padding: "6px 0",
-            fontFamily: "var(--sans)",
-            fontSize: "11px",
-            fontWeight: 700,
-            letterSpacing: "0.10em",
-            textTransform: "uppercase",
-            color: "var(--ink-soft)",
-            textDecoration: "none",
-            transition: "color 200ms ease",
-          }}
-        >
-          <ArrowLeft size={12} /> Kembali ke katalog
+      <article className="cs-article">
+        <Link to="/blog" className="cs-back">
+          <ArrowLeft size={12} /> All posts
         </Link>
 
-        <Eyebrow>{eyebrowLabel}</Eyebrow>
+        <p className="cs-eyebrow">
+          <span>{eyebrowLabel}</span>
+          {niceDate && niceDate !== "—" && (
+            <span className="cs-eyebrow__period" aria-label="published">
+              · {niceDate}
+            </span>
+          )}
+          {readTime && (
+            <span className="cs-eyebrow__period" aria-label="reading time">
+              · {readTime}
+            </span>
+          )}
+        </p>
 
-        <h1 className="editorial-headline">{fm.title ?? slug}</h1>
+        <h1 className="cs-title">{fm.title ?? slug}</h1>
 
-        {summary && <p className="editorial-deck">{summary}</p>}
+        {summary && <p className="cs-deck">{summary}</p>}
 
-        <Byline
-          author={fm.author ?? "Pande Gede Dani Wismagatha"}
-          date={niceDate}
-          readTime={readTime}
-        />
+        <div className="cs-grid">
+          <div className="cs-body" style={{ gridColumn: "1 / -1" }}>
+            {fm.tags && fm.tags.length > 0 && (
+              <div className="cs-tags">
+                {fm.tags.map((tag) => (
+                  <span className="cs-tag" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
 
-        <div className="editorial-body">
-          <MDXProvider components={blogMdxComponents}>
             <MDX />
-          </MDXProvider>
+          </div>
         </div>
-
-        <footer className="editorial-pagefoot">
-          <span>DANIWISMAGATHA.MY.ID/BLOG</span>
-          <Link
-            to="/blog"
-            className="editorial-pagefoot__link"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "4px",
-              color: "var(--ink-faint)",
-              textDecoration: "none",
-            }}
-          >
-            <ArrowLeft size={11} /> KEMBALI KE KATALOG
-          </Link>
-        </footer>
       </article>
     </main>
   );
