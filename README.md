@@ -16,7 +16,7 @@ Personal portfolio & blog — Data Scientist & AI Specialist based in Karangasem
 
 ## Preview
 
-> *Screenshot placeholder — replace with actual desktop + mobile screenshot*
+![Portfolio Preview](public/images/preview.png)
 
 ## Features
 
