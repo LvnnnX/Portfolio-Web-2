@@ -5,6 +5,7 @@ import CaseStudyPage from "./pages/CaseStudyPage";
 import WritingIndexPage from "./pages/WritingIndexPage";
 import WritingPostPage from "./pages/WritingPostPage";
 import PlannedWebsitePage from "./pages/PlannedWebsitePage";
+import ServicesPage from "./pages/ServicesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 export const router = createBrowserRouter([
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: "blog", element: <WritingIndexPage /> },
       { path: "blog/:slug", element: <WritingPostPage /> },
       { path: "planned-website", element: <PlannedWebsitePage /> },
+      { path: "services", element: <ServicesPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

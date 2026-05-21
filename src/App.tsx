@@ -17,7 +17,8 @@ function App() {
   const isEditorial =
     location.pathname.startsWith("/blog") ||
     location.pathname.startsWith("/case-study") ||
-    location.pathname.startsWith("/planned-website");
+    location.pathname.startsWith("/planned-website") ||
+    location.pathname.startsWith("/services");
 
   return (
     <div
