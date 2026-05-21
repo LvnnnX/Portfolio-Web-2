@@ -10,6 +10,7 @@ import {
   ProcessStep,
   ContactCTA,
 } from "../components/services";
+import "../blog/styles/services.css";
 
 const tiers = [
   {
@@ -165,7 +166,7 @@ const notIncluded = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="svc bg-[var(--svc-paper)] text-[var(--svc-ink)] min-h-screen transition-colors">
       <SEO
         title="Services — Daniwismagatha"
         description="Lima tier layanan pembuatan website — dari landing page sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi."
@@ -175,7 +176,7 @@ export default function ServicesPage() {
       <div className="max-w-5xl mx-auto px-6 py-10">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/60 hover:text-[#E89580] transition-colors"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[var(--svc-ink-60)] hover:text-[var(--svc-accent)] transition-colors"
         >
           <ArrowLeft size={12} /> Back to portfolio
         </Link>
@@ -187,19 +188,19 @@ export default function ServicesPage() {
         transition={{ duration: 0.6 }}
         className="max-w-5xl mx-auto px-6 pb-12"
       >
-        <p className="text-[11px] tracking-[0.20em] uppercase text-[#E89580] mb-4">
+        <p className="text-[11px] tracking-[0.20em] uppercase text-[var(--svc-accent)] mb-4">
           Daftar Layanan · Edisi MMXXVI
         </p>
         <h1 className="font-display italic text-4xl sm:text-5xl md:text-6xl font-light leading-tight tracking-tight max-w-3xl">
-          Web yang dibangun <em className="text-[#E89580] not-italic font-light">jujur</em>, dengan harga yang masuk akal.
+          Web yang dibangun <em className="text-[var(--svc-accent)] not-italic font-light">jujur</em>, dengan harga yang masuk akal.
         </h1>
-        <p className="mt-6 text-white/70 text-base sm:text-lg max-w-2xl leading-relaxed">
+        <p className="mt-6 text-[var(--svc-ink-70)] text-base sm:text-lg max-w-2xl leading-relaxed">
           Lima tier layanan — dari landing page sederhana sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href="#tiers"
-            className="inline-flex items-center gap-2 rounded-full bg-[#E89580] px-5 py-3 text-sm font-medium text-black hover:bg-[#f0a895] transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--svc-accent)] px-5 py-3 text-sm font-medium text-[var(--svc-cta-fg)] hover:bg-[var(--svc-accent-soft)] transition-colors"
           >
             Lihat Semua Tier →
           </a>
@@ -207,7 +208,7 @@ export default function ServicesPage() {
             href="https://wa.me/6285156148613?text=Halo%20Dani%2C%20saya%20mau%20konsultasi%20website"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-white hover:border-white/40 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--svc-rule-strong)] px-5 py-3 text-sm font-medium text-[var(--svc-ink)] hover:border-[var(--svc-ink-40)] transition-colors"
           >
             Konsultasi Gratis
           </a>
@@ -216,9 +217,9 @@ export default function ServicesPage() {
 
       <section id="tiers" className="max-w-5xl mx-auto px-6 py-12 scroll-mt-16">
         <h2 className="font-display italic text-3xl font-light tracking-tight max-w-2xl">
-          Lima tingkat keterlibatan, <em className="text-[#E89580] not-italic">tanpa gap</em>.
+          Lima tingkat keterlibatan, <em className="text-[var(--svc-accent)] not-italic">tanpa gap</em>.
         </h2>
-        <p className="mt-4 text-white/60 max-w-2xl">
+        <p className="mt-4 text-[var(--svc-ink-60)] max-w-2xl">
           Tiap tier disusun saling menyambung — batas atas tier sebelumnya jadi batas bawah berikutnya. Tidak ada celah harga yang membingungkan.
         </p>
         <TierTable tiers={tiers} />
@@ -232,29 +233,29 @@ export default function ServicesPage() {
 
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h2 className="font-display italic text-3xl font-light tracking-tight">Add-ons</h2>
-        <p className="mt-4 text-white/60 max-w-2xl">Tambahan opsional di luar tier utama.</p>
+        <p className="mt-4 text-[var(--svc-ink-60)] max-w-2xl">Tambahan opsional di luar tier utama.</p>
         <AddOnTable items={addOns} />
       </section>
 
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h2 className="font-display italic text-3xl font-light tracking-tight">Termin Pembayaran</h2>
-        <p className="mt-4 text-white/60">
-          Bayar bertahap, <em className="text-[#E89580] not-italic">tidak harus lunas dulu</em>.
+        <p className="mt-4 text-[var(--svc-ink-60)]">
+          Bayar bertahap, <em className="text-[var(--svc-accent)] not-italic">tidak harus lunas dulu</em>.
         </p>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {payments.map((p) => (
             <PaymentCard key={p.tier} {...p} />
           ))}
         </div>
-        <p className="mt-6 text-sm text-white/50 italic border-l-2 border-[#E89580]/40 pl-4">
+        <p className="mt-6 text-sm text-[var(--svc-ink-50)] italic border-l-2 border-[var(--svc-accent-border)] pl-4">
           Pembayaran via transfer BCA / BNI / Mandiri. Invoice resmi disediakan setiap termin.
         </p>
       </section>
 
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h2 className="font-display italic text-3xl font-light tracking-tight">Cara Kerja</h2>
-        <p className="mt-4 text-white/60">
-          Sembilan langkah, <em className="text-[#E89580] not-italic">satu janji</em>.
+        <p className="mt-4 text-[var(--svc-ink-60)]">
+          Sembilan langkah, <em className="text-[var(--svc-accent)] not-italic">satu janji</em>.
         </p>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
           {processSteps.map((step, i) => (
@@ -270,14 +271,14 @@ export default function ServicesPage() {
 
       <section className="max-w-5xl mx-auto px-6 py-12">
         <h2 className="font-display italic text-3xl font-light tracking-tight">Yang Tidak Termasuk</h2>
-        <p className="mt-4 text-white/60">
-          Transparan dari <em className="text-[#E89580] not-italic">awal</em>.
+        <p className="mt-4 text-[var(--svc-ink-60)]">
+          Transparan dari <em className="text-[var(--svc-accent)] not-italic">awal</em>.
         </p>
         <ul className="mt-8 space-y-3">
           {notIncluded.map((item) => (
             <li
               key={item}
-              className="text-white/70 text-base leading-relaxed border-l border-white/10 pl-4"
+              className="text-[var(--svc-ink-70)] text-base leading-relaxed border-l border-[var(--svc-rule)] pl-4"
             >
               {item}
             </li>
@@ -297,7 +298,7 @@ export default function ServicesPage() {
       </section>
 
       <footer className="max-w-5xl mx-auto px-6 pt-12 pb-16">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs tracking-[0.10em] uppercase text-white/40 border-t border-white/10 pt-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs tracking-[0.10em] uppercase text-[var(--svc-ink-40)] border-t border-[var(--svc-rule)] pt-6">
           <span>Daniwismagatha.my.id · Pricelist 2026</span>
           <span>Berlaku Mei 2026 — Karang Asem, Bali</span>
         </div>
