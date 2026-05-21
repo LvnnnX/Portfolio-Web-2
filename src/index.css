@@ -23,6 +23,7 @@ html {
 
 :root {
   --background: #ffffff;
+  --editorial-paper: #fafaf6;
   --foreground: #1d1d1f;
   --muted: #f5f5f7;
   --muted-foreground: #86868b;
@@ -42,6 +43,7 @@ html {
 
 .dark {
   --background: #0a0a0a;
+  --editorial-paper: #0f1012;
   --foreground: #f5f5f7;
   --muted: #1d1d1f;
   --muted-foreground: #86868b;
