@@ -11,6 +11,7 @@ interface NavItem {
 const ITEMS: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "Tulisan", to: "/blog" },
+  { label: "Tech News", to: "/tech-news" },
   { label: "Planned", to: "/planned-website" },
 ];
 
