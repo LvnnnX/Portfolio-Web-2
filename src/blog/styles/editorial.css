@@ -8,15 +8,15 @@
  */
 
 .editorial {
-  /* Heritage colors */
-  --ink: #1d1d1f;
+  /* Atelier — light variant (default) */
+  --ink: #1a1a1c;
   --ink-soft: #4a4a4f;
   --ink-faint: #86868b;
   --tertiary: #b8422e;
-  --surface: #ffffff;
-  --surface-muted: #fafafa;
-  --rule: #d2d2d7;
-  --border: #e5e5e7;
+  --surface: #fafaf6;
+  --surface-muted: #f1efe8;
+  --rule: #d8d4ca;
+  --border: #e2dfd5;
 
   /* Heritage typography stacks */
   --serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -31,23 +31,18 @@
   padding-inline: 16px;
 }
 
-/* Dark theme override.
- *
- * Note: DESIGN.md's stated intent is light-only ("the typographic ratios that
- * make this work — drop cap weight, blockquote border, subtle ink-on-paper —
- * break down under a dark theme"). This override is added on explicit
- * maintainer request. The accent (Boston Clay) is brightened slightly so it
- * keeps WCAG AA contrast against the dark surface. */
+/* Atelier — dark variant. Reuses the existing global '.dark' class toggled by
+ * Navigation. Brighter accent keeps WCAG AA contrast against the dark surface. */
 :root.dark .editorial,
 .dark .editorial {
-  --ink: #f2f2f5;          /* near-white body */
-  --ink-soft: #c8c8cd;     /* deck and byline */
-  --ink-faint: #86868b;    /* meta / page foot */
-  --tertiary: #ff7a5e;     /* brighter clay for dark contrast */
-  --surface: #0a0a0a;      /* deep paper */
-  --surface-muted: #1a1a1c;/* table header / card hover */
-  --rule: #3a3a3d;         /* hairlines */
-  --border: #2a2a2d;       /* slightly darker rules */
+  --ink: #f3f1ec;
+  --ink-soft: #c2bdb3;
+  --ink-faint: #8a8579;
+  --tertiary: #d75a3f;
+  --surface: #0f1012;
+  --surface-muted: #16171a;
+  --rule: #2a2b30;
+  --border: #1f2024;
 }
 
 @media (min-width: 768px) {

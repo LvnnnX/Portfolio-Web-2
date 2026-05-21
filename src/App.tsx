@@ -17,9 +17,7 @@ function App() {
       className="relative min-h-screen dark:bg-background"
       style={
         isEditorial
-          ? {
-              backgroundColor: "var(--editorial-paper, #fafaf6)",
-            }
+          ? { backgroundColor: "var(--editorial-paper, #fafaf6)" }
           : undefined
       }
     >
