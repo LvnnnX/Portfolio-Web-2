@@ -11,6 +11,7 @@ interface NavItem {
 const ITEMS: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "Blog", to: "/blog" },
+  { label: "Planned", to: "/planned-website" },
 ];
 
 export default function Navigation() {
