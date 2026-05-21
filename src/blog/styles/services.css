@@ -1,0 +1,82 @@
+/* /services — Atelier theme tokens, light + dark variants.
+ *
+ * Light: warm paper #fafaf6 (matches /blog, /case-study)
+ * Dark:  near-black #0a0a0a with light clay accent #E89580
+ *
+ * Toggled by the global `.dark` class on <html> (Navigation theme button).
+ * Scope: only inside `.svc` wrapper on ServicesPage.
+ */
+
+.svc {
+  /* Atelier — light variant (default) */
+  --svc-paper: #fafaf6;
+  --svc-ink: #1a1a1c;
+
+  --svc-ink-90: rgb(26 26 28 / 0.9);
+  --svc-ink-80: rgb(26 26 28 / 0.78);
+  --svc-ink-70: rgb(26 26 28 / 0.7);
+  --svc-ink-60: rgb(26 26 28 / 0.6);
+  --svc-ink-50: rgb(26 26 28 / 0.5);
+  --svc-ink-40: rgb(26 26 28 / 0.42);
+
+  --svc-rule-strong: rgb(0 0 0 / 0.2);
+  --svc-rule: rgb(0 0 0 / 0.1);
+  --svc-rule-soft: rgb(0 0 0 / 0.05);
+
+  --svc-surface: rgb(0 0 0 / 0.035);
+  --svc-surface-2: rgb(0 0 0 / 0.025);
+
+  --svc-glass-from: rgb(0 0 0 / 0.05);
+  --svc-glass-via: rgb(0 0 0 / 0.025);
+  --svc-glass-to: rgb(0 0 0 / 0.012);
+  --svc-glass-hairline: rgb(0 0 0 / 0.18);
+  --svc-glass-shadow: 0 8px 40px -20px rgb(0 0 0 / 0.18);
+  --svc-glass-shadow-featured: 0 20px 80px -30px rgb(184 66 46 / 0.25);
+
+  --svc-accent: #b8422e;
+  --svc-accent-deep: #9a3424;
+  --svc-accent-soft: #d75a3f;
+  --svc-accent-bg: rgb(184 66 46 / 0.12);
+  --svc-accent-border: rgb(184 66 46 / 0.3);
+
+  --svc-cta-fg: #ffffff;
+
+  background-color: var(--svc-paper);
+  color: var(--svc-ink);
+}
+
+/* Atelier — dark variant. Reuses the global `.dark` class. */
+:root.dark .svc,
+.dark .svc {
+  --svc-paper: #0a0a0a;
+  --svc-ink: #f3f1ec;
+
+  --svc-ink-90: rgb(243 241 236 / 0.9);
+  --svc-ink-80: rgb(243 241 236 / 0.8);
+  --svc-ink-70: rgb(243 241 236 / 0.7);
+  --svc-ink-60: rgb(243 241 236 / 0.6);
+  --svc-ink-50: rgb(243 241 236 / 0.5);
+  --svc-ink-40: rgb(243 241 236 / 0.4);
+
+  --svc-rule-strong: rgb(255 255 255 / 0.2);
+  --svc-rule: rgb(255 255 255 / 0.1);
+  --svc-rule-soft: rgb(255 255 255 / 0.05);
+
+  --svc-surface: rgb(255 255 255 / 0.04);
+  --svc-surface-2: rgb(255 255 255 / 0.03);
+
+  --svc-glass-from: rgb(255 255 255 / 0.12);
+  --svc-glass-via: rgb(255 255 255 / 0.06);
+  --svc-glass-to: rgb(255 255 255 / 0.02);
+  --svc-glass-hairline: rgb(255 255 255 / 0.4);
+  --svc-glass-shadow: 0 8px 40px -20px rgb(0 0 0 / 0.6);
+  --svc-glass-shadow-featured: 0 20px 80px -30px rgb(184 66 46 / 0.25);
+
+  --svc-accent: #E89580;
+  --svc-accent-deep: #b8422e;
+  --svc-accent-soft: #f0a895;
+  --svc-accent-bg: rgb(184 66 46 / 0.2);
+  --svc-accent-border: rgb(184 66 46 / 0.3);
+
+  --svc-cta-fg: #000000;
+}
