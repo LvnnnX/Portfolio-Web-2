@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-20T22:13:25.977Z",
+  "fetchedAt": "2026-05-21T09:02:49.693Z",
   "repos": [
     {
       "name": "Portfolio-Web-2",
@@ -9,9 +9,9 @@
       "homepage": "https://daniwismagatha.my.id",
       "stars": 1,
       "forks": 0,
-      "language": "TypeScript",
+      "language": "HTML",
       "topics": [],
-      "pushedAt": "2026-05-20T22:03:40Z"
+      "pushedAt": "2026-05-21T07:28:24Z"
     },
     {
       "name": "exam-app",
