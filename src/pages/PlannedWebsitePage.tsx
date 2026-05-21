@@ -21,40 +21,40 @@ interface PlannedProjectsFile {
 const { projects } = data as PlannedProjectsFile;
 
 const STATUS_LABEL: Record<NonNullable<PlannedProject["status"]>, string> = {
-  exploring: "Exploring",
-  "in-progress": "In progress",
-  shelved: "Shelved",
+  exploring: "Eksplorasi",
+  "in-progress": "Sedang dikerjakan",
+  shelved: "Ditunda",
 };
 
 export default function PlannedWebsitePage() {
   return (
     <main className="planned">
       <SEO
-        title="Planned Websites"
-        description="Future projects in their prototype stage — design explorations and HTML mockups for sites I'm planning to build."
+        title="Proyek yang Direncanakan"
+        description="Prototipe dan eksplorasi desain untuk proyek-proyek yang sedang aku rencanakan."
         path="/planned-website"
       />
 
       <article className="planned-article">
         <Link to="/" className="planned-back">
-          <ArrowLeft size={12} /> Back to portfolio
+          <ArrowLeft size={12} /> Kembali
         </Link>
 
-        <p className="planned-eyebrow">Planning · Prototypes</p>
+        <p className="planned-eyebrow">Rencana · Prototipe</p>
 
-        <h1 className="planned-title">Planned websites</h1>
+        <h1 className="planned-title">Proyek yang direncanakan</h1>
 
         <p className="planned-deck">
-          Static HTML mockups for projects I&apos;m planning to build. Each
-          card opens its own self-contained design — early-stage, sometimes
-          rough, always honest about where it sits in the pipeline.
+          Mockup HTML untuk proyek yang sedang aku rencanakan. Tiap kartu
+          membuka desain mandiri — masih tahap awal, kadang kasar, tapi
+          jujur soal posisinya di pipeline.
         </p>
 
         {projects.length === 0 ? (
           <p className="planned-empty">
-            No prototypes published yet. Drop an HTML file into{" "}
-            <code>public/plan/</code> and add an entry to{" "}
-            <code>src/content/planned-projects.json</code> to surface it here.
+            Belum ada prototipe. Tambahkan file HTML ke{" "}
+            <code>public/plan/</code> dan entry baru di{" "}
+            <code>src/content/planned-projects.json</code> untuk menampilkannya di sini.
           </p>
         ) : (
           <ul className="planned-grid">
@@ -79,7 +79,7 @@ export default function PlannedWebsitePage() {
                         </span>
                       )}
                       <span className="planned-card__open">
-                        Open <ArrowUpRight size={11} />
+                        Lihat <ArrowUpRight size={11} />
                       </span>
                     </div>
                     <h2 className="planned-card__title">{p.title}</h2>
