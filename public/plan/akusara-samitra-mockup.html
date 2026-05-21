@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akusara Samitra — Architecture rooted in tropical wisdom</title>
+<meta name="description" content="Akusara Samitra. Studio arsitektur dan pembangunan rumah di Bali. Design & build dengan filosofi yang berakar pada kearifan tropis." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+SC:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1A1815;
+    --ink-soft: #3D3631;
+    --clay: #6B5D4F;
+    --clay-soft: #8B7B6B;
+    --terracotta: #8B5A3C;
+    --terracotta-soft: #A87B5A;
+    --sage: #4A5C3A;
+    --sand: #F5F1EA;
+    --sand-warm: #EBE4D6;
+    --cream: #E8DFD0;
+    --rule: #D4C9B5;
+    --display: "Cormorant Garamond", "Cormorant", Georgia, serif;
+    --body: "Inter", -apple-system, system-ui, sans-serif;
+    --accent: "Cormorant SC", "Cormorant", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--sand);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- NAV ---------- */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 241, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 201, 181, 0.4);
+  }
+  nav.top .brand {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  nav.top .brand em { font-style: italic; color: var(--terracotta); }
+  nav.top ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  nav.top ul a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--clay);
+    transition: color 200ms;
+  }
+  nav.top ul a:hover { color: var(--terracotta); }
+  nav.top .cta {
+    padding: 8px 18px;
+    border: 1px solid var(--ink);
+    border-radius: 24px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    transition: all 200ms;
+  }
+  nav.top .cta:hover { background: var(--ink); color: var(--sand); }
+  nav.top .lang {
+    font-family: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--clay);
+  }
+  nav.top .lang strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 768px) {
+    nav.top { padding: 14px 18px; }
+    nav.top ul { display: none; }
+    nav.top .brand { font-size: 18px; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.78;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(26, 24, 21, 0.15) 0%,
+      rgba(26, 24, 21, 0.05) 30%,
+      rgba(26, 24, 21, 0.45) 100%
+    );
+    pointer-events: none;
+  }
+  .hero .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px 32px 64px;
+    z-index: 2;
+    color: var(--sand);
+  }
+  .hero .eyebrow {
+    font-family: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    color: var(--cream);
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(40px, 7vw, 86px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+    max-width: 14ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .hero .deck {
+    font-family: var(--display);
+    font-size: clamp(16px, 2vw, 19px);
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 38ch;
+    color: var(--sand-warm);
+    opacity: 0.92;
+  }
+  .hero .meta {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    text-align: right;
+    font-family: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--cream);
+    z-index: 3;
+    opacity: 0.78;
+  }
+  .hero .meta strong { display: block; color: var(--sand); font-weight: 500; margin-bottom: 4px; }
+  .hero .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: var(--cream);
+    font-family: var(--accent);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    opacity: 0.6;
+  }
+  @media (max-width: 768px) {
+    .hero .content { padding: 32px 20px 48px; }
+    .hero .meta { bottom: 20px; right: 20px; }
+    .hero .scroll-hint { display: none; }
+  }
+
+  /* ---------- SECTION COMMON ---------- */
+  section.block { padding: 96px 32px; }
+  @media (max-width: 768px) { section.block { padding: 64px 20px; } }
+  .container { max-width: 1280px; margin: 0 auto; }
+  .container-narrow { max-width: 760px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+  .section-title em { font-style: italic; color: var(--terracotta); }
+  .section-deck {
+    font-family: var(--display);
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--clay);
+    max-width: 44ch;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="top">
+  <div class="brand">Akusara <em>Samitra</em></div>
+  <ul>
+    <li><a href="#projects">Karya</a></li>
+    <li><a href="#services">Layanan</a></li>
+    <li><a href="#process">Proses</a></li>
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#contact" class="cta">Konsultasi</a></li>
+    <li class="lang"><strong>ID</strong> · EN</li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&auto=format&fit=crop&q=80" alt="Villa tropis Bali dengan kolam dan vegetasi" />
+  <div class="content">
+    <div class="eyebrow">AKUSARA · SAMITRA · BALI</div>
+    <h1>Rumah yang <em>tumbuh</em><br>dari tanahnya sendiri.</h1>
+    <p class="deck">
+      Studio arsitektur dan pembangunan keluarga di Bali. Mendesain dan membangun rumah yang berakar pada kearifan tropis sejak [TAHUN].
+    </p>
+  </div>
+  <div class="meta">
+    <strong>Villa Saraswati</strong>
+    Ubud · 2025
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ===== PHILOSOPHY / INTRO ===== -->
+<section class="block" style="padding-top: 120px; padding-bottom: 80px;">
+  <div class="container-narrow" style="text-align: center;">
+    <div class="eyebrow">FILOSOFI</div>
+    <h2 class="section-title" style="max-width: 18ch; margin-left: auto; margin-right: auto;">
+      Setiap rumah punya <em>akar</em>—<br>tugas kami menemukannya.
+    </h2>
+    <p class="section-deck" style="margin: 32px auto 0;">
+      [PLACEHOLDER FILOSOFI KELUARGA — bisa Tri Hita Karana, Asta Kosala Kosali, atau cerita pribadi keluarga tentang bagaimana arsitektur dipandang sebagai dialog antara manusia, alam, dan tempat. 60-100 kata.]
+    </p>
+  </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<section style="padding: 0 32px; margin-bottom: 96px;">
+  <div class="container">
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding: 48px 32px;
+      background: var(--cream);
+      border-radius: 2px;
+    " class="stats-grid">
+      <div>
+        <div style="font-family: var(--display); font-size: 48px; font-weight: 500; color: var(--terracotta); line-height: 1;">10+</div>
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.18em; color: var(--clay); margin-top: 8px;">PROYEK SELESAI</div>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 48px; font-weight: 500; color: var(--terracotta); line-height: 1;">[X]</div>
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.18em; color: var(--clay); margin-top: 8px;">TAHUN PENGALAMAN</div>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 48px; font-weight: 500; color: var(--terracotta); line-height: 1;">8</div>
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.18em; color: var(--clay); margin-top: 8px;">REGIONAL BALI</div>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 48px; font-weight: 500; color: var(--terracotta); line-height: 1;">100%</div>
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.18em; color: var(--clay); margin-top: 8px;">DESIGN &amp; BUILD</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px !important; padding: 32px 24px !important; }
+    .stats-grid div > div:first-child { font-size: 36px !important; }
+  }
+</style>
+
+<!-- ===== FEATURED PROJECTS ===== -->
+<section class="block" id="projects" style="background: var(--sand-warm);">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px;">
+      <div>
+        <div class="eyebrow">KARYA TERPILIH</div>
+        <h2 class="section-title" style="max-width: 16ch;">
+          Tiga rumah, <em>tiga cerita</em><br>tentang Bali.
+        </h2>
+      </div>
+      <a href="#" style="
+        font-family: var(--accent);
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        color: var(--terracotta);
+        border-bottom: 1px solid var(--terracotta);
+        padding-bottom: 4px;
+      ">LIHAT SEMUA KARYA →</a>
+    </div>
+
+    <div class="projects-grid" style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    ">
+      <a href="#" class="project-card" style="display: block; group;">
+        <div style="overflow: hidden; aspect-ratio: 4/5; margin-bottom: 16px; background: var(--clay);">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80" alt="Villa Saraswati Ubud" style="width:100%; height:100%; object-fit:cover; transition: transform 600ms;" />
+        </div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">UBUD · 2025 · 320 m²</div>
+        <h3 style="font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.2; color: var(--ink); margin-bottom: 6px;">Villa Saraswati</h3>
+        <p style="font-family: var(--display); font-style: italic; font-size: 15px; color: var(--clay); line-height: 1.5;">
+          Rumah tunggal dengan inner courtyard, dialog antara batu paras dan ironwood.
+        </p>
+      </a>
+
+      <a href="#" class="project-card" style="display: block;">
+        <div style="overflow: hidden; aspect-ratio: 4/5; margin-bottom: 16px; background: var(--clay);">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop&q=80" alt="Rumah Padma Canggu" style="width:100%; height:100%; object-fit:cover; transition: transform 600ms;" />
+        </div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">CANGGU · 2024 · 240 m²</div>
+        <h3 style="font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.2; color: var(--ink); margin-bottom: 6px;">Rumah Padma</h3>
+        <p style="font-family: var(--display); font-style: italic; font-size: 15px; color: var(--clay); line-height: 1.5;">
+          Rumah keluarga muda, jendela besar menghadap sawah, ventilasi silang penuh.
+        </p>
+      </a>
+
+      <a href="#" class="project-card" style="display: block;">
+        <div style="overflow: hidden; aspect-ratio: 4/5; margin-bottom: 16px; background: var(--clay);">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80" alt="Joglo Kemenuh renovasi" style="width:100%; height:100%; object-fit:cover; transition: transform 600ms;" />
+        </div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">KEMENUH · 2024 · 180 m²</div>
+        <h3 style="font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.2; color: var(--ink); margin-bottom: 6px;">Joglo Kemenuh</h3>
+        <p style="font-family: var(--display); font-style: italic; font-size: 15px; color: var(--clay); line-height: 1.5;">
+          Renovasi joglo Jawa, dipindahkan ke Bali, dipadukan dengan beton mentah.
+        </p>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+  .project-card:hover img { transform: scale(1.04); }
+  @media (max-width: 1024px) {
+    .projects-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 640px) {
+    .projects-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+</style>
+
+<!-- ===== SERVICES ===== -->
+<section class="block" id="services">
+  <div class="container">
+    <div style="max-width: 760px; margin-bottom: 64px;">
+      <div class="eyebrow">LAYANAN</div>
+      <h2 class="section-title">
+        Dari sketsa pertama<br>sampai <em>kunci diserahkan</em>.
+      </h2>
+      <p class="section-deck" style="margin-top: 24px;">
+        Kami mengerjakan desain dan pembangunan dalam satu studio. Tidak ada handover ke kontraktor lain. Yang menggambar, mengawasi yang membangun.
+      </p>
+    </div>
+
+    <div class="services-grid" style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    ">
+      <div style="background: var(--sand); padding: 40px 32px;">
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 16px;">TIER 01</div>
+        <h3 style="font-family: var(--display); font-size: 28px; font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 16px;">Konsultasi Desain</h3>
+        <p style="color: var(--ink-soft); font-size: 14px; line-height: 1.7; margin-bottom: 24px;">
+          Sesi awal untuk membahas tapak, anggaran, dan kebutuhan keluarga. Cocok kalau kamu masih mempertimbangkan opsi.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 32px; font-size: 13px; line-height: 2; color: var(--clay);">
+          <li>· Site visit + survey awal</li>
+          <li>· Sketsa konsep ruang</li>
+          <li>· Estimasi biaya kasar</li>
+          <li>· Rekomendasi material</li>
+        </ul>
+        <div style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink);">
+          Mulai dari <em style="font-style: italic; color: var(--terracotta);">Rp [X] jt</em>
+        </div>
+      </div>
+
+      <div style="background: var(--cream); padding: 40px 32px; position: relative;">
+        <div style="
+          position: absolute; top: -12px; right: 24px;
+          background: var(--terracotta); color: var(--sand);
+          font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em;
+          padding: 6px 14px;
+        ">PALING DIPILIH</div>
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 16px;">TIER 02</div>
+        <h3 style="font-family: var(--display); font-size: 28px; font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 16px;">Desain Lengkap</h3>
+        <p style="color: var(--ink-soft); font-size: 14px; line-height: 1.7; margin-bottom: 24px;">
+          Paket desain end-to-end. Dari konsep sampai gambar kerja siap bangun. Pengawasan opsional kalau kamu pakai kontraktor lain.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 32px; font-size: 13px; line-height: 2; color: var(--clay);">
+          <li>· Schematic design + 3D visualisasi</li>
+          <li>· Gambar kerja arsitektur lengkap</li>
+          <li>· Spesifikasi material &amp; finishing</li>
+          <li>· Konsultasi struktur &amp; MEP</li>
+        </ul>
+        <div style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink);">
+          Mulai dari <em style="font-style: italic; color: var(--terracotta);">Rp [X] jt/m²</em>
+        </div>
+      </div>
+
+      <div style="background: var(--sand); padding: 40px 32px;">
+        <div style="font-family: var(--accent); font-size: 11px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 16px;">TIER 03</div>
+        <h3 style="font-family: var(--display); font-size: 28px; font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 16px;">Design &amp; Build</h3>
+        <p style="color: var(--ink-soft); font-size: 14px; line-height: 1.7; margin-bottom: 24px;">
+          Paket turnkey. Kami desain, kami yang bangun. Satu kontrak, satu tim, satu yang bertanggung jawab.
+        </p>
+        <ul style="list-style: none; padding: 0; margin-bottom: 32px; font-size: 13px; line-height: 2; color: var(--clay);">
+          <li>· Semua layanan Tier 02</li>
+          <li>· Konstruksi penuh + pengawasan</li>
+          <li>· Garansi struktur 10 tahun</li>
+          <li>· Handover siap huni</li>
+        </ul>
+        <div style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink);">
+          Mulai dari <em style="font-style: italic; color: var(--terracotta);">Rp [X] jt/m²</em>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 32px; font-size: 13px; color: var(--clay-soft);">
+      Harga indikatif. Penawaran final menyesuaikan tapak, kompleksitas, dan material pilihan.
+    </p>
+  </div>
+</section>
+<style>
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+
+<!-- ===== PROCESS ===== -->
+<section class="block" id="process" style="background: var(--ink); color: var(--sand);">
+  <div class="container">
+    <div style="max-width: 760px; margin-bottom: 64px;">
+      <div class="eyebrow" style="color: var(--terracotta-soft);">PROSES</div>
+      <h2 class="section-title" style="color: var(--sand);">
+        Lima langkah, <em style="color: var(--terracotta-soft);">satu janji</em>:<br>
+        rumah yang kamu bayangkan.
+      </h2>
+    </div>
+
+    <div class="process-grid" style="
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    ">
+      <div>
+        <div style="font-family: var(--display); font-size: 64px; font-weight: 400; color: var(--terracotta-soft); line-height: 1; margin-bottom: 16px; font-style: italic;">01</div>
+        <h4 style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--sand); margin-bottom: 12px;">Konsultasi</h4>
+        <p style="font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.85;">
+          Pertemuan awal, mendengarkan kebutuhan keluarga, mengukur ekspektasi.
+        </p>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 64px; font-weight: 400; color: var(--terracotta-soft); line-height: 1; margin-bottom: 16px; font-style: italic;">02</div>
+        <h4 style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--sand); margin-bottom: 12px;">Tapak</h4>
+        <p style="font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.85;">
+          Survey lokasi, baca arah angin, matahari, kontur. Setiap tanah bicara.
+        </p>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 64px; font-weight: 400; color: var(--terracotta-soft); line-height: 1; margin-bottom: 16px; font-style: italic;">03</div>
+        <h4 style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--sand); margin-bottom: 12px;">Desain</h4>
+        <p style="font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.85;">
+          Sketsa konsep, 3D, material. Iterasi sampai keluarga merasa "ini rumah kami".
+        </p>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 64px; font-weight: 400; color: var(--terracotta-soft); line-height: 1; margin-bottom: 16px; font-style: italic;">04</div>
+        <h4 style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--sand); margin-bottom: 12px;">Bangun</h4>
+        <p style="font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.85;">
+          Konstruksi dipimpin tim sendiri. Update mingguan, transparan, terdokumentasi.
+        </p>
+      </div>
+      <div>
+        <div style="font-family: var(--display); font-size: 64px; font-weight: 400; color: var(--terracotta-soft); line-height: 1; margin-bottom: 16px; font-style: italic;">05</div>
+        <h4 style="font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--sand); margin-bottom: 12px;">Serah Terima</h4>
+        <p style="font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.85;">
+          Handover siap huni. Kunci diserahkan dengan jaminan struktur 10 tahun.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 1024px) { .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; } }
+  @media (max-width: 640px) { .process-grid { grid-template-columns: 1fr !important; } }
+</style>
+
+<!-- ===== STUDIO / ABOUT ===== -->
+<section class="block" id="studio">
+  <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="studio-image">
+      <div style="aspect-ratio: 4/5; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=900&auto=format&fit=crop&q=80" alt="Studio Akusara Samitra" style="width:100%; height:100%; object-fit:cover;" />
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">STUDIO</div>
+      <h2 class="section-title">
+        Tiga generasi,<br><em>satu meja gambar</em>.
+      </h2>
+      <p style="font-family: var(--display); font-size: 18px; font-style: italic; line-height: 1.6; color: var(--clay); margin: 24px 0;">
+        [PLACEHOLDER STORY KELUARGA — cerita singkat tentang siapa yang memulai, kenapa, kapan. 2-3 paragraf. Bicara tentang nilai, bukan resume.]
+      </p>
+      <p style="color: var(--ink-soft); font-size: 15px; line-height: 1.8; margin-bottom: 32px;">
+        Akusara Samitra adalah studio arsitektur dan pembangunan keluarga yang berdiri di [TAHUN] di [LOKASI] Bali. Kami fokus pada rumah tinggal yang berakar pada tempat — material lokal, ventilasi alami, dialog dengan tanah.
+      </p>
+      <div style="display: flex; gap: 32px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--rule);">
+        <div>
+          <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">DIDIRIKAN</div>
+          <div style="font-family: var(--display); font-size: 22px; color: var(--ink);">[YEAR]</div>
+        </div>
+        <div>
+          <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">LOKASI</div>
+          <div style="font-family: var(--display); font-size: 22px; color: var(--ink);">[KOTA], Bali</div>
+        </div>
+        <div>
+          <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--clay); margin-bottom: 6px;">ANGGOTA</div>
+          <div style="font-family: var(--display); font-size: 22px; color: var(--ink);">IAI Bali</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 900px) {
+    #studio .container { grid-template-columns: 1fr !important; gap: 48px !important; }
+  }
+</style>
+
+<!-- ===== CONTACT / CTA ===== -->
+<section class="block" id="contact" style="background: var(--cream); padding-top: 120px; padding-bottom: 120px;">
+  <div class="container-narrow" style="text-align: center;">
+    <div class="eyebrow">KONSULTASI</div>
+    <h2 class="section-title" style="max-width: 18ch; margin: 0 auto 24px;">
+      Punya tanah, dan <em>ide yang masih samar</em>?
+    </h2>
+    <p class="section-deck" style="margin: 0 auto 40px;">
+      Konsultasi awal selalu gratis. Kirim foto tapak dan ceritakan keluarga kamu—kami balas via WhatsApp dalam 24 jam.
+    </p>
+    <a href="https://wa.me/62XXXXXXXXXX?text=Halo%20Akusara%20Samitra%2C%20saya%20tertarik%20konsultasi" style="
+      display: inline-block;
+      padding: 18px 40px;
+      background: var(--ink);
+      color: var(--sand);
+      font-family: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      transition: all 200ms;
+    " onmouseover="this.style.background='var(--terracotta)'" onmouseout="this.style.background='var(--ink)'">
+      WHATSAPP KAMI →
+    </a>
+    <div style="margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 48px; border-top: 1px solid var(--rule);" class="contact-grid">
+      <div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 8px;">STUDIO</div>
+        <div style="font-family: var(--display); font-size: 17px; color: var(--ink); line-height: 1.5;">[ALAMAT]<br>[KOTA], Bali</div>
+      </div>
+      <div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 8px;">EMAIL</div>
+        <div style="font-family: var(--display); font-size: 17px; color: var(--ink);">studio@akusarasamitra.com</div>
+      </div>
+      <div>
+        <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.22em; color: var(--terracotta); margin-bottom: 8px;">INSTAGRAM</div>
+        <div style="font-family: var(--display); font-size: 17px; color: var(--ink);">@akusarasamitra</div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr !important; gap: 28px !important; } }
+</style>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background: var(--ink); color: var(--cream); padding: 48px 32px 32px;">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <div style="font-family: var(--display); font-size: 22px; color: var(--sand);">
+      Akusara <em style="font-style: italic; color: var(--terracotta-soft);">Samitra</em>
+    </div>
+    <div style="font-family: var(--accent); font-size: 10px; letter-spacing: 0.18em; color: var(--clay-soft);">
+      © 2026 · ARCHITECTURE &amp; BUILD · BALI · INDONESIA
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

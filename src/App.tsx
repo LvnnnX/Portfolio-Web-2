@@ -9,7 +9,8 @@ function App() {
   const location = useLocation();
   const isEditorial =
     location.pathname.startsWith("/blog") ||
-    location.pathname.startsWith("/case-study");
+    location.pathname.startsWith("/case-study") ||
+    location.pathname.startsWith("/planned-website");
 
   return (
     <div className="relative min-h-screen dark:bg-background">

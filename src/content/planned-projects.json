@@ -1,0 +1,53 @@
+{
+  "$schema-doc": "Each entry surfaces as a card at /planned-website. Drop the HTML into public/plan/, then add an entry here. The route auto-renders.",
+  "projects": [
+    {
+      "slug": "akusara-samitra-v1",
+      "title": "Akusara Samitra — Mockup v1",
+      "description": "First-pass mockup for a family architecture studio in Bali. Hero-led layout with tropical-wisdom framing — anchors the brand voice before later iterations refine it.",
+      "file": "akusara-samitra-mockup.html",
+      "status": "exploring",
+      "tags": ["Architecture", "Bali", "Brand mockup"]
+    },
+    {
+      "slug": "akusara-samitra-v2",
+      "title": "Akusara Samitra — Mockup v2 (Minimalism)",
+      "description": "Stripped-down version of the studio site. Pares the chrome back to typography and a single accent — testing whether the studio voice survives without ornament.",
+      "file": "akusara-mockup-v2-minimalism.html",
+      "status": "exploring",
+      "tags": ["Architecture", "Bali", "Minimalism"]
+    },
+    {
+      "slug": "akusara-samitra-v3",
+      "title": "Akusara Samitra — Mockup v3 (Editorial)",
+      "description": "Studio-journal direction: editorial layout that frames the practice as ongoing notes, not a marketing site. Designed to age well as the studio publishes more work.",
+      "file": "akusara-mockup-v3-editorial.html",
+      "status": "in-progress",
+      "tags": ["Architecture", "Editorial", "Long-form"]
+    },
+    {
+      "slug": "akusara-samitra-home-photographic",
+      "title": "Akusara Samitra — Home (Photographic)",
+      "description": "Multi-page split: dedicated homepage that leads with photography. Climate, soil, family — the framing the studio listens to before designing.",
+      "file": "01-home-photographic.html",
+      "status": "in-progress",
+      "tags": ["Architecture", "Photography-led", "Multi-page"]
+    },
+    {
+      "slug": "akusara-samitra-about-long-document",
+      "title": "Akusara Samitra — Studio (Long Document)",
+      "description": "Companion to the photographic home: the about page as a long-form document. Who we are, how we work, why we choose slow.",
+      "file": "02-about-long-document.html",
+      "status": "in-progress",
+      "tags": ["Architecture", "Long-form", "Multi-page"]
+    },
+    {
+      "slug": "akusara-samitra-projects-bento",
+      "title": "Akusara Samitra — Projects (Bento Grid)",
+      "description": "Project index using a bento-grid layout: each completed house gets its own tile sized by significance. Climate, soil, family — every house different.",
+      "file": "03-projects-bento-grid.html",
+      "status": "in-progress",
+      "tags": ["Architecture", "Bento grid", "Multi-page"]
+    }
+  ]
+}
