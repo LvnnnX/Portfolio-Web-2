@@ -204,7 +204,7 @@
 }
 
 @media (min-width: 1024px) {
-  .cs-grid {
+  .cs-grid:not(.cs-grid--single) {
     grid-template-columns: 200px minmax(0, 1fr);
     gap: 64px;
   }
@@ -315,6 +315,15 @@
 
 .cs-body p {
   margin-block-end: 1.1em;
+  text-align: left;
+  hyphens: none;
+}
+
+@media (min-width: 768px) {
+  .cs-body p {
+    text-align: justify;
+    hyphens: auto;
+  }
 }
 
 .cs-body strong {
@@ -418,6 +427,45 @@
   margin-block: 48px 32px;
 }
 
+/* Daftar pustaka — everything after the final <hr> in MDX is the bibliography.
+ * Smaller body, sans-serif chrome face, hanging indent for citations. */
+
+.cs-body hr ~ h2 {
+  font-family: var(--cs-sans);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--cs-ink-faint);
+  margin-block: 0 16px;
+}
+
+.cs-body hr ~ h2::before {
+  content: none;
+}
+
+.cs-body hr ~ p {
+  font-family: var(--cs-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--cs-ink-soft);
+  text-align: left;
+  hyphens: none;
+  padding-inline-start: 1.4em;
+  text-indent: -1.4em;
+  margin-block-end: 0.7em;
+}
+
+.cs-body hr ~ p strong {
+  font-weight: 700;
+  color: var(--cs-ink);
+}
+
+.cs-body hr ~ p em {
+  font-style: italic;
+}
+
 /* ── Tags ───────────────────────────────────────────────────────────── */
 
 .cs-tags {
@@ -500,5 +548,115 @@
   }
   .cs-rail__btn:hover {
     transform: none;
+  }
+}
+
+/* ── Blog list (editorial card list — used at /blog index) ───────────── */
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--cs-rule);
+}
+
+.blog-row {
+  border-bottom: 1px solid var(--cs-rule);
+}
+
+.blog-row__link {
+  display: block;
+  padding: 28px 4px;
+  text-decoration: none;
+  color: var(--cs-ink);
+  transition: background-color 200ms var(--cs-ease-out), padding-inline-start 200ms var(--cs-ease-out);
+}
+
+.blog-row__link:hover {
+  background-color: var(--cs-paper-2);
+  padding-inline-start: 16px;
+}
+
+.blog-row__link:focus-visible {
+  outline: 2px solid var(--cs-accent);
+  outline-offset: -2px;
+}
+
+.blog-row__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--cs-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  color: var(--cs-ink-faint);
+  margin-block-end: 10px;
+  gap: 12px;
+}
+
+.blog-row__edition {
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--cs-accent);
+}
+
+.blog-row__date {
+  text-transform: uppercase;
+}
+
+.blog-row__title {
+  font-family: var(--cs-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--cs-ink);
+  margin: 0 0 8px;
+  max-width: 32ch;
+}
+
+.blog-row__deck {
+  font-family: var(--cs-serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--cs-ink-soft);
+  margin: 0 0 12px;
+  max-width: 60ch;
+}
+
+.blog-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+}
+
+.blog-row__tag {
+  font-family: var(--cs-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-ink-faint);
+}
+
+.blog-row__tag::before {
+  content: "·";
+  margin-inline-end: 6px;
+  color: var(--cs-rule);
+}
+
+.blog-row__tag:first-child::before {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-row__link {
+    transition: none;
+  }
+  .blog-row__link:hover {
+    padding-inline-start: 4px;
   }
 }
