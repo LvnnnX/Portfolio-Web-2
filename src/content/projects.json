@@ -115,6 +115,22 @@
         "repo": null,
         "live": null
       }
+    },
+    {
+      "id": "kebijakan-pulse",
+      "tier": 2,
+      "emoji": "📊",
+      "title": "Kebijakan Pulse",
+      "role": "Solo Developer",
+      "period": "2026",
+      "category": "Data & NLP",
+      "impact": "Pipeline + dashboard yang ingest 5 RSS source ekonomi Indonesia, klasifikasi kebijakan via Groq Llama 3.3 70B, lalu correlate sentiment dengan IHSG harian.",
+      "context": "Quantifying gap antara narasi kebijakan dan sinyal market real-time. $0/bulan runtime stack.",
+      "techStack": ["Python", "Next.js 16", "Supabase", "Groq API", "Recharts", "GitHub Actions"],
+      "links": {
+        "repo": "https://github.com/LvnnnX/kebijakan-pulse",
+        "live": null
+      }
     }
   ]
 }
