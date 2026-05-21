@@ -13,7 +13,16 @@ function App() {
     location.pathname.startsWith("/planned-website");
 
   return (
-    <div className="relative min-h-screen dark:bg-background">
+    <div
+      className="relative min-h-screen dark:bg-background"
+      style={
+        isEditorial
+          ? {
+              backgroundColor: "var(--editorial-paper, #fafaf6)",
+            }
+          : undefined
+      }
+    >
       {/* Background Layer (skipped on /blog and /case-study so the editorial
           paper surface isn't muddled by the WebGL shader). */}
       {!isEditorial && (
