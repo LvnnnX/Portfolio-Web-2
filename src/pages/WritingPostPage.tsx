@@ -82,7 +82,7 @@ export default function WritingPostPage() {
 
       <article className="cs-article">
         <Link to="/blog" className="cs-back">
-          <ArrowLeft size={12} /> All posts
+          <ArrowLeft size={12} /> Semua tulisan
         </Link>
 
         <p className="cs-eyebrow">

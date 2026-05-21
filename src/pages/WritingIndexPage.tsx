@@ -87,22 +87,22 @@ export default function WritingIndexPage() {
 
       <article className="cs-article">
         <Link to="/" className="cs-back">
-          <ArrowLeft size={12} /> Back to portfolio
+          <ArrowLeft size={12} /> Kembali
         </Link>
 
         <p className="cs-eyebrow">
           <span>Catatan · Esai</span>
         </p>
 
-        <h1 className="cs-title">Blog</h1>
+        <h1 className="cs-title">Tulisan</h1>
 
         <p className="cs-deck">
-          Esai pendek tentang ekonomi, hukum, teknologi, dan hal-hal yang
-          layak dipikir lebih dari satu kali.
+          Catatan tentang ekonomi, kebijakan publik, dan hal-hal yang
+          butuh lebih dari satu kali baca untuk dipahami.
         </p>
 
         {posts.length === 0 ? (
-          <p style={{ color: "var(--cs-ink-soft)" }}>Belum ada edisi.</p>
+          <p style={{ color: "var(--cs-ink-soft)" }}>Belum ada tulisan.</p>
         ) : (
           <ul className="blog-list">
             {posts.map((post) => (
