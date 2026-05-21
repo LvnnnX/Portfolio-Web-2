@@ -124,8 +124,8 @@
       "role": "Solo Developer",
       "period": "2026",
       "category": "Data & NLP",
-      "impact": "Pipeline + dashboard yang ingest 5 RSS source ekonomi Indonesia, klasifikasi kebijakan via Groq Llama 3.3 70B, lalu correlate sentiment dengan IHSG harian.",
-      "context": "Quantifying gap antara narasi kebijakan dan sinyal market real-time. $0/bulan runtime stack.",
+      "impact": "Real-time sentiment pipeline that ingests 5 Indonesian economic RSS feeds, classifies policy categories via Groq Llama 3.3 70B, and correlates daily sentiment scores against IHSG close price.",
+      "context": "Monorepo architecture — Python ingestion pipeline with GitHub Actions cron, Supabase Postgres with RLS, Next.js 16 dashboard with Bloomberg-inspired terminal aesthetic.",
       "techStack": ["Python", "Next.js 16", "Supabase", "Groq API", "Recharts", "GitHub Actions"],
       "links": {
         "repo": "https://github.com/LvnnnX/kebijakan-pulse",
