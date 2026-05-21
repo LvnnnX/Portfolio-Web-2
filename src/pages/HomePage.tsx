@@ -2,11 +2,9 @@ import React, { Suspense } from "react";
 import PortfolioHero from "../components/ui/portfolio-hero";
 import SEO, { PersonJsonLd } from "../components/seo/SEO";
 
-const AboutMe = React.lazy(() => import("../components/ui/AboutMe"));
 const Experience = React.lazy(() => import("../components/ui/Experience"));
 const Projects = React.lazy(() => import("../components/ui/Projects"));
 const Skills = React.lazy(() => import("../components/ui/Skills"));
-const Tools = React.lazy(() => import("../components/ui/Tools"));
 const OpenSource = React.lazy(() => import("../components/sections/OpenSource"));
 const Contact = React.lazy(() => import("../components/ui/Contact"));
 
@@ -32,17 +30,11 @@ export default function HomePage() {
       </div>
 
       <Suspense fallback={<SectionFallback />}>
-        <div id="about">
-          <AboutMe />
-        </div>
         <div id="experience">
           <Experience />
         </div>
         <div id="projects">
           <Projects />
-        </div>
-        <div id="tools">
-          <Tools />
         </div>
         <div id="skills">
           <Skills />

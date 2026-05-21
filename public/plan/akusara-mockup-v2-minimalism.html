@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akusara Samitra — Architecture &amp; Build, Bali</title>
+<meta name="description" content="Akusara Samitra. Studio arsitektur dan pembangunan rumah di Bali." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E0E0E;
+    --ink-soft: #2C2C2C;
+    --mute: #6B6B6B;
+    --mute-soft: #9A9A9A;
+    --line: #DCDCDC;
+    --line-soft: #EBEBEB;
+    --paper: #F4F2EE;
+    --paper-warm: #ECE9E2;
+    --accent: #C2451E;
+    --sans: "Inter", -apple-system, system-ui, "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- GRID HELPERS ---------- */
+  .gridline {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.0;
+  }
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 32px; position: relative; }
+  @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+  /* ---------- NAV ---------- */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(244, 242, 238, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  nav.top .brand {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  nav.top .brand-mark {
+    width: 24px; height: 24px;
+    border: 1px solid var(--ink);
+    display: inline-block;
+    position: relative;
+  }
+  nav.top .brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    background: var(--ink);
+  }
+  nav.top ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  nav.top ul a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--mute);
+    transition: color 200ms;
+  }
+  nav.top ul a:hover { color: var(--ink); }
+  nav.top .lang {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--mute);
+  }
+  nav.top .lang strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 768px) {
+    nav.top { padding: 16px 20px; }
+    nav.top ul { gap: 16px; }
+    nav.top ul a:nth-child(2), nav.top ul a:nth-child(3) { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 620px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.05);
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14,14,14,0.05) 0%, rgba(14,14,14,0) 40%, rgba(14,14,14,0.55) 100%);
+    pointer-events: none;
+  }
+  .hero .label-top {
+    position: absolute;
+    top: 100px;
+    left: 32px;
+    z-index: 3;
+    color: var(--paper);
+    display: flex;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    opacity: 0.78;
+  }
+  .hero .label-top span strong { display: block; color: var(--paper); font-weight: 500; opacity: 1; margin-top: 2px; }
+  .hero .label-top span { color: rgba(255,255,255,0.6); }
+  .hero .title {
+    position: absolute;
+    bottom: 64px;
+    left: 32px;
+    right: 32px;
+    z-index: 3;
+    color: var(--paper);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    max-width: 18ch;
+  }
+  .hero h1 strong { font-weight: 500; }
+  .hero .meta {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+    min-width: 180px;
+  }
+  .hero .meta strong { color: var(--paper); font-weight: 500; }
+  @media (max-width: 768px) {
+    .hero .label-top { top: 80px; left: 20px; gap: 18px; }
+    .hero .title { left: 20px; right: 20px; bottom: 36px; }
+    .hero .meta { display: none; }
+  }
+
+  /* ---------- SECTION COMMON ---------- */
+  section.block { padding: 120px 32px; }
+  @media (max-width: 768px) { section.block { padding: 72px 20px; } }
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 18px;
+    margin-bottom: 56px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--mute);
+  }
+  .label-row strong { color: var(--ink); font-weight: 500; }
+
+  .section-h {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  .section-h strong { font-weight: 500; }
+  .section-deck {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 50ch;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+
+  /* ---------- INTRO ---------- */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .intro-grid .left {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--mute);
+    line-height: 1.8;
+    padding-top: 14px;
+  }
+  .intro-grid .left strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
+  .intro-grid .left .item { margin-bottom: 24px; }
+  .intro-grid .right h2 {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  .intro-grid .right h2 strong { font-weight: 500; }
+  .intro-grid .right p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-top: 28px;
+    max-width: 56ch;
+  }
+  @media (max-width: 900px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="top">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span>Akusara Samitra</span>
+  </div>
+  <ul>
+    <li><a href="#projects">Index</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li class="lang"><strong>ID</strong> · EN</li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&auto=format&fit=crop&q=80" alt="Rumah arsitektur minimalis Bali" />
+  <div class="label-top">
+    <span>LAT &nbsp;<strong>−8.5069°&nbsp;S</strong></span>
+    <span>LON&nbsp;<strong>115.2625°&nbsp;E</strong></span>
+    <span>EST&nbsp;<strong>[YEAR]</strong></span>
+  </div>
+  <div class="title">
+    <h1>Architecture<br>and <strong>build</strong>,<br>from Bali.</h1>
+    <div class="meta">
+      VILLA SARASWATI<br>
+      <strong>UBUD · 2025</strong><br>
+      320 m² · COMPLETED
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<section class="block">
+  <div class="container">
+    <div class="label-row">
+      <span><strong>00</strong> &nbsp;·&nbsp; INTRODUCTION</span>
+      <span>BALI · INDONESIA</span>
+    </div>
+    <div class="intro-grid">
+      <div class="left">
+        <div class="item"><strong>Founded</strong>[YEAR]</div>
+        <div class="item"><strong>Based in</strong>[KOTA], Bali</div>
+        <div class="item"><strong>Practice</strong>Design &amp; Build</div>
+        <div class="item"><strong>Focus</strong>Residential</div>
+        <div class="item"><strong>Members</strong>IAI Bali</div>
+      </div>
+      <div class="right">
+        <h2>A small <strong>family practice</strong> rooted in tropical wisdom and quiet detail.</h2>
+        <p>
+          [PLACEHOLDER FILOSOFI — 80–120 kata. Bicara tentang nilai keluarga, hubungan dengan tanah, kenapa design &amp; build dijalankan dalam satu studio. Hindari jargon arsitektur, gunakan bahasa yang jujur dan tenang.]
+        </p>
+        <p style="margin-top: 18px;">
+          [Paragraf kedua — bisa konkret: jenis material yang dicintai, geografi proyek, sikap terhadap iklim tropis dan arsitektur tradisional Bali.]
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDEX (PROJECTS) ===== -->
+<section class="block" id="projects" style="background: var(--paper-warm); padding-top: 96px;">
+  <div class="container">
+    <div class="label-row">
+      <span><strong>01</strong> &nbsp;·&nbsp; SELECTED WORKS</span>
+      <span>10 PROJECTS · 2018–2026</span>
+    </div>
+
+    <h2 class="section-h" style="margin-bottom: 56px;">
+      Selected residential <strong>commissions</strong> across Bali, organized by year of completion.
+    </h2>
+
+    <div style="display: flex; flex-direction: column; border-top: 1px solid var(--line);">
+      <a href="#" class="proj-row" style="
+        display: grid;
+        grid-template-columns: 60px 1.8fr 1.4fr 1fr 0.7fr 0.6fr;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 200ms;
+      ">
+        <span style="font-family: var(--mono); font-size: 11px; color: var(--mute);">001</span>
+        <span style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em;">Villa Saraswati</span>
+        <span style="font-size: 14px; color: var(--ink-soft);">Single residence, courtyard typology</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">UBUD</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">320 m²</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute); text-align: right;">2025 →</span>
+      </a>
+      <a href="#" class="proj-row" style="
+        display: grid;
+        grid-template-columns: 60px 1.8fr 1.4fr 1fr 0.7fr 0.6fr;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 200ms;
+      ">
+        <span style="font-family: var(--mono); font-size: 11px; color: var(--mute);">002</span>
+        <span style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em;">Rumah Padma</span>
+        <span style="font-size: 14px; color: var(--ink-soft);">Family home with cross-ventilation</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">CANGGU</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">240 m²</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute); text-align: right;">2024 →</span>
+      </a>
+      <a href="#" class="proj-row" style="
+        display: grid;
+        grid-template-columns: 60px 1.8fr 1.4fr 1fr 0.7fr 0.6fr;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 200ms;
+      ">
+        <span style="font-family: var(--mono); font-size: 11px; color: var(--mute);">003</span>
+        <span style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em;">Joglo Kemenuh</span>
+        <span style="font-size: 14px; color: var(--ink-soft);">Heritage joglo restoration + extension</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">KEMENUH</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">180 m²</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute); text-align: right;">2024 →</span>
+      </a>
+      <a href="#" class="proj-row" style="
+        display: grid;
+        grid-template-columns: 60px 1.8fr 1.4fr 1fr 0.7fr 0.6fr;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 200ms;
+      ">
+        <span style="font-family: var(--mono); font-size: 11px; color: var(--mute);">004</span>
+        <span style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em;">Atelier Munduk</span>
+        <span style="font-size: 14px; color: var(--ink-soft);">Artist studio, north Bali highlands</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">MUNDUK</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute);">95 m²</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: var(--mute); text-align: right;">2023 →</span>
+      </a>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 56px;">
+      <span style="font-family: var(--mono); font-size: 12px; color: var(--mute); letter-spacing: 0.05em;">SHOWING 4 OF 10</span>
+      <a href="#" style="font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; border-bottom: 1px solid var(--accent); padding-bottom: 4px;">VIEW FULL INDEX →</a>
+    </div>
+  </div>
+</section>
+<style>
+  .proj-row:hover { background: rgba(14,14,14,0.03); padding-left: 12px; padding-right: 12px; margin-left: -12px; margin-right: -12px; }
+  @media (max-width: 900px) {
+    .proj-row { grid-template-columns: 30px 1fr 0.6fr !important; }
+    .proj-row > span:nth-child(3),
+    .proj-row > span:nth-child(4),
+    .proj-row > span:nth-child(5) { display: none !important; }
+  }
+</style>
+
+<!-- ===== SERVICES ===== -->
+<section class="block" id="services">
+  <div class="container">
+    <div class="label-row">
+      <span><strong>02</strong> &nbsp;·&nbsp; SERVICES</span>
+      <span>3 ENGAGEMENT TIERS</span>
+    </div>
+
+    <h2 class="section-h" style="margin-bottom: 64px;">
+      From the first <strong>sketch</strong> to the day keys are handed over.
+    </h2>
+
+    <div class="services-grid" style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    ">
+      <div style="border-top: 2px solid var(--ink); padding-top: 28px;">
+        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--mute); margin-bottom: 24px;">TIER / 01</div>
+        <h3 style="font-size: 26px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;">Consultation</h3>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px;">
+          Initial conversation about site, budget, and family needs. Right when you are still considering options.
+        </p>
+        <ul style="list-style: none; font-family: var(--mono); font-size: 11px; color: var(--mute); line-height: 2.2; letter-spacing: 0.03em; border-top: 1px solid var(--line); padding-top: 16px;">
+          <li>— Site visit + survey</li>
+          <li>— Concept sketches</li>
+          <li>— Budget estimate</li>
+          <li>— Material recommendations</li>
+        </ul>
+        <div style="margin-top: 28px; font-family: var(--mono); font-size: 12px; color: var(--ink); letter-spacing: 0.04em;">
+          FROM <strong style="font-weight: 500; color: var(--accent);">IDR [X]M</strong>
+        </div>
+      </div>
+
+      <div style="border-top: 2px solid var(--ink); padding-top: 28px;">
+        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--mute); margin-bottom: 24px;">TIER / 02</div>
+        <h3 style="font-size: 26px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;">Design</h3>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px;">
+          End-to-end design service. From concept to construction-ready drawings. Optional supervision if you bring your own contractor.
+        </p>
+        <ul style="list-style: none; font-family: var(--mono); font-size: 11px; color: var(--mute); line-height: 2.2; letter-spacing: 0.03em; border-top: 1px solid var(--line); padding-top: 16px;">
+          <li>— Schematic + 3D visualization</li>
+          <li>— Full architectural drawings</li>
+          <li>— Material &amp; finishing specs</li>
+          <li>— Structural &amp; MEP coordination</li>
+        </ul>
+        <div style="margin-top: 28px; font-family: var(--mono); font-size: 12px; color: var(--ink); letter-spacing: 0.04em;">
+          FROM <strong style="font-weight: 500; color: var(--accent);">IDR [X]M / m²</strong>
+        </div>
+      </div>
+
+      <div style="border-top: 2px solid var(--ink); padding-top: 28px;">
+        <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--mute); margin-bottom: 24px;">TIER / 03</div>
+        <h3 style="font-size: 26px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2;">Design &amp; Build</h3>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px;">
+          Turnkey package. We design, we build. One contract, one team, one party accountable end to end.
+        </p>
+        <ul style="list-style: none; font-family: var(--mono); font-size: 11px; color: var(--mute); line-height: 2.2; letter-spacing: 0.03em; border-top: 1px solid var(--line); padding-top: 16px;">
+          <li>— Everything in Tier 02</li>
+          <li>— Full construction + supervision</li>
+          <li>— 10-year structural warranty</li>
+          <li>— Move-in ready handover</li>
+        </ul>
+        <div style="margin-top: 28px; font-family: var(--mono); font-size: 12px; color: var(--ink); letter-spacing: 0.04em;">
+          FROM <strong style="font-weight: 500; color: var(--accent);">IDR [X]M / m²</strong>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 48px; font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.04em;">
+      → Indicative pricing. Final proposal varies by site, complexity, and material selection.
+    </p>
+  </div>
+</section>
+<style>
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr !important; gap: 56px !important; }
+  }
+</style>
+
+<!-- ===== PROCESS ===== -->
+<section class="block" id="process" style="background: var(--ink); color: var(--paper);">
+  <div class="container">
+    <div class="label-row" style="border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.6);">
+      <span style="color: rgba(255,255,255,0.6);"><strong style="color: var(--paper);">03</strong> &nbsp;·&nbsp; PROCESS</span>
+      <span>5 PHASES</span>
+    </div>
+
+    <h2 class="section-h" style="color: var(--paper); margin-bottom: 80px;">
+      Five phases. <strong>One promise:</strong> the home you imagined, built honestly.
+    </h2>
+
+    <div class="process-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px;">
+      <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 24px;">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.08em; margin-bottom: 12px;">/ 01</div>
+        <h4 style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--paper);">Consultation</h4>
+        <p style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65);">Initial meeting. Listen. Map needs and expectations.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 24px;">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.08em; margin-bottom: 12px;">/ 02</div>
+        <h4 style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--paper);">Site</h4>
+        <p style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65);">Survey location. Read wind, sun, contour. Every plot speaks.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 24px;">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.08em; margin-bottom: 12px;">/ 03</div>
+        <h4 style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--paper);">Design</h4>
+        <p style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65);">Concept, 3D, materials. Iterate until family says: this is ours.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 24px;">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.08em; margin-bottom: 12px;">/ 04</div>
+        <h4 style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--paper);">Build</h4>
+        <p style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65);">Construction by our own team. Weekly updates. Transparent records.</p>
+      </div>
+      <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 24px;">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--mute-soft); letter-spacing: 0.08em; margin-bottom: 12px;">/ 05</div>
+        <h4 style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--paper);">Handover</h4>
+        <p style="font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.65);">Move-in ready. Keys handed over with 10-year structural warranty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 1024px) { .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; } }
+  @media (max-width: 640px) { .process-grid { grid-template-columns: 1fr !important; } }
+</style>
+
+<!-- ===== STUDIO ===== -->
+<section class="block" id="studio">
+  <div class="container">
+    <div class="label-row">
+      <span><strong>04</strong> &nbsp;·&nbsp; STUDIO</span>
+      <span>FAMILY PRACTICE · BALI</span>
+    </div>
+
+    <div class="studio-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+      <div>
+        <h2 class="section-h">
+          Three generations,<br><strong>one drafting table</strong>.
+        </h2>
+        <p style="font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-top: 32px; max-width: 50ch;">
+          [PLACEHOLDER STORY — cerita keluarga 2–3 paragraf. Founder, kapan dimulai, kenapa design &amp; build dijalankan dalam satu studio. Bicara tentang nilai, bukan resume.]
+        </p>
+        <p style="font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-top: 18px; max-width: 50ch;">
+          [Paragraf kedua — bisa konkret tentang material yang dicintai, area kerja, sikap terhadap iklim tropis dan tradisi Bali.]
+        </p>
+
+        <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(3, auto); gap: 48px; padding-top: 32px; border-top: 1px solid var(--line);">
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 8px;">FOUNDED</div>
+            <div style="font-size: 22px; font-weight: 400; letter-spacing: -0.01em;">[YEAR]</div>
+          </div>
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 8px;">BASED</div>
+            <div style="font-size: 22px; font-weight: 400; letter-spacing: -0.01em;">[KOTA], Bali</div>
+          </div>
+          <div>
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 8px;">MEMBER</div>
+            <div style="font-size: 22px; font-weight: 400; letter-spacing: -0.01em;">IAI Bali</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="aspect-ratio: 4/5; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=900&auto=format&fit=crop&q=80" alt="Studio Akusara Samitra" style="width:100%; height:100%; object-fit:cover; filter: grayscale(0.1);" />
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 900px) {
+    .studio-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .studio-grid > div:last-child { order: -1; }
+  }
+</style>
+
+<!-- ===== CONTACT ===== -->
+<section class="block" id="contact" style="background: var(--paper-warm); padding-top: 120px; padding-bottom: 120px;">
+  <div class="container">
+    <div class="label-row">
+      <span><strong>05</strong> &nbsp;·&nbsp; CONTACT</span>
+      <span>RESPONSE WITHIN 24h</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;" class="contact-grid">
+      <div>
+        <h2 class="section-h">
+          Have a site, and<br><strong>an idea still forming</strong>?
+        </h2>
+        <p class="section-deck">
+          Initial consultation is always free. Send a photo of the site and tell us about your family. We reply on WhatsApp within 24 hours.
+        </p>
+        <a href="https://wa.me/62XXXXXXXXXX?text=Halo%20Akusara%20Samitra%2C%20saya%20tertarik%20konsultasi" style="
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 40px;
+          padding: 18px 28px;
+          background: var(--ink);
+          color: var(--paper);
+          font-family: var(--mono);
+          font-size: 12px;
+          letter-spacing: 0.1em;
+          transition: all 200ms;
+        " onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--ink)'">
+          → &nbsp; WHATSAPP US
+        </a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px; padding-top: 14px;">
+        <div style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 4px;">STUDIO</div>
+          <div style="font-size: 16px; line-height: 1.5;">[ALAMAT]<br>[KOTA], Bali</div>
+        </div>
+        <div style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 4px;">EMAIL</div>
+          <div style="font-size: 16px;">studio@akusarasamitra.com</div>
+        </div>
+        <div style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 4px;">INSTAGRAM</div>
+          <div style="font-size: 16px;">@akusarasamitra</div>
+        </div>
+        <div style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mute); margin-bottom: 4px;">WHATSAPP</div>
+          <div style="font-size: 16px;">+62 XXX-XXXX-XXXX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+  }
+</style>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background: var(--paper); padding: 56px 32px 32px; border-top: 1px solid var(--line);">
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="width: 18px; height: 18px; border: 1px solid var(--ink); display: inline-block; position: relative;">
+        <span style="position: absolute; inset: 4px; background: var(--ink); display: block;"></span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500;">Akusara Samitra</span>
+    </div>
+    <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--mute);">
+      © 2026 · ARCHITECTURE &amp; BUILD · BALI · ID
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

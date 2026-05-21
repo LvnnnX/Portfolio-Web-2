@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!--
+  Hallmark · macrostructure: Bento Grid · hero: H4-Stat-Led
+  nav: N5 Floating pill · footer: Ft1 Mast-headed
+  theme: studied-DNA (source: studiosaxe.com URL mode)
+  paper oklch(53% 0.012 65) ≈ #6A6159 · accent terracotta #B8422E
+  display+body+label: Bricolage Grotesque single-family
+  Asymmetric tile spans · anti 3-col-equal-grid · feature tile = 2x2
+  pre-emit critique: P5 H5 E5 S5 R5 V5
+-->
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyek — Akusara Samitra</title>
+<meta name="description" content="Daftar rumah yang sudah kami selesaikan di Bali. Setiap rumah punya iklim, tanah, dan keluarga yang berbeda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: oklch(53% 0.012 65);
+  --paper-deep: oklch(42% 0.014 60);
+  --paper-soft: oklch(62% 0.010 70);
+  --tile-bg: oklch(45% 0.013 62);
+  --tile-bg-hover: oklch(50% 0.015 64);
+  --ink: #FAFAF7;
+  --ink-soft: rgba(250,250,247,0.72);
+  --ink-faint: rgba(250,250,247,0.48);
+  --accent: #B8422E;
+  --accent-soft: rgba(184,66,46,0.18);
+  --hairline: rgba(250,250,247,0.16);
+  --hairline-strong: rgba(250,250,247,0.32);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --type-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-body: 'Bricolage Grotesque', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+body {
+  font-family: var(--type-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== NAV — N5 Floating pill ========== */
+.pill-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(20,18,16,0.72);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 0.5rem 0.625rem 0.5rem 1.25rem;
+}
+.pill-nav__brand {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+.pill-nav__brand em { font-style: italic; font-weight: 400; color: var(--ink-soft); }
+.pill-nav__links { display: flex; gap: 0.25rem; list-style: none; }
+.pill-nav__links a {
+  display: block;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+}
+.pill-nav__links a:hover { color: var(--ink); background: rgba(250,250,247,0.06); }
+.pill-nav__links a.is-active { color: var(--ink); background: rgba(250,250,247,0.10); }
+.pill-nav__cta {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 180ms var(--ease-out);
+}
+.pill-nav__cta:hover { background: var(--accent); color: var(--ink); }
+
+/* ========== HERO — H4 Stat-Led ========== */
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8rem 2rem 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 4rem;
+  align-items: end;
+}
+.hero__title-block {}
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+}
+.hero__eyebrow .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin: 0 0.75rem 0.15rem 0;
+  vertical-align: middle;
+}
+.hero__title {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 14ch;
+}
+.hero__title em { font-style: italic; font-weight: 400; color: var(--ink-soft); }
+.hero__stat-block { display: flex; flex-direction: column; gap: 1rem; }
+.hero__stat-row { display: flex; gap: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--hairline); }
+.hero__stat { display: flex; flex-direction: column; gap: 0.25rem; }
+.hero__stat-num {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.hero__stat-num em { font-style: italic; color: var(--ink-faint); font-weight: 400; }
+.hero__stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.hero__lede { font-size: 1rem; color: var(--ink-soft); line-height: 1.6; max-width: 38ch; }
+.hero__lede em { font-style: italic; color: var(--ink); }
+
+/* ========== BENTO GRID ========== */
+.bento {
+  max-width: 1280px;
+  margin: 2rem auto 0;
+  padding: 0 2rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  gap: 1rem;
+}
+.tile {
+  position: relative;
+  background: var(--tile-bg);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 220ms var(--ease-out), border-color 220ms var(--ease-out);
+}
+.tile:hover { background: var(--tile-bg-hover); border-color: var(--hairline-strong); }
+.tile:hover .tile__title { color: var(--accent); }
+
+/* tile spans */
+.tile--feature { grid-column: span 8; grid-row: span 2; }
+.tile--medium  { grid-column: span 4; grid-row: span 2; }
+.tile--wide    { grid-column: span 6; grid-row: span 1; }
+.tile--small   { grid-column: span 3; grid-row: span 1; }
+.tile--tall    { grid-column: span 4; grid-row: span 2; }
+
+.tile__visual {
+  flex: 1;
+  position: relative;
+  background:
+    linear-gradient(135deg, oklch(48% 0.018 62) 0%, oklch(38% 0.012 58) 100%);
+  overflow: hidden;
+}
+.tile__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.04) saturate(0.92) brightness(0.92);
+  transition: transform 600ms var(--ease-out), filter 320ms var(--ease-out);
+}
+.tile:hover .tile__visual img {
+  transform: scale(1.035);
+  filter: contrast(1.04) saturate(0.95) brightness(0.96);
+}
+.tile__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 14% 28%, rgba(0,0,0,0.10) 50%, transparent 51%),
+    radial-gradient(1px 1px at 32% 68%, rgba(0,0,0,0.08) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 76% 22%, rgba(0,0,0,0.08) 50%, transparent 51%);
+  background-size: 280px 280px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+.tile--feature .tile__visual::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,18,16,0.55) 100%);
+}
+.tile__meta {
+  position: relative;
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tile--feature .tile__meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 2rem 2rem;
+}
+.tile__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.tile__eyebrow .year { color: var(--accent); font-weight: 500; }
+.tile__title {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 220ms var(--ease-out);
+}
+.tile--feature .tile__title { font-size: clamp(1.5rem, 2.6vw, 2.125rem); line-height: 1.1; max-width: 22ch; }
+.tile__loc { font-size: 0.85rem; color: var(--ink-soft); }
+.tile__loc em { font-style: italic; color: var(--ink-faint); }
+
+/* text-only tile (no visual) */
+.tile--text { background: transparent; border: 1px dashed var(--hairline); }
+.tile--text .tile__visual { display: none; }
+.tile--text .tile__meta { padding: 1.5rem; flex: 1; justify-content: space-between; }
+.tile--text .tile__quote {
+  font-family: var(--type-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.tile--text .tile__quote::before { content: '"'; color: var(--accent); margin-right: 0.15em; }
+.tile--text .tile__quote::after  { content: '"'; color: var(--accent); margin-left: 0.05em; }
+
+/* year-marker tile */
+.tile--marker { background: transparent; border: none; align-items: flex-start; justify-content: center; }
+.tile--marker .tile__visual { display: none; }
+.tile--marker .tile__meta { padding: 1rem 0; }
+.tile--marker .year-num {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 0.9;
+  color: var(--ink-faint);
+  letter-spacing: -0.04em;
+}
+.tile--marker .year-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.5rem;
+}
+
+/* ========== FOOTER — Ft1 Mast-headed ========== */
+.footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.footer__mast {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.footer__mast em { color: var(--accent); font-style: italic; font-weight: 400; }
+.footer__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer__copy { font-size: 0.875rem; color: var(--ink-faint); }
+.footer__contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hairline-strong); transition: color 180ms; }
+.footer__contact a:hover { color: var(--accent); }
+
+@media (max-width: 1024px) {
+  .tile--feature { grid-column: span 12; }
+  .tile--medium  { grid-column: span 6; }
+  .tile--wide    { grid-column: span 12; }
+  .tile--small   { grid-column: span 6; }
+  .tile--tall    { grid-column: span 6; }
+}
+@media (max-width: 768px) {
+  .pill-nav__links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 2rem; gap: 2.5rem; }
+  .bento { padding: 0 1.5rem 3rem; }
+  .tile, .tile--feature, .tile--medium, .tile--wide, .tile--small, .tile--tall { grid-column: span 12; grid-row: span 1; }
+  .tile--marker .year-num { font-size: 3rem; }
+  .footer { padding: 3rem 1.5rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="pill-nav" aria-label="Site">
+  <a href="/index.html" class="pill-nav__brand">akusara<em>samitra</em></a>
+  <ul class="pill-nav__links">
+    <li><a href="#" class="is-active">Proyek</a></li>
+    <li><a href="/about.html">Studio</a></li>
+    <li><a href="#proses">Proses</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <a href="#kontak" class="pill-nav__cta">Mulai Konsultasi</a>
+</nav>
+
+<header class="hero">
+  <div class="hero__title-block">
+    <p class="hero__eyebrow"><span class="dot"></span>Proyek · 2018 — sekarang</p>
+    <h1 class="hero__title">Setiap rumah punya <em>iklim</em> sendiri.</h1>
+  </div>
+  <div class="hero__stat-block">
+    <div class="hero__stat-row">
+      <div class="hero__stat">
+        <div class="hero__stat-num">23<em>+</em></div>
+        <div class="hero__stat-label">Selesai</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-num">7</div>
+        <div class="hero__stat-label">Sedang berjalan</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-num">4<em>/yr</em></div>
+        <div class="hero__stat-label">Maks per tahun</div>
+      </div>
+    </div>
+    <p class="hero__lede">
+      Kami tidak punya <em>signature style</em> yang dipaksakan ke setiap rumah.
+      Yang konsisten adalah cara kami membaca tanah, iklim, dan keluarga sebelum garis pertama digambar.
+    </p>
+  </div>
+</header>
+
+<section class="bento" aria-label="Daftar proyek">
+
+  <a href="#" class="tile tile--feature">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1600&auto=format&fit=crop&q=85" alt="Rumah Tepi Sawah Tabanan" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian Keluarga</span><span class="year">2025</span></div>
+      <h2 class="tile__title">Rumah Tepi Sawah, Tabanan — naungan dalam dan ventilasi silang sebagai bahasa utama.</h2>
+      <p class="tile__loc">Tabanan, Bali · <em>520 m²</em></p>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--medium">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&auto=format&fit=crop&q=85" alt="Villa Lereng Selatan Ubud" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian</span><span class="year">2024</span></div>
+      <h2 class="tile__title">Villa Lereng Selatan</h2>
+      <p class="tile__loc">Ubud, Gianyar</p>
+    </div>
+  </a>
+
+  <div class="tile tile--marker">
+    <div class="tile__meta">
+      <span class="year-num">2025</span>
+      <span class="year-label">Empat proyek diselesaikan tahun ini</span>
+    </div>
+  </div>
+
+  <a href="#" class="tile tile--small">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&auto=format&fit=crop&q=85" alt="Pemugaran Joglo Tegallalang" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Renov</span><span class="year">2024</span></div>
+      <h2 class="tile__title">Pemugaran Joglo Tegallalang</h2>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--small">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop&q=85" alt="Rumah Tepi Pantai Canggu" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian</span><span class="year">2024</span></div>
+      <h2 class="tile__title">Rumah Tepi Pantai, Canggu</h2>
+    </div>
+  </a>
+
+  <div class="tile tile--text tile--medium">
+    <div class="tile__meta">
+      <p class="tile__quote">Tukang yang sudah bekerja dengan kayu jati Bali selama dua puluh tahun adalah arsitek juga, dengan cara mereka sendiri.</p>
+      <p class="tile__loc">— Catatan studio · 2023</p>
+    </div>
+  </div>
+
+  <a href="#" class="tile tile--tall">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900&auto=format&fit=crop&q=85" alt="Rumah Lima Pohon Sanur" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian Tropis</span><span class="year">2023</span></div>
+      <h2 class="tile__title">Rumah Lima Pohon, Sanur</h2>
+      <p class="tile__loc">Sanur, Denpasar · <em>410 m²</em></p>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--wide">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&auto=format&fit=crop&q=85" alt="Pondok Penulis Jatiluwih" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Komersial Skala Kecil</span><span class="year">2023</span></div>
+      <h2 class="tile__title">Pondok Penulis, Jatiluwih</h2>
+      <p class="tile__loc">Jatiluwih, Tabanan</p>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--small">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&auto=format&fit=crop&q=85" alt="Rumah Pemandian Mengwi" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian</span><span class="year">2022</span></div>
+      <h2 class="tile__title">Rumah Pemandian, Mengwi</h2>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--small">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&auto=format&fit=crop&q=85" alt="Rumah Sebatang Pohon Ubud" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian</span><span class="year">2022</span></div>
+      <h2 class="tile__title">Rumah Sebatang Pohon, Ubud</h2>
+    </div>
+  </a>
+
+  <a href="#" class="tile tile--medium">
+    <div class="tile__visual"><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=900&auto=format&fit=crop&q=85" alt="Rumah Bambu Tabanan" loading="lazy"></div>
+    <div class="tile__meta">
+      <div class="tile__eyebrow"><span>Hunian</span><span class="year">2021</span></div>
+      <h2 class="tile__title">Rumah Bambu Tabanan</h2>
+      <p class="tile__loc">Tabanan, Bali</p>
+    </div>
+  </a>
+
+  <div class="tile tile--text tile--small">
+    <div class="tile__meta">
+      <p class="tile__quote">Lambat itu sengaja.</p>
+      <p class="tile__loc">— Prinsip studio</p>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer" id="kontak">
+  <h2 class="footer__mast">
+    Setiap rumah dimulai dari satu percakapan tentang tanah dan <em>cuaca</em>.
+  </h2>
+  <div class="footer__row">
+    <p class="footer__copy">© 2026 Akusara Samitra · Tabanan, Bali</p>
+    <p class="footer__contact"><a href="mailto:halo@akusarasamitra.com">halo@akusarasamitra.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

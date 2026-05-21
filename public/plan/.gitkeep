@@ -1,0 +1,11 @@
+# Planned-website prototypes drop here.
+#
+# Drop HTML mockups in this folder. Each file is served at /plan/<filename>.html
+# from the deployed site (Vercel preserves files under public/ as static).
+#
+# After dropping a file:
+#   1. Add an entry to src/content/planned-projects.json describing it
+#      (title, description, file path, optional thumbnail, optional tags).
+#   2. Card grid at /planned-website auto-picks it up — no code change needed.
+#
+# *.html files in this folder are tracked. Do not commit large binary attachments.

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--
+  Hallmark · macrostructure: Long Document · hero: H3-Quote-Led
+  nav: N5 Floating pill · footer: Ft1 Mast-headed
+  theme: studied-DNA (source: studiosaxe.com URL mode)
+  paper oklch(96% 0.008 75) ≈ #F5F1EA · accent terracotta #B8422E
+  display+body+label: Bricolage Grotesque single-family
+  Inverted paper from variant 01 (light surface) — diversification axis
+  pre-emit critique: P5 H5 E5 S5 R5 V5
+-->
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio — Akusara Samitra</title>
+<meta name="description" content="Akusara Samitra adalah studio arsitektur keluarga di Bali. Catatan tentang siapa kami, cara kami bekerja, dan mengapa kami memilih lambat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F5F1EA;
+  --paper-deep: #E8E2D6;
+  --ink: #1A1815;
+  --ink-soft: #4A4540;
+  --ink-faint: #847D74;
+  --accent: #B8422E;
+  --accent-soft: rgba(184,66,46,0.10);
+  --hairline: rgba(26,24,21,0.14);
+  --hairline-strong: rgba(26,24,21,0.32);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --type-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --type-body: 'Bricolage Grotesque', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+body {
+  font-family: var(--type-body);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== NAV — N5 Floating pill (light variant) ========== */
+.pill-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(245,241,234,0.78);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 0.5rem 0.625rem 0.5rem 1.25rem;
+}
+.pill-nav__brand {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: 0.5rem;
+}
+.pill-nav__brand em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.pill-nav__links { display: flex; gap: 0.25rem; list-style: none; }
+.pill-nav__links a {
+  display: block;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: color 180ms var(--ease-out), background-color 180ms var(--ease-out);
+}
+.pill-nav__links a:hover { color: var(--ink); background: rgba(26,24,21,0.05); }
+.pill-nav__links a.is-active { color: var(--ink); background: rgba(26,24,21,0.08); }
+.pill-nav__cta {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 180ms var(--ease-out);
+}
+.pill-nav__cta:hover { background: var(--accent); }
+
+/* ========== HERO — H3 Quote-Led ========== */
+.hero {
+  padding: 9rem 2rem 4rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: left;
+}
+.hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero__eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+.hero__quote {
+  font-family: var(--type-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 4.5vw, 3.25rem);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  max-width: 28ch;
+}
+.hero__quote em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hero__attribution {
+  margin-top: 2.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.hero__attribution strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ========== LEAD FIGURE ========== */
+.lead-figure {
+  max-width: 1080px;
+  margin: 1.5rem auto 0;
+  padding: 0 2rem;
+}
+.lead-figure__frame {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--paper-deep);
+  box-shadow: 0 1px 0 var(--ink), 0 24px 48px -16px rgba(26,22,18,0.18);
+}
+.lead-figure__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.05) saturate(0.92);
+}
+.lead-figure__caption {
+  margin-top: 0.875rem;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  text-align: right;
+}
+.lead-figure__caption strong {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+
+/* ========== ARTICLE — prose 65ch ========== */
+.article {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+}
+.article > * + * { margin-top: 1.25em; }
+.article h2 {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin-top: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+.article h2 .num {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.article p { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.7; }
+.article p:first-of-type::first-letter {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  margin: 0.4rem 0.6rem -0.2rem 0;
+  color: var(--accent);
+}
+.article em { font-style: italic; color: var(--ink); }
+.article strong { font-weight: 500; color: var(--ink); }
+.article blockquote {
+  margin: 2rem 0;
+  padding: 1rem 0 1rem 1.5rem;
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: var(--ink);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+.article hr {
+  border: none;
+  height: 1px;
+  background: var(--hairline);
+  margin: 3rem auto;
+  width: 100px;
+}
+
+/* ========== STATS strip ========== */
+.stats {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.stat__num {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+.stat__num em { font-style: italic; color: var(--ink-faint); font-weight: 400; }
+.stat__label {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ========== FOOTER — Ft1 Mast-headed ========== */
+.footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.footer__mast {
+  font-family: var(--type-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.footer__mast em { color: var(--accent); font-style: italic; font-weight: 400; }
+.footer__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+}
+.footer__copy { font-size: 0.875rem; color: var(--ink-faint); }
+.footer__contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hairline-strong); transition: color 180ms; }
+.footer__contact a:hover { color: var(--accent); }
+
+@media (max-width: 768px) {
+  .pill-nav__links { display: none; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+  .article { padding: 1rem 1.5rem 3rem; }
+  .stats { padding: 2rem 1.5rem; }
+  .footer { padding: 3rem 1.5rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="pill-nav" aria-label="Site">
+  <a href="/index.html" class="pill-nav__brand">akusara<em>samitra</em></a>
+  <ul class="pill-nav__links">
+    <li><a href="/projects.html">Proyek</a></li>
+    <li><a href="#" class="is-active">Studio</a></li>
+    <li><a href="#proses">Proses</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <a href="#kontak" class="pill-nav__cta">Mulai Konsultasi</a>
+</nav>
+
+<header class="hero">
+  <p class="hero__eyebrow">Studio · Tentang kami</p>
+  <h1 class="hero__quote">
+    Yang kami bangun bukan rumah, tapi cara hidup orang di dalamnya selama <em>tiga puluh tahun</em> ke depan.
+  </h1>
+  <p class="hero__attribution">
+    <strong>I Made Wirawan</strong> · Principal Architect &amp; Co-founder
+  </p>
+</header>
+
+<figure class="lead-figure">
+  <div class="lead-figure__frame">
+    <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1800&auto=format&fit=crop&q=85" alt="Meja gambar Akusara Samitra di studio Tabanan">
+  </div>
+  <figcaption class="lead-figure__caption">
+    <strong>Meja Gambar Studio</strong> · Tabanan, Bali
+  </figcaption>
+</figure>
+
+<article class="article">
+
+  <h2><span class="num">01 / Awal mula</span>Sebuah studio yang lahir dari rumah sendiri.</h2>
+  <p>
+    Akusara Samitra dimulai dari satu proyek yang sangat sederhana: rumah keluarga kami sendiri di Tabanan, 2018.
+    Saat itu kami tidak berniat membangun studio. Kami hanya ingin sebuah rumah yang masuk akal untuk iklim Bali
+    — yang dingin tanpa AC, kering tanpa dehumidifier, dan terang tanpa perlu menyalakan lampu di siang hari.
+  </p>
+  <p>
+    Tujuh tahun kemudian, prinsip itu masih sama. Yang berubah hanya skala dan jumlah keluarga
+    yang mempercayakan rumahnya pada kami.
+  </p>
+
+  <hr>
+
+  <h2><span class="num">02 / Filosofi</span>Iklim adalah tuan rumah.</h2>
+  <p>
+    Sebelum garis pertama digambar, kami bertanya: kemana matahari bergerak di sini, jam berapa hujan
+    turun paling lebat di musim Maret, kemana angin laut bertiup di sore hari, dan dimana pohon yang
+    sudah lebih tua dari kami semua tumbuh. Jawaban-jawaban itu menentukan bentuk denah, sebelum
+    selera estetik manapun masuk ke dalam ruangan.
+  </p>
+  <blockquote>
+    "Kami tidak melawan iklim. Kami berkompromi dengannya, lalu meminta iklim menjadi pendingin,
+    pencahayaan, dan ventilasi gratis untuk rumah yang kami buat."
+  </blockquote>
+  <p>
+    Pendekatan ini menghasilkan rumah dengan konsumsi energi rata-rata 40% lebih rendah dari rumah
+    konvensional di Bali — sebuah angka yang kami catat tapi tidak kami iklankan.
+    <em>Kenyamanan</em> adalah hasilnya. Efisiensi adalah konsekuensinya.
+  </p>
+
+  <hr>
+
+  <h2><span class="num">03 / Skala</span>Satu rumah dalam satu waktu.</h2>
+  <p>
+    Kami tidak mengambil banyak proyek. Tahun lalu kami menyelesaikan empat. Tahun ini target kami lima.
+    Bukan karena kami tidak mampu lebih banyak — tapi karena setiap rumah membutuhkan kehadiran kami di
+    lapangan, di samping tukang yang bekerja dengan kayu dan batu, setiap minggu, sampai selesai.
+  </p>
+  <p>
+    Itulah yang dimaksud studio keluarga. Tiga arsitek, satu site supervisor tetap, dan lingkaran tukang
+    Bali yang sudah bekerja bersama kami sejak proyek pertama.
+  </p>
+
+</article>
+
+<section class="stats" aria-label="Studio in numbers">
+  <div class="stat">
+    <div class="stat__num">2018</div>
+    <div class="stat__label">Tahun studio berdiri</div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">23<em>+</em></div>
+    <div class="stat__label">Rumah selesai dibangun</div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">4<em>/yr</em></div>
+    <div class="stat__label">Maksimum proyek per tahun</div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">14</div>
+    <div class="stat__label">Tukang lokal mitra tetap</div>
+  </div>
+</section>
+
+<footer class="footer" id="kontak">
+  <h2 class="footer__mast">
+    Punya tanah di Bali? Kami senang <em>mendengarkan</em> rencana Anda.
+  </h2>
+  <div class="footer__row">
+    <p class="footer__copy">© 2026 Akusara Samitra · Tabanan, Bali</p>
+    <p class="footer__contact"><a href="mailto:halo@akusarasamitra.com">halo@akusarasamitra.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
