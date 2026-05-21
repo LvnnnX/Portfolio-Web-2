@@ -6,16 +6,17 @@
  */
 
 .cs {
-  --cs-paper: #0f1012;
-  --cs-paper-2: #16171a;
-  --cs-paper-3: #1d1e22;
-  --cs-ink: #f3f1ec;
-  --cs-ink-soft: #c2bdb3;
-  --cs-ink-faint: #8a8579;
-  --cs-rule: #2a2b30;
-  --cs-rule-soft: #1f2024;
-  --cs-accent: #d75a3f;
-  --cs-accent-deep: #b8422e;
+  /* Atelier — light variant (default) */
+  --cs-paper: #fafaf6;
+  --cs-paper-2: #f1efe8;
+  --cs-paper-3: #e8e5db;
+  --cs-ink: #1a1a1c;
+  --cs-ink-soft: #4a4a4f;
+  --cs-ink-faint: #86868b;
+  --cs-rule: #d8d4ca;
+  --cs-rule-soft: #ebe7dd;
+  --cs-accent: #b8422e;
+  --cs-accent-deep: #9a3424;
 
   --cs-serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
   --cs-sans: "SF Pro Text", -apple-system, "Inter", system-ui, sans-serif;
@@ -26,6 +27,25 @@
   background-color: var(--cs-paper);
   color: var(--cs-ink);
   font-family: var(--cs-serif);
+  min-height: 100vh;
+}
+
+/* Atelier — dark variant.
+ *
+ * Reuses the existing global '.dark' class toggled by Navigation. Brighter accent
+ * keeps WCAG AA contrast against the dark surface. */
+:root.dark .cs,
+.dark .cs {
+  --cs-paper: #0f1012;
+  --cs-paper-2: #16171a;
+  --cs-paper-3: #1d1e22;
+  --cs-ink: #f3f1ec;
+  --cs-ink-soft: #c2bdb3;
+  --cs-ink-faint: #8a8579;
+  --cs-rule: #2a2b30;
+  --cs-rule-soft: #1f2024;
+  --cs-accent: #d75a3f;
+  --cs-accent-deep: #b8422e;
 }
 
 /* ── Article container ──────────────────────────────────────────────── */
