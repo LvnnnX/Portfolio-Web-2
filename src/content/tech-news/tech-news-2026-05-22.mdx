@@ -2,54 +2,69 @@
 title: "Tech News - 22 May 2026"
 slug: "tech-news-2026-05-22"
 date: "2026-05-22"
-tags: ["tech-news", "ai", "web-dev", "developer"]
-excerpt: "Fokus berita teknologi hari ini adalah ambisi besar SpaceX di bidang AI, inovasi dalam arsitektur LLM, dan perkembangan terkini dalam alat pengembang serta kebijakan teknologi."
-readingTime: "5 min"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Hari ini aku baca lima berita yang, secara terpisah, terasa seperti berita biasa. Tapi kalau dirangkai, mereka bicara soal satu hal: siapa yang mengontrol akses kita ke infrastruktur digital."
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
 ---
 
-## SpaceX Bertaruh pada AI dan Data Center Orbital di Tengah Kemajuan Grok yang Terbatas
+Kemarin malam, sebelum tidur, aku scroll Twitter dan nemu link ke berita SpaceX IPO. Tadi pagi, sambil ngopi, aku baca lagi tentang masalah UX di sebuah package manager Python yang baru. Di antara keduanya, ada cerita soal robotaxi yang nyasar dan VPN untuk penjahat siber yang ditutup. Rasanya seperti menonton lima episode berbeda dari serial yang sama. Aku bukan ahli kebijakan publik atau astronot, tapi sebagai developer yang setiap hari bergantung pada tool dan infrastruktur digital, berita-berita ini menggarisbawahi satu hal: pilihan teknologi yang kita pakai sering kali mengikat kita pada sistem yang lebih besar — baik itu perusahaan, negara, atau tren pasar.
 
-Dalam pengajuan IPO-nya, SpaceX mempromosikan visi data center orbital sebagai masa depan AI-nya, di tengah kekhawatiran bahwa layanan AI Grok milik perusahaan masih tertinggal dari pesa. Langkah ini menandakan pergeseran strategis untuk memanfaatkan infrastruktur luar angkasa guna mendominasi komputasi cloud berperforma tinggi, sebuah bidang baru yang sangat menarik bagi developer yang membutuhkan sumber daya komputasi berskala global.
+## SpaceX IPO: Raja yang (Akan) Berkuasa di Angkasa
 
-**Source:** Ars Technica  
-**Link:** https://arstechnica.com/ai/2026/05/as-grok-flounders-spacex-bets-future-on-beating-big-tech-at-ai/
+Ini bukan sekadar berita tentang perusahaan luar angkasa yang go public. Ini tentang bagaimana akses ke komputasi dan data di masa depan mungkin akan dikendalikan oleh satu orang, dan infrastruktur fisiknya diletakkan di orbit. TechCrunch melaporkan bahwa dalam dokumen IPO-nya, Musk "akan memiliki lebih dari 50% kekuatan voting" — itu lebih dari apa yang dinikmati pendiri tech besar lainnya. Sementara itu, Ars Technica menyoroti pitch SpaceX tentang "pusat data orbital" sebagai taruhan masa depannya, di saat layanan AI mereka, Grok, masih tertinggal dari rival.
 
----
+Implikasinya untuk developer di Indonesia? Kita semua mungkin akan menggunakan layanan cloud atau AI yang, di tingkat paling dasar, dijalankan di atas infrastruktur yang dimiliki atau dikuasai oleh sebuah entitas tunggal dengan visi yang sangat spesifik. Ketika kita memilih untuk menyimpan data atau menjalankan aplikasi di layanan tertentu, kita tidak hanya memilih vendor — kita juga secara tidak langsung memilih arah dan nilai dari jaringan orbital yang sedang dibangun. Ini soal konsentrasi kekuasaan di lapisan infrastruktur paling fundamental.
 
-## Makalah Baru tentang Multi-Stream LLMs: Memisahkan dan Memparalelkan Prompt, Pemikiran, dan I/O
+**Source:** TechCrunch & Ars Technica  
+**Link:** https://techcrunch.com/2026/05/21/forget-technoking-elon-musk-will-really-be-king-at-spacex/ & https://arstechnica.com/ai/2026/05/as-grok-flounders-spacex-bets-future-on-beating-big-tech-at-ai/
 
-Sebuah makalah riset terbaru membahas arsitektur LLM Multi-Stream yang memungkinkan pemisahan dan paralelisasi prompt, proses berpikir model, serta input/output. Konsep ini berpotensi mengatasi bottleneck performa LLM saat ini dan bisa menjadi fondasi untuk aplikasi AI yang lebih efisien dan canggih, memberikan developer kerangka kerja baru untuk membangun sistem yang lebih responsif.
+## uv: Fantastis, Tapi User Experience-nya Butuh Dipoles
 
-**Source:** Hacker News (Paper)  
-**Link:** https://arxiv.org/abs/2605.12460
+Sebagai seseorang yang sering berurusan dengan environment Python, aku merasakan frustasi yang sama. Artikel di loopwerk.io yang viral di Hacker News itu berjudul, "Uv is fantastic, but its package management UX is a mess." Penulisnya mengakui kecepatan uv, tapi mengkritik bagaimana UX-nya membingungkan untuk tugas-tugas umum. Diskusi di HN menunjukkan bahwa ini bukan keluhan minor; banyak developer merasakan hal yang sama — alat yang powerful tapi antarmukanya kurang intuitif.
 
----
+Ini relevan banget untuk developer Indonesia, terutama yang banyak bekerja dengan data science atau backend Python. Peralihan dari pip/poetry ke uv memang menjanjikan kecepatan, tapi kalau dokumentasi dan error message-nya tidak jelas, waktu yang dihemat bisa habis untuk debugging masalah yang seharusnya tidak terjadi. Ini mengingatkan aku bahwa dalam pengembangan tool, *developer experience* (DX) sama pentingnya dengan performa. Tool yang bagus harus mudah dipahami, bukan hanya cepat.
 
-## Pustaka Open-Source untuk Editor .docx di Browser
+**Source:** Hacker News & loopwerk.io  
+**Link:** https://www.loopwerk.io/articles/2026/uv-ux-mess/
 
-Tim pengembang baru saja merilis versi 1.0 dari pustaka open-source untuk mengedit dokumen Word (.docx) langsung di browser. Berbeda dengan pendekatan konvensional yang mengonversi ke HTML dan kehilangan semantik dokumen, pustaka ini mem-parsing OOXML secara langsung dan menggunakan mesin rendering khusus, memungkinkan pengembang membangun aplikasi pengeditan dokumen yang lebih presisi dan profesional.
+## Spotify & Universal Music: AI untuk Kreasi, Bukan Penggantian
 
-**Source:** Hacker News (Show HN)  
-**Link:** https://github.com/eigenpal/docx-editor
+Berita yang satu ini bikin aku mikir. Spotify dan Universal Music Group menjalin kesepakatan yang mengizinkan pelanggan Premium membuat "AI-generated song covers and remixes," dengan artis yang berpartisipasi mendapatkan bagi hasil. Ini berbeda jauh dari narasi "AI akan menggantikan musisi" yang sering kita dengar. Di sini, AI diframing sebagai alat ekspresi baru di tangan penggemar, dengan model bisnis yang mencoba melibatkan seniman asli.
 
----
-
-## AT&T Gugat California untuk Mematikan Jaringan Telepon Lama
-
-AT&T mengajukan gugatan ke pengadilan dan FCC untuk memblokir persyaratan negara bagian California yang mewajibkan pemeliharaan jaringan telepon tradisional. Kasus ini menjadi preseden penting bagi kebijakan teknologi dan infrastruktur, menyoroti konflik antara inovasi digital modern dan kewajiban layanan universal, yang berimplikasi pada aksesibilitas dan masa depan komunikasi.
-
-**Source:** Ars Technica  
-**Link:** https://arstechnica.com/tech-policy/2026/05/att-sues-california-in-attempt-to-shut-off-old-phone-network/
-
----
-
-## Spotify dan Universal Music Menandatangani Kesepakatan untuk Konten AI Buatan Penggemar
-
-Spotify bermitra dengan Universal Music Group untuk mengizinkan pelanggan Premium Premium membuat cover dan remix lagu berbasis AI, dengan artis yang berpartisipasi mendapatkan bagian dari pendapatan. Kesepakatan ini menandai langkah besar dalam monetisasi konten AI-generatif dan menetapkan model baru bagi industri musik, yang sangat relevan bagi developer yang bekerja di bidang AI kreatif dan platform konten.
+Untuk developer yang bekerja di bidang kreatif atau membangun platform user-generated content, ini adalah studi kasus menarik. Bagaimana kamu membangun tool AI yang memberdayakan kreativitas massa tanpa merusak hak ekonomi pencipta asli? Kesepakatan ini mungkin menjadi template. Tapi pertanyaan besarnya: apakah model bagi hasil ini bisa adil dan scalable? Atau ini hanya cara baru untuk monetisasi konten pengguna dengan topeng "kolaborasi"?
 
 **Source:** TechCrunch  
 **Link:** https://techcrunch.com/2026/05/21/spotify-and-universal-music-strike-deal-allowing-fan-made-ai-covers-and-remixes/
 
+## Shutdown VPN "FirstVPN": Ketika Anonimitas Bertemu Hukum
+
+Europol berhasil menutup layanan VPN bernama FirstVPN yang digunakan oleh "dua lusin geng ransomware." Yang menarik, mereka bisa memberi tahu pengguna layanan tersebut bahwa identitas mereka sekarang sudah diketahui. Berita ini bukan sekadar soal penegakan hukum. Ini tentang batas anonimitas di internet dan bagaimana infrastruktur privasi bisa disalahgunakan.
+
+Bagi developer Indonesia, khususnya yang membangun layanan berbasis kepercayaan atau memikirkan soal keamanan, ini adalah pengingat. Teknologi enkripsi dan anonimitas netral — tapi penggunaannya tidak. Akses ke tool yang "aman" bukan jaminan keamanan hukum atau moral. Pertanyaannya: di garis mana kita harus menarik batas antara privasi untuk aktivitas legal dan privasi untuk menghindari hukum? Tidak ada jawaban mudah, tapi ini bagian dari percakapan yang harus kita ikuti.
+
+**Source:** TechCrunch  
+**Link:** https://techcrunch.com/2026/05/21/law-enforcement-shuts-down-vpn-service-used-by-two-dozen-ransomware-gangs/
+
+## Enam Mesin Pencari Pengganti Google yang Perlu Dicoba
+
+Judul artikel TechCrunch ini langsung menarik perhatian: "Six search engines worth trying now that Google isn’t really Google anymore." Di antaranya disebutkan Kagi, yang baru saja dibahas di Hacker News dalam konteks aksesibilitas untuk pengguna low vision. Poin utamanya adalah Google dengan AI Overview-nya sedang berubah drastis, dan banyak pengguna merasa tidak nyaman dengan perubahan tersebut.
+
+Sebagai developer yang setiap hari mencari informasi, mulai dari dokumentasi framework hingga solusi error, ini bukan sekadar soal preferensi. Alat pencari adalah gerbang pengetahuan kita. Kalau gerbang itu mulai dipenuhi iklan, AI yang menjawab sebelum kita bertanya, atau hasil yang tidak relevan, produktivitas dan cara kita belajar akan terpengaruh. Mencoba alternatif seperti Kagi atau SearXNG adalah langkah kecil untuk mengambil kembali kontrol atas cara kita menemukan informasi.
+
+**Source:** TechCrunch & Hacker News  
+**Link:** https://techcrunch.com/2026/05/21/six-search-engines-worth-trying-now-that-google-isnt-really-google-anymore/
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Lima berita ini, di permukaan, tampak berbeda — soal luar angkasa, package manager, musik, keamanan siber, dan mesin pencari. Tapi kalau aku tarik benang merahnya, semuanya bicara soal **akses dan kontrol**. SpaceX IPO bicara tentang siapa yang mengontrol akses ke infrastruktur angkasa. Masalah UX di uv bicara tentang bagaimana akses ke tool yang powerful harus dirancang agar tidak mengalienasi penggunanya. Kesepakatan Spotify bicara tentang mengontrol akses ke teknologi kreatif sambil menyeimbangkan hak ekonomi. Shutdown VPN bicara tentang batas akses anonimitas. Dan alternatif Google bicara tentang mengambil kembali akses ke informasi yang tidak terfilter.
+
+Pola yang menarik: semakin kuat sebuah teknologi atau platform, semakin besar pula kekhawatiran tentang siapa yang mengendalikannya — dan untuk kepentingan siapa. Sebagai developer, kita berada di garis depan. Kita tidak hanya *menggunakan* teknologi ini, tapi juga *membangun* atau *mengintegrasikan*nya. Maka, pertanyaan yang harus terus kita tanyakan bukan hanya "Bisa tidak tool ini memecahkan masalah saya?" tapi juga "Apa yang saya korbankan saat memilih tool ini, dan kekuasaan apa yang saya perkuat?"
+
+Tulisan ini bukan analisis mendalam. Aku cuma developer Bali yang kebetulan peduli dan mencoba memahami arah industri ini melalui berita harian. Tapi menurutku, refleksi kecil seperti ini — menghubungkan titik-titik antar berita — adalah salah satu cara agar kita tidak sekadar menjadi pengguna pasif dari masa depan yang sedang dibangun.
+
 ---
 
-*Curated by AI • Published 22 May 2026*
+*Ditulis 22 May 2026 • Sumber: TechCrunch, Ars Technica, Hacker News (loopwerk.io)*
