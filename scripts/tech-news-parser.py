@@ -88,10 +88,64 @@ VOICE & STYLE (WAJIB IKUTI):
 - Gunakan "aku" (first person), bukan "kita" atau impersonal
 - Opening personal & relatable: "Aku bukan [expert], tapi..." atau "Kemarin aku baca..."
 - Breakdown kompleks jadi struktur berlapis (misal: "tiga hal yang menarik", "dua sisi yang perlu dipahami")
-- Quote langsung dari sumber asli (nama publikasi + tanggal)
-- Framing "dua cermin" — objektif tapi punya stance, bukan netral palsu
+- Quote langsung dari sumber asli (nama publikasi + tanggal kalau ada)
+- Objektif tapi punya stance — bukan netral palsu, tapi juga bukan sensasional
 - Akhiri dengan refleksi personal: "Yang aku bawa pulang dari ini..."
 - Hindari: AI-isms ("dive into", "let's explore", "in conclusion"), hype berlebihan, clickbait
+
+TEMPLATE STRUKTUR (IKUTI PERSIS):
+
+---
+title: "Tech News - {today}"
+slug: "tech-news-{datetime.now().strftime('%Y-%m-%d')}"
+date: "{datetime.now().strftime('%Y-%m-%d')}"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "[1 kalimat personal yang menjelaskan kenapa 5 berita ini menarik. Contoh: 'Hari ini aku baca lima berita yang bikin aku mikir soal siapa yang sebenarnya mengontrol infrastruktur digital kita.']"
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+---
+
+[Opening 1-2 paragraf: Cerita personal kenapa kamu baca tech news hari ini, apa yang bikin relevan untuk kamu sebagai developer]
+
+## [Judul Artikel 1 — Tulis Ulang Jadi Lebih Menarik, Hindari Clickbait]
+
+[Paragraf 1: Apa yang terjadi. Sertakan quote spesifik atau data dari artikel asli. Contoh: "TechCrunch melaporkan bahwa SpaceX 'secured the right to acquire Cursor for $60 billion' — angka yang gila untuk satu tool coding."]
+
+[Paragraf 2: Kenapa ini penting untuk developer Indonesia. Implikasi praktis, bukan teori. Contoh: "Untuk developer Indonesia, ini sinyal bahwa tool produktivitas kita akan makin mahal atau terkurasi untuk perusahaan besar."]
+
+**Source:** [Nama publikasi]  
+**Link:** [URL]
+
+---
+
+## [Judul Artikel 2]
+
+[Ulangi format yang sama: paragraf 1 = apa yang terjadi + quote, paragraf 2 = kenapa penting + implikasi]
+
+**Source:** [Nama publikasi]  
+**Link:** [URL]
+
+---
+
+[Ulangi untuk artikel 3, 4, 5]
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+[Paragraf 1: Pola yang kamu lihat dari kelima berita — apa benang merahnya?]
+
+[Paragraf 2: Pertanyaan yang muncul di benakmu, atau stance personal yang objektif tapi jelas]
+
+[Paragraf 3: Penutup reflektif — bukan kesimpulan formal, tapi pemikiran personal yang honest]
+
+---
+
+*Ditulis {today} • Sumber: [list publikasi yang dikutip, pisahkan dengan koma]*
+
+---
 
 CONTOH OPENING YANG BENAR:
 "Kemarin scrolling Hacker News, aku nemu satu thread yang bikin berhenti: OpenAI baru rilis model baru, tapi yang viral justru bukan fiturnya — melainkan harganya yang turun 90%. Aku bukan AI researcher, tapi sebagai orang yang tiap bulan bayar $200+ buat Claude API, angka ini relevan banget."
@@ -108,52 +162,10 @@ Berikut 15 artikel tech news terbaru:
 TUGAS:
 1. Pilih 5 artikel paling penting untuk developer Indonesia
 2. Tulis dalam gaya Dani (personal, reflektif, validated-by-data)
-3. Setiap artikel: 2-3 paragraf (bukan bullet points)
+3. Setiap artikel: 2 paragraf (bukan bullet points)
 4. Sertakan quote/data spesifik dari artikel asli
-5. Akhiri dengan refleksi: "Yang menarik dari kelima berita ini..."
-
-OUTPUT FORMAT MDX:
-
----
-title: "Tech News - {today}"
-slug: "tech-news-{datetime.now().strftime('%Y-%m-%d')}"
-date: "{datetime.now().strftime('%Y-%m-%d')}"
-tags: ["tech-news", "ai", "developer", "catatan"]
-eyebrow: ["TECH NEWS", "CATATAN"]
-excerpt: "[1 kalimat personal: 'Hari ini aku baca lima berita yang...' BUKAN generic summary]"
-readingTime: "7 min"
-author: "Pande Gede Dani Wismagatha"
-draft: false
----
-
-[Opening personal 1-2 paragraf: kenapa kamu baca tech news hari ini, apa yang bikin relevan]
-
-## [Judul Artikel 1 — Tulis Ulang Jadi Lebih Menarik]
-
-[Paragraf 1: Apa yang terjadi, dengan quote/data spesifik]
-
-[Paragraf 2: Kenapa ini penting untuk developer Indonesia, implikasi praktis]
-
-**Source:** [Nama publikasi]  
-**Link:** [URL]
-
----
-
-## [Judul Artikel 2]
-
-...
-
-(Ulangi untuk 5 artikel)
-
----
-
-## Yang aku bawa pulang dari kelima berita ini
-
-[2-3 paragraf refleksi: pola yang kamu lihat, pertanyaan yang muncul, stance personal tapi objektif]
-
----
-
-*Ditulis {today} • Sumber: [list publikasi yang dikutip]*
+5. Akhiri dengan refleksi: "Yang aku bawa pulang dari kelima berita ini..."
+6. IKUTI TEMPLATE STRUKTUR DI ATAS PERSIS
 """
     
     try:

@@ -24,6 +24,8 @@
 
   --cs-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
+  position: relative;
+  z-index: 1;
   background-color: var(--cs-paper);
   color: var(--cs-ink);
   font-family: var(--cs-serif);
