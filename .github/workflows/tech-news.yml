@@ -1,0 +1,42 @@
+name: Daily Tech News
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # 09:00 WIB = 01:00 UTC
+  workflow_dispatch:  # Manual trigger button
+
+jobs:
+  generate-tech-news:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: pip install requests
+      
+      - name: Generate tech news
+        env:
+          XIAOMIMIMO_API_KEY: ${{ secrets.XIAOMIMIMO_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: python scripts/tech-news-parser.py
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add src/content/tech-news/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Tech news: $(date +%Y-%m-%d)"
+            git push
+          fi
