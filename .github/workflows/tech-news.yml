@@ -5,6 +5,9 @@ on:
     - cron: '0 1 * * *'  # 09:00 WIB = 01:00 UTC
   workflow_dispatch:  # Manual trigger button
 
+permissions:
+  contents: write  # Allow workflow to push commits
+
 jobs:
   generate-tech-news:
     runs-on: ubuntu-latest
