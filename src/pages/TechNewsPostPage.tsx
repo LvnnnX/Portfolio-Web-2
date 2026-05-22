@@ -72,28 +72,37 @@ export default function TechNewsPostPage() {
         </Link>
 
         <p className="cs-eyebrow">
-          <span>Tech News · AI Curated</span>
+          <span>TECH NEWS · AI CURATED</span>
+          {date && formatDate(date) !== "—" && (
+            <span className="cs-eyebrow__period" aria-label="published">
+              · {formatDate(date)}
+            </span>
+          )}
+          {readingTime && (
+            <span className="cs-eyebrow__period" aria-label="reading time">
+              · {readingTime}
+            </span>
+          )}
         </p>
 
         <h1 className="cs-title">{title}</h1>
 
-        <div className="cs-meta">
-          <span>{formatDate(date)}</span>
-          {readingTime && <span> · {readingTime}</span>}
-        </div>
+        {description && <p className="cs-deck">{description}</p>}
 
-        {tags.length > 0 && (
-          <div className="blog-row__tags" style={{ marginTop: "1rem" }}>
-            {tags.map((t) => (
-              <span key={t} className="blog-row__tag">
-                {t}
-              </span>
-            ))}
+        <div className="cs-grid">
+          <div className="cs-body" style={{ gridColumn: "1 / -1" }}>
+            {tags.length > 0 && (
+              <div className="cs-tags">
+                {tags.map((tag) => (
+                  <span className="cs-tag" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <Content />
           </div>
-        )}
-
-        <div className="cs-body">
-          <Content />
         </div>
       </article>
     </main>
