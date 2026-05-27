@@ -124,9 +124,9 @@
       "role": "Solo Developer",
       "period": "2026",
       "category": "Data & NLP",
-      "impact": "Real-time sentiment pipeline that ingests 5 Indonesian economic RSS feeds, classifies policy categories via XiaoMimo MiMo V2.5, and correlates daily sentiment scores against IHSG close price.",
+      "impact": "Real-time sentiment pipeline that ingests 5 Indonesian economic RSS feeds, classifies policy categories via DeepSeek V4 Pro, and correlates daily sentiment scores against IHSG close price.",
       "context": "Monorepo architecture — Python ingestion pipeline with GitHub Actions cron, Supabase Postgres with RLS, Next.js 16 dashboard with Bloomberg-inspired terminal aesthetic.",
-      "techStack": ["Python", "Next.js 16", "Supabase", "XiaoMimo API", "Recharts", "GitHub Actions"],
+      "techStack": ["Python", "Next.js 16", "Supabase", "DeepSeek API", "Recharts", "GitHub Actions"],
       "links": {
         "repo": "https://github.com/LvnnnX/kebijakan-pulse",
         "live": null
