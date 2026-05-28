@@ -1,4 +1,51 @@
-// @ts-nocheck
+type GlassCardProps = {
+  children: React.ReactNode;
+  className?: string;
+  featured?: boolean;
+};
+
+type TierBand = {
+  price: string;
+  scope: string;
+};
+
+type Tier = {
+  n: string | number;
+  name: string;
+  range: string;
+  timeline: string;
+  featured?: boolean;
+  deck: string;
+  bands?: TierBand[];
+  features: string[];
+  bonus?: string[];
+  cocok: string;
+};
+
+type AddOnItem = {
+  label: string;
+  price: string;
+};
+
+type PaymentCardProps = {
+  tier: string;
+  scheme: string;
+  note: string;
+};
+
+type ProcessStepProps = {
+  number: string | number;
+  title: string;
+  description: string;
+};
+
+type ContactCTAProps = {
+  whatsapp: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  location: string;
+};
 // ============================================================================
 // services.components.jsx
 // ----------------------------------------------------------------------------
@@ -11,7 +58,7 @@ import { motion } from "framer-motion";
 
 // ----- Atoms -----------------------------------------------------------------
 
-export function GlassCard({ children, className = "", featured = false }) {
+export function GlassCard({ children, className = "", featured = false }: GlassCardProps) {
   return (
     <div
       className={`relative overflow-hidden rounded-3xl border backdrop-blur-2xl ${
@@ -28,7 +75,7 @@ export function GlassCard({ children, className = "", featured = false }) {
 
 // ----- Tier Table (overview) ------------------------------------------------
 
-export function TierTable({ tiers }) {
+export function TierTable({ tiers }: { tiers: Tier[] }) {
   return (
     <GlassCard className="mt-12 p-1">
       <div className="rounded-3xl overflow-hidden">
@@ -69,7 +116,7 @@ export function TierTable({ tiers }) {
 
 // ----- Tier Card (detail) ---------------------------------------------------
 
-export function TierCard({ tier }) {
+export function TierCard({ tier }: { tier: Tier }) {
   return (
     <motion.div
       id={`tier-${tier.n}`}
@@ -179,7 +226,7 @@ export function TierCard({ tier }) {
 
 // ----- Add-on Table ---------------------------------------------------------
 
-export function AddOnTable({ items }) {
+export function AddOnTable({ items }: { items: AddOnItem[] }) {
   return (
     <GlassCard className="mt-10 p-2">
       <div className="rounded-3xl overflow-hidden">
@@ -205,7 +252,7 @@ export function AddOnTable({ items }) {
 
 // ----- Payment Card ---------------------------------------------------------
 
-export function PaymentCard({ tier, scheme, note }) {
+export function PaymentCard({ tier, scheme, note }: PaymentCardProps) {
   return (
     <GlassCard className="p-6 h-full">
       <div className="text-[10px] tracking-[0.22em] uppercase text-[var(--svc-accent)] font-mono mb-3">
@@ -221,7 +268,7 @@ export function PaymentCard({ tier, scheme, note }) {
 
 // ----- Process Step ---------------------------------------------------------
 
-export function ProcessStep({ number, title, description }) {
+export function ProcessStep({ number, title, description }: ProcessStepProps) {
   return (
     <GlassCard className="p-6 h-full">
       <div className="font-display italic text-3xl text-[var(--svc-accent)] font-light mb-3 leading-none">
@@ -237,7 +284,7 @@ export function ProcessStep({ number, title, description }) {
 
 // ----- Contact CTA ----------------------------------------------------------
 
-export function ContactCTA({ whatsapp, email, linkedin, github, location }) {
+export function ContactCTA({ whatsapp, email, linkedin, github, location }: ContactCTAProps) {
   const waLink = `https://wa.me/${whatsapp}?text=Halo%20Dani%2C%20saya%20mau%20konsultasi%20website`;
   return (
     <div className="mt-10">
