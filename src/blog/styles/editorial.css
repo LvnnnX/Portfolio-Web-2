@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap");
+
+:root {
+  --editorial-primary: #1D1D1F;
+  --editorial-secondary: #4A4A4F;
+  --editorial-tertiary: #B8422E;
+  --editorial-neutral: #FAFAFA;
+  --editorial-surface: #FFFFFF;
+  --editorial-faint: #86868B;
+  --editorial-rule: #D2D2D7;
+  --editorial-border: #E5E5E7;
+  --editorial-accent-soft: #F4D9D2;
+  --editorial-serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --editorial-sans: "SF Pro Text", -apple-system, "Inter", system-ui, sans-serif;
+  --editorial-content-max: 680px;
+}
+
+.editorial-shell { background: var(--editorial-surface); color: var(--editorial-primary); min-height: 100vh; }
+.editorial-page { max-width: var(--editorial-content-max); margin: 0 auto; padding: 24px 16px 72px; }
+@media (min-width: 768px) { .editorial-page { padding: 18mm 22mm 96px; } }
+.editorial-back { display: inline-flex; gap: 8px; align-items: center; margin-bottom: 24px; font: 700 11px/1.2 var(--editorial-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--editorial-secondary); text-decoration: none; }
+.editorial-back:hover, .editorial-back:focus-visible { color: var(--editorial-tertiary); }
+.editorial-back:focus-visible, .editorial-card:focus-visible { outline: 2px solid var(--editorial-tertiary); outline-offset: 4px; }
+.editorial-masthead { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--editorial-rule); padding: 0 0 8pt; margin-bottom: 28px; font-family: var(--editorial-sans); text-transform: uppercase; }
+.editorial-masthead__brand { font-size: 11px; font-weight: 700; letter-spacing: .22em; }
+.editorial-masthead__meta { font-size: 10px; letter-spacing: .10em; color: var(--editorial-faint); text-align: right; }
+.editorial-eyebrow { margin: 0 0 12px; font: 700 11px/1.2 var(--editorial-sans); letter-spacing: .20em; text-transform: uppercase; color: var(--editorial-tertiary); }
+.editorial-title { margin: 0 0 16px; font: 700 clamp(37px, 7vw, 52px)/1.1 var(--editorial-serif); letter-spacing: -.025em; color: var(--editorial-primary); }
+.editorial-deck { max-width: 56ch; margin: 0 0 24px; font: italic 400 17px/1.45 var(--editorial-serif); letter-spacing: -.005em; color: var(--editorial-secondary); }
+.editorial-byline { display: flex; flex-wrap: wrap; gap: 6px; border-block: 1px solid var(--editorial-rule); padding: 8pt 0; margin: 0 0 32px; font: 400 11px/1.4 var(--editorial-sans); letter-spacing: .05em; color: var(--editorial-secondary); text-transform: uppercase; }
+.editorial-body { font: 400 15px/1.65 var(--editorial-serif); letter-spacing: -.005em; color: var(--editorial-primary); }
+@media (min-width: 768px) { .editorial-body { text-align: justify; hyphens: auto; } }
+.editorial-body p { margin: 0 0 9pt; }
+.editorial-body h2 { margin: 18pt 0 8pt; font: 700 21px/1.2 var(--editorial-serif); letter-spacing: -.015em; text-align: left; }
+.editorial-body a { color: var(--editorial-primary); text-decoration-color: var(--editorial-rule); text-underline-offset: 3px; }
+.editorial-body a:hover { color: var(--editorial-tertiary); }
+.editorial-lede::first-letter { float: left; padding: 0 8pt 0 0; font-size: 4.5em; line-height: .85; font-weight: 700; color: var(--editorial-tertiary); }
+.editorial-blockquote { margin: 18pt 0; padding: 6pt 0 6pt 14pt; border-left: 3pt solid var(--editorial-tertiary); color: var(--editorial-secondary); font: italic 400 15px/1.5 var(--editorial-serif); text-align: left; }
+.editorial-table-wrap { overflow-x: auto; margin: 18pt 0; }
+.editorial-table { width: 100%; border-collapse: collapse; font: 400 14px/1.6 var(--editorial-serif); text-align: left; }
+.editorial-table th { background: var(--editorial-neutral); color: var(--editorial-secondary); font: 700 11px/1.3 var(--editorial-sans); letter-spacing: .05em; text-transform: uppercase; }
+.editorial-table th, .editorial-table td { padding: 6pt; border-bottom: 1px solid var(--editorial-border); }
+.editorial-footnote { margin-top: 28px; padding-top: 10pt; border-top: 1px solid var(--editorial-rule); color: var(--editorial-secondary); font: italic 400 11px/1.55 var(--editorial-sans); text-align: left; }
+.editorial-list { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid var(--editorial-rule); }
+.editorial-card { display: block; padding: 16pt 0; border-bottom: 1px solid var(--editorial-rule); color: inherit; text-decoration: none; transition: transform 200ms ease, background-color 200ms ease; }
+.editorial-card:hover { transform: translateX(2px); background: var(--editorial-neutral); }
+.editorial-card__meta { display: flex; justify-content: space-between; gap: 12px; font: 400 11px/1.4 var(--editorial-sans); letter-spacing: .05em; color: var(--editorial-faint); text-transform: uppercase; }
+.editorial-card__edition { color: var(--editorial-tertiary); font-weight: 700; }
+.editorial-card__title { margin: 10px 0 8px; font: 700 30px/1.2 var(--editorial-serif); letter-spacing: -.015em; }
+.editorial-card__deck { margin: 0 0 10px; font: italic 400 17px/1.45 var(--editorial-serif); color: var(--editorial-secondary); }
+.editorial-card__tags { font: 700 11px/1.2 var(--editorial-sans); letter-spacing: .20em; color: var(--editorial-tertiary); text-transform: uppercase; }
+@media (prefers-reduced-motion: reduce) { .editorial-card { transition: none; } .editorial-card:hover { transform: none; } }
+@media print { .site-nav, footer, .editorial-back { display: none !important; } @page { size: A4; margin: 18mm 22mm; } .editorial-shell { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .editorial-page { max-width: none; padding: 0; } .editorial-body::after { content: "DANIWISMAGATHA.MY.ID/CATATAN"; display: block; margin-top: 12mm; padding-top: 4mm; border-top: 1px solid var(--editorial-rule); font: 400 9px/1.2 var(--editorial-sans); letter-spacing: .10em; color: var(--editorial-faint); text-align: center; } }
