@@ -1,0 +1,85 @@
+---
+title: "Tech News - 01 June 2026"
+slug: "tech-news-2026-06-01"
+date: "2026-06-01"
+tags: ["tech-news", "ai", "developer", "coding-agent", "infrastructure", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Hari ini aku baca berita soal harga tool coding yang naik-turun, chip yang jadi rebutan, dan satu startup Cina yang berhasil latih model AI tanpa hardware NVIDIA — lima hal ini bikin aku mikir soal di mana posisi developer Indonesia di tengah semua gejolak ini."
+readingTime: "8 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+
+---
+
+Kemarin malem aku lagiscrolling HN sambil nungguin deployment selesai — hal yang terlalu sering terjadi buat developer freelance kayak aku. Tapi malam ini beda, karena satu demi satu berita nongol yang intinya bilang hal yang sama: ekosistem AI sedang bergeser, dan kalau kita nggak aware, kita yang akan bayar harganya.
+
+Aku bukan AI researcher. Aku cuma developer Bali yang tiap bulan bayar buat akses API, pake Cursor buat nulis kode, dan kadang heran kenapa satu tweet soal pricing bisa bikin komunitas developer panik. Tapi justru karena posisi aku di tengah-tengah — bukan insider, bukan spectator murni — aku merasa penting buat catet apa yang terjadi biar nggak cuma reactive.
+
+Lima berita hari ini punya satu benang merah: siapa yang megang infrastruktur, dia yang tentuin aturan mainnya.
+
+---
+
+## OpenAI Potong Kuota Codex Tanpa Peringatan — Harga Sama, Fitur Setengah
+
+Kemarin (31 Mei 2026), promosi 2x untuk ChatGPT Pro tier $100/bulan resmi berakhir. Artinya? Developer yang sebelumnya dapet kapasitas Codex 10x Plus sekarang cuma dapat 5x Plus — tanpa perubahan harga. OpenAI Codex sendiri punya lebih dari 3 juta weekly active users per April 2026, jadi ini bukan cuma soal "beberapa user" — ini puluhan ribu workflow yang tiba-tiba jadi lebih lambat atau lebih mahal secara efektif.
+
+Yang bikin aku mikir: ini pola yang udah familiar. Platform free atau murah di awal, developer build dependency, terus perlahan kurangi value tanpa perubahan harga yang jelas. Untuk developer Indonesia yang sering hitung cost per API call, ini sinyal buat mulai diversifikasi tooling. Jangan taruh semua workflow di satu provider. GitHub Copilot juga baru implement perubahan serupa per 1 Juni 2026 — jadi bulan ini basically bulan di mana coding tooling mulai "naik harga" secara halus.
+
+**Source:** unrot.co  
+**Link:** https://unrot.co/blogs/ai-news-today-top-10-ai-stories-june-1-2026
+
+---
+
+## Samsung dan SK Hynix Masuk ke Anthropic — Chip Jadi Senjata Politik
+
+Dua raksasa chip Korea Selatan, Samsung Electronics dan SK Hynix, resmi ambil saham strategis di Anthropic dalam funding round yang valuasi perusahaannya tembus $965 miliar — menjadikan Anthropic perusahaan AI paling bernilai di dunia, mengalahkan OpenAI. Yang menarik, mereka bukan cuma investor finansial; mereka ditunjuk sebagai "strategic infrastructure partners" bersama Micron dari AS.
+
+Yang aku tangkap dari berita ini bukan soal berapa miliar dolarnya. Tapi soal rantai pasokan. Kalau Samsung dan SK Hynix udah ikut invest, mereka tentu berharap dapet bisnis chip manufacturing dari Anthropic. Artinya, akses ke hardware AI (GPU, HBM) makin terikat sama aliansi geopolitik. Untuk developer Indonesia: ini konfirmasi bahwa akses ke compute bukan cuma soal uang, tapi soal di mana lo berdiri di peta global. Model training dan inferensi yang lo pake, di belakangnya ada perang dingin chip yang nyata.
+
+**Source:** The Star  
+**Link:** https://www.thestar.com.my/business/business-news/2026/06/01/samsung-sk-hynix-acquire-stakes-in-anthropic
+
+---
+
+## Cognition (Devin) Kumpulkan $1 Miliar — AI Coding Agent Makin Serius
+
+Cognition, startup di balik Devin — AI software engineer otonom — mengumumkan penggalangan dana lebih dari $1 miliar dengan valuasi $26 miliar post-money. Total funding mereka sejak 2023 udah tembus $2,5 miliar. CEO Scott Wu bilang, kutip: "allows us to stay independent and continue as an independent business, which is really important for us" — komentar yang cukup pointed mengingat setiap AI lab besar (OpenAI dengan Codex, Anthropic dengan Claude Code, Google dengan Jules) udah launch coding agent kompetitif.
+
+Yang menarik buat aku: Devin itu produk yang dari awal ambisius banget — mau jadi "junior developer AI" yang bisa handle task sendiri. Dengan $1 miliar, mereka punya runway panjang. Tapi di sisi lain, Claude Code sekarang available untuk semua user Claude, dan Codex udah punya 4 juta weekly active users. Pertanyaan buat aku: apakah Devin bisa survive sebagai standalone product, atau pada akhirnya market bakal consolidasi ke beberapa player besar? Buat developer Indonesia, ini artinya pilihan tool makin banyak, tapi commitment cost juga makin tinggi — kalau lo build workflow di atas satu platform, pastikan lo siap kalau platform itu berubah arah.
+
+**Source:** Build Fast with AI  
+**Link:** https://www.buildfastwithai.com/blogs/ai-news-today-june-1-2026
+
+---
+
+## Google I/O 2026: Era Gemini Agentic Dimulai
+
+Google di I/O 2026 announce Gemini Omni, Gemini 3.5, Managed Agents di Gemini API, dan Gemini Embedding 2 — semuanya general availability. Google sendiri menyebut era ini sebagai "agentic Gemini era," di mana AI nggak cuma jawab pertanyaan tapi bisa execute task secara otonom. Selain itu, Google juga umumkan smart glasses bareng Samsung, Warby Parker, dan Gentle Monster — lengkap dengan full Gemini functionality dari device.
+
+Yang paling relevan buat developer Indonesia bagiku bukan glasses-nya, tapi Managed Agents di Gemini API. Artinya Google udah siapin infrastruktur buat lo build AI agent yang bisa jalan sendiri — handle workflow, integrasi data, bahkan ambil keputusan — tanpa lo harus build semuanya dari scratch. Kalau ditambah dengan Gemini 3.1 Ultra yang bisa proses video real-time 60fps tanpa transkripsi, ini buka kemungkinan use case baru: monitoring real-time, content analysis, bahkan aplikasi edukasi interaktif. Tapi ya balik lagi soal dependency — makin lo deep di ekosistem Google, makin sulit lo migrasi kalau pricing atau API design berubah.
+
+**Source:** Yahoo Tech  
+**Link:** https://tech.yahoo.com/ai/gemini/articles/google-announces-ai-powered-advances-162036454.html
+
+---
+
+## Zhipu AI Latih Model Frontier Tanpa Hardware NVIDIA — Ini Berita yang Harus Diperhatiin
+
+Dari ringkasan model AI bulan Mei 2026, satu hal yang paling striking buat aku: Zhipu AI berhasil training GLM-4.7 sampai mencapai frontier performance — dan mereka melakukannya tanpa menggunakan hardware NVIDIA satupun. Di saat yang sama, Gemini 3.1 Ultra bisa proses video 60fps secara simultan, Claude Code udah available untuk semua user Claude, dan Cursor serta Windsurf (dua AI code editor paling populer) keduanya berjalan di atas Claude.
+
+Kenapa berita Zhipu ini penting buat developer Indonesia? Karena selama ini asumsi dasar kita adalah: AI training butuh GPU NVIDIA, dan akses ke GPU NVIDIA terbatas oleh ekspor control AS ke China. Kalau ternyata ada jalur alternatif untuk training model berkualitas tinggi tanpa NVIDIA, ini artinya di masa depan bisa muncul model-model yang lebih affordable, lebih accessible, dan tidak terikat sama satu supply chain. Ini belum terjadi untuk semua use case, tapi sebagai sinyal arah industri — ini signifikan. Buat kita yang di Asia Tenggara, ini harapan kecil bahwa compute cost mungkin nggak akan selamanya mahal.
+
+**Source:** blog.mean.ceo  
+**Link:** https://blog.mean.ceo/new-ai-model-releases-news-may-2026
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Kalau aku tarik benang merahnya, kelima berita ini ceritain satu kisah: AI ecosystem sedang bergerak dari fase "semua orang bisa akses" ke fase "aliansi menentukan akses." Samsung dan SK Hynix masuk ke Anthropic, Google build managed agents, OpenAI kurangi kuota tanpa ubah harga, Cognition kumpul miliaran dollar — semua ini soal konsolidasi power. Dan di tengah semua itu, Zhipu AI ngasih signal bahwa jalur alternatif mungkin ada.
+
+Yang muncul di pikiranku: sebagai developer Indonesia, strategi paling sehat saat ini bukan pick satu platform dan commit 100%. Lebih kayak maintain portabilitas — pastikan workflow lo bisa迁移 kalau perlu. Pakai Claude untuk coding tapi jangan hapus akses ke Gemini atau Codex. Eksperimen dengan managed agents tapi jangan build business logic yang terlalu deep di satu API. Diversifikasi itu bukan soal paranoia, itu soal survival.
+
+Dan satu hal lagi yang-reflektif: semua berita ini datang dari sumber yang berbeda-beda, tapi kalau lo baca cukup teliti, polanya ketemu. Mungkin ini yang bikin menulis catatan kayak gini penting buat aku — bukan karena aku punya insight yang nggak dimiliki orang lain, tapi karena aku butuh ruang buat menyusun pikiran sendiri. Dan kalau ada satu orang developer di Indonesia yang baca tulisan ini dan mikir "oh, ternyata ada yang ngalamin hal yang sama," menurutku itu udah cukup.
+
+*Ditulis 01 June 2026 • Sumber: unrot.co, The Star, Build Fast with AI, Yahoo Tech, blog.mean.ceo*
