@@ -32,59 +32,37 @@ const CONTACT_DATA = {
 
 export default function Contact() {
   return (
-    <div id="contact" className="pt-10 pb-12 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-[28px] md:text-[40px] font-bold tracking-[-0.02em] mb-3 text-foreground">Get in Touch</h2>
-          <p className="text-[14px] md:text-[18px] text-muted-foreground max-w-xl mx-auto font-medium">
-            Interested in AI solutions or research collaboration? Let's connect.
-          </p>
-        </div>
+    <div id="contact" className="pt-8 pb-12 px-4 md:px-6">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+          Let&apos;s Talk
+        </h2>
+        <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8">
+          Interested in AI solutions or research collaboration?
+        </p>
 
-        <div className="flex flex-wrap justify-center gap-4 md:gap-10">
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={`mailto:${CONTACT_DATA.email}`}
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-[13px] font-bold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            <Mail size={16} /> {CONTACT_DATA.email}
+          </a>
           {[
-            {
-              name: "GitHub",
-              icon: <Github size={24} />,
-              href: CONTACT_DATA.github,
-              color: "hover:text-primary"
-            },
-            {
-              name: "LinkedIn",
-              icon: <Linkedin size={24} />,
-              href: CONTACT_DATA.linkedin,
-              color: "hover:text-[#0A66C2]"
-            },
-            {
-              name: "Instagram",
-              icon: <Instagram size={24} />,
-              href: "https://www.instagram.com/pande.dani13",
-              color: "hover:text-[#E4405F]"
-            },
-            {
-              name: "WhatsApp",
-              icon: <MessageCircle size={24} />,
-              href: "https://wa.me/6285156148613",
-              color: "hover:text-[#25D366]"
-            },
-            {
-              name: "Email",
-              icon: <Mail size={24} />,
-              href: `mailto:${CONTACT_DATA.email}`,
-              color: "hover:text-primary"
-            },
+            { name: "GitHub", icon: <Github size={16} />, href: CONTACT_DATA.github },
+            { name: "LinkedIn", icon: <Linkedin size={16} />, href: CONTACT_DATA.linkedin },
+            { name: "Instagram", icon: <Instagram size={16} />, href: "https://www.instagram.com/pande.dani13" },
+            { name: "WhatsApp", icon: <MessageCircle size={16} />, href: "https://wa.me/6285156148613" },
           ].map((social) => (
             <a
               key={social.name}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`liquid-glass p-5 md:p-8 transition-all duration-300 hover:scale-110 hover:shadow-2xl text-foreground ${social.color} group`}
+              className="inline-flex items-center gap-2 rounded-lg bg-muted px-4 py-2.5 text-[13px] font-bold text-foreground transition-colors hover:border-primary hover:border border border-border"
               aria-label={social.name}
             >
-              <div className="transform transition-transform group-hover:rotate-12">
-                {social.icon}
-              </div>
+              {social.icon} {social.name}
             </a>
           ))}
         </div>

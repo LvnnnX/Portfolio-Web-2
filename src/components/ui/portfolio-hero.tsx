@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface BlurTextProps {
@@ -85,7 +84,7 @@ export default function PortfolioHero() {
             delay={100}
             animateBy="letters"
             direction="top"
-            className="font-bold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
+            className="font-extrabold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
           />
 
           {/* Middle row: oval image in the gap between the names */}
@@ -118,7 +117,7 @@ export default function PortfolioHero() {
             delay={100}
             animateBy="letters"
             direction="top"
-            className="font-bold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
+            className="font-extrabold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
           />
         </div>
 
@@ -133,29 +132,20 @@ export default function PortfolioHero() {
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 mt-2">
             <div className="text-center">
-              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">3+ yrs</p>
-              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">ML practice</p>
+              <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">4+</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">Years Coding</p>
             </div>
             <div className="text-center">
-              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">13</p>
-              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">YOLOv8 variants</p>
+              <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">8+</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">Production Deployments</p>
             </div>
             <div className="text-center">
-              <p className="text-[22px] md:text-[28px] font-bold tracking-tight text-foreground">3.98</p>
+              <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">3.98</p>
               <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">GPA</p>
             </div>
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-500 dark:text-muted-foreground hover:text-black dark:hover:text-foreground transition-colors duration-300 pointer-events-auto"
-          aria-label="Scroll down"
-        >
-          <ChevronDown className="w-8 h-8" />
-        </button>
       </main>
     </div>
   );
-}
+};

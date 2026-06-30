@@ -18,50 +18,37 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 mt-16 md:mt-24 border-t border-border/30 bg-background">
-      <div className="max-w-7xl mx-auto px-6 py-10 md:py-14 flex flex-col md:flex-row gap-6 md:gap-10 md:items-center md:justify-between">
-        <div>
-          <p className="text-[14px] md:text-[15px] font-semibold tracking-tight text-foreground">
-            Pande Gede Dani Wismagatha
-          </p>
-          <p className="text-[12px] md:text-[13px] text-muted-foreground mt-1">
-            Computer Vision &amp; Applied ML Engineer · Karangasem, Bali
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2 md:gap-3">
+    <footer className="relative z-10 mt-12 md:mt-20 border-t border-border px-4 md:px-6 py-6 md:py-8">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-3 md:gap-4 md:items-center md:justify-between">
+        <p className="text-[12px] md:text-[13px] font-medium text-muted-foreground">
+          © {year} Pande Dani
+        </p>
+        <div className="flex items-center gap-3">
           <a
             href="mailto:pandedani5@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-2 text-[12px] md:text-[13px] font-semibold text-foreground transition-colors hover:bg-muted/80"
+            className="text-muted-foreground hover:text-primary transition-colors"
             aria-label="Email"
           >
-            <Mail className="w-4 h-4" /> Email
+            <Mail size={16} />
           </a>
           <a
             href="https://github.com/LvnnnX"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-2 text-[12px] md:text-[13px] font-semibold text-foreground transition-colors hover:bg-muted/80"
+            className="text-muted-foreground hover:text-primary transition-colors"
             aria-label="GitHub"
           >
-            <GithubIcon /> GitHub
+            <GithubIcon />
           </a>
           <a
             href="https://www.linkedin.com/in/kokopandan"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-muted px-4 py-2 text-[12px] md:text-[13px] font-semibold text-foreground transition-colors hover:bg-muted/80"
+            className="text-muted-foreground hover:text-primary transition-colors"
             aria-label="LinkedIn"
           >
-            <LinkedinIcon /> LinkedIn
+            <LinkedinIcon />
           </a>
-        </div>
-      </div>
-
-      <div className="border-t border-border/20">
-        <div className="max-w-7xl mx-auto px-6 py-4 text-[11px] md:text-[12px] text-muted-foreground flex flex-wrap justify-between gap-2">
-          <span>© {year} Pande Dani · All rights reserved</span>
-          <span>Built with React, Vite, Tailwind, Three.js, and Framer Motion</span>
         </div>
       </div>
     </footer>

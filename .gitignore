@@ -33,4 +33,5 @@ dist-ssr
 !tsconfig.app.json
 !tsconfig.node.json
 !vercel.json
-!src/content/**/*.json
+!src/content/**/*.json.vite/
+.vite/
