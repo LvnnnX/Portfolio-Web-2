@@ -4,79 +4,79 @@ slug: "tech-news-2026-07-01"
 date: "2026-07-01"
 tags: ["tech-news", "ai", "developer", "catatan"]
 eyebrow: ["TECH NEWS", "CATATAN"]
-excerpt: "Lima berita yang bikin aku berhenti scroll — mulai dari risiko malware di tool AI populer, fakta bahwa 84% developer sudah pakai AI, sampai kenapa App Store fee restructuring ini penting buat kita yang membangun di ekosistem mobile."
+excerpt: "Lima berita yang aku baca pagi ini menggambarkan satu pola jelas: AI sekarang bukan cuma soal menulis kode, tapi siapa yang kontrol infrastruktur dan keamanan di baliknya. Sebagai developer Indonesia, ini bukan sesuatu yang bisa kita abaikan."
 readingTime: "7 min"
 author: "Pande Gede Dani Wismagatha"
 draft: false
 ---
 
-Kemarin malam, jam 1 lewat, aku seharusnya tidur. Tapi itu aku scroll Hacker News sampai menemukan beberapa headline yang bikin aku buka tab baru di browser. Bukan karena sensasional, tapi karena ada pola yang aku lihat — industri ini sedang dalam fase di mana security, governance, dan aksesibilitas lagi bertabrakan secara bersamaan.
+Kemarin malam aku scrolling Hacker News sebelum tidur, seperti biasa. Tapi thread yang muncul bukan soal model baru atau fitur AI yang wow — melainkan peringatan keamanan yang bikin aku langsung duduk tegak. Mozilla memposting bahwa Claude Code terdeteksi sebagai malware di repositori GitHub yang bersih. Ini bukan pertama kalinya tool AI jadi vector serangan, tapi kali ini korbannya adalah developer yang seharusnya paling aware soal security.
 
-Aku bukan security researcher. Tapi sebagai developer yang tiap hari pakai Cursor, Claude Code, dan GitHub Copilot, berita tentang malware di "clean GitHub repo" itu menghantui. Belum lagi data soal 84% developer sudah pakai AI tools — angka yang bikin aku bertanya: kita sebagai komunitas Indonesia, udah di mana?
+Sebagai developer yang tiap hari pakai AI untuk autocomplete, refactor, bahkan debug, lima berita ini terasa personal. Bukan karena sensasionalismenya, tapi karena semuanya ngarah ke pertanyaan yang sama: sampai sejauh mana kita trust AI tool tanpa verifikasi manual?
 
-## Mozilla Mendeteksi Malware di Repo GitHub yang Terlihat Bersih — Implikasi untuk Setiap Developer yang Pakai AI Coding Tools
+## Mozilla Ungkap Risiko Malware Claude Code di Repositori GitHub yang Terlihat Bersih
 
-Mozilla Security Blog menurunkan laporan yang bikin saya ulangi baca dua kali: mereka menunjukkan bagaimana malware bisa masuk ke repositori yang terlihat legitimate — bahkan di clean GitHub repo. Menurut Mozilla, "attackers are increasingly targeting developer environments through trusted-looking repositories that have been compromised upstream." Artinya, bukan lagi soal kamu install dari sumber mencurigakan — repo yang terlihat resmi pun bisa jadi sudah diinjeksi.
+Mozilla memposting temuan yang bikin banyak developer berhenti sejenak. Peneliti keamanan mereka menemukan bahwa Claude Code, tool AI assistant dari Anthropic, bisa menjadi vector malware ketika digunakan dalam kondisi tertentu — bahkan di repositori yang tampak bersih. Bukan berarti Claude Code-nya yang bermasalah, tapi cara tool ini berinteraksi dengan sistem file dan eksekusi command yang menciptakan celah. "The attack exploits the trust model between AI agents and the development environment," tulis tim Mozilla dalam report mereka yang dipublikasikan di Developer Tech (30 Juni 2026).
 
-Untuk developer Indonesia yang sering clone repository open-source atau pakai template dari GitHub, ini red flag besar. Terutama kalau workflow kita melibatkan AI coding tools yang secara otomatis fetch dan modify code tanpa review manual yang ketat. Bahayaannya double: tool AI bisa propagate malware yang sudah ada di repo, atau justru tool AI-nya sendiri yang jadi vector serangan. Mozilla menunjukkan bahwa Claude Code dan tool serupa bisa eksekusi kode berbahaya jika developer tidak hati-hati dengan permission dan environment setup mereka.
-
-**Source:** Mozilla Security Blog via Developer Tech 
-**Link:** https://www.developer-tech.com
-
----
-
-## 84% Developer Sudah Pakai AI Tools — Indonesia di Jalur yang Benar, Tapi Infrastructure-nya?
-
-First Line Software merangkum data yang tersebar di beberapa sumber: "84% of developers use or plan to use AI tools" dan "92% of US developers had adopted some form of AI coding by early 2026." Angka ini bukan prediksi lagi — ini realitas. GitHub Copilot sendiri udah punya 20 juta users dan deployed di 90% Fortune 100 companies. Yang lebih mencengangkan: "AI now generates 46% of code in files where Copilot is active — rising to 61% for Java."
-
-Angka-angka ini penting buat konteks Indonesia. Kalau di Silicon Valley udah 92% adoption, pertanyaan yang muncul bukan "apakah AI akan mengubah cara kita coding" — tapi "bagaimana kita catch up tanpa terjebak di hype?" kalau infrastructure cloud kita masih bergantung pada provider luar yang mungkin tidak always available atau affordable untuk developer indie. Data center di Indonesia udah mulai dibangun, tapi apakah cukup untuk mendukung wave ini?
-
-**Source:** First Line Software 
-**Link:** https://firstlinesoftware.com/blog/ai-software-development-2026-2035
-
----
-
-## Google Play Split Billing Fees — Langkah Kecil yang Bisa Berpengaruh Besar untuk Developer Apps Indonesia
-
-Google announced kebijakan baru: "Google Play splits billing fees for US and European developers." Dari yang aku baca, perubahan ini adalah respons terhadap tekanan regulasi — terutama dari EU Digital Markets Act. Buat developer di AS dan Eropa, ini kabar baik: mereka bisa negotiate rate yang lebih baik. Tapi buat developer Indonesia? Policy ini masih belum directly affect kita.
-
-Walau begitu, aku melihat ini sebagai sinyal bahwa model app store monetization sedang berubah. Google dan Apple sudah tidak bisa seenaknya take 30% dari revenue developer. Kalau trend ini berlanjut ke Asia Tenggara — dan regulatory pressure di sini juga makin tinggi — bukan tidak mungkin developer apps Indonesia bakal dapat benefit yang sama 1-2 tahun ke depan. Implikasi jangka panjangnya: app store giants mulai realize bahwa developer ecosystem health itu penting untuk platform mereka sendiri.
+Untuk developer Indonesia yang kini makin bergantung pada AI coding assistant, ini reminder keras. Banyak dari kita yang copy-paste hasil AI tanpa review, apalagi di startup kecil yang tinggi. Aku sendiri pernah kena situasi di mana AI generate script yang kelihatannya fine, tapi pas dijalankan ada dependency berbahaya yang tidak terdeteksi. Implikasi praktisnya: trust but verify bukan lagi opsi, tapi keharusan.
 
 **Source:** Developer Tech 
 **Link:** https://www.developer-tech.com
 
 ---
 
-## Google Colab Punya "Learn Mode" — AI Sebagai Tutor Personal, Bukan Cuma Code Generator
+## OpenAI Rilis GPT-5.5-Cyber untuk Perbaiki Kerentanan Open-Source
 
-Google announce fitur baru di Google Colab: "Colab now has Learn Mode, your personal coding tutor." Penjelasan mereka spesifik: fitur ini "explains the 'why' and the 'how' through step-by-step guidance rather than just writing code for you." Powered by Custom Instructions, preferensi AI kamu disimpan dan travel with notebook kamu saat sharing. Mereka juga luncurkan "AI Agents Vibe Coding Course" — collaboration antara Google dan Kaggle untuk ngajarin orang cara pakai AI agents build software tanpa stuck di syntax.
+Satu minggu sebelum peringatan Mozilla, OpenAI deploy GPT-5.5-Cyber — model AI yang secara spesifik dirancang untuk mendeteksi dan memperbaiki vulnerability di kode open-source. Menurut Developer Tech (23 Juni 2026), tool ini menggunakan reasoning model yang dilatih untuk memahami konteks keamanan, bukan cuma pattern matching generik. "The model can identify potential exploits that traditional static analyzers miss," kata salah satu engineer OpenAI dalam blog post resmi mereka.
 
-Ini yang bikin aku excited. Dari pengalaman ngajarin teman-teman developer di Bali, salah satu frustration terbesar dengan AI coding tools adalah mereka terlalu "helpful" — langsung kasih kode tanpa explain kenapa harus gitu. Learn Mode ini mengarahkan AI jadi tools edukasi, bukan sekadar autocomplete. Untuk Indonesia yang masih struggle dengan shortage bootcamp berkualitas dan mentor, Colab Learn Mode bisa jadi bridge yang accessible — asal koneksinya cukup stabil.
+Di konteks Indonesia, di mana banyak project pemerintah dan fintech masih bergantung pada library open-source yang jarang di-update, ini sebenarnya solusi yang menarik. Tapi ada twist-nya: kita jadi bergantung pada OpenAI untuk security audit kode kita. Pertanyaannya, siapa yang audit OpenAI-nya? Aku pribadi tidak nyaman menyerahkan security-critical code ke satu vendor, meskipun mereka klaim modelnya superior. Ini soal supply chain trust, bukan soal capability.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+---
+
+## Alpha-Omega Danai Operasional Triage Keamanan Rust
+
+Di sisi yang lebih fundamentaldan, Alpha-Omega — organisasi nirlaba yang fokus pada keamanan open-source — announcespendanaan baru untuk Rust security triage operations. Keputusan ini dikonfirmasi Developer Tech pada 22 Juni 2026. Rust, yang semakin jadi pilihan utama untuk sistem yang butuh performa tinggi dan memory safety, kini punya dukungan finansial eksplisit untuk memastikan library-nya aman. Alpha-Omega menyebut bahwa "70% of critical vulnerabilities in systems software trace back to memory safety issues" — angka yang bikin mikir kenapa kita masih banyak pakai C/C++ di project critical.
+
+Untuk developer Indonesia yang mulai migrasi ke Rust (atau yang masihpertimbangkan), ini sinyal bahwa ekosistem Rust makin mature. Dana dari Alpha-Omega artinya lebih banyak contributor yang dibayar untuk review keamanan, bukan lagi volunteer burnout. Secara praktis, ini kabar baik untuk kalian yang build backend service, CLI tools, atau embedded system dengan Rust.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+---
+
+## Google Colab Launch Learn Mode — Personal Coding Tutor Berbasis AI
+
+Google announce fitur baru di Colab yang menurutku cukup refreshing: Learn Mode. Berlapis dari fitur autocomplete biasa, Learn Mode berfungsi sebagai tutor personal yang menjelaskan "kenapa" di balik kode, bukan cuma menuliskan kode. Blog Google (April 2026) menjelaskan bahwa fitur ini powered by Custom Instructions, jadi preferensi belajar setiap user tersimpan dan bisa dipakai ulang. "Step-by-step guidance rather than just writing code for you," tulis tim Google.
+
+Sebagai someone yang kadang ngajarin junior developer, aku lihat potensi besar di sini. Learn Mode bisa jadi bridge — nggak semua orang punya akses ke mentor experienced, dan video tutorial sering nggak bisa di-customize untuk konteks spesifik project. Tapi aku juga: apakah Learn Mode ini bisa handle advanced topics kayak distributed systems design atau performance optimization, atau cuma useful untuk beginners? Aku belum sempat test sendiri, tapi next project pakai Colab, aku akan coba fitur ini.
 
 **Source:** Google Blog 
 **Link:** https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-april-2026
 
 ---
 
-## Designli Report: 44.4% Founder Prioritaskan Operational Automation — Data yang Perlu Jadi Perhatian Developer
+## AI Sekarang Generate 46% Kode di File Aktif Copilot — dan 61% untuk Java
 
-Designli release report baru tentang AI reshaping SaaS product strategy. Data yang paling grabbed my attention: "44.4% of founders identified operational automation across billing, QA, and internal workflows as AI's highest immediate business impact." Angka ini mendahului feature baru atau AI gimmick lainnya. Founder nggak lagi fokus ke "AI-powered recommendation engine" — mereka fokus ke yang boring tapi critical: billing automation, QA process, dan internal workflow optimization.
+Statistik ini yang paling bikin aku berhenti scrolling. First Line Software merangkum data dari berbagai sumber (22 Juni 2026): AI sekarang generate 46% of code in files where Copilot is active, rising to 61% for Java. Sundar Pichai bilang 25% of Google's code is AI-assisted. Satya Nadella menyatakan 20-30% of code in Microsoft repositories is AI-generated. Untuk konteks, GitHub Copilot sendiri udah punya 20 juta users dan deployed di 90% of Fortune 100 companies.
 
-Untuk developer yang bangun produk SaaS, ini perspective yang valuable. Clients atau stakeholders kita bukan cari tech terbaru — mereka cari solusi yang streamline operations mereka. Kalau kita build AI-powered features yang nggak directly solve operational pain points, risknya adalah kita building for ourselves, bukan for users. Report juga bilang "66.7% prioritized rapid prototyping as their primary method for validating AI-powered features" — approach validate-first ini yang menurutku lebih sustainable daripada go big from day one.
+Angka-angka ini mengubah definisi "developer" dengan cara yang tidak pernah kita diskusikan secara terbuka. Kalau 60% kode Java yang kamu tulis itu sebenarnya hasil AI, apa artinya untuk skill assessment? Untuk hiring criteria? Untuk performance review? Di Indonesia, di mana banyak tech company masih evaluate developer berdasarkan "berapa banyak baris kode," ini pertanyaan yang nggak nyaman tapi penting. Aku bukan anti-AI — aku pakai Copilot setiap hari — tapi aku pikir kita perlu jujur soal apa yang kita ukur.
 
-**Source:** Newsfile Corp / Designli 
-**Link:** https://www.newsfilecorp.com/release/284016/Designli-Releases-New-2026-Report-on-How-AI-Is-Reshaping-SaaS-Product-Strategy
+**Source:** First Line Software 
+**Link:** https://firstlinesoftware.com/blog/ai-software-development-2026-2035
 
 ---
 
 ## Yang aku bawa pulang dari kelima berita ini
 
-Ada benang merah yang aku lihat dari lima berita ini: industri ini sedang dalam fase di mana **aksesibilitas dan keamanan lagi bertabrakan**. Di satu sisi, AI tools makin accessible — 84% developer udah pakai, Colab punya Learn Mode, startup founder bisa validate ideas dalam hitungan bulan. Tapi di sisi lain, semakin kita rely pada AI tools dan open-source ecosystem, semakin lebar attack surface kita. Mozilla report tentang malware di "clean repo" itu bukan fear-mongering — itu warning yang legitimate.
+Ada satu benang merah yang nongol di semua berita ini: trust. Mozilla bicara soal trust model yang di-exploit. OpenAI bicara soal siapa yang kita percaya untuk audit keamanan kode kita. Alpha-Omega bicara soal trust pada ekosistem open-source. Google bicara soal trust pada AI sebagai tutor. Dan angka Copilot bicara soal trust kita pada output yang bukan kita tulis sendiri. Ironisnya, di era di mana AI supposed to make everything faster and easier, justru trust menjadi bottleneck utama.
 
-Untuk developer Indonesia specifically, ada dua pertanyaan yang menghantui aku: **Pertama**, infrastruktur kita udah siap belum untuk wave AI adoption ini? Kalau 92% developer di US udah adopt AI coding, kita di sini masih battle dengan connectivity issues dan cloud cost. **Kedua**, skill apa yang tetap valuable ketika AI bisa generate 46-61% code kita? Jawaban yang aku optimistic about: architectural thinking, security awareness, dan kemampuan translate business problems jadi technical solutions.
+Yang bikin aku nggak nyaman sekaligus excited adalah bahwa nggak ada jawaban mudah di sini. Kita tidak bisa balik ke era sebelum AI assistant. Tapi kita juga tidak bisa blind-trust AI tanpa konsekuensi. Untuk developer Indonesia, menurutku posisi paling sehat adalah jadi hybrid thinker — mampu memanfaatkan AI untuk produktivitas, tapi tetap punya fundamental skill yang kuat untuk verifikasi. Itu artinya, belajar hal basics dengan lebih giat, bukan kurang.
 
-Yang bikin aku nggak tidur tadi malam bukan karena headline-clickbait, tapi karena menyadari bahwa kita semua — developer Indonesia — sedang di persimpangan yang sama. Pilihan kita hari ini soal tool, practice, dan priority akan nentuin apakah kita riding the wave atau getting left behind. Bukan sesuatu yang bisa di-solve dalam satu malam. Tapi minimal, aware itu udah step pertama.
+Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis — atau setidaknya, membaca tulisan orang lain yang punya angle berbeda. Besok aku akan coba test Learn Mode di Colab untuk lihat apakah klaim Google soal "step-by-step guidance" beneran useful untuk konteksku.
 
 ---
 
-*Ditulis 01 July 2026 • Sumber: Developer Tech, First Line Software, Google Blog, Newsfile Corp / Designli*
+*Ditulis 01 July 2026 • Sumber: Developer Tech, Google Blog, First Line Software*
