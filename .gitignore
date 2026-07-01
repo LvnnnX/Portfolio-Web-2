@@ -35,3 +35,4 @@ dist-ssr
 !vercel.json
 !src/content/**/*.json.vite/
 .vite/
+__pycache__/
