@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import data from "../../content/experience.json";
+import Reveal from "./Reveal";
 
 interface ExperienceEntry {
   id: string;
@@ -36,25 +37,25 @@ export default function Experience() {
   return (
     <div id="experience" className="py-10 md:py-16 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
-          Work Experience
-        </h2>
-        <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
-          Outcomes shipped, not hours logged.
-        </p>
+        <Reveal>
+          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+            Work Experience
+          </h2>
+          <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
+            Outcomes shipped, not hours logged.
+          </p>
+        </Reveal>
 
-        {/* Timeline — no card boxes, just a vertical rule + content */}
         <div className="relative pl-4 md:pl-6">
-          {/* vertical line */}
           <div className="absolute left-0 top-2 bottom-2 w-px bg-border" />
 
           <div className="flex flex-col gap-6 md:gap-8">
-            {experiences.map((exp) => (
-              <div
-                key={exp.id}
-                onClick={() => setSelectedExp(exp)}
-                className="relative cursor-pointer group"
-              >
+            {experiences.map((exp, i) => (
+              <Reveal key={exp.id} delay={i * 0.06}>
+                <div
+                  onClick={() => setSelectedExp(exp)}
+                  className="relative cursor-pointer group"
+                >
                 {/* dot on the line */}
                 <div className="absolute -left-4 md:-left-6 top-1.5 w-2 h-2 rounded-full bg-border group-hover:bg-primary transition-colors" />
 
@@ -86,6 +87,7 @@ export default function Experience() {
                   ))}
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import data from "../../content/github.json";
+import Reveal from "../ui/Reveal";
 
 interface ProfileSnapshot {
   username: string;
@@ -138,16 +139,19 @@ export default function OpenSource() {
   return (
     <section id="open-source" className="py-10 md:py-16 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
-          On GitHub
-        </h2>
-        <p className="text-muted-foreground text-[13px] md:text-[15px] mb-6 md:mb-8">
-          Pinned repos surfaced at build time.
-        </p>
+        <Reveal>
+          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+            On GitHub
+          </h2>
+          <p className="text-muted-foreground text-[13px] md:text-[15px] mb-6 md:mb-8">
+            Pinned repos surfaced at build time.
+          </p>
+        </Reveal>
 
         {/* C: Profile card */}
         {profile && (
-          <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-10 p-4 md:p-6 bg-muted rounded-xl border border-border">
+          <Reveal delay={0.05}>
+            <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-10 p-4 md:p-6 bg-muted rounded-xl border border-border">
             <img
               src={profile.avatar}
               alt={profile.name ?? profile.username}
@@ -186,6 +190,7 @@ export default function OpenSource() {
               </div>
             </div>
           </div>
+          </Reveal>
         )}
 
         {/* Contribution heatmap */}

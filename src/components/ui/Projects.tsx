@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { X, ExternalLink } from "lucide-react";
 import data from "../../content/projects.json";
+import Reveal from "./Reveal";
 
 interface ProjectLinks {
   repo: string | null;
@@ -39,24 +40,25 @@ export default function Projects() {
   return (
     <div id="projects" className="py-10 md:py-16 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
-          Case Studies &amp; Shipping Notes
-        </h2>
-        <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
-          Selected works in AI &amp; Web.
-        </p>
+        <Reveal>
+          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+            Case Studies &amp; Shipping Notes
+          </h2>
+          <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
+            Selected works in AI &amp; Web.
+          </p>
+        </Reveal>
 
-        {/* Bento grid with tinted backgrounds — no card borders */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-          {projects.map((project) => {
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
+          {projects.map((project, i) => {
             const tint = TINTS[project.category] ?? "bg-muted";
             const featured = project.tier === 1;
             return (
-              <div
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                className={`${tint} p-4 md:p-6 cursor-pointer rounded-xl group`}
-              >
+              <Reveal key={project.id} delay={i * 0.06}>
+                <div
+                  onClick={() => setSelectedProject(project)}
+                  className={`${tint} p-4 md:p-6 cursor-pointer rounded-xl group ${featured ? "md:col-span-2" : ""}`}
+                >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[10px] md:text-[11px] font-bold text-primary tracking-wider uppercase">
                     {project.category}
@@ -87,7 +89,8 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-              </div>
+                </div>
+              </Reveal>
             );
           })}
         </div>

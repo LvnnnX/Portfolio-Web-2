@@ -1,4 +1,5 @@
 import { MessageCircle, Mail } from "lucide-react";
+import Reveal from "./Reveal";
 
 const Instagram = ({ size }: { size: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -34,14 +35,17 @@ export default function Contact() {
   return (
     <div id="contact" className="pt-8 pb-12 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
-          Let&apos;s Talk
-        </h2>
-        <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8">
-          Interested in AI solutions or research collaboration?
-        </p>
+        <Reveal>
+          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+            Let&apos;s Talk
+          </h2>
+          <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8">
+            Interested in AI solutions or research collaboration?
+          </p>
+        </Reveal>
 
-        <div className="flex flex-wrap gap-3">
+        <Reveal delay={0.1}>
+          <div className="flex flex-wrap gap-3">
           <a
             href={`mailto:${CONTACT_DATA.email}`}
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-[13px] font-bold text-primary-foreground transition-opacity hover:opacity-90"
@@ -65,7 +69,8 @@ export default function Contact() {
               {social.icon} {social.name}
             </a>
           ))}
-        </div>
+          </div>
+        </Reveal>
       </div>
     </div>
   );
