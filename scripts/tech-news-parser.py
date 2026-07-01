@@ -12,10 +12,11 @@ import requests
 import json
 
 # Configure APIs
-xiaomimimo_key = os.getenv("XIAOMIMIMO_API_KEY", "sk-syjn3x2g9ia5cu3171e7m3t0su43bmt3tbjb4uaz09bfb2wg")
+databyte_key = os.getenv("DATABYTE_API_KEY", "")
 tavily_key = os.getenv("TAVILY_API_KEY", "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")
-api_base = "https://api.xiaomimimo.com/v1"
-model_name = "mimo-v2.5"
+api_base = "https://ai.databyte.co.id/v1"
+model_name = "databyte-m1"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 
 # Portfolio repo path
 PORTFOLIO_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -172,8 +173,9 @@ TUGAS:
         response = requests.post(
             f"{api_base}/chat/completions",
             headers={
-                "Authorization": f"Bearer {xiaomimimo_key}",
-                "Content-Type": "application/json"
+                "Authorization": f"Bearer {databyte_key}",
+                "Content-Type": "application/json",
+                "User-Agent": USER_AGENT
             },
             json={
                 "model": model_name,
@@ -188,7 +190,7 @@ TUGAS:
         result = response.json()
         return result['choices'][0]['message']['content']
     except Exception as e:
-        print(f"ERROR: XiaoMiMiMo API failed: {e}")
+        print(f"ERROR: Databyte API failed: {e}")
         if hasattr(e, 'response'):
             print(f"Response: {e.response.text}")
         sys.exit(1)
@@ -227,7 +229,7 @@ def main():
     print(f"🔍 Searching {focus_type} news with Tavily API...")
     articles = search_tech_news(use_ai_focus=use_ai_focus)
     
-    print("🤖 Summarizing with XiaoMiMiMo AI...")
+    print("Summarizing with Databyte AI...")
     mdx_content = summarize_with_ai(articles)
     
     print("💾 Saving MDX post...")
