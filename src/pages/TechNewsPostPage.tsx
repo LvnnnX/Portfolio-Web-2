@@ -59,7 +59,7 @@ export default function TechNewsPostPage() {
   const description = fm.excerpt ?? fm.description ?? "";
 
   return (
-    <main className="cs">
+    <main className="cs cs--tech-news">
       <SEO
         title={title}
         description={description}

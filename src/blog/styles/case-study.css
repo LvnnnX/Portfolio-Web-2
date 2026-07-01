@@ -430,9 +430,11 @@
 }
 
 /* Daftar pustaka — everything after the final <hr> in MDX is the bibliography.
- * Smaller body, sans-serif chrome face, hanging indent for citations. */
+ * Smaller body, sans-serif chrome face, hanging indent for citations.
+ * Scoped to case-study only (.cs:not(.cs--tech-news)) so tech news articles
+ * separated by <hr> don't get bibliography styling. */
 
-.cs-body hr ~ h2 {
+.cs:not(.cs--tech-news) .cs-body hr ~ h2 {
   font-family: var(--cs-sans);
   font-style: normal;
   font-size: 11px;
@@ -443,11 +445,11 @@
   margin-block: 0 16px;
 }
 
-.cs-body hr ~ h2::before {
+.cs:not(.cs--tech-news) .cs-body hr ~ h2::before {
   content: none;
 }
 
-.cs-body hr ~ p {
+.cs:not(.cs--tech-news) .cs-body hr ~ p {
   font-family: var(--cs-serif);
   font-size: 13px;
   line-height: 1.55;
@@ -459,12 +461,12 @@
   margin-block-end: 0.7em;
 }
 
-.cs-body hr ~ p strong {
+.cs:not(.cs--tech-news) .cs-body hr ~ p strong {
   font-weight: 700;
   color: var(--cs-ink);
 }
 
-.cs-body hr ~ p em {
+.cs:not(.cs--tech-news) .cs-body hr ~ p em {
   font-style: italic;
 }
 
