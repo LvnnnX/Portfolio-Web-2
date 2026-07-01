@@ -1,0 +1,82 @@
+---
+title: "Tech News - 01 July 2026"
+slug: "tech-news-2026-06-28"
+date: "2026-06-28"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Kelima berita ini menarik karena menggambarkan paradoks yang aku rasakan sebagai developer: AI makin murah dan powerful, tapi governance dan security-nya masih berantakan. Paradox yang bikin aku bertanya — apakah kita sedang membangun infrastruktur yang benar-benar kita pahami?"
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+---
+
+Malam ini aku scrolling Hacker News sambil nunggu proses training model selesai. Satu jam dead time yang biasanya aku habiskan buat baca-baca aja. Dari 15+ artikel yang lewat di feed, ada lima yang bikin aku berhenti — bukan karena headline-nya gila, tapi karena angka-angkanya konkret dan relevan sama kerjaan daily-ku sebagai developer.
+
+Ini bukan kompilasi beritaAI yang viral. Ini potongankehidupan working developer yang coba ngikutin arah industri, sambil tetap produktif deliver software yang berfungsi.
+
+## Google Cloud Rilis Full-Stack AI Architecture — Tapi yang Viral Malah Angka-Angka Copilot
+
+First Line Software merangkum data yang bikin aku balik kalkulasi.Menurut secondtalent.com, 92% developer US sudah adopsi AI coding per early 2026. GitHub Copilot punya 20 juta users dan deployed di 90% Fortune 100 companies (quantumrun.com). Cursor reaching $500 juta ARR dengan valuation $9.9 miliar bikin aku teringat waktu pertama kali coba Cursor tahun lalu — trial version, sekarang sudah segitunya.
+
+Data ini penting buat developer Indonesia karena dua alasan. Pertama, kalau kita mau tender project internasional, kemungkinan besar client sudah expectation tim kita familiar dengan AI tooling. Kedua, angka 46% code yang di-generate AI di file aktif Copilot (naik ke 61% untuk Java) artinya estimasi waktu development sudah nggak bisa pakai kalkulasi tradisional. Aku sendiri merasakan ini — sprint planning yang biasanya 2 weeks, sekarang kadang bisa 1 week kalau AI help-nya optimal.
+
+**Source:** First Line Software 
+**Link:** https://firstlinesoftware.com/blog/ai-software-development-2026-2035
+
+## Mozilla Tunjukkan Malware Risk di GitHub Repo — Security Bukan Fitur, Tapi Prasyarat
+
+Mozilla mendemonstrasikan bagaimana Claude Code bisa di-exploit via clean GitHub repository. Bukan teoritis — ini proof of concept yang demonstrable. Satu repo yang bersih, tapi ketika developer run agent AI tertentu, ada command yang jalan di background tanpa consent yang jelas.
+
+Ini penting buat developer Indonesia karena budaya open-source kita tinggi. Banyak tim yang clone repo, run script tanpa audit dulu. Sekarang dengan AI coding agents yang autonomous, risk-nya naik level. Bukan lagi "apa ada malicious code di package.json" — tapi "apa agent yang aku run bisa execute sesuatu yang nggak aku expect."
+
+Implications praktis: tim developer perlu audit AI-generated code sama ketatnya dengan human-written code. Dan perlu lebih berhati-hati dengan permission yang kita kasih ke AI agents.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+## Startup Founder Guide: 4-6 Bulan Dari Nol ke Production AI Product
+
+TechRev Blog menulis panduan yang menurutku realistic banget. Dari zero ke production-ready AI product butuh 4-6 bulan untuk use case startup pada umumnya. Siapa pun yang janji complete production-ready system dalam 3 minggu, "either doesn't know what production-ready means, or hasn't asked the right questions yet."
+
+Ini data point yang bagus untuk dikasih konteks ke client atau stakeholder. Terutama di Indonesia, di mana sering ada expectation bahwa AI development seperti "chatbot tinggal connect ke API." Realitanya, validation process, data pipeline, dan governance tetap makan waktu.
+
+Validasi ide AI sebelum invest heavy di development dan infrastructure — ini advice yang menurutku undervalued. Aku pernah ikut project yang langsung coding tanpa validasi, dan ujung-ujungnya rebuild from scratch.
+
+**Source:** TechRev Blog 
+**Link:** https://www.techrev.us/blog/how-startup-founders-are-building-ai-powered-apps-in-2026
+
+## Google Antigravity Agent di AI Studio — "Build App Semudah Ngomong"
+
+Google announces upgrade di Google AI Studio, termasuk "Google Antigravity" coding agent. Konsepnya simpel: turn prompts into production-ready apps. Kamu bisa use Build mode untuk build multiplayer experiences, add databases, connect ke real-world services.
+
+Sebagai developer yang daily use Cursor dan VS Code, aku dengan claim "production-ready." Dari pengalaman, AI-generated code yang jalan di demo belum tentu jalan di production environment dengan edge cases yang nyata. Tapi kalau Google konsisten sama track record-nya — Android Studio Bot membantu tapi nggak menggantikan — ini bisa jadi tooling yang useful.
+
+Buat developer Indonesia, akses ke Google Antigravity via AI Studio yang free tier-nya ada, artinya barrier to entry makin rendah. Orang yang mau belajar coding bisa langsung build prototype. Tapi di sisi lain, ini juga berarti competition makin tinggi — karena orang non-technical juga bisa build.
+
+**Source:** Google Blog 
+**Link:** https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-march-2026
+
+## Microsoft Agent Governance Toolkit — Karena Agents yang Jalan Tanpa Oversight Itu Berbahaya
+
+Microsoft launching Agent Governance Toolkit di April 2026 dengan seven packages across multiple programming languages. Amit Jain dari Luma Agents bilang ke TechCrunch bahwa mereka bangun "internal mental representation" dari creative brief — analogous ke how a human architect mentally models a building while drawing.
+
+Governance toolkit ini relevan banget karena semakin banyak AI agents yang autonomous — meaning, mereka take actions tanpa asked first. Di enterprise context, ini risiko compliance dan security. Tapi buat developer indie atau startup kecil, ini juga penting: kita perlu tool buat track apa yang agent kita lakukan, terutama kalau ada error.
+
+Aku experience sendiri: pernah ada AI agent yang delete production database karena typo di prompt. That was fun. Governance toolkit mungkin nggak akan prevent semua human error, tapi minimal bisa provide audit trail.
+
+**Source:** Mean CEO Blog 
+**Link:** https://blog.mean.ceo/ai-product-launches-news-april-2026
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Ada pola yang aku notice: industri lagi parallel track — AI makin powerful dan accessible, tapi governance dan security infrastructure-nya masih chasing from behind. Cursor $500M ARR, Copilot 20M users, tapi security risk dari AI agents masih di-demonstrate months after adoption. Paradox yang bikin aku nggak nyaman, tapi jujur — nggak membuatku stop pakai AI tools. Lebih baik being uncomfortable dan produktif, daripada comfortable tapi slow.
+
+Pertanyaan yang muncul di benakku: apakah developer Indonesia sudah 늦 masuk? Jawabanku: nggak, justru posisi kita menarik. Kita bisa belajar dari mistake yang sudah dilakukan developer US dan Europe, sambil bypass fase "naive adoption" yang sekarang sudah recognized sebagai risk. Smart integration, bukan blind adoption.
+
+Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini — sambil tetap deliver working software tiap sprint. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis — atau setidaknya, baca tulisan orang lain yang punya angle berbeda.
+
+---
+
+*Ditulis 01 July 2026 • Sumber: First Line Software, Developer Tech, TechRev Blog, Google Blog, Mean CEO Blog*

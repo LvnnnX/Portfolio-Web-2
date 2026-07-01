@@ -1,0 +1,82 @@
+---
+title: "Tech News - 01 July 2026"
+slug: "tech-news-2026-06-26"
+date: "2026-06-26"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Kelima berita ini mengubah cara aku think tentang keamanan kode dan produktivitas developer. Mulai dari malware di tool AI populer sampai fakta bahwa hampir separuh kode yang kita tulis sekarang sebenarnya hasil generate AI."
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+---
+
+Kemarin malam susah tidur, jadi aku buka laptop dan scrolling Hacker News. Eh, nemu satu thread yang bikin aku nggak bisa tidur — bukan karena exciting, tapi karena bikin paranoid. Soal keamanan tool coding yang selama ini kita pakai tanpa pikir panjang. Dari sanalah aku mulai kumpulin berita-berita ini, sampai jam 3 pagi.
+
+Sebagai developer yang kerja dari Bali (tapi client-nya dari mana-mana), aku sering nggak aware sama perkembangan security di level global. Berita-berita ini remind aku bahwa produktivitas itu ada price-nya — dan price-nya kadang adalah trust.
+
+## Malware di GitHub Repo Bersih: Ketika Claude Code Jadi Vektor Serangan
+
+Mozilla menemukan sesuatu yang mengganggu di Claude Code — malware yang bisa masuk ke clean GitHub repo tanpa terdeteksi. Developer-tech.com melaporkan, "Mozilla shows Claude Code malware risk in clean GitHub repo" (30 Juni 2026). Ini bukan bug biasa; ini soal chain of trust yang bisa dieksploitasi. Satu command `npm install` yang harmless bisa jadi pintu masuk malware.
+
+Untuk developer Indonesia yang sering clone repo open-source atau pakai template dari internet, ini wake-up call. Kita suka skip security audit demi speed — "nanti aja kalau sudah production." Tapi dengan AI coding agent yang auto-install dependencies, attack surface-nya jadi lebih besar.Satu commit kecil dari AI assistant yang compromised bisa masuk ke codebase kita tanpa kita sadari.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+---
+
+## AI Sudah Nulis 46% Kode Kita — dan Kita Baru Sadar?
+
+First Line Software mengutip data yang bikin aku stop scrolling: "AI now generates 46% of code in files where Copilot is active — rising to 61% for Java." Angka ini dari quantumrun.com, dan konteksnya diperkuat dengan fakta bahwa GitHub Copilot sudah punya 20 juta users dengan deployment di 90% Fortune 100 companies. Cursor sendiri mencapai $500 juta ARR dan valuation $9.9 miliar.
+
+Aku bukan anti-AI — aku pakai Copilot setiap hari. Tapi ada sesuatu yang mengganggu ketika kita realize bahwa hampir separuh kode yang kita "Tulis" sebenarnya hasil generate. Bukan soal credit, tapi soal understanding. Kalau kita nggak ngerti code yang kita push, kita nggak bisa debug ketika broken — dan broken pasti akan terjadi.
+
+**Source:** First Line Software 
+**Link:** https://firstlinesoftware.com/blog/ai-software-development-2026-2035
+
+---
+
+## Google Rilis Antigravity: Dari Prompt ke Production App
+
+Google mengumumkan upgrade besar di Google AI Studio, termasuk coding agent baru yang dinamai "Antigravity." Dari blog.google.com (April 2026), "Building an app should feel as easy as talking about one. Google AI Studio now lets you turn prompts into production-ready apps." Mode Build-nya bisa untuk bikin multiplayer experiences, add databases, dan connect ke real-world services — tanpa perlu nulis code manually.
+
+Untuk developer Indonesia yang freelancing atau bikin startup sendiri, ini game-changer. Waktu yang biasanya dipake untuk setup project structure bisa dipake buat think tentang product-market fit. Tapi di satu sisi, ini juga berarti barrier to entry makin rendah — yang artinya kompetisi makin fierce. Kalau semua orang bisa bikin app dari prompt, value proposition developer bukan lagi "bisa bikin app," tapi "bisa bikin app yang tepat."
+
+**Source:** Google Blog 
+**Link:** https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-march-2026
+
+---
+
+## Microsoft Agent Governance Toolkit: Compliance yang Pernah Kita Abaikan
+
+Blog.mean.ceo coverage product launch April 2026, dan salah satu yang menarik perhatianku adalah "Microsoft's Agent Governance Toolkit is the tool launch of the month for any startup building enterprise AI products." Toolkit ini menyediakan compliance automation layer yang sekarang jadi requirement sebelum enterprise buyers sign AI contract. Amit Jain dari Luma Agents juga bilang ke TechCrunch bahwa sistem mereka build "internal mental representation" dari creative brief — analogi yang keren, tapi juga nunjukin kompleksitas AI agent yang harus kita manage.
+
+Di Indonesia, compliance sering jadi afterthought — "nanti aja kalau sudah enterprise client." Tapi dengan AI agent yang makin autonomous, governance bukan lagi nice-to-have. Kita perlu track apa yang agent kita lakuin, siapa yang approve decisions, dan audit trail yang jelas. Ini nggak sexy, tapi ini yang bikin AI adoption sustainable.
+
+**Source:** Mean CEO Blog 
+**Link:** https://blog.mean.ceo/ai-product-launches-news-april-2026
+
+---
+
+## OpenAI vs Malware: GPT-5.5-Cyber untuk Vulnerability Fixes
+
+Developer-tech.com melaporkan OpenAI deploys "GPT-5.5-Cyber for open-source vulnerability fixes" (23 Juni 2026). Ini menarik karena ini salah satu contoh konkret AI nggak cuma jadi tools untuk bikin kode, tapi juga untuk nge-fix kode yang vulnerable. Sementara di satu sisi ada malware yang targetin developer tools, di sisi lain ada AI yang specifically designed untuk patch security holes.
+
+Paradoks ini bikin aku mikir: security adalah arms race, dan AI sekarang jadi senjata di kedua sisi. Yang bikin nggak nyaman adalah speed-nya. Malware yang pakai AI untuk evade detection berkembang lebih cepat dari security tools yang kita punya. Untuk developer Indonesia, ini berarti security education bukan lagi opsional — ini core skill seperti coding sendiri.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Ada pola yang aku notice: keamanan dan produktivitas sekarang berjalan beriringan — atau lebih tepat, saling berbenturan. Kita mau move fast dengan AI coding agent, tapi setiap speed ada risiko yang follow. Mozilla finding tentang Claude Code malware itu bukan untuk stop pakai AI tools; itu reminder bahwa trust perlu di-build, bukan diasumsikan.
+
+Pertanyaan yang masih mengganjal di benakku: siapa yang bertanggung jawab ketika AI-generated code introduce vulnerability? Vendor? Developer yang approve commit? Perusahaan yang deploy? Di Indonesia, belum ada framework yang jelas soal ini. Kita cenderung assume "kan open-source, siapa aja bisa audit" — tapi realitanya, sedikit yang benar-benar audit.
+
+Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis — atau setidaknya, membaca tulisan orang lain yang punya angle berbeda. Besok kita lanjut kerja, tapi malam ini kita sudah sedikit lebih paham apa yang sedang kita bangun.
+
+---
+
+*Ditulis 01 July 2026 • Sumber: Developer Tech, First Line Software, Google Blog, Mean CEO Blog*

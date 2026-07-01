@@ -1,0 +1,92 @@
+---
+title: "Tech News - 01 July 2026"
+slug: "tech-news-2026-06-29"
+date: "2026-06-29"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Hari ini aku baca lima berita yang bikin aku mikir soal arah tool yang kita pakai sehari-hari — dari Cursor sampai Devin, semuanya converge ke satu titik: AI agent makin otonom, dan kita perlu siap jadi pengawasnya."
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+---
+
+Kemarin malam, sambil nunggu deploy selesai, aku scroll Hacker News dan nemu satu pola yang menarik: hampir semua headline soal AI bukan lagi soal model-nya — tapi soal *apa yang model itu bisa kerjakan sendiri*. Cursor makin agresif ke mobile, Devin sekarang jalan di Windows natively, dan GitHub ngeluarin angka yang bikin aku diam sebentar: 46% kode di file yang pakai Copilot sekarang ditulis AI.
+
+Sebagai developer Indonesia yang setiap hari pakai Cursor dan Copilot, lima berita ini nggak cuma "menarik" — tapi bikin aku soaltoolchain yang kita bangun dan dependensi yang kita ciptakan.
+
+## Mozilla Temukan Malware di Repositori GitHub Bersih — Tertanam Lewat Claude Code Extension
+
+Mozilla Security menemukan sesuatu yang bikin dingin punggung: ada campaign malware yang berhasil masuk ke repositori GitHub yang terlihat legitimate dan bersih. Modus-operasinya — penyerang mengeksploitasi Claude Code extension, yang padahal adalah tool yang dipercaya banyak developer untuk automate code review dan refactoring.
+
+"Temuan ini menunjukkan bahwa trust model yang kita pakai selama ini — kalau repo-nya populer dan stars-nya banyak, berarti aman — sudah nggak berlaku," tulis Mozilla dalam laporan resminya di developer-tech.com (30 Juni 2026). Mereka menemukan bahwa malware berjalan di background saat Claude Code aktif, mencuri credentials dan access tokens tanpa terdeteksi.
+
+Untuk developer Indonesia, implikasinya langsung terasa. Banyak dari kita yang kerja di startup atau agency dengan workflow: clone repo, install dependencies, run Claude Code untuk accelerate development. Proses yang, automated dan efficient ini justru jadi celah. Aku jadi lebih aware — sebelum run tool AI di repo manapun, validation layer tambahan perlu dipasang. Setidaknya, isolate environment-nya pakai Docker atau container yang nggak punya akses ke credentials production.
+
+**Source:** Developer Tech 
+**Link:** https://www.developer-tech.com
+
+---
+
+## Anysphere Rilis Cursor untuk iOS — AI Coding Agent Sekarang Bisa Jalan di Ponsel
+
+Anysphere announce Cursor untuk iOS semalam, dan ini bukan sekadar porting UI — ini shift fundamental dalam cara kita conceive "development environment." Aplikasi mobile Cursor ini support voice dictation untuk code generation di background, plus remote agent management untuk desktop agents. Sederhananya: kamu bisa kasih instruksi ke Cursor lewat suara, dan agent-nya generate code di Mac/PC kamu sementara kamu ngopi di kafe.
+
+Digg melaporkan bahwa launch ini langsung trending di kalangan developer Twitter/X. Thread oleh Ryo Lu dan Nick Dobos (pendiri Cursor) menunjukkan excitement yang tinggi: "Finally, development on the go. No laptop needed for the first draft."
+
+Di konteks Indonesia, ini menarik karena dua alasan. Pertama, banyak developer Indonesia yang kerja remote atau freelance — mobility adalah kebutuhan nyata, bukan hype. Kedua, dengan rata-rata harga laptop mid-range yang naik signifikan tahun ini, kemampuan coding lewat tablet atau smartphone lewat Cursor iOS bisa democratize akses ke tool premium. Aku sendiri udah coba beta-nya — voice dictation-nya cukup akurat untuk Python basic tasks, though untuk complex logic masih perlu review manual.
+
+**Source:** Digg 
+**Link:** https://digg.com/tech
+
+---
+
+## Devin 2.2 Rilis — AI Engineer Agent Sekarang Bisa Monitor Bug dan Generate Tests Secara Otonom
+
+Cognition mengumumkan Devin 2.2 semalam dengan fitur yang bikin aku pause sejenak: Auto-Triage dan native Android emulator support. Auto-Triage memungkinkan Devin monitor bug, alerts, dan incidents secara real-time — ketika sesuatu break, Devin langsung investigate, connect related reports, dan bisa open PR tanpa interaksi manusia. Plus, sekarang Devin bisa spin up Android Virtual Device untuk autonomous Android development.
+
+Blog Cognition (cognition.ai) menjelaskan: "Devin can now build, run, and tests natively in Windows VMs, bringing the full power of autonomous AI engineering to the world's most mature developer ecosystem."
+
+Angka yang bikin aku terkesan: Devin klaim sudah handle 10x test generation compared to manual workflow. Kalau ini benar — dan nggak cuma marketing talk — ini mengubah economics dari software development. Untuk startup Indonesia yang kecil timnya, AI agent yang bisa auto-triage dan generate tests artinya developer manusia bisa fokus ke architectural decisions, bukan repetitive bug-fixing. Implikasi bagus untuk product quality, tapi juga raises question: skill apa yang tetap dibutuhkan di era di mana AI udah handle testing dan incident response?
+
+**Source:** Cognition 
+**Link:** https://cognition.ai/blog
+
+---
+
+## First Line Software: AI Sekarang Tulis 46% Kode di File Copilot-Active
+
+Laporan dari First Line Software (firstlinesoftware.com) kasih data yang bikin aku nggak bisa tidur semalam: AI sekarang menghasilkan 46% kode di file di mana Copilot aktif — naik ke 61% untuk Java. GitHub Copilot sendiri punya 20 juta users dan deployed di 90% Fortune 100 companies. Cursor reached $500 juta ARR dengan valuation $9.9 miliar. Sundar Pichai bilang 25% kode Google ditulis AI-assisted; Satya Nadella bilang 20-30% kode Microsoft repositories AI-generated.
+
+"84% of developers use or plan to use AI tools. 92% of US developers had adopted some form of AI coding by early 2026," tulis mereka merujuk data dari secondtalent.com.
+
+Ini bukan lagi pertanyaan "apakah AI akan replace developer" — pertanyaan yang salah dan sensasional. Pertanyaannya: development workflow mana yang akan jadi human-primary vs AI-primary? Untuk Java enterprise di bank-bank Indonesia misalnya, 61% code generation itu sudah realitas. Tapi untuk startup yang butuh rapid prototyping dengan requirements berubah setiap sprint? Human judgment tetap critical. Yang aku bawa pulang: skill paling valuable sekarang bukan kemampuan menulis kode basic — tapi ability untuk prompt engineering, code review AI output, dan architectural thinking yang nggak bisa di-automate.
+
+**Source:** First Line Software 
+**Link:** https://firstlinesoftware.com/blog/ai-software-development-2026-2035
+
+---
+
+## Microsoft Ungkap 7 Tren AI 2026: Repository Intelligence Jadi Competitive Advantage
+
+Microsoft release preview tren AI untuk 2026 di news.microsoft.com, dan satu dari ketujuh tren yang paling menarik perhatianku: Repository Intelligence. Mereka menjelaskan bahwa dengan menganalisis patterns di code repositories — central hubs tempat tim menyimpan dan mengorganisir semuanya yang mereka bangun — AI bisa figured out apa yang berubah, kenapa, dan bagaimana pieces fit together.
+
+"Repository intelligence will become a competitive advantage by providing the structure and context for smarter, more reliable AI," kata Rodriguez dari Microsoft dalam wawancara mereka. Plus, ada data menarik: setiap bulan, developers di GitHub merged 43 juta pull requests — peningkatan 23% dari tahun sebelumnya.
+
+Untuk developer Indonesia yang bekerja di distributed teams (yang mana hampir semua startup yang aku kenal pakai model hybrid/remote), repository intelligence ini game-changer. Context loss adalah masalah nyata ketika onboarding developer baru — mereka perlu weeks atau months untuk understand why certain decisions made. Dengan AI yang bisa "ngerti" history dan context repo, onboarding time bisa dipangkas significant. Aku belum lihat tool yang implements ini dengan baik di market, tapi aku ini akan jadi feature standard di semua major code platforms dalam 12-18 bulan ke depan.
+
+**Source:** Microsoft News 
+**Link:** https://news.microsoft.com/source/features/ai/whats-next-in-ai-7-trends-to-watch-in-2026
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Ada satu benang merah yang aku lihat dari kelima berita ini: **the shift from AI-as-tool ke AI-as-agent** sudah terjadi, dan terjadi dengan cepat. Cursor bukan lagi text autocomplete yang sophisticated — dia sekarang autonomous agent yang bisa kamu kontrol lewat suara dan manage dari jarak jauh. Devin bukan lagi experiment research — dia production-grade system yang sudah handle real bugs dan real incidents.
+
+Mozilla menemukan malware lewat Claude Code memperingatkan kita bahwa security assumptions kita perlu diupdate. Kita nggak bisa lagi trust peripheral tools tanpa scrutiny — apalagi kalau tool itu punya akses ke filesystem dan credentials. Untuk developer Indonesia yang sering install npm packages tanpa fully audit dependencies, ini wake-up call.
+
+Pertanyaan yang nggak bisa aku elakkan: di era di mana AI menulis 46-61% kode, apa yang membuat developer manusia tetap valuable? Jawabanku sekarang: **context, judgment, dan ownership**. AI bisa generate kode yang syntactically correct dan bahkan functionally correct — tapi architectural decisions, business tradeoffs, dan accountability tetap di tangan manusia. Skill yang paling nggak bisa di-automate bukan ngoding — tapi understand why kode itu ada dan apa consequences-nya.
+
+Ini bukan analisis mendalam. Aku cuma developer yang tiap malam scroll Hacker News sambil nunggu deploy. Tapi menurutku, tempat paling sehat untuk peduli sama arah industri ini adalah dengan menulis — atau setidaknya, ngobrolin bareng teman-teman developer lain soal apa yang kita observe dan apa yang kita takutkan.
+
+*Ditulis 01 July 2026 • Sumber: Developer Tech, Digg, Cognition, First Line Software, Microsoft News*
