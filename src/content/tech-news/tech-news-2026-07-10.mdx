@@ -1,0 +1,82 @@
+---
+title: "Tech News - 10 July 2026"
+slug: "tech-news-2026-07-10"
+date: "2026-07-10"
+tags: ["tech-news", "ai", "developer", "catatan"]
+eyebrow: ["TECH NEWS", "CATATAN"]
+excerpt: "Lima berita yang aku baca semalam bikin aku sadar — kita lagi di titik di mana AI bukan lagi soal siapa punya model terbaik, tapi siapa yang bisa bertahan di ekosistem yang makin dikontrol segelintir pemain."
+readingTime: "7 min"
+author: "Pande Gede Dani Wismagatha"
+draft: false
+---
+
+Kemarin malam susah tidur, jadi aku scroll Hacker News sambil nunggu hujan reda di Sanur. Nemu satu thread panjang soal Tencent yang baru rilis Hy3, model 295 miliar parameter yang mereka licensikan pakai Apache 2.0. Angka-angkanya bikin aku berhenti scrolling: 295 miliar parameter, open license, dan kompetitif dengan GLM-5.1 — model yang selama ini jadi benchmark di ekosistem China. Sebagai developer yang setiap bulan keluar uang buat API Claude, berita kayak gini langsung nyambung ke pertanyaan praktis: ini berarti apa buat stack yang aku pakai sehari-hari?
+
+Tapi jujur, yang bikin aku lebih diam adalah bukan teknologinya — melainkan geopolitiknya. Aku bukan ahli geopolitik, tapi sebagai orang yang hidup di era di mana Bali aja bisa terdampak keputusan AS-China soal semiconductor, aku: di titik mana kita sebagai developer Indonesia perlu mulai mikir serius soal ketergantungan ini?
+
+## Tencent Hy3: Model Terbuka China yang Bikin Nvidia Ketar-Ketir
+
+TechCrunch (via TechStartups) melaporkan bahwa Tencent resmi rilis Hy3, model 295 miliar parameter yang mereka klaim kompetitif dengan GLM-5.1 dan GLM-5.2 — dua model terkuat dari Zhipu AI. Yang bikin beda: Tencent melepas Hy3 di bawah lisensi Apache 2.0, yang artinya siapa pun bisa pakai, modifikasi, dan tanpa biaya lisensi. VentureBeat menyebut ini "following a preview launch in April" — jadi ini bukan eksperimen, tapi langkah kalkulasi dari Tencent untuk menembus pasar global.
+
+Untuk developer Indonesia, ini nggak soal ganti model doang. Ini soal leverage. Kalau model sekuat itu bisa diakses gratis, pertanyaan bukan "apakah AI mahal?" tapi "apakah bisnis model penyedia AI proprietary masih sustain?" Aku pribadi udah mulai hitung ulang: apakah masuk akal bayar $200/bulan untuk Claude kalau Hy3 dengan 295 miliar parameter bisa dijalankan di server sendiri? Jawabannya nggak hitam-putih — tapi pertanyaannya sendiri yang penting.
+
+**Source:** TechStartups / VentureBeat 
+**Link:** https://techstartups.com/2026/07/07/top-tech-news-today-july-7-2026
+
+---
+
+## Chip Wars: OpenAI, SpaceX, dan Semua Orang Bikin Prosesor Sendiri
+
+Satu berita lain yang caught my attention di TechCrunch: "Why everyone from OpenAI to SpaceX is building their own chips (and turning up the heat on Nvidia)." Reporter Theresa Loconsolo nulis panjang soal bagaimana OpenAI, SpaceX, dan perusahaan lain sekarang klaim bikin chip AI proprietary mereka sendiri. Jensen Huang senang — tapi yang menarik bukan AMD atau Intel; yang menarik adalah bahwa konsolidasi infrastruktur AI sekarang terjadi di level hardware, bukan software lagi.
+
+Aku bukan hardware engineer, tapi sebagai developer, aku bisa rasakan implikasinya. Kalau Nvidia dominance mulai diganggu, yang terjadi bukan chip jadi lebih murah — melainkan perang standar baru. Developer yang nggak ikutan evolusi ini akan stuck dengan abstraction yang makin tinggi tapi kontrol yang makin rendah. Di Indonesia, di mana infrastruktur cloud masih mahal dan bandwidth belum merata, ini berarti kita perlu mulai belajar dasar-dasar infrastructure-as-code dan on-premise deployment, bukan cuma rely on managed services.
+
+**Source:** TechCrunch 
+**Link:** https://techcrunch.com
+
+---
+
+## Tiny Teams Powered by AI: Startup with 5 Orang Versus 50 Orang
+
+YouTube video dari channel yang nggak aku expektasi menemukan insight: "AI in 2026: 10 Trends Changing Jobs, Startups & Tech." Video itu jelasin satu fenomena yang menurutku paling jujur soal apa yang terjadi di startup landscape: "Startups are beginning to operate with extremely small teams because AI tools can now handle marketing, product development, coding, data analysis, and..." — terus voice-over-nya nggak selesai, tapi intinya jelas. Lima orang plus AI agent sekarang bisa kerja kayak tim 50 orang.
+
+CRN juga konfirmasi ini lewat daftar "10 Hottest AI Startups of 2026" — di situ disebut Helix Digital dari Adam Selipsky (mantan AWS CEO) dan Prometheus dari Jeff Bezos. Bukan startup kecil — tapi orang-orang besar yang bikin company besar dengan pola baru. Implikasi buat developer Indonesia? Jeda pernapasan. Kalau model bisnis "tiny team + AI" mendominasi, value developer bukan lagi di "bisa coding" — tapi di "bisa decide apa yang worth to code." Kita perlu naik satu level: dari implementasi ke decision-making. Itu skill yang AI belum bisa gantikan dengan sempurna — setidaknya belum.
+
+**Source:** YouTube / CRN 
+**Link:** https://www.youtube.com/watch?v=hvvni9hFktc
+
+---
+
+## Web Dev 2026: Accessibility Jadi Legal Requirement, Bukan Ceklis
+
+Figma baru aja publish "12 Defining Web Development Trends for 2026" — dan ada satu trend yang langsung aku screenshot: "Legal accessibility mandates." McDonald, yang mereka kutip, bilang bahwa "building semantically correct and usable products for everyone comes with a high learning curve." Tapi yang bikin aku concerned bukan learning curve — melainkan kalimat: "AI and vibe-coded products are popping up everywhere that vastly miss the mark on a11y best practices, further polluting the web with experiences that not everyone can use."
+
+Aku pernah coba vibe coding — nggak shame on me — dan memang cepat. Tapi cepat nggak berarti benar. Di Bali, di mana aku kadang kerja dari kafe dengan koneksi internet yang unpredictable, aku jadi korban langsung dari produk yang nggak accessible: popup yang nggak bisa di-close tanpa hover, font yang nggak bisa di-resize, button yang nggak keyboard-accessible. Kita yang bikin produk digital untuk pasar Indonesia — yang infrastrukturnya masih uneven — punya tanggung jawab lebih. Accessibility bukan feature; ini foundation.
+
+**Source:** Figma 
+**Link:** https://www.figma.com/resource-library/web-development-trends
+
+---
+
+## Google AI Update April 2026: Managed Agents yang Nggak Sekadar Chat
+
+Blog Google mengumumkan update AI mereka April 2026, dan satu hal yang langsung aku notice: "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more." Philipp Schmid dan Mariano Cocirio nulis bahwa Gemini sekarang support managed agents yang bisa handle background tasks dan remote MCP (Model Context Protocol). Ini bukan chatbot yang nunggu input — ini agent yang bisa Kerja sambil kita tidur.
+
+Dari perspektif developer Indonesia, ini relevan karena dua alasan. Pertama: biaya. Kalau agent bisa handle repetitive task di server-side, kita nggak perlu run inference di client-side yang boros battery dan data. Kedua: latency. Remote MCP artinya komunikasi antar service happening in the background — user experience jadi lebih smooth. Aku persönlich sudah mulai integrate Gemini agent untuk handle data preprocessing pipeline di project freelance — dan jujur, hasilnya lebih consistent dari yang aku bayangin. Worth to explore, especially kalau kamu building product yang handling high-volume data.
+
+**Source:** Google Blog 
+**Link:** https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-april-2026
+
+---
+
+## Yang aku bawa pulang dari kelima berita ini
+
+Satu pola yang aku lihat dari kelima berita ini: konsolidasi. Tencent ngeluarin open model buat ngejar market share, big tech bikin chip proprietary buat kontrol supply chain, tiny team AI trend mengubah struktur organisasi, accessibility mandate mewajibkan inklusivitas, dan Google agent API bikin AI infrastructure makin terintegrasi. Semuanya converges ke satu arah — dunia development lagi di fase di mana distribusi lagi consolidation. Yang dulu decentralised (open models, indie devs, small agencies) sekarang converge ke tangan yang lebih sedikit.
+
+Pertanyaan yang muncul di benakku: di mana posisi developer Indonesia di fase ini? Aku bukan pessimis — aku cuma realista. Kita nggak bisa Tencent, nggak bisa ngejar Bezos, nggak bisa ngalahin Nvidia. Tapi kita bisa kontrol apa yang kita build dan untuk siapa. Mungkin justru di fase konsolidasi ini, local market knowledge jadi advantage yang nggak bisa di-replicate oleh model AI manapun. Developer Bali yang paham konteks tourism, developer Jakarta yang paham fintech regulation, developer Surabaya yang paham manufacturing — itu jenis knowledge yang nggak ada di training data yang dominated oleh English content.
+
+Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis — atau setidaknya, membaca tulisan orang lain yang punya angle berbeda. Cheers dari Sanur, semoga hujan berhenti dan aku bisa tidur.
+
+---
+
+*Ditulis 10 July 2026 • Sumber: TechStartups, VentureBeat, TechCrunch, YouTube, CRN, Figma, Google Blog*
