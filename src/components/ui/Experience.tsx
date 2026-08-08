@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { X, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import data from "../../content/experience.json";
 import Reveal from "./Reveal";
+import Modal from "./Modal";
 
 interface ExperienceEntry {
   id: string;
@@ -53,8 +54,17 @@ export default function Experience() {
             {experiences.map((exp, i) => (
               <Reveal key={exp.id} delay={i * 0.06}>
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
                   onClick={() => setSelectedExp(exp)}
-                  className="relative cursor-pointer group"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedExp(exp);
+                    }
+                  }}
+                  className="relative cursor-pointer group text-left w-full rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
                 >
                 {/* dot on the line */}
                 <div className="absolute -left-4 md:-left-6 top-1.5 w-2 h-2 rounded-full bg-border group-hover:bg-primary transition-colors" />
@@ -94,24 +104,7 @@ export default function Experience() {
       </div>
 
       {selectedExp && (
-        <div
-          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 bg-black/50 overflow-y-auto"
-          onClick={() => setSelectedExp(null)}
-        >
-          <div
-            className="bg-background w-full max-w-2xl my-auto rounded-2xl border border-border relative flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 right-0 p-4 flex justify-end z-20">
-              <button
-                onClick={() => setSelectedExp(null)}
-                className="p-2 rounded-lg hover:bg-muted transition-colors"
-                aria-label="Close"
-              >
-                <X size={20} className="text-foreground" />
-              </button>
-            </div>
-
+        <Modal title={selectedExp.title} onClose={() => setSelectedExp(null)}>
             <div className="px-6 md:px-10 pb-10 md:pb-12">
               <span className="text-[10px] md:text-[11px] font-bold text-primary tracking-wider uppercase mb-3 inline-block">
                 {selectedExp.category}
@@ -190,8 +183,7 @@ export default function Experience() {
                 </Link>
               )}
             </div>
-          </div>
-        </div>
+        </Modal>
       )}
     </div>
   );

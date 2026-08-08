@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { X, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import data from "../../content/projects.json";
 import Reveal from "./Reveal";
+import Modal from "./Modal";
 
 interface ProjectLinks {
   repo: string | null;
@@ -56,8 +57,17 @@ export default function Projects() {
             return (
               <Reveal key={project.id} delay={i * 0.06}>
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
                   onClick={() => setSelectedProject(project)}
-                  className={`${tint} p-4 md:p-6 cursor-pointer rounded-xl group ${featured ? "md:col-span-2" : ""}`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
+                  className={`${tint} p-4 md:p-6 cursor-pointer rounded-xl group text-left w-full outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${featured ? "md:col-span-2" : ""}`}
                 >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-[10px] md:text-[11px] font-bold text-primary tracking-wider uppercase">
@@ -97,24 +107,10 @@ export default function Projects() {
       </div>
 
       {selectedProject && (
-        <div
-          className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:p-6 bg-black/50 overflow-y-auto"
-          onClick={() => setSelectedProject(null)}
+        <Modal
+          title={selectedProject.title}
+          onClose={() => setSelectedProject(null)}
         >
-          <div
-            className="bg-background w-full max-w-2xl my-auto rounded-2xl border border-border relative flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 right-0 p-4 flex justify-end z-20">
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="p-2 rounded-lg hover:bg-muted transition-colors"
-                aria-label="Close"
-              >
-                <X size={20} className="text-foreground" />
-              </button>
-            </div>
-
             <div className="px-6 md:px-10 pb-10 md:pb-12">
               <span className="text-primary font-bold text-[11px] tracking-wider uppercase mb-2 block">
                 {selectedProject.category}
@@ -179,8 +175,7 @@ export default function Projects() {
                 )}
               </div>
             </div>
-          </div>
-        </div>
+        </Modal>
       )}
     </div>
   );

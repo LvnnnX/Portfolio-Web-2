@@ -17,16 +17,20 @@ const ITEMS: NavItem[] = [
 
 export default function Navigation() {
   const location = useLocation();
+  // The inline script in index.html has already set the class from
+  // localStorage / prefers-color-scheme, so reading it here picks up the real
+  // starting theme instead of always falling back to light.
   const [isDark, setIsDark] = useState(
     () => typeof document !== "undefined" && document.documentElement.classList.contains("dark"),
   );
   const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    document.documentElement.classList.toggle("dark", isDark);
+    try {
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch {
+      /* storage disabled — the toggle still works for this session */
     }
   }, [isDark]);
 

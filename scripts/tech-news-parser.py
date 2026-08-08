@@ -11,9 +11,12 @@ import subprocess
 import requests
 import json
 
-# Configure APIs
+# Configure APIs — keys come from the environment only. Never hardcode a
+# fallback here: this repo is public, so a committed key is a published key.
 databyte_key = os.getenv("DATABYTE_API_KEY", "")
-tavily_key = os.getenv("TAVILY_API_KEY", "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")
+tavily_key = os.getenv("TAVILY_API_KEY", "")
+if not tavily_key:
+    sys.exit("ERROR: TAVILY_API_KEY is not set. Export it or add it to the workflow secrets.")
 api_base = "https://ai.databyte.co.id/v1"
 model_name = "databyte-m1"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"

@@ -1,15 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
-import CaseStudyPage from "./pages/CaseStudyPage";
-import WritingIndexPage from "./pages/WritingIndexPage";
-import WritingPostPage from "./pages/WritingPostPage";
-import TechNewsIndexPage from "./pages/TechNewsIndexPage";
-import TechNewsPostPage from "./pages/TechNewsPostPage";
-import PlannedWebsitePage from "./pages/PlannedWebsitePage";
-import ServicesPage from "./pages/ServicesPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import {
+  CaseStudyPage,
+  WritingIndexPage,
+  WritingPostPage,
+  TechNewsIndexPage,
+  TechNewsPostPage,
+  PlannedWebsitePage,
+  ServicesPage,
+  NotFoundPage,
+} from "./pages/lazy";
 
+// Every route except the entry point is code-split (see ./pages/lazy). Without
+// this, a visitor to / downloads every blog post, every tech-news edition, all
+// three case studies, and the full services pricing page in the main chunk.
 export const router = createBrowserRouter([
   {
     path: "/",

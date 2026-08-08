@@ -8,6 +8,9 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   className?: string;
   style?: React.CSSProperties;
+  /** Hide from assistive tech — letter-split text is announced one character
+   *  at a time, so the readable copy lives in a sibling element instead. */
+  decorative?: boolean;
 }
 
 const BlurText = React.memo(({
@@ -17,6 +20,7 @@ const BlurText = React.memo(({
   direction = "top",
   className = "",
   style,
+  decorative = false,
 }: BlurTextProps) => {
   const [inView, setInView] = useState(false);
   const [isMobile, setIsMobile] = useState(
@@ -50,7 +54,12 @@ const BlurText = React.memo(({
   }, [text, animateBy]);
 
   return (
-    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+    <p
+      ref={ref}
+      className={`inline-flex flex-wrap ${className}`}
+      style={style}
+      aria-hidden={decorative || undefined}
+    >
       {segments.map((segment, i) => (
         <span
           key={i}
@@ -76,6 +85,13 @@ export default function PortfolioHero() {
   return (
     <div className="min-h-screen bg-white dark:bg-background text-black dark:text-foreground transition-colors duration-500 overflow-hidden">
       <main className="relative min-h-screen flex flex-col items-center justify-center">
+        {/* The name is drawn one letter per span for the blur-in effect, which
+            screen readers spell out and crawlers can't read as a heading. The
+            real h1 carries the text; the animated rows are decorative. */}
+        <h1 className="sr-only">
+          Pande Dani — Computer Vision &amp; Applied ML Engineer
+        </h1>
+
         <div className="relative w-full px-4 text-center mt-20 select-none">
 
           {/* PANDE – top row */}
@@ -84,6 +100,7 @@ export default function PortfolioHero() {
             delay={100}
             animateBy="letters"
             direction="top"
+            decorative
             className="font-extrabold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
           />
 
@@ -102,11 +119,24 @@ export default function PortfolioHero() {
                   borderRadius: "40px",
                 }}
               >
-                <img
-                  src="/images/hero_img.jpg"
-                  alt="Profile – Pande Dani"
-                  className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
-                />
+                {/* Box tops out at 240×350 CSS px (see the clamp above), so the
+                    1x/2x/3x derivatives cover every DPR. sizes mirrors the clamp:
+                    15vw hits 120px at 800px wide and 240px at 1600px. */}
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/hero-240.webp 240w, /images/hero-480.webp 480w, /images/hero-720.webp 720w"
+                    sizes="(max-width: 800px) 120px, (max-width: 1600px) 15vw, 240px"
+                  />
+                  <img
+                    src="/images/hero-480.jpg"
+                    alt="Profile – Pande Dani"
+                    width={240}
+                    height={350}
+                    fetchPriority="high"
+                    className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
+                  />
+                </picture>
               </div>
             </motion.div>
           </div>
@@ -117,6 +147,7 @@ export default function PortfolioHero() {
             delay={100}
             animateBy="letters"
             direction="top"
+            decorative
             className="font-extrabold text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] leading-[0.85] tracking-[-0.04em] uppercase text-black dark:text-foreground inline-flex flex-wrap justify-center"
           />
         </div>
