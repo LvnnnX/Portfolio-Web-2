@@ -4,7 +4,7 @@
  */
 
 .planned {
-  /* Atelier — light variant (default) */
+  /* Atelier: light variant (default) */
   --pl-paper: #fafaf6;
   --pl-paper-2: #f1efe8;
   --pl-paper-3: #e8e5db;
@@ -24,7 +24,7 @@
   background-color: var(--pl-paper);
   color: var(--pl-ink);
   font-family: var(--pl-serif);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 :root.dark .planned,
@@ -44,13 +44,13 @@
 .planned-article {
   max-width: 1100px;
   margin-inline: auto;
-  padding-block: 32px 96px;
+  padding-block: var(--nav-clearance, 72px) 96px;
   padding-inline: 20px;
 }
 
 @media (min-width: 768px) {
   .planned-article {
-    padding-block: 56px 128px;
+    padding-block: var(--nav-clearance, 96px) 128px;
     padding-inline: 48px;
   }
 }

@@ -26,7 +26,7 @@ interface Project {
   links?: ProjectLinks;
 }
 
-// Tinted backgrounds per category — no white cards
+// Tinted backgrounds per category, so cards read as a set without borders.
 const TINTS: Record<string, string> = {
   "Computer Vision": "bg-primary/5",
   "AI / ML": "bg-primary/5",
@@ -38,11 +38,13 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const projects = data.projects as Project[];
 
+  if (projects.length === 0) return null;
+
   return (
-    <div id="projects" className="py-10 md:py-16 px-4 md:px-6">
+    <div id="projects" className="py-14 md:py-24 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+          <h2 className="text-[26px] md:text-[38px] font-extrabold tracking-tight text-foreground mb-1">
             Case Studies &amp; Shipping Notes
           </h2>
           <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
@@ -50,7 +52,7 @@ export default function Projects() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
           {projects.map((project, i) => {
             const tint = TINTS[project.category] ?? "bg-muted";
             const featured = project.tier === 1;
@@ -74,7 +76,7 @@ export default function Projects() {
                     {project.category}
                   </span>
                   {featured && (
-                    <span className="text-[9px] md:text-[10px] font-bold text-foreground/40 tracking-wider uppercase">
+                    <span className="text-[9px] md:text-[10px] font-bold text-muted-foreground tracking-wider uppercase">
                       Featured
                     </span>
                   )}
@@ -94,7 +96,7 @@ export default function Projects() {
 
                 <div className="flex flex-wrap gap-1.5">
                   {project.techStack.slice(0, 4).map((tech: string) => (
-                    <span key={tech} className="text-[10px] md:text-[11px] font-semibold text-muted-foreground/80">
+                    <span key={tech} className="text-[10px] md:text-[11px] font-semibold text-muted-foreground">
                       {tech}
                     </span>
                   ))}

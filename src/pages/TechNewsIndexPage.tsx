@@ -28,7 +28,7 @@ interface PostMeta {
 }
 
 const formatDate = (iso: string): string => {
-  if (!iso) return "—";
+  if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("id-ID", {
@@ -99,8 +99,9 @@ export default function TechNewsIndexPage() {
                 <Link to={`/tech-news/${post.slug}`} className="blog-row__link">
                   <div className="blog-row__meta">
                     <span className="blog-row__date">
-                      {formatDate(post.date)}
-                      {post.readingTime ? ` · ${post.readingTime}` : ""}
+                      {[formatDate(post.date), post.readingTime]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </span>
                   </div>
                   <h2 className="blog-row__title">{post.title}</h2>

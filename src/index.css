@@ -8,6 +8,20 @@ html {
   overflow-x: clip;
 }
 
+/* Space the fixed nav pill needs so page content starts below it rather than
+   underneath. The bar sits at top:12px (mobile) / top:24px (md) and is ~37/42px
+   tall, so these leave a comfortable gap. Editorial routes consume this via
+   their own stylesheets. */
+:root {
+  --nav-clearance: 72px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-clearance: 96px;
+  }
+}
+
 body {
   overflow-x: clip;
 }
@@ -33,6 +47,13 @@ body {
   --primary-foreground: #ffffff;
   --border: #e4e4e8;
 
+  /* Paper surface behind the editorial routes (/blog, /tech-news,
+     /case-study, /services, /planned-website). App.tsx sets this on the root
+     wrapper; it must track the theme, or the footer strip below the article
+     stays light while the article goes dark. Values mirror
+     --cs-paper in blog/styles/case-study.css. */
+  --editorial-paper: #fafaf6;
+
   --text-primary: #111113;
   --text-secondary: #6b6b73;
 }
@@ -46,11 +67,13 @@ body {
   --primary-foreground: #ffffff;
   --border: #2a2a2e;
 
+  --editorial-paper: #0f1012;
+
   --text-primary: #ededf0;
   --text-secondary: #9a9aa3;
 }
 
-/* Flat surfaces — no glass, no blur */
+/* Flat surfaces: no glass, no blur. */
 .surface {
   background: var(--muted);
   border: 1px solid var(--border);
@@ -83,7 +106,7 @@ body {
   box-shadow: 0 2px 12px oklch(0.15 0.05 240 / 0.15);
 }
 
-/* Focus-visible — instant, no fade */
+/* Focus-visible: instant, no fade. */
 *:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
@@ -99,7 +122,7 @@ a:active {
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   font-family: var(--font-sans);
   background-color: var(--background);
   color: var(--text-primary);
@@ -109,7 +132,7 @@ body {
 }
 
 #root {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @media (prefers-reduced-motion: reduce) {

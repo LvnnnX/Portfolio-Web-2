@@ -19,11 +19,13 @@ export default function Skills() {
 
   const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
 
+  if (achievements.length === 0) return null;
+
   return (
-    <div id="skills" className="py-10 md:py-16 px-4 md:px-6">
+    <div id="skills" className="py-8 md:py-12 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-8 md:mb-10">
+          <h2 className="text-[20px] md:text-[26px] font-extrabold tracking-tight text-foreground mb-8 md:mb-10">
             Achievements &amp; Certifications
           </h2>
         </Reveal>

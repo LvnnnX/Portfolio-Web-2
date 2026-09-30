@@ -37,7 +37,7 @@ for (const [path, mod] of Object.entries(modules)) {
 }
 
 const formatDate = (iso: string): string => {
-  if (!iso) return "—";
+  if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("id-ID", {
@@ -87,7 +87,7 @@ export default function WritingPostPage() {
 
         <p className="cs-eyebrow">
           <span>{eyebrowLabel}</span>
-          {niceDate && niceDate !== "—" && (
+          {niceDate && (
             <span className="cs-eyebrow__period" aria-label="published">
               · {niceDate}
             </span>

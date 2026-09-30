@@ -176,17 +176,17 @@ function parseEvent(e: GitHubEventApi): ActivityItem {
   };
 }
 
-async function fetchActivity(): Promise<ActivityItem[]> {
+async function fetchActivity(): Promise<ActivityItem[] | null> {
   const res = await fetch(`https://api.github.com/users/${USERNAME}/events/public?per_page=10`, { headers });
   if (!res.ok) {
     console.warn(`[github] activity: ${res.status}`);
-    return [];
+    return null;
   }
   const events = (await res.json()) as GitHubEventApi[];
   return events.map(parseEvent).slice(0, 6);
 }
 
-async function fetchContributions(): Promise<{ date: string; level: number; count: number }[]> {
+async function fetchContributions(): Promise<{ date: string; level: number; count: number }[] | null> {
   // Use GraphQL API for accurate daily contribution data (requires token)
   if (process.env.GITHUB_TOKEN) {
     try {
@@ -236,17 +236,47 @@ async function fetchContributions(): Promise<{ date: string; level: number; coun
     }
   }
 
-  // Fallback: scrape HTML (1 level per week, expanded to daily in component)
-  console.warn("[github] no token or GraphQL failed — falling back to HTML scrape");
+  // Fallback: scrape the public calendar. Each day cell carries the date and level;
+  // the count lives in a separate <tool-tip for="<cell id>"> element, so the two are
+  // joined by id. A cell with no matching tooltip keeps count 0, and the UI renders
+  // "Contribution activity" instead of a total when no count survives.
+  console.warn("[github] no token or GraphQL failed, falling back to HTML scrape");
   const res = await fetch(`https://github.com/users/${USERNAME}/contributions`, { headers });
   if (!res.ok) {
     console.warn(`[github] contributions: ${res.status}`);
-    return [];
+    return null;
   }
   const html = await res.text();
-  const re = /data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"/g;
-  const matches = [...html.matchAll(re)];
-  return matches.map((m) => ({ date: m[1], level: parseInt(m[2], 10), count: 0 }));
+
+  const counts = new Map<string, number>();
+  const tipRe = /<tool-tip[^>]*\bfor="([^"]+)"[^>]*>([\s\S]*?)<\/tool-tip>/g;
+  for (const tip of html.matchAll(tipRe)) {
+    const text = tip[2];
+    const n = /^\s*(\d+)\s+contribution/i.exec(text);
+    counts.set(tip[1], n ? parseInt(n[1], 10) : 0);
+  }
+
+  const cellRe = /<td\b[^>]*\bdata-date="[^"]*"[^>]*>/g;
+  const days: { date: string; level: number; count: number }[] = [];
+  for (const cell of html.matchAll(cellRe)) {
+    const tag = cell[0];
+    const date = /\bdata-date="(\d{4}-\d{2}-\d{2})"/.exec(tag)?.[1];
+    if (!date) continue;
+    const level = parseInt(/\bdata-level="(\d)"/.exec(tag)?.[1] ?? "0", 10);
+    const id = /\bid="([^"]+)"/.exec(tag)?.[1];
+    days.push({ date, level, count: (id && counts.get(id)) || 0 });
+  }
+
+  if (days.length === 0) {
+    console.warn("[github] contributions: no calendar cells in the response");
+    return null;
+  }
+  // Cells arrive in the calendar's row order (every Sunday, then every Monday).
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
+  const withCounts = days.filter((d) => d.count > 0).length;
+  console.log(`[github] contributions (scrape): ${days.length} days, ${withCounts} with a count`);
+  return days;
 }
 
 async function readExisting(): Promise<SnapshotFile | null> {
@@ -269,27 +299,39 @@ async function main(): Promise<void> {
   ]);
 
   const repos = repoResults.filter((r): r is RepoSnapshot => r !== null);
+  const existing = await readExisting();
 
-  if (!profile && repos.length === 0 && activity.length === 0) {
-    const existing = await readExisting();
-    if (existing) {
-      console.warn("[github] all fetches failed — keeping existing snapshot");
-      return;
-    }
-    console.warn("[github] no data fetched and no existing snapshot — writing empty");
+  if (existing && !profile && repos.length === 0 && activity === null && contributions === null) {
+    console.warn("[github] every fetch failed, keeping the existing snapshot untouched");
+    return;
   }
+
+  // Each field falls back to the committed snapshot on its own. A failed
+  // contributions fetch used to overwrite a year of data with [] and hide the heatmap.
+  const kept: string[] = [];
+  const keep = <T>(field: string, previous: T): T => {
+    kept.push(field);
+    return previous;
+  };
 
   const payload: SnapshotFile = {
     fetchedAt: new Date().toISOString(),
-    profile,
-    repos,
-    activity,
-    contributions,
+    profile: profile ?? (existing?.profile ? keep("profile", existing.profile) : null),
+    repos: repos.length > 0 ? repos : existing?.repos?.length ? keep("repos", existing.repos) : [],
+    activity: activity ?? (existing?.activity ? keep("activity", existing.activity) : []),
+    contributions: [
+      ...(contributions ??
+        (existing?.contributions?.length ? keep("contributions", existing.contributions) : [])),
+    ].sort((a, b) => a.date.localeCompare(b.date)),
   };
+  if (kept.length > 0) console.warn(`[github] fetch failed, kept previous: ${kept.join(", ")}`);
 
   await mkdir(dirname(OUTPUT), { recursive: true });
   await writeFile(OUTPUT, JSON.stringify(payload, null, 2) + "\n", "utf8");
-  console.log(`[github] wrote profile + ${repos.length} repos + ${activity.length} activity items`);
+  console.log(
+    `[github] wrote profile + ${payload.repos.length} repos + ${payload.activity.length} activity items` +
+      ` + ${payload.contributions.length} contribution days`,
+  );
 }
 
 main().catch((err) => {

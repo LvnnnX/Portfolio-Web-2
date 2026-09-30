@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
 
 interface ModalProps {
-  /** Accessible name for the dialog — normally the entry's title. */
+  /** Accessible name for the dialog, normally the entry's title. */
   title: string;
   onClose: () => void;
   children: ReactNode;

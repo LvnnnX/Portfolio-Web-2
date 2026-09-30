@@ -4,7 +4,7 @@
  * Reads src/content/{case-studies,posts,tech-news}/*.mdx and writes
  * dist/sitemap.xml after `vite build`.
  *
- * Slugs come from frontmatter, with the filename as fallback — this must match
+ * Slugs come from frontmatter, with the filename as fallback, this must match
  * how the router resolves them (see WritingPostPage / TechNewsPostPage /
  * CaseStudyPage, which all key their module map on `frontmatter.slug ?? filename`).
  * Deriving slugs from filenames alone used to publish dead URLs for any post

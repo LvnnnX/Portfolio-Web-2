@@ -46,7 +46,7 @@ export default function PlannedWebsitePage() {
 
         <p className="planned-deck">
           Mockup HTML untuk proyek yang sedang aku rencanakan. Tiap kartu
-          membuka desain mandiri — masih tahap awal, kadang kasar, tapi
+          membuka desain mandiri, masih tahap awal, kadang kasar, tapi
           jujur soal posisinya di pipeline.
         </p>
 

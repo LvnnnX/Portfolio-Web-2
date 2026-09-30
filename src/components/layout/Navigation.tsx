@@ -30,7 +30,7 @@ export default function Navigation() {
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch {
-      /* storage disabled — the toggle still works for this session */
+      /* Storage disabled; the toggle still works for this session. */
     }
   }, [isDark]);
 
@@ -41,10 +41,12 @@ export default function Navigation() {
 
   return (
     <div className="fixed top-3 md:top-6 left-0 right-0 z-[100] flex justify-center px-2 md:px-6 pointer-events-none">
+      {/* Solid, not translucent: this bar floats over scrolling content, and the
+          redesign dropped the glass/blur system it used to rely on. */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="relative flex items-center p-1 md:p-1.5 liquid-glass border-border/10 shadow-apple pointer-events-auto"
+        className="relative flex items-center p-1 md:p-1.5 rounded-full border border-border bg-background shadow-sm pointer-events-auto"
         style={{ maxWidth: "fit-content" }}
       >
         <nav className="flex items-center gap-0 md:gap-1">
@@ -54,7 +56,7 @@ export default function Navigation() {
               <Link
                 key={item.label}
                 to={item.to}
-                className={`relative px-2.5 py-1.5 md:px-4 md:py-2 text-[10px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${
+                className={`relative inline-flex items-center justify-center min-h-[44px] md:min-h-0 px-3 py-1.5 md:px-4 md:py-2 text-[11px] md:text-[13px] font-bold tracking-tight rounded-full transition-colors duration-300 z-10 whitespace-nowrap ${
                   active ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
                 onMouseEnter={() => setHovered(item.label)}
@@ -83,7 +85,7 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsDark((v) => !v)}
-            className="p-1.5 md:p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors relative"
+            className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 p-1.5 md:p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors relative"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             <AnimatePresence mode="wait">

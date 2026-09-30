@@ -19,7 +19,7 @@ const tiers = [
     range: "Rp 100rb – 1 jt",
     timeline: "1–5 hari",
     deck:
-      "Halaman tunggal yang fokus pada satu pesan — undangan digital, landing campaign, atau profil singkat yang harus jadi cepat.",
+      "Halaman tunggal yang fokus pada satu pesan: undangan digital, landing campaign, atau profil singkat yang harus jadi cepat.",
     bands: [
       { price: "Rp 100 – 300 rb", scope: "Template-based, kustomisasi minimal (warna, teks, foto). Cocok untuk undangan digital, link-in-bio, landing event 1 hari." },
       { price: "Rp 400 – 700 rb", scope: "Template + light customization (layout adjust, animation, branding match)." },
@@ -69,7 +69,7 @@ const tiers = [
       "Website yang bisa di-update sendiri oleh tim non-teknis, dengan blog, multi-bahasa, dan SEO yang serius.",
     features: [
       "6–12 halaman + dynamic routing",
-      "Headless CMS (Sanity / Notion / Strapi) — admin bisa edit sendiri",
+      "Headless CMS (Sanity / Notion / Strapi), admin bisa edit sendiri",
       "Blog / News section",
       "Search internal",
       "Multi-bahasa (Indonesia + English) opsional",
@@ -110,7 +110,7 @@ const tiers = [
     range: "Rp 20 jt+",
     timeline: "6 minggu+",
     deck:
-      "Untuk proyek dengan skala kompleks — multi-modul, integrasi berat, atau kebutuhan AI/ML. Konsultasi dulu, atau pakai retainer per bulan.",
+      "Untuk proyek dengan skala kompleks: multi-modul, integrasi berat, atau kebutuhan AI/ML. Konsultasi dulu, atau pakai retainer per bulan.",
     features: [
       "Aplikasi multi-modul (HR + finance + operations)",
       "Integrasi ERP / accounting existing",
@@ -144,7 +144,7 @@ const payments = [
 ];
 
 const processSteps = [
-  { t: "Kontak Awal", d: "Via WhatsApp atau email — kasih tau scope kasar." },
+  { t: "Kontak Awal", d: "Via WhatsApp atau email. Kasih tau scope kasar." },
   { t: "Discovery Call", d: "30–45 menit, gratis. Bahas kebutuhan, anggaran, timeline." },
   { t: "Quote + Kontrak", d: "Dikirim maksimal 2 hari kerja setelah discovery." },
   { t: "DP + Kickoff", d: "Proyek officially dimulai setelah DP masuk." },
@@ -159,21 +159,21 @@ const notIncluded = [
   "Penulisan konten teks panjang (kecuali ditambahkan via add-on)",
   "Foto / video produksi (kecuali arrangement add-on)",
   "Pembelian stock photo licensed",
-  "Iklan berbayar — Google Ads / Meta Ads setup",
+  "Iklan berbayar: Google Ads / Meta Ads setup",
   "Lisensi font berbayar di luar Google Fonts",
   "Maintenance setelah masa garansi (kecuali pakai retainer)",
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="svc bg-[var(--svc-paper)] text-[var(--svc-ink)] min-h-screen transition-colors">
+    <div className="svc bg-[var(--svc-paper)] text-[var(--svc-ink)] min-h-dvh transition-colors">
       <SEO
-        title="Services — Daniwismagatha"
-        description="Lima tier layanan pembuatan website — dari landing page sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi."
+        title="Layanan"
+        description="Lima tier layanan pembuatan website, dari landing page sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi."
         path="/services"
       />
 
-      <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="max-w-5xl mx-auto px-6 pb-10 pt-[var(--nav-clearance,72px)]">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[var(--svc-ink-60)] hover:text-[var(--svc-accent)] transition-colors"
@@ -195,7 +195,7 @@ export default function ServicesPage() {
           Web yang dibangun <em className="text-[var(--svc-accent)] not-italic font-light">jujur</em>, dengan harga yang masuk akal.
         </h1>
         <p className="mt-6 text-[var(--svc-ink-70)] text-base sm:text-lg max-w-2xl leading-relaxed">
-          Lima tier layanan — dari landing page sederhana sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi.
+          Lima tier layanan, dari landing page sederhana sampai aplikasi web custom. Range harga jujur, scope transparan, tanpa biaya tersembunyi.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a
@@ -220,7 +220,7 @@ export default function ServicesPage() {
           Lima tingkat keterlibatan, <em className="text-[var(--svc-accent)] not-italic">tanpa gap</em>.
         </h2>
         <p className="mt-4 text-[var(--svc-ink-60)] max-w-2xl">
-          Tiap tier disusun saling menyambung — batas atas tier sebelumnya jadi batas bawah berikutnya. Tidak ada celah harga yang membingungkan.
+          Tiap tier disusun saling menyambung: batas atas tier sebelumnya jadi batas bawah berikutnya. Tidak ada celah harga yang membingungkan.
         </p>
         <TierTable tiers={tiers} />
       </section>
@@ -257,7 +257,7 @@ export default function ServicesPage() {
         <p className="mt-4 text-[var(--svc-ink-60)]">
           Sembilan langkah, <em className="text-[var(--svc-accent)] not-italic">satu janji</em>.
         </p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
           {processSteps.map((step, i) => (
             <ProcessStep
               key={step.t}
@@ -300,7 +300,7 @@ export default function ServicesPage() {
       <footer className="max-w-5xl mx-auto px-6 pt-12 pb-16">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs tracking-[0.10em] uppercase text-[var(--svc-ink-40)] border-t border-[var(--svc-rule)] pt-6">
           <span>Daniwismagatha.my.id · Pricelist 2026</span>
-          <span>Berlaku Mei 2026 — Karang Asem, Bali</span>
+          <span>Berlaku Mei 2026 &middot; Karang Asem, Bali</span>
         </div>
       </footer>
     </div>

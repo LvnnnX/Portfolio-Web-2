@@ -36,7 +36,7 @@ export default function Contact() {
     <div id="contact" className="pt-8 pb-12 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+          <h2 className="text-[20px] md:text-[26px] font-extrabold tracking-tight text-foreground mb-1">
             Let&apos;s Talk
           </h2>
           <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8">
@@ -48,7 +48,7 @@ export default function Contact() {
           <div className="flex flex-wrap gap-3">
           <a
             href={`mailto:${CONTACT_DATA.email}`}
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-[13px] font-bold text-primary-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-3 text-[13px] font-bold text-primary-foreground transition-opacity hover:opacity-90"
           >
             <Mail size={16} /> {CONTACT_DATA.email}
           </a>
@@ -63,7 +63,7 @@ export default function Contact() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-muted px-4 py-2.5 text-[13px] font-bold text-foreground transition-colors hover:border-primary hover:border border border-border"
+              className="inline-flex items-center gap-2 rounded-lg bg-muted px-4 py-3 text-[13px] font-bold text-foreground transition-colors hover:border-primary hover:border border border-border"
               aria-label={social.name}
             >
               {social.icon} {social.name}

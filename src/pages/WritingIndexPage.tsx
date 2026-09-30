@@ -39,7 +39,7 @@ const formatEdition = (raw: string | number | undefined, fallbackIndex: number):
 };
 
 const formatDate = (iso: string): string => {
-  if (!iso) return "—";
+  if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("id-ID", {
@@ -111,8 +111,9 @@ export default function WritingIndexPage() {
                   <div className="blog-row__meta">
                     <span className="blog-row__edition">{post.edition}</span>
                     <span className="blog-row__date">
-                      {formatDate(post.date)}
-                      {post.readingTime ? ` · ${post.readingTime}` : ""}
+                      {[formatDate(post.date), post.readingTime]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </span>
                   </div>
                   <h2 className="blog-row__title">{post.title}</h2>

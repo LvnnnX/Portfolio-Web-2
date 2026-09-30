@@ -23,7 +23,7 @@ function App() {
   const location = useLocation();
   const isEditorial = startsWithAny(location.pathname, EDITORIAL_ROUTES);
 
-  // Keep <html lang> honest per route — most of the writing is Indonesian,
+  // Keep <html lang> honest per route. Most of the writing is Indonesian,
   // and a wrong lang makes screen readers use the wrong pronunciation rules.
   useEffect(() => {
     document.documentElement.lang = startsWithAny(
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div
-      className="relative min-h-screen dark:bg-background"
+      className="relative min-h-dvh dark:bg-background"
       style={
         isEditorial
           ? { backgroundColor: "var(--editorial-paper, #fafaf6)" }
@@ -46,7 +46,7 @@ function App() {
       <Navigation />
 
       <div className="relative z-10">
-        <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
+        <Suspense fallback={<div className="min-h-dvh" aria-busy="true" />}>
           <Outlet />
         </Suspense>
       </div>

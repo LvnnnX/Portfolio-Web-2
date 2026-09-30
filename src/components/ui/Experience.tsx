@@ -26,6 +26,8 @@ export default function Experience() {
     .slice()
     .sort((a, b) => a.priority - b.priority);
 
+  if (experiences.length === 0) return null;
+
   const scrollGallery = (direction: "left" | "right") => {
     if (galleryRef.current) {
       galleryRef.current.scrollBy({
@@ -36,10 +38,10 @@ export default function Experience() {
   };
 
   return (
-    <div id="experience" className="py-10 md:py-16 px-4 md:px-6">
+    <div id="experience" className="py-14 md:py-24 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Reveal>
-          <h2 className="text-[24px] md:text-[32px] font-extrabold tracking-tight text-foreground mb-1">
+          <h2 className="text-[26px] md:text-[38px] font-extrabold tracking-tight text-foreground mb-1">
             Work Experience
           </h2>
           <p className="text-muted-foreground text-[13px] md:text-[15px] mb-8 md:mb-10">
@@ -91,7 +93,7 @@ export default function Experience() {
 
                 <div className="flex flex-wrap gap-1.5">
                   {exp.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="text-[10px] md:text-[11px] font-semibold text-muted-foreground/80">
+                    <span key={tag} className="text-[10px] md:text-[11px] font-semibold text-muted-foreground">
                       {tag}
                     </span>
                   ))}

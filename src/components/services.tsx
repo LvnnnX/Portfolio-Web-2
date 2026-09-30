@@ -1,4 +1,4 @@
-type GlassCardProps = {
+type PanelProps = {
   children: React.ReactNode;
   className?: string;
   featured?: boolean;
@@ -46,38 +46,27 @@ type ContactCTAProps = {
   github: string;
   location: string;
 };
-// ============================================================================
-// services.components.jsx
-// ----------------------------------------------------------------------------
-// Drop-in components untuk services.mdx
-// Stack: React 19 + Tailwind v4 + Framer Motion (optional)
-// Path: src/components/services.tsx
-// ============================================================================
+// Building blocks for the /services page.
 
 import { motion } from "framer-motion";
 
-// ----- Atoms -----------------------------------------------------------------
-
-export function GlassCard({ children, className = "", featured = false }: GlassCardProps) {
+export function Panel({ children, className = "", featured = false }: PanelProps) {
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border backdrop-blur-2xl ${
+      className={`relative overflow-hidden rounded-2xl border ${
         featured
-          ? "border-[var(--svc-rule-strong)] bg-gradient-to-br from-[var(--svc-glass-from)] via-[var(--svc-glass-via)] to-[var(--svc-glass-to)] shadow-[var(--svc-glass-shadow-featured)]"
-          : "border-[var(--svc-rule)] bg-[var(--svc-surface)] shadow-[var(--svc-glass-shadow)]"
+          ? "border-[var(--svc-accent-border)] bg-[var(--svc-accent-bg)]"
+          : "border-[var(--svc-rule)] bg-[var(--svc-surface)]"
       } ${className}`}
     >
-      <div className="pointer-events-none absolute -top-px left-6 right-6 h-px bg-gradient-to-r from-transparent via-[var(--svc-glass-hairline)] to-transparent" />
       {children}
     </div>
   );
 }
 
-// ----- Tier Table (overview) ------------------------------------------------
-
 export function TierTable({ tiers }: { tiers: Tier[] }) {
   return (
-    <GlassCard className="mt-12 p-1">
+    <Panel className="mt-12 p-1">
       <div className="rounded-3xl overflow-hidden">
         <div className="grid grid-cols-12 px-6 py-4 text-[11px] tracking-[0.18em] uppercase text-[var(--svc-ink-40)] font-medium border-b border-[var(--svc-rule)]">
           <div className="col-span-1">Tier</div>
@@ -110,11 +99,9 @@ export function TierTable({ tiers }: { tiers: Tier[] }) {
           </motion.a>
         ))}
       </div>
-    </GlassCard>
+    </Panel>
   );
 }
-
-// ----- Tier Card (detail) ---------------------------------------------------
 
 export function TierCard({ tier }: { tier: Tier }) {
   return (
@@ -126,7 +113,7 @@ export function TierCard({ tier }: { tier: Tier }) {
       transition={{ duration: 0.6 }}
       className="scroll-mt-24 my-6"
     >
-      <GlassCard featured={tier.featured} className="p-8 md:p-10 relative">
+      <Panel featured={tier.featured} className="p-8 md:p-10 relative">
         {tier.featured && (
           <div className="absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] tracking-[0.18em] uppercase font-medium bg-[var(--svc-accent-bg)] text-[var(--svc-accent)] border border-[var(--svc-accent-border)]">
             Paling Dipilih
@@ -177,7 +164,7 @@ export function TierCard({ tier }: { tier: Tier }) {
               ))}
             </ul>
             <p className="mt-3 text-xs italic text-[var(--svc-ink-40)]">
-              Jujur dari awal supaya kamu dapat nilai sesuai budget — bukan ekspektasi salah.
+              Jujur dari awal supaya kamu dapat nilai sesuai budget, bukan ekspektasi salah.
             </p>
           </div>
         )}
@@ -219,16 +206,15 @@ export function TierCard({ tier }: { tier: Tier }) {
           </div>
           <p className="text-sm text-[var(--svc-ink-60)] font-light italic leading-relaxed">{tier.cocok}</p>
         </div>
-      </GlassCard>
+      </Panel>
     </motion.div>
   );
 }
 
-// ----- Add-on Table ---------------------------------------------------------
 
 export function AddOnTable({ items }: { items: AddOnItem[] }) {
   return (
-    <GlassCard className="mt-10 p-2">
+    <Panel className="mt-10 p-2">
       <div className="rounded-3xl overflow-hidden">
         {items.map((a, i) => (
           <motion.div
@@ -246,15 +232,13 @@ export function AddOnTable({ items }: { items: AddOnItem[] }) {
           </motion.div>
         ))}
       </div>
-    </GlassCard>
+    </Panel>
   );
 }
 
-// ----- Payment Card ---------------------------------------------------------
-
 export function PaymentCard({ tier, scheme, note }: PaymentCardProps) {
   return (
-    <GlassCard className="p-6 h-full">
+    <Panel className="p-6 h-full">
       <div className="text-[10px] tracking-[0.22em] uppercase text-[var(--svc-accent)] font-mono mb-3">
         {tier}
       </div>
@@ -262,15 +246,13 @@ export function PaymentCard({ tier, scheme, note }: PaymentCardProps) {
         {scheme}
       </div>
       <p className="text-sm text-[var(--svc-ink-60)] font-light leading-relaxed">{note}</p>
-    </GlassCard>
+    </Panel>
   );
 }
 
-// ----- Process Step ---------------------------------------------------------
-
 export function ProcessStep({ number, title, description }: ProcessStepProps) {
   return (
-    <GlassCard className="p-6 h-full">
+    <Panel className="p-6 h-full">
       <div className="font-display italic text-3xl text-[var(--svc-accent)] font-light mb-3 leading-none">
         {number}
       </div>
@@ -278,22 +260,20 @@ export function ProcessStep({ number, title, description }: ProcessStepProps) {
         {title}
       </div>
       <p className="text-sm text-[var(--svc-ink-60)] font-light leading-relaxed">{description}</p>
-    </GlassCard>
+    </Panel>
   );
 }
-
-// ----- Contact CTA ----------------------------------------------------------
 
 export function ContactCTA({ whatsapp, email, linkedin, github, location }: ContactCTAProps) {
   const waLink = `https://wa.me/${whatsapp}?text=Halo%20Dani%2C%20saya%20mau%20konsultasi%20website`;
   return (
     <div className="mt-10">
-      <GlassCard featured className="p-10 md:p-16 text-center">
+      <Panel featured className="p-10 md:p-16 text-center">
         <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-[var(--svc-ink)] leading-tight">
           Punya ide, dan <em className="italic text-[var(--svc-accent)]">budget yang masuk akal</em>?
         </h2>
         <p className="mt-6 max-w-xl mx-auto text-lg text-[var(--svc-ink-60)] font-light leading-relaxed">
-          Konsultasi awal selalu gratis. Kasih tau scope kasar via WhatsApp atau email — aku balas
+          Konsultasi awal selalu gratis. Kasih tau scope kasar via WhatsApp atau email. Aku balas
           dalam 24 jam.
         </p>
 
@@ -306,7 +286,7 @@ export function ContactCTA({ whatsapp, email, linkedin, github, location }: Cont
           </a>
           <a
             href={`mailto:${email}`}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[var(--svc-rule-strong)] bg-[var(--svc-surface)] backdrop-blur-xl text-[var(--svc-ink)] text-sm font-medium tracking-tight hover:bg-[var(--svc-surface-2)] hover:border-[var(--svc-ink-40)] transition-all"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[var(--svc-rule-strong)] bg-[var(--svc-surface)] text-[var(--svc-ink)] text-sm font-medium tracking-tight hover:bg-[var(--svc-surface-2)] hover:border-[var(--svc-ink-40)] transition-all"
           >
             {email}
           </a>
@@ -332,7 +312,7 @@ export function ContactCTA({ whatsapp, email, linkedin, github, location }: Cont
             <div className="text-sm text-[var(--svc-ink-80)] font-light">{location}</div>
           </div>
         </div>
-      </GlassCard>
+      </Panel>
     </div>
   );
 }

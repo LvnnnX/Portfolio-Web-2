@@ -11,7 +11,7 @@ import subprocess
 import requests
 import json
 
-# Configure APIs — keys come from the environment only. Never hardcode a
+# Configure APIs, keys come from the environment only. Never hardcode a
 # fallback here: this repo is public, so a committed key is a published key.
 databyte_key = os.getenv("DATABYTE_API_KEY", "")
 tavily_key = os.getenv("TAVILY_API_KEY", "")
@@ -93,9 +93,10 @@ VOICE & STYLE (WAJIB IKUTI):
 - Opening personal & relatable: "Aku bukan [expert], tapi..." atau "Kemarin aku baca..."
 - Breakdown kompleks jadi struktur berlapis (misal: "tiga hal yang menarik", "dua sisi yang perlu dipahami")
 - Quote langsung dari sumber asli (nama publikasi + tanggal kalau ada)
-- Objektif tapi punya stance — bukan netral palsu, tapi juga bukan sensasional
+- Objektif tapi punya stance, bukan netral palsu, tapi juga bukan sensasional
 - Akhiri dengan refleksi personal: "Yang aku bawa pulang dari ini..."
 - Hindari: AI-isms ("dive into", "let's explore", "in conclusion"), hype berlebihan, clickbait
+- JANGAN pakai karakter em dash (tanda panjang). Pakai koma, titik, titik dua, atau kurung.
 
 TEMPLATE STRUKTUR (IKUTI PERSIS):
 
@@ -113,9 +114,9 @@ draft: false
 
 [Opening 1-2 paragraf: Cerita personal kenapa kamu baca tech news hari ini, apa yang bikin relevan untuk kamu sebagai developer]
 
-## [Judul Artikel 1 — Tulis Ulang Jadi Lebih Menarik, Hindari Clickbait]
+## [Judul Artikel 1, Tulis Ulang Jadi Lebih Menarik, Hindari Clickbait]
 
-[Paragraf 1: Apa yang terjadi. Sertakan quote spesifik atau data dari artikel asli. Contoh: "TechCrunch melaporkan bahwa SpaceX 'secured the right to acquire Cursor for $60 billion' — angka yang gila untuk satu tool coding."]
+[Paragraf 1: Apa yang terjadi. Sertakan quote spesifik atau data dari artikel asli. Contoh: "TechCrunch melaporkan bahwa SpaceX 'secured the right to acquire Cursor for $60 billion', angka yang gila untuk satu tool coding."]
 
 [Paragraf 2: Kenapa ini penting untuk developer Indonesia. Implikasi praktis, bukan teori. Contoh: "Untuk developer Indonesia, ini sinyal bahwa tool produktivitas kita akan makin mahal atau terkurasi untuk perusahaan besar."]
 
@@ -139,11 +140,11 @@ draft: false
 
 ## Yang aku bawa pulang dari kelima berita ini
 
-[Paragraf 1: Pola yang kamu lihat dari kelima berita — apa benang merahnya?]
+[Paragraf 1: Pola yang kamu lihat dari kelima berita, apa benang merahnya?]
 
 [Paragraf 2: Pertanyaan yang muncul di benakmu, atau stance personal yang objektif tapi jelas]
 
-[Paragraf 3: Penutup reflektif — bukan kesimpulan formal, tapi pemikiran personal yang honest]
+[Paragraf 3: Penutup reflektif, bukan kesimpulan formal, tapi pemikiran personal yang honest]
 
 ---
 
@@ -152,10 +153,10 @@ draft: false
 ---
 
 CONTOH OPENING YANG BENAR:
-"Kemarin scrolling Hacker News, aku nemu satu thread yang bikin berhenti: OpenAI baru rilis model baru, tapi yang viral justru bukan fiturnya — melainkan harganya yang turun 90%. Aku bukan AI researcher, tapi sebagai orang yang tiap bulan bayar $200+ buat Claude API, angka ini relevan banget."
+"Kemarin scrolling Hacker News, aku nemu satu thread yang bikin berhenti: OpenAI baru rilis model baru, tapi yang viral justru bukan fiturnya, melainkan harganya yang turun 90%. Aku bukan AI researcher, tapi sebagai orang yang tiap bulan bayar $200+ buat Claude API, angka ini relevan banget."
 
 CONTOH PENUTUP YANG BENAR:
-"Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis — atau setidaknya, membaca tulisan orang lain yang punya angle berbeda."
+"Ini bukan analisis mendalam. Aku cuma developer yang kebetulan peduli sama arah industri ini. Tapi menurutku, tempat paling sehat untuk peduli adalah dengan menulis, atau setidaknya, membaca tulisan orang lain yang punya angle berbeda."
 
 ---
 

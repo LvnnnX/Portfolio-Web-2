@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="flex items-center gap-3">
           <a
             href="mailto:pandedani5@gmail.com"
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] -m-2 rounded-lg text-muted-foreground hover:text-primary transition-colors"
             aria-label="Email"
           >
             <Mail size={16} />
@@ -35,7 +35,7 @@ export default function Footer() {
             href="https://github.com/LvnnnX"
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] -m-2 rounded-lg text-muted-foreground hover:text-primary transition-colors"
             aria-label="GitHub"
           >
             <GithubIcon />
@@ -44,7 +44,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/kokopandan"
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] -m-2 rounded-lg text-muted-foreground hover:text-primary transition-colors"
             aria-label="LinkedIn"
           >
             <LinkedinIcon />

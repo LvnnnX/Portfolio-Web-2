@@ -5,7 +5,7 @@
  * without tripping react-refresh/only-export-components (a module may export
  * components *or* other values, not both).
  *
- * HomePage is deliberately absent — it's the entry route and is imported
+ * HomePage is deliberately absent: it's the entry route and is imported
  * eagerly, so splitting it would only add a round trip before first paint.
  */
 

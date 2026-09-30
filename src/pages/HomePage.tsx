@@ -35,7 +35,7 @@ const SectionSkeleton = ({ variant = "timeline" }: { variant?: "timeline" | "gri
     )}
 
     {variant === "grid" && (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {[0.2, 0.4, 0.6, 0.8].map((d, i) => (
           <div
             key={d}
@@ -66,7 +66,7 @@ const SectionSkeleton = ({ variant = "timeline" }: { variant?: "timeline" | "gri
             <div className="h-3 w-56 rounded bg-border/60" />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[0.2, 0.4, 0.6].map((d) => (
             <div key={d} className="h-28 rounded-xl animate-shimmer" style={{ animationDelay: `${d}s` }} />
           ))}
@@ -80,7 +80,7 @@ export default function HomePage() {
   return (
     <div>
       <SEO
-        title="Pande Dani — Computer Vision & Applied ML Engineer"
+        title="Pande Dani. Computer Vision & Applied ML Engineer"
         exact
         description="Computer Vision & Applied ML Engineer based in Bali. Case studies and writing on applied machine learning."
         path="/"

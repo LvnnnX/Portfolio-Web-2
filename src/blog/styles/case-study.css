@@ -2,17 +2,17 @@
  * theme: Atelier (dark variant) · genre: editorial
  * pre-emit critique: P5 H5 E4 S5 R5 V4
  * Scope: only the content surface inside /case-study/:slug.
- * Portfolio chrome (navbar, footer, falling-pattern bg) is preserved by App.tsx — untouched.
+ * Portfolio chrome (navbar, footer, falling-pattern bg) is preserved by App.tsx: untouched.
  */
 
 .cs {
-  /* Atelier — light variant (default) */
+  /* Atelier: light variant (default) */
   --cs-paper: #fafaf6;
   --cs-paper-2: #f1efe8;
   --cs-paper-3: #e8e5db;
   --cs-ink: #1a1a1c;
   --cs-ink-soft: #4a4a4f;
-  --cs-ink-faint: #86868b;
+  --cs-ink-faint: #737378;
   --cs-rule: #d8d4ca;
   --cs-rule-soft: #ebe7dd;
   --cs-accent: #b8422e;
@@ -29,10 +29,10 @@
   background-color: var(--cs-paper);
   color: var(--cs-ink);
   font-family: var(--cs-serif);
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
-/* Atelier — dark variant.
+/* Atelier: dark variant.
  *
  * Reuses the existing global '.dark' class toggled by Navigation. Brighter accent
  * keeps WCAG AA contrast against the dark surface. */
@@ -55,13 +55,13 @@
 .cs-article {
   max-width: 1100px;
   margin-inline: auto;
-  padding-block: 32px 96px;
+  padding-block: var(--nav-clearance, 72px) 96px;
   padding-inline: 20px;
 }
 
 @media (min-width: 768px) {
   .cs-article {
-    padding-block: 56px 128px;
+    padding-block: var(--nav-clearance, 96px) 128px;
     padding-inline: 48px;
   }
 }
@@ -212,7 +212,7 @@
   }
 }
 
-/* ── Sticky in-page nav (desktop only — collapses to inline list on mobile) ── */
+/* ── Sticky in-page nav (desktop only: collapses to inline list on mobile) ── */
 
 .cs-nav {
   position: relative;
@@ -429,7 +429,7 @@
   margin-block: 48px 32px;
 }
 
-/* Daftar pustaka — everything after the final <hr> in MDX is the bibliography.
+/* Daftar pustaka: everything after the final <hr> in MDX is the bibliography.
  * Smaller body, sans-serif chrome face, hanging indent for citations.
  * Scoped to case-study only (.cs:not(.cs--tech-news)) so tech news articles
  * separated by <hr> don't get bibliography styling. */
@@ -555,7 +555,7 @@
   }
 }
 
-/* ── Blog list (editorial card list — used at /blog index) ───────────── */
+/* ── Blog list (editorial card list: used at /blog index) ───────────── */
 
 .blog-list {
   list-style: none;

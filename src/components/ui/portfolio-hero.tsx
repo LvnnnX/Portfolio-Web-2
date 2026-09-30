@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
+import projectData from "../../content/projects.json";
 
 interface BlurTextProps {
   text: string;
@@ -8,7 +9,7 @@ interface BlurTextProps {
   direction?: "top" | "bottom";
   className?: string;
   style?: React.CSSProperties;
-  /** Hide from assistive tech — letter-split text is announced one character
+  /** Hide from assistive tech: letter-split text is announced one character
    *  at a time, so the readable copy lives in a sibling element instead. */
   decorative?: boolean;
 }
@@ -35,18 +36,27 @@ const BlurText = React.memo(({
   }, []);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // An element already on screen at mount can get a first observer callback
+    // reporting isIntersecting false, and since the intersection never changes
+    // afterwards no second callback arrives: the text stays at opacity 0 for
+    // good. Settle the initial state from the rect instead of the observer.
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      setInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setInView(true);
       },
       { threshold: 0.1 }
     );
-
-    const element = ref.current;
-    if (element) observer.observe(element);
-    return () => {
-      if (element) observer.unobserve(element);
-    };
+    observer.observe(element);
+    return () => observer.unobserve(element);
   }, []);
 
   const segments = useMemo(() => {
@@ -81,15 +91,19 @@ const BlurText = React.memo(({
 
 BlurText.displayName = "BlurText";
 
+// Counted from the same file the Projects section renders, so the hero number
+// always matches what a visitor can scroll down and count.
+const shippedProjects = projectData.projects.length;
+
 export default function PortfolioHero() {
   return (
-    <div className="min-h-screen bg-white dark:bg-background text-black dark:text-foreground transition-colors duration-500 overflow-hidden">
-      <main className="relative min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-dvh bg-white dark:bg-background text-black dark:text-foreground transition-colors duration-500 overflow-hidden">
+      <main className="relative min-h-dvh flex flex-col items-center justify-center">
         {/* The name is drawn one letter per span for the blur-in effect, which
             screen readers spell out and crawlers can't read as a heading. The
             real h1 carries the text; the animated rows are decorative. */}
         <h1 className="sr-only">
-          Pande Dani — Computer Vision &amp; Applied ML Engineer
+          Pande Dani. Computer Vision &amp; Applied ML Engineer
         </h1>
 
         <div className="relative w-full px-4 text-center mt-20 select-none">
@@ -112,7 +126,7 @@ export default function PortfolioHero() {
               transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
               <div
-                className="liquid-glass overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.04]"
+                className="overflow-hidden border border-border shadow-sm cursor-pointer transition-transform duration-500 hover:scale-[1.04]"
                 style={{
                   width: "clamp(120px, 15vw, 240px)",
                   height: "clamp(170px, 21vw, 350px)",
@@ -154,7 +168,7 @@ export default function PortfolioHero() {
 
         <div className="mt-16 w-full px-6 flex flex-col items-center gap-6">
           <BlurText
-            text="Computer Vision & Applied ML Engineer — Building Vision Systems for Real-World Automation"
+            text="Computer Vision & Applied ML Engineer. Building vision systems for real-world automation."
             delay={120}
             animateBy="words"
             direction="top"
@@ -167,8 +181,8 @@ export default function PortfolioHero() {
               <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">Years Coding</p>
             </div>
             <div className="text-center">
-              <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">8+</p>
-              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">Production Deployments</p>
+              <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">{shippedProjects}</p>
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">Projects Shipped</p>
             </div>
             <div className="text-center">
               <p className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground">3.98</p>

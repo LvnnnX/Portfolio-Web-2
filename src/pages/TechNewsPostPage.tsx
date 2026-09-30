@@ -25,7 +25,7 @@ const modules = import.meta.glob<PostModule>(
 );
 
 const formatDate = (iso: string): string => {
-  if (!iso) return "—";
+  if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
   return d.toLocaleDateString("id-ID", {
@@ -73,7 +73,7 @@ export default function TechNewsPostPage() {
 
         <p className="cs-eyebrow">
           <span>TECH NEWS · AI CURATED</span>
-          {date && formatDate(date) !== "—" && (
+          {formatDate(date) && (
             <span className="cs-eyebrow__period" aria-label="published">
               · {formatDate(date)}
             </span>
