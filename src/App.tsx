@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import "./index.css";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
+import { langFor } from "./lib/lang";
 
 /** Routes that render on the editorial paper surface rather than the app chrome. */
 const EDITORIAL_ROUTES = [
@@ -12,9 +13,6 @@ const EDITORIAL_ROUTES = [
   "/planned-website",
   "/services",
 ];
-
-/** Routes whose content is written in Indonesian; the rest (/, /case-study) are English. */
-const INDONESIAN_ROUTES = ["/blog", "/tech-news", "/services", "/planned-website"];
 
 const startsWithAny = (pathname: string, prefixes: string[]) =>
   prefixes.some((p) => pathname.startsWith(p));
@@ -26,13 +24,15 @@ function App() {
   // Keep <html lang> honest per route. Most of the writing is Indonesian,
   // and a wrong lang makes screen readers use the wrong pronunciation rules.
   useEffect(() => {
-    document.documentElement.lang = startsWithAny(
-      location.pathname,
-      INDONESIAN_ROUTES,
-    )
-      ? "id"
-      : "en";
+    document.documentElement.lang = langFor(location.pathname);
   }, [location.pathname]);
+
+  // The prerendered <head> tags describe only the URL the page was loaded at.
+  // React now renders its own; drop the static copies so a client-side
+  // navigation can't leave the first page's title or canonical in front.
+  useEffect(() => {
+    document.head.querySelectorAll("[data-prerender]").forEach((node) => node.remove());
+  }, []);
 
   return (
     <div

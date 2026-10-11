@@ -61,7 +61,7 @@ export default function PlannedWebsitePage() {
             {projects.map((p) => (
               <li key={p.slug}>
                 <a
-                  href={`/plan/${p.file}`}
+                  href={`/plan/${p.file.replace(/\.html$/, "")}`}
                   target="_blank"
                   rel="noreferrer"
                   className="planned-card"

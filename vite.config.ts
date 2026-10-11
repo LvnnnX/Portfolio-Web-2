@@ -8,6 +8,7 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { fileURLToPath, URL } from 'node:url'
+import { prerender } from './scripts/prerender.ts'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,6 +32,7 @@ export default defineConfig({
     },
     react({ include: /\.(jsx|tsx|md|mdx)$/ }),
     tailwindcss(),
+    prerender(),
   ],
   build: {
     rolldownOptions: {

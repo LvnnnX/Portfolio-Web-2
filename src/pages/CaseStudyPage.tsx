@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import CaseStudyLayout, {
   type CaseStudyFrontmatter,
 } from "../components/layout/CaseStudyLayout";
-import SEO from "../components/seo/SEO";
+import SEO, { JsonLd } from "../components/seo/SEO";
+import { articleSchema, breadcrumbSchema } from "../seo/schema";
 import NotFoundPage from "./NotFoundPage";
 
 interface MdxModule {
@@ -51,6 +52,24 @@ export default function CaseStudyPage() {
         path={`/case-study/${frontmatter.slug}`}
         image={frontmatter.cover}
         type="article"
+        tags={frontmatter.tags}
+      />
+      <JsonLd
+        data={[
+          articleSchema({
+            type: "Article",
+            title: frontmatter.title,
+            description: frontmatter.summary,
+            path: `/case-study/${frontmatter.slug}`,
+            lang: "en",
+            image: frontmatter.cover,
+            keywords: frontmatter.tags,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: frontmatter.title, path: `/case-study/${frontmatter.slug}` },
+          ]),
+        ]}
       />
       <CaseStudyLayout frontmatter={frontmatter}>
         <MDX />

@@ -1,7 +1,8 @@
 import type { ComponentType } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import SEO from "../components/seo/SEO";
+import SEO, { JsonLd } from "../components/seo/SEO";
+import { articleSchema, breadcrumbSchema } from "../seo/schema";
 import NotFoundPage from "./NotFoundPage";
 import "../blog/styles/case-study.css";
 
@@ -78,6 +79,25 @@ export default function WritingPostPage() {
         path={`/blog/${slug}`}
         type="article"
         publishedTime={fm.date}
+        tags={fm.tags}
+      />
+      <JsonLd
+        data={[
+          articleSchema({
+            type: "BlogPosting",
+            title: fm.title ?? slug!,
+            description: summary,
+            path: `/blog/${slug}`,
+            lang: "id",
+            datePublished: fm.date,
+            keywords: fm.tags,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Tulisan", path: "/blog" },
+            { name: fm.title ?? slug!, path: `/blog/${slug}` },
+          ]),
+        ]}
       />
 
       <article className="cs-article">
