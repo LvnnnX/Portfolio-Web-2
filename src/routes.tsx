@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 import App from "./App";
 import HomePage from "./pages/HomePage";
 import {
@@ -12,10 +12,9 @@ import {
   NotFoundPage,
 } from "./pages/lazy";
 
-// Every route except the entry point is code-split (see ./pages/lazy). Without
-// this, a visitor to / downloads every blog post, every tech-news edition, all
-// three case studies, and the full services pricing page in the main chunk.
-export const router = createBrowserRouter([
+// Plain route objects, so the browser (main.tsx) and the build-time prerender
+// (entry-server.tsx) can each build their own router from the same table.
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
@@ -31,4 +30,4 @@ export const router = createBrowserRouter([
       { path: "*", element: <NotFoundPage /> },
     ],
   },
-]);
+];

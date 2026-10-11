@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node --import tsx/esm scripts/fetch-github.ts",
-    "build": "tsc -b && vite build && node --import tsx/esm scripts/generate-sitemap.ts",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -15,7 +15,6 @@
     "@mdx-js/rollup": "^3.1.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
-    "gray-matter": "^4.0.3",
     "lucide-react": "^1.11.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

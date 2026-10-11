@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
+import SEO from "../components/seo/SEO";
 
 export default function NotFoundPage() {
   return (
     <main className="min-h-dvh flex items-center justify-center px-6">
+      <SEO
+        title="Page not found"
+        description="The page you're looking for doesn't exist or has been moved."
+        noindex
+      />
       <div className="text-center max-w-md">
         <p className="text-sm font-semibold tracking-[0.12em] text-[color:var(--color-accent,#B8422E)] uppercase mb-4">
           404

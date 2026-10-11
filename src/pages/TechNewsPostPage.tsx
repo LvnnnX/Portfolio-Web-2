@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import SEO from "../components/seo/SEO";
+import SEO, { JsonLd } from "../components/seo/SEO";
+import { articleSchema, breadcrumbSchema } from "../seo/schema";
 import "../blog/styles/case-study.css";
 
 interface PostFrontmatter {
@@ -64,6 +65,27 @@ export default function TechNewsPostPage() {
         title={title}
         description={description}
         path={`/tech-news/${slug}`}
+        type="article"
+        publishedTime={date || undefined}
+        tags={tags}
+      />
+      <JsonLd
+        data={[
+          articleSchema({
+            type: "BlogPosting",
+            title,
+            description,
+            path: `/tech-news/${slug}`,
+            lang: "id",
+            datePublished: date,
+            keywords: tags,
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Tech News", path: "/tech-news" },
+            { name: title, path: `/tech-news/${slug}` },
+          ]),
+        ]}
       />
 
       <article className="cs-article">

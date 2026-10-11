@@ -1,12 +1,15 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import PortfolioHero from "../components/ui/portfolio-hero";
-import SEO, { PersonJsonLd } from "../components/seo/SEO";
+import SEO, { JsonLd } from "../components/seo/SEO";
+import { lazyPage } from "../lib/lazyPage";
+import { personSchema, websiteSchema } from "../seo/schema";
 
-const Experience = React.lazy(() => import("../components/ui/Experience"));
-const Projects = React.lazy(() => import("../components/ui/Projects"));
-const Skills = React.lazy(() => import("../components/ui/Skills"));
-const OpenSource = React.lazy(() => import("../components/sections/OpenSource"));
-const Contact = React.lazy(() => import("../components/ui/Contact"));
+const Experience = lazyPage("src/components/ui/Experience.tsx", () => import("../components/ui/Experience"));
+const Projects = lazyPage("src/components/ui/Projects.tsx", () => import("../components/ui/Projects"));
+const Skills = lazyPage("src/components/ui/Skills.tsx", () => import("../components/ui/Skills"));
+const OpenSource = lazyPage("src/components/sections/OpenSource.tsx", () => import("../components/sections/OpenSource"));
+const Contact = lazyPage("src/components/ui/Contact.tsx", () => import("../components/ui/Contact"));
+const SECTIONS = [Experience, Projects, Skills, OpenSource, Contact];
 
 const bar = (w: string, h = "h-3", d = 0) => (
   <div
@@ -85,7 +88,7 @@ export default function HomePage() {
         description="Computer Vision & Applied ML Engineer based in Bali. Case studies and writing on applied machine learning."
         path="/"
       />
-      <PersonJsonLd />
+      <JsonLd data={[personSchema(), websiteSchema()]} />
 
       <div id="home">
         <PortfolioHero />
@@ -121,3 +124,6 @@ export default function HomePage() {
     </div>
   );
 }
+
+/** Read by main.tsx so the sections are loaded before the first client render. */
+HomePage.preload = () => Promise.all(SECTIONS.map((s) => s.preload())).then(() => undefined);
